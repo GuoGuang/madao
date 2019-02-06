@@ -1,0 +1,96 @@
+// cdn
+// $cdn-url: 'https://cdn.surmon.me';
+$cdn-url: 'https://surmon.me';
+
+// PC Theme Color
+$body-bg: var(--body-bg);
+$theme-black: var(--theme-black);
+$theme-logo-rotate: var(--theme-logo-rotate);
+
+$module-bg: var(--module-bg);
+$module-bg-opacity-5: var(--module-bg-opacity-5);
+$module-bg-opacity-8: var(--module-bg-opacity-8);
+$module-bg-opacity-9: var(--module-bg-opacity-9);
+
+$module-hover-bg: var(--module-hover-bg);
+$module-hover-bg-opaqueness: var(--module-hover-bg-opaqueness);
+$module-hover-bg-opacity-3: var(--module-hover-bg-opacity-3);
+$module-hover-bg-opacity-9: var(--module-hover-bg-opacity-9);
+$module-hover-bg-darken-10: var(--module-hover-bg-darken-10);
+$module-hover-bg-darken-20: var(--module-hover-bg-darken-20);
+$module-hover-bg-darken-40: var(--module-hover-bg-darken-40);
+
+$primary: var(--primary-color);
+$primary-opacity-9: var(--primary-opacity-9-color);
+$primary-opacity-5: var(--primary-opacity-5-color);
+
+// Text
+$text: var(--text-color);
+$text-dark: var(--text-dark);
+$text-darken: var(--text-darken);
+$text-light: var(--text-light);
+$secondary: var(--text-secondary);
+$disabled: var(--text-disabled);
+$dividers: var(--text-dividers);
+
+$white: var(--text-reversal);
+$text-reversal: var(--text-reversal);
+
+// Links
+$link-color: var(--link-color);
+$link-hover-color: var(--link-hover-color);
+
+// Colors
+// $primary: #0088f5;
+$accent: #4caf50;
+$red: #ff5722;
+$yellow: #ffeb3b;
+$grey: #efefef;
+$black: #000;
+$black-light: #555;
+
+// Container
+$header-height: 4.5em;
+$container-width: 75em;
+$mobile-container-width: 100%;
+
+// Mobile
+$mobile-aside-bg: #34393d;
+$mobile-aisde-transition: all 0.35s ease-out;
+
+// Other
+$radius: 2px;
+$navbar-height: 4.5em;
+
+// Basic stylings
+$br: 4px;
+$xs-pad: 4px;
+$sm-pad: 8px;
+$md-pad: 1.2em;
+$lg-pad: 1.5em;
+$xlg-pad: 3em;
+$trans: .3s;
+
+// Breakpoints
+$small-breakpoint: 400px;
+$large-breakpoint: $container-width;
+
+// Font
+$sans-serif: specialSymbol, DINRegular, -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+$serif: Georgia, Times, 'Times New Roman', serif;
+$monospace: Menlo, Monaco, Consolas, 'Courier New', monospace;
+$font-family: $sans-serif;
+
+// Typography
+$font-size-base: 14px;
+$font-size-large: 1.2rem;
+$font-size-small: .85rem;
+$font-size-h1: 2rem;
+$font-size-h2: 1.75rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.2rem;
+$font-size-h5: 1rem;
+$font-size-h6: $font-size-small;
+$line-height-base: 1.4;
+
+$border: 1px solid $dividers;
