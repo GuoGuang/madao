@@ -45,7 +45,7 @@ $ npm run dev
 $ npm run build
 $ npm start
 
-# lint test
+# lint test.
 $ npm run lint
 ```
 
@@ -100,3 +100,4 @@ nuxt.js-blog/
    │
    └──.editorconfig              * 编码风格配置
 ```
+ 
