@@ -2,7 +2,7 @@
   "development": {
     "cdnUrl": "",
     "proxyUrl": "/proxy/",
-    "baseUrl": "http://localhost:8000",
+    "baseUrl": "https://easy-mock.com/mock/5c5849e5627c6a683562d4fc/youyd_platform",
     "socketHost": "http://localhost:3000"
   },
   "production": {

@@ -8,6 +8,8 @@ const SUCCESS_STATUS_TEXT = 'success'
 
 export default function ({ $axios }) {
   $axios.onResponse(response => {
+    console.log("response")
+    console.log(response)
     return response
     /*
     // 重写响应器，兼容 Axios 在不同协议下的不同表现
@@ -19,4 +21,10 @@ export default function ({ $axios }) {
       : Promise.reject(response)
     */
   })
+ /* $axios.onError(error => {
+    alert("error了")
+    /* if(error.response.status === 500) {
+      redirect('/sorry')
+    } 
+  })*/
 }

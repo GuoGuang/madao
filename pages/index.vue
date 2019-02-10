@@ -1,7 +1,11 @@
 <template>
+  <!-- 页面Main -->
   <div class="index">
+    <!-- 轮播图 -->
     <carrousel :article="article" />
+    <!-- 评论，导语 -->
     <announcement :announcement="announcement" />
+    <!-- 热门文章列表 -->
     <article-list :article="article" @loadmore="loadmoreArticle" />
   </div>
 </template>
@@ -13,8 +17,9 @@
   export default {
     name: 'index',
     fetch({ store }) {
-      console.log("/pages/index.vue")
+      console.log("页面加载：/pages/index.vue")
       return Promise.all([
+        // dispatch（“参数也可以是store里的方法层级调用”）
         store.dispatch('article/fetchList'),
         store.dispatch('announcement/fetchList')
       ])

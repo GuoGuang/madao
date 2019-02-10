@@ -23,7 +23,7 @@ export const actions = {
     store.commit('global/updateMobileLayoutState', isMobile)
     store.commit('global/updateImageExt', mustJpg ? systemConstants.ImageExt.Jpg : systemConstants.ImageExt.Webp)
 
-    console.error("store/index.js")
+    console.error("页面初始化：store/index.js")
     // 如果是移动端，则设置语言为中文
     if (isMobile) {
       store.commit('global/updateLanguage', systemConstants.Language.Zh)

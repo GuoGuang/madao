@@ -8,11 +8,12 @@ import Vue from 'vue'
 import { isBrowser } from '~/environment/esm'
 import { fetchDelay } from '~/utils/fetch-delay'
 import { isArticleDetailRoute } from '~/utils/route'
+import onResponse from '~/plugins/axios'
 import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
 
 const getDefaultListData = () => {
   return {
-    data: [],
+    records: [],
     pagination: {}
   }
 }
@@ -38,18 +39,26 @@ export const mutations = {
 
   // 文章列表
   updateListFetchig(state, action) {
+    console.log("文章列表"); 
+    console.log(action);
     state.list.fetching = action
   },
   updateListData(state, action) {
+    console.log("updateListData")
+    console.log(action)
     state.list.data = action
   },
   updateExistingListData(state, action) {
+    console.log("updateExistingListData")
+    console.log(action)
     state.list.data.data.push(...action.data)
     state.list.data.pagination = action.pagination
   },
 
   // 热门文章
   updateHotListFetchig(state, action) {
+    console.log("热门文章"); 
+    console.log(action);
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
@@ -89,16 +98,17 @@ export const actions = {
     const isLoadMore = params.page && params.page > 1
 
     // 清空已有数据
-    isRestart &&
-    commit('updateListData', getDefaultListData())
+    isRestart && commit('updateListData', getDefaultListData())
     commit('updateListFetchig', true)
 
-    return this.$axios.$get(`/article/a`, { params })
+    return this.$axios.$get(`/article`, { params })
       .then(response => {
+        // 直接在此处调用结果打印即可
+        console.log("666")
+        console.log(response)
+       
         commit('updateListFetchig', false)
-        isLoadMore
-          ? commit('updateExistingListData', response.result)
-          : commit('updateListData', response.result)
+        isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {
           Vue.nextTick(() => {
             scrollTo(
@@ -116,7 +126,7 @@ export const actions = {
   fetchHotList({ commit, rootState }) {
     const { SortType } = rootState.global.constants
     commit('updateHotListFetchig', true)
-    return this.$axios.$get(`/article/b`, { params: { cache: 1, sort: SortType.Hot }})
+    return this.$axios.$get(`/article`, { params: { cache: 1, sort: SortType.Hot }})
       .then(response => {
         commit('updateHotListData', response)
         commit('updateHotListFetchig', false)

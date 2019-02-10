@@ -14,14 +14,14 @@ const { isProdMode, isDevMode, environment } = require('./environment')
 process.noDeprecation = true
 
 // 替换 console 为更统一友好的
-const { log, warn, info } = console
+/* const { log, warn, info } = console
 const color = c => isDevMode ? c : ''
 global.console = Object.assign(console, {
   log: (...args) => log('[log]', ...args),
   warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[surmon.me]', ...args),
   info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[surmon.me]', ...args),
   error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[surmon.me]', ...args),
-})
+}) */
 
 const config = require('./nuxt.config')
 const port = environment.PORT || 3000

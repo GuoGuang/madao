@@ -14,12 +14,12 @@
     <!-- 列表 -->
     <div class="article-list">
       <transition name="module" mode="out-in">
-        <transition-group key="list" name="fade" tag="div" v-if="article.data.data && article.data.data.length">
+        <transition-group key="list" name="fade" tag="div" v-if="article.data.records && article.data.records.length">
           <list-item
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
-            v-for="articleItem in article.data.data"
+            v-for="articleItem in article.data.records"
           />
         </transition-group>
         <empty-box key="empty" class="article-empty-box" v-else>
@@ -29,7 +29,8 @@
     </div>
 
     <!-- 加载更多 -->
-    <div class="article-load">
+    <!-- 暂时关闭，等接口对接完成再改版 -->
+    <!-- <div class="article-load">
       <color-block-box :left="btnColorBlockLeft" border="left" color="red" />
       <button class="btn-loadmore" @click="$emit('loadmore')" :disabled="article.fetching || !isCanLoadMore">
         <span class="icon">
@@ -41,7 +42,7 @@
           <span v-else-if="!isCanLoadMore" v-text="$i18n.text.article.nomore"></span>
         </span>
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -70,11 +71,11 @@
       isMobile() {
         return this.$store.state.global.isMobile
       },
-      isCanLoadMore() {
+      /* isCanLoadMore() {
         const { current_page, total_page } = this.article.data.pagination
         const hasArticles = this.article.data.pagination
         return hasArticles ? (current_page < total_page) : false
-      },
+      }, */
       isIndexRoute() {
         return isIndexRoute(this.$route.name)
       },

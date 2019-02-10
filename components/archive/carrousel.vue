@@ -1,7 +1,8 @@
 <template>
+  <!-- 轮播 -->
   <div class="carrousel" :class="{ mobile: isMobile }">
     <transition name="module" mode="out-in">
-      <empty-box class="article-empty-box" key="empty" v-if="!article.data.data.length">
+      <empty-box class="article-empty-box" key="empty" v-if="!article.data.length">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
       <div class="swiper index" key="swiper" v-swiper:swiper="swiperOption" v-else-if="renderSwiper">
