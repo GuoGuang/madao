@@ -1,4 +1,5 @@
 <template>
+  <!-- 页面中间 -->
   <div class="articles">
 
     <!-- 非首页列表头 -->

@@ -40,12 +40,10 @@ export const mutations = {
   // 文章列表
   updateListFetchig(state, action) {
     console.log("文章列表"); 
-    console.log(action);
     state.list.fetching = action
   },
   updateListData(state, action) {
     console.log("updateListData")
-    console.log(action)
     state.list.data = action
   },
   updateExistingListData(state, action) {
@@ -58,7 +56,6 @@ export const mutations = {
   // 热门文章
   updateHotListFetchig(state, action) {
     console.log("热门文章"); 
-    console.log(action);
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
@@ -105,8 +102,7 @@ export const actions = {
       .then(response => {
         // 直接在此处调用结果打印即可
         console.log("666")
-        console.log(response)
-       
+      
         commit('updateListFetchig', false)
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {

@@ -10,7 +10,7 @@
           <div
             :key="index"
             class="swiper-slide slide-item"
-            v-for="(article, index) in article.data.data.slice(0, 9)"
+            v-for="(article, index) in article.data.records.slice(0, 9)"
           >
             <div class="content">
               <img :src="buildThumb(article.thumb)" :alt="article.title">
