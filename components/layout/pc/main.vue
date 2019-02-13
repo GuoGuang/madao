@@ -25,9 +25,8 @@
       </transition>
 
       <!-- body页面中间 -->
-      <div id="main-content" class="main-content"
-        :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }"
-      >
+      <div id="main-content" class="main-content" :style="$route.name === 'index'?'width: 42.5em;margin: 0 0 0 12.5em;':'width: 55em;margin: 0 0 0 0;'"
+        :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }">
         <nuxt :nuxtChildKey="$route.name" keep-alive />
       </div>
       
