@@ -163,7 +163,7 @@
 
       .main-content {
         float: left;
-        width: 42.5em;
+        width: 42.5em; 
         margin: 0 0 0 12.5em;
         position: relative;
         overflow: hidden;
