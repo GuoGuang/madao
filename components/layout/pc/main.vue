@@ -169,7 +169,7 @@
         overflow: hidden;
         @include css3-prefix(transition, width .35s);
 
-        &:-moz-full-screen {
+        &:-moz-full-screen { 
           overflow-y: auto;
         }
           
