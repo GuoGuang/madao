@@ -146,7 +146,7 @@ export const actions = {
       .then(response => {
         return new Promise(resolve => {
           delay(() => {
-            commit('updateDetailData', response.result)
+            commit('updateDetailData', response.data)
             commit('updateDetailFetchig', false)
             resolve(response)
           })

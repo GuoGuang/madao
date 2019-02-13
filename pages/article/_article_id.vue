@@ -1,4 +1,5 @@
 <template>
+  <!-- 文章详情页 -->
   <article id="article" class="article" :class="{ mobile: isMobile }">
     <div class="detail" ref="detail">
       <transition name="module">
@@ -223,6 +224,7 @@
     validate({ params, store }) {
       return params.article_id && !isNaN(Number(params.article_id))
     },
+    
     fetch({ store, params, error }) {
       return Promise.all([
         store.dispatch('article/fetchDetail', params).catch(err => {
@@ -231,6 +233,7 @@
         store.dispatch('comment/fetchList', { post_id: params.article_id })
       ])
     },
+    
     head() {
       const { article } = this
       return {

@@ -2,30 +2,43 @@
   <div id="app-main">
     <header-view/>
     <no-ssr>
+      <!-- 背景 -->
       <background/>
+      <!-- 墙花 -->
       <wall-flower v-if="!onPowerSavingMode" />
+      <!-- 语言切换 -->
       <language-psm v-if="isNotServicePage" />
+      <!-- 日历切换 -->
       <wallpaper-switch v-if="isNotServicePage" />
+      <!-- 主题切换 -->
       <theme-switch v-if="!onPowerSavingMode && isNotServicePage" />
+      <!-- 分享页 -->
       <share-box v-if="isNotServicePage" class="sidebar" />
+      <!-- 工具栏 -->
       <tool-box v-if="isNotFullColPage" />
     </no-ssr>
     <main id="main" :class="{ 'full-view': isFullViewWidth }">
-      <transition name="module">
-        <nav-view v-if="!isThreeColumns" />
+
+      <!-- body 左侧 -->
+      <transition name="module" >
+        <nav-view v-if="$route.name === 'index'"/>
       </transition>
-      <div
-        id="main-content"
-        class="main-content"
+
+      <!-- body页面中间 -->
+      <div id="main-content" class="main-content"
         :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }"
       >
         <nuxt :nuxtChildKey="$route.name" keep-alive />
       </div>
+      
+      <!-- 页面右侧  v-if="false" 点击进入文章时隐藏右侧标签栏或者左侧标签栏-->
       <transition name="aside">
         <aside-view key="aside" v-if="!isTwoColumns && !isThreeColumns" />
       </transition>
+
     </main>
     <no-ssr>
+      <!-- 弹幕 -->
       <barrage v-if="isMountedBarrage" v-cloak/>
       <transition name="fade">
         <webrtc key="webrtc" v-if="!onPowerSavingMode && onWebrtc" v-cloak/>
@@ -35,6 +48,7 @@
       </transition>
       <emoji-rain v-if="!onPowerSavingMode" />
     </no-ssr>
+
     <footer-view/>
   </div>
 </template>
@@ -107,6 +121,11 @@
         } else {
           resetTitle()
         }
+      },
+      aaa() {
+        console.log($route.name)
+        console.log("$route.name")
+        return $route.name;
       },
       /**
        * 监听页签变化事件
