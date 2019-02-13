@@ -5,7 +5,7 @@
 [![](https://badge.juejin.im/entry/58ff969861ff4b00667ca82e/likes.svg?style=flat-square)](https://juejin.im/post/58ff960ba22b9d0065b722cd)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/surmon-china/surmon.me.svg?style=flat-square)](https://twitter.com/intent/tweet?url=https://github.com/surmon-china/surmon.me)
 
-## Surmon.me
+## 参考segmentfault.com
 
 My blog by [Nuxt.js](https://github.com/nuxt)
 
