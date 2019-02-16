@@ -6,6 +6,7 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/surmon-china/surmon.me.svg?style=flat-square)](https://twitter.com/intent/tweet?url=https://github.com/surmon-china/surmon.me)
 
 ## 参考segmentfault.com
+## logo参考http://emblemmatic.org
 
 My blog by [Nuxt.js](https://github.com/nuxt)
 
