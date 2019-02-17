@@ -10,7 +10,7 @@
         <div class="thumb">
           <div class="mask">
             <div class="button">
-              <i class="iconfont icon-music-play"></i>
+              <i class="iconfont icon-music-play" id="9696999"></i>
             </div>
           </div>
           <div

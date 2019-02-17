@@ -139,8 +139,9 @@ module.exports = {
     ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }]
   ],
   head: {
-    title: `${appConfig.meta.title} - ${htmlSlogan}`,
-    titleTemplate: `%s | ${appConfig.meta.title}`,
+    // title: `${appConfig.meta.title} - ${htmlSlogan}`,
+    title: `${appConfig.meta.title} - 有一点`,
+    // titleTemplate: `%s | ${appConfig.meta.title}`,
     htmlAttrs: {
       xmlns: 'http://www.w3.org/1999/xhtml',
       lang: htmlLang

@@ -9,7 +9,9 @@
           <span class="navbar-slogan" v-text="$i18n.text.slogan"></span>
           <nuxt-link to="/" class="navbar-link" :title="$i18n.text.slogan" />
         </div>
-        <div class="navbar-player">
+
+        <!-- 音乐 -->
+        <!-- <div class="navbar-player">
           <div class="panel">
             <button class="prev-song btn" @click="prevSong" :disabled="!playerState.ready">
               <i class="iconfont icon-music-prev"></i>
@@ -38,7 +40,8 @@
             </nuxt-link>
           </div>
           <div class="song" v-else>{{ $i18n.text.music.empty }}</div>
-        </div>
+        </div> -->
+        
       </div>
       <div class="pre-load">
         <img v-if="preload" :src="currentSongPicUrl" alt="song-thumb">

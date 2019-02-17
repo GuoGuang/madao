@@ -47,7 +47,6 @@ if (config.dev) {
   }
   console.log(handleProxy)
   console.log("handleProxy")
-  app.get('/proxy/music/*', handleProxy('music'))
   app.get('/proxy/bilibili/*', handleProxy('bilibili'))
   app.get('/proxy/*', handleProxy)
 }

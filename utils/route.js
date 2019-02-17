@@ -11,5 +11,4 @@ export const isArticleDetailRoute = name => name === systemConstants.Route.Artic
 export const isSearchArchiveRoute = name => name === systemConstants.Route.SearchArchive
 export const isGuestbookRoute = name => name === systemConstants.Route.Guestbook
 export const isServiceRoute = name => name === systemConstants.Route.Service
-export const isMusicRoute = name => name === systemConstants.Route.Music
 export const isAppRoute = name => name === systemConstants.Route.App

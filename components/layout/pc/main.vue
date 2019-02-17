@@ -4,14 +4,10 @@
     <no-ssr>
       <!-- 背景 -->
       <background/>
-      <!-- 墙花 -->
+      <!-- 墙花 点击桌面特效-->
       <wall-flower v-if="!onPowerSavingMode" />
-      <!-- 语言切换 -->
-      <language-psm v-if="isNotServicePage" />
-      <!-- 日历切换 -->
-      <wallpaper-switch v-if="isNotServicePage" />
-      <!-- 主题切换 -->
-      <theme-switch v-if="!onPowerSavingMode && isNotServicePage" />
+      <!-- 语言切换 此处应该切换为 根据地区加载不同语言 
+      <language-psm v-if="isNotServicePage" /> -->
       <!-- 分享页 -->
       <share-box v-if="isNotServicePage" class="sidebar" />
       <!-- 工具栏 -->
@@ -39,15 +35,9 @@
     <no-ssr>
       <!-- 弹幕 -->
       <barrage v-if="isMountedBarrage" v-cloak/>
-      <transition name="fade">
-        <webrtc key="webrtc" v-if="!onPowerSavingMode && onWebrtc" v-cloak/>
-      </transition>
-      <transition name="fade">
-        <wallpaper-wall key="wallpaper-wall" v-if="onWallpaper" v-cloak/>
-      </transition>
-      <emoji-rain v-if="!onPowerSavingMode" />
+      <!--  Canvas 动态背景 -->
+      <emoji-rain v-if="!onPowerSavingMode"/>
     </no-ssr>
-
     <footer-view/>
   </div>
 </template>
@@ -60,15 +50,12 @@
   import AsideView from './aside/main'
   import Barrage from '~/components/widget/barrage/main'
   import WallFlower from '~/components/widget/wall-flower/garden'
-  import WallpaperWall from '~/components/widget/wallpaper/wall'
-  import WallpaperSwitch from '~/components/widget/wallpaper/switch'
   import Webrtc from '~/components/widget/webrtc/main'
   import Background from '~/components/widget/background'
   import EmojiRain from '~/components/widget/emoji-rain'
   import LanguagePsm from '~/components/widget/language-psm'
   import ToolBox from '~/components/widget/tool-box'
   import ShareBox from '~/components/widget/share'
-  import ThemeSwitch from '~/components/widget/theme'
   import music from '~/expansions/music'
   import { startTitleEgg, resetTitle } from '~/utils/title-egg' // 彩蛋
   import { isServiceRoute } from '~/utils/route'
@@ -77,8 +64,8 @@
   export default {
     name: 'pc-main',
     components: {
-      ToolBox, ShareBox, LanguagePsm, WallpaperSwitch, ThemeSwitch, // 部件/开关
-      Webrtc, EmojiRain, WallFlower, WallpaperWall, Background, Barrage, // 实体
+      ToolBox, ShareBox, LanguagePsm,
+      Webrtc, EmojiRain, WallFlower, Background, Barrage, // 实体
       HeaderView, FooterView, AsideView, NavView, // 布局
     },
     mounted() {
@@ -94,7 +81,7 @@
     },
     computed: {
       ...mapState('global', [
-        'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isTwoColumns', 'isThreeColumns'
+        'onWebrtc','onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isTwoColumns', 'isThreeColumns'
       ]),
       isNotServicePage() {
         return !isServiceRoute(this.$route.name)

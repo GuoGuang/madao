@@ -120,16 +120,6 @@ export const mutations = {
     }
   },
 
-  // 切换RTC状态
-  updateWebRtcOnState(state, action) {
-    state.onWebrtc = action != null ? !!action : !state.onWebrtc
-  },
-
-  // 切换节电模式
-  updatePowerSavingOnMode(state, action) {
-    state.onPowerSavingMode = action
-  },
-
   // 切换墙纸开关
   updateWallpaperOnState(state, action) {
     state.onWallpaper = action != null ? !!action : !state.onWallpaper

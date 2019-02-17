@@ -2,7 +2,7 @@
   <div id="tools">
     <div class="container">
       <div class="tools-list">
-        <button
+        <!-- <button
           class="webrtc"
           @click="toggleWebrtc"
           :title="$i18n.text.webrtc"
@@ -13,16 +13,12 @@
           }"
         >
           <i class="iconfont icon-webrtc"></i>
-        </button>
+        </button> -->
         <button
           class="barrage"
           @click="toggleBarrage"
           :title="$i18n.text.barrage.name"
-          :disabled="webrtcState"
-          :class="{ 
-            active: barrageState,
-            close: webrtcState
-          }"
+        
         >
           <i class="iconfont icon-barrage"></i>
         </button>
@@ -64,15 +60,13 @@
         topBtnMouseOver: false,
         bottomBtnMouseOver: false,
         toggleWebrtcFn: null,
-        firstOpenWeRtc: true,
         animationFrameId: null
       }
     },
     computed: {
       ...mapState('global', {
+     
         language: 'language',
-        webrtcState: 'onWebrtc',
-        barrageState: 'onBarrage',
         onPowerSavingMode: 'onPowerSavingMode'
       }),
       isEnLang() {
@@ -120,28 +114,6 @@
         this.$ga.event('弹幕功能', '切换', 'tool')
         this.$store.commit('global/updateBarrageOnState')
       },
-      toggleWebrtc() {
-        this.$ga.event('WebRTC', '切换', 'tool')
-        if (this.firstOpenWeRtc && !this.webrtcState) {
-          const confirmText = this.isEnLang
-            ? 'Will open WebRTC、WebGL、Canvas, ready?'
-            : '实验室功能需要 WebRTC、WebGL、Canvas 等技术的支持，可能占用较多 CPU/GPU 资源，甚至死机、起火、爆炸、毁灭，继续？'
-          if (!window.confirm(confirmText)) {
-            this.$store.commit('global/updateWebRtcOnState', false)
-            window.alert(this.isEnLang ? 'Sorry~' : '滚滚滚')
-            return false
-          }
-          this.firstOpenWeRtc = false
-        }
-        if (this.toggleWebrtcFn) {
-          this.toggleWebrtcFn()
-        } else {
-          this.toggleWebrtcFn = underscore.throttle(() => {
-            this.$store.commit('global/updateWebRtcOnState')
-          }, 1666)
-          this.toggleWebrtcFn()
-        }
-      }
     }
   }
 </script>
