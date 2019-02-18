@@ -1,7 +1,7 @@
 /**
  * @file 评论模块 UA、OS 解析器 / ES module
  * @module utils/browser-os-parse
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 const matchUa = (data, key) => data.match(eval(`/${key}/ig`))

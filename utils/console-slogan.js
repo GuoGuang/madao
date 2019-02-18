@@ -1,7 +1,7 @@
 /**
  * @file console.solgan / ES module
  * @module utils/console-slogan
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import { isBrowser, isProdMode } from '~/environment/esm'
@@ -9,6 +9,6 @@ import { isBrowser, isProdMode } from '~/environment/esm'
 export default () => {
   if (isBrowser && isProdMode) {
     console.clear()
-    console.log('%cTalk is cheap. Show me the code %csurmon@foxmail.com', 'color:#666;font-size:3em;', 'color:#666;font-size:13px;')
+    console.log('%cTalk is cheap. Show me the code %cguoguang0536@gmail.com', 'color:#666;font-size:3em;', 'color:#666;font-size:13px;')
   }
 }

@@ -1,7 +1,7 @@
 /**
  * @file Color block component / ES module
  * @module components/common/color-block
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import ColorBlockComponent from './block'

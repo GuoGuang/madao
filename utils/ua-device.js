@@ -1,7 +1,7 @@
 /**
  * @file UA 解析器 / ES module
  * @module utils/ua-device
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 export default userAgent => ({

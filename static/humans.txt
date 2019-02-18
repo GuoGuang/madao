@@ -1,2 +1,10 @@
-I'm Surmon.
-We are Surmon.
+
+/* TEAM */
+Developer：GuoGuang
+Contact: GuoGuang0536@gmail.com
+From:Weifang, Shandong, China
+
+/* SITE */
+Site： youyd.com
+Last update: 2019/02/18
+Language： Vue,Nuxt.js

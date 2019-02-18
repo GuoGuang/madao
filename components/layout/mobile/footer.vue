@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">©{{ year }}&nbsp;&nbsp;Surmon.me</div>
+      <div class="footer-content">©{{ year }}&nbsp;&nbsp;youyd.com</div>
     </div>
   </footer>
 </template>

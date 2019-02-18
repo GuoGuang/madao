@@ -21,6 +21,7 @@
       </transition>
 
       <!-- body页面中间 -->
+      <!-- 这块是有问题的 style="$route.name === 'index'?'width: 42.5em;margin: 0 0 0 12.5em;':'width: 55em;margin: 0 0 0 0;'" 导致其他页面样式错误 计划将左边竖列表横起来 -->
       <div id="main-content" class="main-content" :style="$route.name === 'index'?'width: 42.5em;margin: 0 0 0 12.5em;':'width: 55em;margin: 0 0 0 0;'"
         :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }">
         <nuxt :nuxtChildKey="$route.name" keep-alive />

@@ -1,7 +1,7 @@
 /**
  * @file Vue extends / ES module
  * @module plugins/vue-extends
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import Vue from 'vue'

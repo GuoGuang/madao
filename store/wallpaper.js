@@ -1,7 +1,7 @@
 /**
  * @file wallpaper 壁纸 / ES module
  * @module store/wallpaper
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 export const state = () => {

@@ -116,7 +116,7 @@
         <p class="item">
           <span class="title" :class="language">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
           <span class="site-url" @click="copyArticleUrl">
-            <span>https://surmon.me/article/{{ article.id }}</span>
+            <span>https://youyd.com/article/{{ article.id }}</span>
           </span>
         </p>
         <div class="item">
@@ -370,7 +370,7 @@
       },
       copyArticleUrl() {
         if (this.article.title) {
-          this.$root.$copyToClipboard(`https://surmon.me/article/${this.article.id}`)
+          this.$root.$copyToClipboard(`https://youyd.com/article/${this.article.id}`)
         }
       },
       buildThumb(thumb) {

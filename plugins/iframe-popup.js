@@ -1,7 +1,7 @@
 /**
  * @file Iframe 弹窗服务 / ES module
  * @module plugins/iframe-popup
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import { isBrowser } from '~/environment/esm'

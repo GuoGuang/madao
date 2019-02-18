@@ -1,7 +1,7 @@
 /**
  * @file socket 服务 / ES module
  * @module plugins/socket.io
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import io from 'socket.io-client'

@@ -1,7 +1,7 @@
 /**
  * @file WebRTC 服务 / Commonjs module
  * @module server/wertc
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  * remote: https://github.com/andyet/signalmaster/blob/master/sockets.js
  */
 

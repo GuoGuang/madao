@@ -1,7 +1,7 @@
 /**
  * @file 本机数据状态 / ES module
  * @module transforms/local-storage
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import systemConstants from '~/constants/system'

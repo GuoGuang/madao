@@ -1,7 +1,7 @@
 /**
  * @file Eslint config / Commonjs module
  * @module eslint.config
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
 */
 
 const { isProdMode } = require('./environment')

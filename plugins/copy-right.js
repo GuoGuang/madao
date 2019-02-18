@@ -1,7 +1,7 @@
 /**
  * @file 复制拦截器 / ES module
  * @module plugins/copy-right
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import { isBrowser } from '~/environment/esm'
@@ -13,9 +13,9 @@ if (isBrowser) {
       '',
       '著作权归作者所有。',
       '商业转载请联系作者获得授权，非商业转载请注明出处。',
-      '作者：Surmon',
+      '作者：GuoGuang',
       '链接：' + location.href,
-      '来源：Surmon.me',
+      '来源：youyd',
       ''
     ].join('\n')
   }

@@ -1,7 +1,7 @@
 /**
  * @file 公告数据状态 / ES module
  * @module store/announcement
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 export const state = () => {

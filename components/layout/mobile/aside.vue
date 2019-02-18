@@ -5,7 +5,7 @@
         <img :src="gravatar" alt="Surmon">
       </div>
       <div class="profile">
-        <h3 class="name">Surmon</h3>
+        <h3 class="name">Youyd</h3>
         <p class="email" v-text="$i18n.text.slogan"></p>
       </div>
     </div>
@@ -67,16 +67,7 @@
           <i class="iconfont icon-aliyun"></i>
           <span v-text="$i18n.nav.aliyun"></span>
         </a>
-        <a
-          href="https://errend.io"
-          rel="external nofollow noopener"
-          class="item ad errend"
-          v-if="false"
-          target="_blank"
-        >
-          <i class="iconfont icon-debug"></i>
-          <span>Errend.io</span>
-        </a>
+
         <nuxt-link to="/app" class="item app">
           <i class="iconfont icon-app"></i>
           <span v-text="$i18n.nav.app"></span>

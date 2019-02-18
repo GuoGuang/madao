@@ -1,7 +1,7 @@
 /**
  * @file App 入口 / Commonjs module
  * @module server
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 

@@ -1,11 +1,11 @@
 {
-  "name": "surmon.me",
+  "name": "youyd.com",
   "version": "2.1.4",
-  "description": "Surmon.me blog",
+  "description": "youyd.com blog",
   "author": {
-    "name": "Surmon",
-    "email": "surmon@foxmail.com",
-    "url": "https://surmon.me"
+    "name": "GuoGuang",
+    "email": "GuoGuang0536@gmail.com",
+    "url": "https://youyd.com"
   },
   "private": false,
   "resolutions": {

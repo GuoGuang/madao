@@ -22,7 +22,7 @@
         >
           <i class="iconfont icon-barrage"></i>
         </button>
-        <a class="feedback" href="mailto:surmon@foxmail.com" :title="$i18n.text.feedback">
+        <a class="feedback" href="mailto:guoguang0536@gmail.com" :title="$i18n.text.feedback">
           <i class="iconfont icon-mail"></i>
         </a>
         <button

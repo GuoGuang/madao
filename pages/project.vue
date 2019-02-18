@@ -96,7 +96,7 @@
             icon: 'linux',
             color: '#000000'
           }, {
-            name: 'surmon',
+            name: 'youyd',
             icon: 'think',
             color: '#0088f5'
           }, {

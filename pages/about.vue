@@ -9,7 +9,7 @@
                 <p class="item webfont">
                   <i class="iconfont icon-user"></i>
                   <span v-if="isEnLang">
-                    <span class="first-letter">I</span>'m Surmon, a (95+) (小) Javascript (鲜) stack (肉) developer.
+                    <span class="first-letter">I</span>'m GuoGuang, a (95+) (小) Javascript (鲜) stack (肉) developer.
                   </span>
                   <span v-else>
                     <span class="first-letter">浪</span>

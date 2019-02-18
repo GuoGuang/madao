@@ -1,7 +1,7 @@
 /**
  * @file I18n config / Commonjs module
  * @module i18n.config
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 module.exports = {
@@ -21,31 +21,31 @@ module.exports = {
   data: {
     nav: {
       home: {
-        zh: '明殿',
+        zh: '首页',
         en: 'home'
       },
       think: {
-        zh: '无色庵',
-        en: 'think'
+        zh: '问答',
+        en: 'ask'
       },
       code: {
-        zh: '宁静寺',
-        en: 'code'
+        zh: '讲堂',
+        en: 'lesson'
       },
       project: {
-        zh: '琼宝阁',
-        en: 'project'
+        zh: '猿圈',
+        en: 'Apes circle'
       },
       vlog: {
-        zh: '天涯',
-        en: 'vlog'
+        zh: '发现',
+        en: 'find'
       },
       music: {
         zh: '乐斋',
         en: 'music'
       },
       about: {
-        zh: '狂浪生',
+        zh: '狂浪',
         en: 'about'
       },
       service: {
@@ -53,23 +53,23 @@ module.exports = {
         en: 'service'
       },
       guestbook: {
-        zh: '百鸣苑',
+        zh: '百鸣',
         en: 'Guestbook'
       },
       taobao: {
-        zh: '淘抢购',
+        zh: '淘抢',
         en: 'taobao'
       },
       aliyun: {
-        zh: '弹性主机',
+        zh: '弹性',
         en: 'aliyun'
       },
       app: {
-        zh: '客户端',
+        zh: '客户',
         en: 'app'
       },
       map: {
-        zh: '怀柔天下',
+        zh: '怀柔',
         en: 'SiteMap.XML'
       }
     },

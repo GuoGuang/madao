@@ -1,7 +1,7 @@
 /**
  * @file Google adsense / ES module
  * @module plugins/adsense
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import Vue from 'vue'

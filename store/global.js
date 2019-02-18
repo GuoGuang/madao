@@ -1,7 +1,7 @@
 /**
  * @file 全局设置数据状态 / ES module
  * @module store/option
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import i18nConfig from '~/config/i18n.config'

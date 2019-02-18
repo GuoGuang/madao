@@ -1,7 +1,8 @@
 /**
  * @file i18n 语言格式转换器 / ES module
  * @module transforms/i18n-transfer
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 export default i18nConfig => {

@@ -1,4 +1,5 @@
 <template>
+  <!-- app程序页面 -->
   <div class="page" :style="{ height: height }" :class="{ mobile: isMobile }">
     <div class="app">
       <div class="logo">

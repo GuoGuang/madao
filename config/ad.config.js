@@ -1,7 +1,7 @@
 /**
  * @file Ads config / ES module
  * @module ad.config
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 const imagePath = '/images/mammon/'

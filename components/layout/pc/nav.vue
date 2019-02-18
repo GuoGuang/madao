@@ -1,43 +1,34 @@
 <template>
+  <!-- 导航 图标参考D:\vueWorkspace\youyd_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="aside-nav">
     <nav is="nav" class="nav-list">
       <nuxt-link :to="'/'" class="item" exact>
-        <i class="iconfont icon-home"></i>
         <span v-text="$i18n.nav.home"></span>
       </nuxt-link>
       <nuxt-link to="/category/code" class="item">
-        <i class="iconfont icon-code"></i>
         <span v-text="$i18n.nav.code"></span>
       </nuxt-link>
       <nuxt-link to="/project" class="item">
-        <i class="iconfont icon-tool"></i>
         <span v-text="$i18n.nav.project"></span>
       </nuxt-link>
       <nuxt-link to="/category/think" class="item">
-        <i class="iconfont icon-think"></i>
         <span v-text="$i18n.nav.think"></span>
       </nuxt-link>
       <nuxt-link to="/music" class="item">
-        <i class="iconfont icon-netease-music"></i>
         <span v-text="$i18n.nav.music"></span>
       </nuxt-link>
       <nuxt-link to="/vlog" class="item">
-        <i class="iconfont icon-vlog"></i>
         <span v-text="$i18n.nav.vlog"></span>
       </nuxt-link>
       <nuxt-link to="/about" class="item">
-        <i class="iconfont icon-user"></i>
         <span v-text="$i18n.nav.about"></span>
       </nuxt-link>
       <nuxt-link to="/service" class="item">
-        <i class="iconfont icon-zan"></i>
         <span v-text="$i18n.nav.service"></span>
         <span class="superscript">
-          <i class="iconfont icon-hot"></i>
         </span>
       </nuxt-link>
       <nuxt-link to="/guestbook" class="item guestbook">
-        <i class="iconfont icon-comment"></i>
         <span v-text="$i18n.nav.guestbook"></span>
       </nuxt-link>
       <a
@@ -47,7 +38,6 @@
         rel="external nofollow noopener"
         v-if="false"
       >
-        <i class="iconfont icon-taobao"></i>
         <span v-text="$i18n.nav.taobao"></span>
       </a>
       <a
@@ -56,20 +46,10 @@
         class="item ad aliyun"
         rel="external nofollow noopener"
       >
-        <i class="iconfont icon-aliyun"></i>
         <span v-text="$i18n.nav.aliyun"></span>
       </a>
-      <a
-        href="https://errend.io"
-        target="_blank"
-        class="item ad errend"
-        rel="external nofollow noopener"
-      >
-        <i class="iconfont icon-debug"></i>
-        <span>Errend.io</span>
-      </a>
+      
       <nuxt-link to="/app" class="item app">
-        <i class="iconfont icon-app"></i>
         <span v-text="$i18n.nav.app"></span>
       </nuxt-link>
     </nav>

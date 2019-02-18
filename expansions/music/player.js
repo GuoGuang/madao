@@ -1,7 +1,7 @@
 /**
  * @file 播放器构造器 / ES module
  * @module utils/music-player-builder
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import { proxyUrl } from '~/config/api.config.esm'

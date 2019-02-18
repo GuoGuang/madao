@@ -1,7 +1,7 @@
 /**
  * @file 评论数据状态 / ES module
  * @module store/comment
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 import { fetchDelay } from '~/utils/fetch-delay'

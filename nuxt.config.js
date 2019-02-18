@@ -1,7 +1,7 @@
 /**
  * @file Nuxt config / Commonjs module
  * @module nuxt.config
- * @author Surmon <https://github.com/surmon-china>
+ * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
 const path = require('path')
