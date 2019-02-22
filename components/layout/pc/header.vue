@@ -6,8 +6,22 @@
         <div class="navbar-header">
           <span class="navbar-blank"></span>
           <img src="/images/logo.svg" class="navbar-logo">
-          <span class="navbar-slogan" v-text="$i18n.text.slogan"></span>
-          <nuxt-link to="/" class="navbar-link" :title="$i18n.text.slogan" />
+          <nuxt-link to="/" class="navbar-link" />
+        </div>
+        
+        <div class="navbar-menu">
+            <transition name="module" >
+              <nav-view />
+            </transition>
+        </div>
+
+        <div class="navbar-login">
+          <nuxt-link to="/project" class="">
+            <span style="color: #009a61;font-size: 14px;">{{$i18n.nav.login}}</span>
+          </nuxt-link>
+          <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
+             <el-button size="small" type="success" >{{$i18n.nav.register}}</el-button>
+          </nuxt-link>
         </div>
 
         <!-- 音乐 -->
@@ -61,8 +75,12 @@
 <script>
   import music from '~/expansions/music'
   import { isBrowser } from '~/environment/esm'
+  import NavView from '~/components/layout/pc/nav'
   export default {
     name: 'layout-header',
+    components: {
+       NavView // 布局
+    },
     data() {
       return {
         preload: false
@@ -104,6 +122,19 @@
 </script>
 
 <style lang="scss" scoped>
+
+.el-button--success{
+    color: #fff;
+    background-color: #009a61;
+    border-color: #008151;
+    font-size: 14px;
+}
+
+.nav-login-btn{
+    color: #009a61;
+}
+  
+
   .header {
 
     .navbar {
@@ -118,7 +149,48 @@
       .navbar-container {
         height: $header-height;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+
+        .navbar-menu{
+          height: $header-height;
+          display: flex;
+          position: relative;
+          align-items: center;
+          padding-left: .5em;
+          width: 43em;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .navbar-login{
+          height: $header-height;
+          display: flex;
+          align-items: center;
+          padding-left: .5em;
+          width: 15em;
+          position: relative;
+          overflow: hidden;
+          padding: 0;
+          margin: 0;
+           > .item {
+             font-size: 12px;
+              border: none;
+              display: block;
+              height: 3em;
+              line-height: 3em;
+              padding: 0 1em;
+              text-decoration: none;
+              text-transform: uppercase;
+              font-weight: 700;
+              border-radius: 1px;
+              color: $secondary;
+              font-family: webfont-normal, DINRegular;
+              letter-spacing: 0.5px;
+              margin-bottom: .5em;
+              position: relative;
+              
+              }
+        }
 
         .navbar-header {
           height: $header-height;
@@ -126,7 +198,7 @@
           position: relative;
           align-items: center;
           padding-left: .5em;
-          width: 29em;
+          width: 12em;
           position: relative;
           overflow: hidden;
 
@@ -175,6 +247,12 @@
             }
           }
 
+          .navbar-link {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+          }
+          
           .navbar-logo {
             width: 11rem;
             margin-right: 4rem;
@@ -183,17 +261,6 @@
             .logo-st {
               fill: $primary;
             }
-          }
-
-          .navbar-slogan {
-            color: $primary;
-            font-family: webfont-normal, DINRegular;
-          }
-
-          .navbar-link {
-            position: absolute;
-            width: 100%;
-            height: 100%;
           }
         }
 

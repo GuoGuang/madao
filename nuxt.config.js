@@ -131,6 +131,8 @@ module.exports = {
     { src: '~/plugins/image-popup', mode: 'client' },
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
+    { src: '~/plugins/element-ui' },
+    { src: '~/static/icon/iconfont.js', ssr: false}/* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],
   modules: [
@@ -216,6 +218,7 @@ module.exports = {
     },
   },
   css: [
+    "~/static/icon/iconfont.css",
     'swiper/dist/css/swiper.css',
     'highlight.js/styles/ocean.css',
     { src: '~assets/sass/app.scss', lang: 'sass' }

@@ -20,11 +20,8 @@
                   <i class="iconfont icon-comment-discussion"></i>
                   <span v-if="isEnLang">Taolu committee:</span>
                   <span v-else>国家套路委员会：</span>
-                  <a
-                    target="_blank"
-                    rel="external nofollow noopenter"
-                    href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4"
-                  >288325802</a>
+                  <a target="_blank" rel="external nofollow noopenter"
+                    href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4">288325802</a>
                   <span>.</span>
                 </p>
                 <p class="item">
@@ -43,139 +40,69 @@
                   <i class="iconfont icon-coffee"></i>
                   <span class="accounts">
                     <span>
-                      <a
-                        href="https://github.com/surmon-china"
-                        target="_blank"
-                        class="github"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://github.com/surmon-china" target="_blank" class="github"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-github"></i>
                       </a>
-                      <a
-                        href="mailto:surmon@foxmail.com"
-                        target="_blank"
-                        v-if="false"
-                        class="mail"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="mailto:surmon@foxmail.com" target="_blank" v-if="false" class="mail"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-mail"></i>
                       </a>
-                      <a
-                        href="https://t.me/surmon"
-                        target="_blank"
-                        class="telegram"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://t.me/surmon" target="_blank" class="telegram" rel="external nofollow noopenter">
                         <i class="iconfont icon-telegram"></i>
                       </a>
-                      <a
-                        href="https://juejin.im/user/5735611ac4c9710060f8fa5e"
-                        target="_blank"
-                        class="juejin"
-                        v-if="false"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://juejin.im/user/5735611ac4c9710060f8fa5e" target="_blank" class="juejin"
+                        v-if="false" rel="external nofollow noopenter">
                         <i class="iconfont icon-juejin"></i>
                       </a>
-                      <a
-                        href="https://www.zhihu.com/people/surmon/activities"
-                        target="_blank"
-                        class="zhihu"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.zhihu.com/people/surmon/activities" target="_blank" class="zhihu"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-zhihu"></i>
                       </a>
-                      <a
-                        href="https://weibo.com/surmon"
-                        target="_blank"
-                        class="weibo"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://weibo.com/surmon" target="_blank" class="weibo"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-weibo"></i>
                       </a>
-                      <a
-                        href="https://www.youtube.com/channel/UCoL-j6T28PLSJ2U6ZdONS0w"
-                        target="_blank"
-                        class="youtube"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.youtube.com/channel/UCoL-j6T28PLSJ2U6ZdONS0w" target="_blank" class="youtube"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-youtube"></i>
                       </a>
-                      <a
-                        href="https://space.bilibili.com/27940710/#/video"
-                        target="_blank"
-                        class="bilibili"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://space.bilibili.com/27940710/#/video" target="_blank" class="bilibili"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-bilibili"></i>
                       </a>
                     </span>
                     <span v-if="!isMobile">
-                      <a
-                        href="https://surmon.taobao.com"
-                        target="_blank"
-                        v-if="false"
-                        class="taobao"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://surmon.taobao.com" target="_blank" v-if="false" class="taobao"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-taobao"></i>
                       </a>
-                      <a
-                        href="https://stackoverflow.com/users/6222535/surmon?tab=profile"
-                        target="_blank"
-                        class="stackoverflow"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://stackoverflow.com/users/6222535/surmon?tab=profile" target="_blank"
+                        class="stackoverflow" rel="external nofollow noopenter">
                         <i class="iconfont icon-stackoverflow"></i>
                       </a>
-                      <a
-                        href="https://leetcode.com/surmon"
-                        target="_blank"
-                        class="algorithm"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://leetcode.com/surmon" target="_blank" class="algorithm"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-algorithm"></i>
                       </a>
-                      <a
-                        href="https://www.quora.com/profile/Surmon"
-                        target="_blank"
-                        class="quora"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.quora.com/profile/Surmon" target="_blank" class="quora"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-quora"></i>
                       </a>
-                      <a
-                        href="https://www.linkedin.com/in/surmon"
-                        target="_blank"
-                        class="linkedin"
-                        v-if="false"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.linkedin.com/in/surmon" target="_blank" class="linkedin" v-if="false"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-linkedin"></i>
                       </a>
-                      <a
-                        href="https://twitter.com/surmon_me"
-                        target="_blank"
-                        class="twitter"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://twitter.com/surmon_me" target="_blank" class="twitter"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-twitter"></i>
                       </a>
-                      <a
-                        href="https://www.facebook.com/surmon.me"
-                        target="_blank"
-                        v-if="false"
-                        class="facebook"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.facebook.com/surmon.me" target="_blank" v-if="false" class="facebook"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-facebook"></i>
                       </a>
-                      <a
-                        href="https://www.instagram.com/surmon666/"
-                        target="_blank"
-                        class="instagram"
-                        rel="external nofollow noopenter"
-                      >
+                      <a href="https://www.instagram.com/surmon666/" target="_blank" class="instagram"
+                        rel="external nofollow noopenter">
                         <i class="iconfont icon-instagram"></i>
                       </a>
                     </span>
@@ -192,52 +119,26 @@
                 <p class="item" v-if="!isMobile">
                   <i class="iconfont icon-friend"></i>
                   <span class="friends">
-                    <a
-                      href="http://skyrover.me/about"
-                      target="_blank"
-                      rel="external nofollow noopenter"
-                    >「 skyrover 」</a>
-                    <a
-                      href="https://blog.jimmylv.info"
-                      target="_blank"
-                      rel="external nofollow noopenter"
-                    >「 JimmyLv 」</a>
-                    <a
-                      href="https://www.funens.com"
-                      target="_blank"
-                      rel="external nofollow noopenter"
-                    >「 Channg 」</a>
+                    <a href="http://skyrover.me/about" target="_blank" rel="external nofollow noopenter">「 skyrover
+                      」</a>
+                    <a href="https://blog.jimmylv.info" target="_blank" rel="external nofollow noopenter">「 JimmyLv
+                      」</a>
+                    <a href="https://www.funens.com" target="_blank" rel="external nofollow noopenter">「 Channg 」</a>
                   </span>
                 </p>
               </div>
               <div class="gravatar">
                 <div class="background be-2">
-                  <img
-                    src="/images/about-background-be-2.jpg"
-                    alt="background"
-                    class="image"
-                  >
+                  <img src="/images/about-background-be-2.jpg" alt="background" class="image">
                 </div>
                 <div class="background be-1">
-                  <img
-                    src="/images/about-background-be-1.jpg"
-                    alt="background"
-                    class="image"
-                  >
+                  <img src="/images/about-background-be-1.jpg" alt="background" class="image">
                 </div>
                 <div class="background star-1">
-                  <img
-                    src="/images/about-background-star-1.png"
-                    alt="background-star"
-                    class="image"
-                  >
+                  <img src="/images/about-background-star-1.png" alt="background-star" class="image">
                 </div>
                 <div class="background star-2">
-                  <img
-                    src="/images/about-background-star-2.png"
-                    alt="background-star"
-                    class="image"
-                  >
+                  <img src="/images/about-background-star-2.png" alt="background-star" class="image">
                 </div>
                 <img :src="gravatar" class="avatar">
                 <div class="desc">
@@ -246,12 +147,7 @@
                   </h2>
                   <p class="skill">JS Stack Developer.</p>
                 </div>
-                <a
-                  class="followme"
-                  href
-                  @click.stop.prevent
-                  v-if="!isMobile"
-                >{{ isEnLang ? 'Friend me' : '众里寻他' }}</a>
+                <a class="followme" href @click.stop.prevent v-if="!isMobile">{{ isEnLang ? 'Friend me' : '众里寻他' }}</a>
                 <div class="wechat" @mouseenter="handleFollowMe" v-if="!isMobile"></div>
               </div>
             </div>
@@ -300,7 +196,7 @@
       gravatar() {
         const gravatar = this.$store.state.global.adminInfo.gravatar
         return gravatar
-          ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim` 
+          ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim`
           : `${this.cdnUrl}/images/gravatar.jpg`
       }
     }
@@ -312,98 +208,98 @@
 
     &.mobile {
 
-      > .detail {
+      >.detail {
         margin: 0;
 
-        > .content {
+        >.content {
 
-          > .about {
+          >.about {
 
-            > .about-all {
+            >.about-all {
 
-              > .about-me {
+              >.about-me {
                 flex-direction: column-reverse;
 
-                > .gravatar {
+                >.gravatar {
                   width: 100%;
                   margin-bottom: 1rem;
                   flex-direction: row;
                   padding: 2rem 0;
 
-                  > .background {
+                  >.background {
                     height: 100%;
 
                     &.star-1,
                     &.star-2 {
 
-                      > .image {
-                         width: 4rem;
-                       }
+                      >.image {
+                        width: 4rem;
+                      }
                     }
 
-                    > .image {
+                    >.image {
                       width: 200%;
                       height: auto;
                     }
                   }
 
-                  > .avatar {
+                  >.avatar {
                     width: 25%;
                     margin-top: 0;
                     margin-left: 6%;
                   }
 
-                  > .desc {
+                  >.desc {
                     width: 50%;
                     margin-left: 5%;
                     text-align: left;
                     z-index: 1;
                     color: $white;
 
-                    > .name,
-                    > .skill {
+                    >.name,
+                    >.skill {
                       margin: 1rem 0;
                     }
                   }
 
-                  > .favorite {
+                  >.favorite {
                     margin: 1rem 0;
                     margin-bottom: 2rem;
                   }
                 }
 
-                > .desc {
+                >.desc {
                   width: 100%;
                   padding: 1em;
                   overflow: hidden;
 
-                  > .item {
+                  >.item {
                     @include text-overflow();
 
-                    > .iconfont {
+                    >.iconfont {
                       margin-right: 1rem;
                     }
 
-                    > .accounts {
+                    >.accounts {
                       bottom: auto;
                     }
                   }
                 }
               }
 
-              > .about-map {
+              >.about-map {
                 display: none;
               }
 
-              > .about-project {
+              >.about-project {
                 height: auto;
 
-                > .project-link {
+                >.project-link {
                   height: auto;
                   padding-top: 1rem;
                   overflow: hidden;
 
-                  > .title {
+                  >.title {
                     font-size: 2em;
                   }
                 }
@@ -414,13 +310,13 @@
       }
     }
 
-    > .detail {
+    >.detail {
 
-      > .content {
+      >.content {
         width: 100%;
-        overflow:  hidden;
+        overflow: hidden;
 
-        > .about {
+        >.about {
 
           .about-me {
             width: 100%;
@@ -440,30 +336,72 @@
               background-color: $module-bg;
 
               @keyframes aboutbg-be-1 {
-                0% { transform: translate3d(0%, 0%, 0) }
-                25% { transform: translate3d(-50%, -50%, 0) }
-                50% { transform: translate3d(-50%, 0%, 0) }
-                75% { transform: translate3d(0%, -50%, 0) }
-                100% { transform: translate3d(0%, 0%, 0) }
+                0% {
+                  transform: translate3d(0%, 0%, 0)
+                }
+
+                25% {
+                  transform: translate3d(-50%, -50%, 0)
+                }
+
+                50% {
+                  transform: translate3d(-50%, 0%, 0)
+                }
+
+                75% {
+                  transform: translate3d(0%, -50%, 0)
+                }
+
+                100% {
+                  transform: translate3d(0%, 0%, 0)
+                }
               }
 
               @keyframes aboutbg-be-2 {
-                0% { transform: translate3d(0%, 0%, 0) }
-                25% { transform: translate3d(0%, -50%, 0) }
-                50% { transform: translate3d(-20%, 0%, 0) }
-                75% { transform: translate3d(-30%, -50%, 0) }
-                100% { transform: translate3d(0%, 0%, 0) }
+                0% {
+                  transform: translate3d(0%, 0%, 0)
+                }
+
+                25% {
+                  transform: translate3d(0%, -50%, 0)
+                }
+
+                50% {
+                  transform: translate3d(-20%, 0%, 0)
+                }
+
+                75% {
+                  transform: translate3d(-30%, -50%, 0)
+                }
+
+                100% {
+                  transform: translate3d(0%, 0%, 0)
+                }
               }
 
               @keyframes aboutbg-star {
-                0% { opacity: 1; }
-                25% { opacity: .5; }
-                50% { opacity: .8; }
-                75% { opacity: .2; }
-                100% { opacity: 1; }
+                0% {
+                  opacity: 1;
+                }
+
+                25% {
+                  opacity: .5;
+                }
+
+                50% {
+                  opacity: .8;
+                }
+
+                75% {
+                  opacity: .2;
+                }
+
+                100% {
+                  opacity: 1;
+                }
               }
 
-              > .background {
+              >.background {
                 content: "";
                 display: block;
                 position: absolute;
@@ -477,7 +415,7 @@
                 &.be-1 {
                   opacity: .66;
 
-                  > .image {
+                  >.image {
                     width: auto;
                     height: 200%;
                     animation: aboutbg-be-1 88s linear infinite;
@@ -487,7 +425,7 @@
                 &.be-2 {
                   opacity: 1;
 
-                  > .image {
+                  >.image {
                     width: auto;
                     height: 200%;
                     animation: aboutbg-be-2 66s linear infinite;
@@ -500,7 +438,7 @@
                   height: auto;
                   right: 1rem;
 
-                  > .image {
+                  >.image {
                     width: 5rem;
                     height: auto;
                     animation: aboutbg-star 6s linear infinite;
@@ -510,18 +448,18 @@
 
               &:hover {
 
-                > .avatar {
+                >.avatar {
                   @include css3-prefix(transform, rotate(360deg));
                 }
 
 
-                > .wechat {
+                >.wechat {
                   visibility: visible;
                   opacity: .8;
                 }
               }
 
-              > .avatar {
+              >.avatar {
                 width: 40%;
                 z-index: 1;
                 margin-top: 5rem;
@@ -532,15 +470,15 @@
                 @include css3-prefix(transition, transform 1s);
               }
 
-              > .desc {
+              >.desc {
                 text-align: center;
 
-                > .skill {
+                >.skill {
                   margin-top: .466rem;
                 }
               }
 
-              > .followme {
+              >.followme {
                 margin-top: 1.666rem;
                 display: inline-block;
                 color: $primary;
@@ -557,7 +495,7 @@
                 }
               }
 
-              > .wechat {
+              >.wechat {
                 opacity: 0;
                 visibility: hidden;
                 position: absolute;
@@ -572,7 +510,7 @@
               }
             }
 
-            > .desc {
+            >.desc {
               width: 73%;
               padding: 2em 3em;
               background-color: $module-bg;
@@ -587,10 +525,10 @@
 
                 &:first-child {
 
-                  > span {
+                  >span {
                     display: inline;
 
-                    > .first-letter {
+                    >.first-letter {
                       font-size: $font-size-h1;
                     }
                   }
@@ -600,7 +538,7 @@
                   margin-bottom: 0;
                 }
 
-                > .iconfont {
+                >.iconfont {
                   width: 2rem;
                   font-size: 1.5rem;
                   text-align: center;
@@ -621,20 +559,20 @@
                   }
                 }
 
-                > .friends {
+                >.friends {
 
-                  > a {
+                  >a {
                     margin-right: 1em;
                     text-transform: capitalize;
                   }
                 }
 
-                > .accounts {
+                >.accounts {
 
                   a {
                     margin-right: 1.35em;
 
-                    > .iconfont {
+                    >.iconfont {
                       font-size: 1.6rem;
                     }
 
@@ -705,8 +643,8 @@
             overflow: hidden;
             background-color: $module-bg;
             position: relative;
-            
-            > .iframe {
+
+            >.iframe {
               width: 100%;
               height: 19rem;
             }

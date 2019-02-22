@@ -27,6 +27,7 @@
     "@nuxtjs/style-resources": "^0.1.1",
     "bezier-easing": "^2.1.0",
     "cross-env": "^5.2.0",
+    "element-ui": "^2.5.4",
     "emoji-233333": "^0.2.2",
     "express": "^4.16.4",
     "favico.js": "^0.3.10",

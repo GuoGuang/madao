@@ -1,21 +1,21 @@
 <template>
   <!-- 导航 图标参考D:\vueWorkspace\youyd_vue_ssr_platform\assets\sass\iconfont.scss -->
-  <div id="nav" class="aside-nav">
+  <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
       <nuxt-link :to="'/'" class="item" exact>
         <span v-text="$i18n.nav.home"></span>
       </nuxt-link>
-      <nuxt-link to="/category/code" class="item">
-        <span v-text="$i18n.nav.code"></span>
+      <nuxt-link to="/ask" class="item">
+        <span v-text="$i18n.nav.ask"></span>
       </nuxt-link>
-      <nuxt-link to="/project" class="item">
-        <span v-text="$i18n.nav.project"></span>
+      <nuxt-link to="/lesson" class="item">
+        <span v-text="$i18n.nav.lesson"></span>
       </nuxt-link>
-      <nuxt-link to="/category/think" class="item">
-        <span v-text="$i18n.nav.think"></span>
+      <nuxt-link to="/apesCircle" class="item">
+        <span v-text="$i18n.nav.apesCircle"></span>
       </nuxt-link>
-      <nuxt-link to="/music" class="item">
-        <span v-text="$i18n.nav.music"></span>
+      <nuxt-link to="/events" class="item">
+        <span v-text="$i18n.nav.events"></span>
       </nuxt-link>
       <nuxt-link to="/vlog" class="item">
         <span v-text="$i18n.nav.vlog"></span>
@@ -23,35 +23,7 @@
       <nuxt-link to="/about" class="item">
         <span v-text="$i18n.nav.about"></span>
       </nuxt-link>
-      <nuxt-link to="/service" class="item">
-        <span v-text="$i18n.nav.service"></span>
-        <span class="superscript">
-        </span>
-      </nuxt-link>
-      <nuxt-link to="/guestbook" class="item guestbook">
-        <span v-text="$i18n.nav.guestbook"></span>
-      </nuxt-link>
-      <a
-        :href="adsForPcNav.taobao"
-        target="_blank"
-        class="item ad taobao"
-        rel="external nofollow noopener"
-        v-if="false"
-      >
-        <span v-text="$i18n.nav.taobao"></span>
-      </a>
-      <a
-        :href="adsForPcNav.aliyun"
-        target="_blank"
-        class="item ad aliyun"
-        rel="external nofollow noopener"
-      >
-        <span v-text="$i18n.nav.aliyun"></span>
-      </a>
-      
-      <nuxt-link to="/app" class="item app">
-        <span v-text="$i18n.nav.app"></span>
-      </nuxt-link>
+
     </nav>
   </div>
 </template>
@@ -67,33 +39,17 @@
 </script>
 
 <style lang="scss" scoped>
-  .aside-nav {
-    position: fixed;
-    display: inline-block;
-    width: 11.5em;
-    top: 5.5em;
-    left: calc((100% - 75em) / 2);
+  .header-nav {
+    
 
     .nav-list {
       padding: 0;
       margin: 0;
 
       > .item {
-        border: none;
-        display: block;
-        width: 100%;
-        height: 3em;
         line-height: 3em;
-        padding: 0 1em;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 700;
-        border-radius: 1px;
-        color: $secondary;
-        font-family: webfont-normal, DINRegular;
-        letter-spacing: 0.5px;
-        margin-bottom: .5em;
-        position: relative;
+        margin: 0 0 0 30px;
+        font-size: 16px;
 
         &:hover {
           color: $primary;

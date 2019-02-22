@@ -24,17 +24,21 @@ module.exports = {
         zh: '首页',
         en: 'home'
       },
-      think: {
+      ask: {
         zh: '问答',
         en: 'ask'
       },
-      code: {
+      lesson: {
         zh: '讲堂',
         en: 'lesson'
       },
-      project: {
+      apesCircle: {
         zh: '猿圈',
         en: 'Apes circle'
+      },
+      events: {
+        zh: '活动',
+        en: 'events'
       },
       vlog: {
         zh: '发现',
@@ -45,7 +49,7 @@ module.exports = {
         en: 'music'
       },
       about: {
-        zh: '狂浪',
+        zh: '关于',
         en: 'about'
       },
       service: {
@@ -71,6 +75,14 @@ module.exports = {
       map: {
         zh: '怀柔',
         en: 'SiteMap.XML'
+      },
+      login: {
+        zh: '立即登录',
+        en: 'Log In'
+      },
+      register: {
+        zh: '免费注册',
+        en: 'Sign Up'
       }
     },
     text: {

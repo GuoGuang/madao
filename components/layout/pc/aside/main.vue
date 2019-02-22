@@ -3,19 +3,9 @@
   <aside id="aside" class="aside">
     <div class="aside-search">
       <div class="search-box">
-        <input
-          id="keyword"
-          required
-          list="keywords"
-          type="search"
-          name="search"
-          class="search-input"
-          :class="language"
-          :placeholder="$i18n.text.search"
-          v-model.trim="keyword"
-          @keyup.enter="handleSearch"
-        />
-        <button class="search-btn" @click="handleSearch">
+        <input id="keyword" required list="keywords" type="search" name="search" class="search-input" :class="language"
+          :placeholder="$i18n.text.search" v-model.trim="keyword" @keyup.enter="handleSearch">
+          <button class="search-btn" @click="handleSearch">
           <i class="iconfont icon-search"></i>
         </button>
         <nuxt-link to="/sitemap" class="sitemap-btn">
@@ -23,12 +13,8 @@
         </nuxt-link>
         <no-ssr>
           <datalist class="search-keywords" id="keywords" v-if="tags.length">
-            <option class="iiem"
-              :value="isEnLang ? tag.slug : tag.name"
-              :label="tag.description"
-              :key="tag.slug"
-              v-for="tag in tags"
-            />
+            <option class="iiem" :value="isEnLang ? tag.slug : tag.name" :label="tag.description" :key="tag.slug"
+              v-for="tag in tags" />
           </datalist>
         </no-ssr>
       </div>
@@ -44,11 +30,8 @@
       <ul class="aside-article-list" v-else>
         <li class="item" :key="item.id" v-for="item in articles">
           <span class="index"></span>
-          <nuxt-link
-            class="title"
-            :to="`/article/${item.id}`"
-            :title="`${item.title} - 「 ${item.meta.comments} ${$i18n.text.comment.count} | ${item.meta.likes} ${$i18n.text.comment.like} 」`"
-          >
+          <nuxt-link class="title" :to="`/article/${item.id}`"
+            :title="`${item.title} - 「 ${item.meta.comments} ${$i18n.text.comment.count} | ${item.meta.likes} ${$i18n.text.comment.like} 」`">
             <span v-text="item.title"></span>
           </nuxt-link>
         </li>
@@ -74,19 +57,10 @@
           <slot>{{ $i18n.text.tag.empty }}</slot>
         </empty-box>
         <ul class="aside-tag-list" v-else>
-          <nuxt-link
-            tag="li"
-            class="item"
-            :key="index"
-            :to="`/tag/${tag.slug}`"
-            v-for="(tag, index) in tags"
-          >
+          <nuxt-link tag="li" class="item" :key="index" :to="`/tag/${tag.slug}`" v-for="(tag, index) in tags">
             <a class="title" :title="tag.description">
-              <i
-                class="iconfont"
-                :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
-                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"
-              ></i>
+              <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
+                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i>
               <span>{{ isEnLang ? tag.slug : tag.name }}</span>
               <span>({{ tag.count || 0 }})</span>
             </a>
@@ -143,7 +117,7 @@
       ...mapState({
         tags: state => state.tag.data,
         articles: state => state.article.hotList.data,
-        language: state => state.global.language,
+        language: state => state.global.language
       }),
       isEnLang() {
         return this.$store.getters['global/isEnLang']
@@ -163,8 +137,8 @@
         const keyword = this.keyword
         const paramsKeyword = this.$route.params.keyword
         const isSearchPage = isSearchArchiveRoute(this.$route.name)
-        if (keyword && (isSearchPage ? (paramsKeyword !== keyword) : true)) {
-          this.$router.push({ name: Route.SearchArchive, params: { keyword }})
+        if (keyword && (isSearchPage ? paramsKeyword !== keyword : true)) {
+          this.$router.push({ name: Route.SearchArchive, params: { keyword } })
         }
       },
       handleSlideChange(index) {
@@ -190,13 +164,14 @@
         const element = this.fixedMode.element
         const sidebarFixedOffsetTop = this.fixedMode.sidebarFixedOffsetTop
         const windowScrollTop =
-          document.documentElement.scrollTop || 
-          window.pageYOffset || 
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
           window.scrollY ||
           document.body.scrollTop
         const newSidebarFixedOffsetTop = element.offsetTop
         this.fixedMode.sidebarFixedOffsetTop =
-          (newSidebarFixedOffsetTop !== sidebarFixedOffsetTop && newSidebarFixedOffsetTop !== 77)
+          newSidebarFixedOffsetTop !== sidebarFixedOffsetTop &&
+            newSidebarFixedOffsetTop !== 77
             ? newSidebarFixedOffsetTop
             : sidebarFixedOffsetTop
         const isFixed = windowScrollTop > sidebarFixedOffsetTop
@@ -215,7 +190,9 @@
           // 初始化应用
           context.parseScroll()
           // 监听滚动事件
-          window.addEventListener('scroll', context.parseScroll, { passive: true })
+          window.addEventListener('scroll', context.parseScroll, {
+            passive: true
+          })
         },
         unbind(element, _, VNode) {
           window.removeEventListener('scroll', VNode.context.parseScroll)
@@ -238,20 +215,20 @@
     .aside-article,
     .aside-calendar,
     .aside-ad,
-    .aside-tag, {
+    .aside-tag {
       background-color: $module-bg;
     }
 
     .aside-search {
       margin-bottom: 1em;
 
-      > .search-box {
-        padding: .5em;
+      >.search-box {
+        padding: 0.5em;
         overflow: hidden;
 
-        > .search-input,
-        > .search-btn,
-        > .sitemap-btn {
+        >.search-input,
+        >.search-btn,
+        >.sitemap-btn {
           background-color: $module-hover-bg;
           height: 2em;
           line-height: 2em;
@@ -262,17 +239,17 @@
           }
         }
 
-        > .search-input {
+        >.search-input {
           margin-right: 0;
           width: calc(100% - 6.5em - 1px);
           box-sizing: border-box;
-          
+
           &::-webkit-calendar-picker-indicator {
             display: none;
           }
         }
 
-        > .search-btn {
+        >.search-btn {
           width: 2em;
           background-color: $module-hover-bg-darken-20;
 
@@ -281,39 +258,38 @@
           }
         }
 
-        > .sitemap-btn {
+        >.sitemap-btn {
           text-align: center;
           float: right;
           width: 4em;
         }
 
-        > .search-keywords {
-
-          > .item {}
+        >.search-keywords {
+          >.item {}
         }
       }
     }
 
-    > .aside-article {
+    >.aside-article {
       overflow: hidden;
       margin-bottom: 1em;
 
-      > .title {
+      >.title {
         height: 3em;
         line-height: 3em;
         margin: 0;
-        padding: 0 .8em;
+        padding: 0 0.8em;
         border-bottom: 1px dashed $body-bg;
         text-transform: uppercase;
 
         .iconfont {
-          margin-right: .5em;
+          margin-right: 0.5em;
         }
       }
 
-      > .aside-article-list {
+      >.aside-article-list {
         list-style: none;
-        padding: .5em 0;
+        padding: 0.5em 0;
         margin-bottom: 0;
         counter-reset: hot-article-list;
 
@@ -321,8 +297,8 @@
           display: block;
           height: 1.9em;
           line-height: 1.9em;
-          padding: 0 .8em;
-          margin-bottom: .5em;
+          padding: 0 0.8em;
+          margin-bottom: 0.5em;
           color: $text-dark;
           @include text-overflow();
 
@@ -336,14 +312,14 @@
           &:nth-child(2) {
             .index {
               color: $white;
-              background-color: rgba($accent, .6);
+              background-color: rgba($accent, 0.6);
             }
           }
 
           &:nth-child(3) {
             .index {
               color: $white;
-              background-color: rgba($red, .6);
+              background-color: rgba($red, 0.6);
             }
           }
 
@@ -360,8 +336,8 @@
             line-height: 1.5em;
             display: inline-block;
             text-align: center;
-            margin-right: .5em;
-            font-size: .8em;
+            margin-right: 0.5em;
+            font-size: 0.8em;
 
             &::before {
               content: counter(hot-article-list);
@@ -369,10 +345,10 @@
           }
 
           .title {
-            font-size: .9em;
+            font-size: 0.9em;
 
             &:hover {
-              margin-left: .5em;
+              margin-left: 0.5em;
               text-decoration: underline;
             }
           }
@@ -381,7 +357,7 @@
     }
 
     .aside-calendar {
-      padding: .8em;
+      padding: 0.8em;
       margin-bottom: 1em;
     }
 
@@ -389,8 +365,8 @@
       width: 100%;
       margin-bottom: 1em;
 
-      > .ad-box {
-        opacity: .88;
+      >.ad-box {
+        opacity: 0.88;
 
         &:hover {
           opacity: 1;
@@ -409,18 +385,18 @@
         position: fixed;
         top: 5.5em;
 
-        > .aside-tag {
+        >.aside-tag {
           max-height: calc(100vh - 8em - 4.5em - 3em - 8em);
           overflow-y: auto;
         }
       }
 
-      > .aside-tools {
+      >.aside-tools {
         display: flex;
         justify-content: space-between;
 
-        > .full-column,
-        > .full-page {
+        >.full-column,
+        >.full-page {
           display: inline-block;
           width: calc((100% - 1em) / 2);
           height: 3rem;
@@ -435,7 +411,7 @@
         }
       }
 
-      > .aside-tag {
+      >.aside-tag {
         width: 19em;
         padding-left: 1rem;
         border-top: 1rem solid transparent;
@@ -443,8 +419,8 @@
         margin-bottom: 1em;
 
         .empty-box {
-          padding-right: .8em;
-          padding-bottom: .8em;
+          padding-right: 0.8em;
+          padding-bottom: 0.8em;
         }
 
         .aside-tag-list {
@@ -472,7 +448,7 @@
 
             .title {
               display: block;
-              padding: 0 .5em;
+              padding: 0 0.5em;
               font-family: $sans-serif;
             }
           }

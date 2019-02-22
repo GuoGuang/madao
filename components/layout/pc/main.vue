@@ -1,6 +1,7 @@
 <template>
   <div id="app-main">
     <header-view/>
+
     <no-ssr>
       <!-- 背景 -->
       <background/>
@@ -13,24 +14,19 @@
       <!-- 工具栏 -->
       <tool-box v-if="isNotFullColPage" />
     </no-ssr>
+
     <main id="main" :class="{ 'full-view': isFullViewWidth }">
-
-      <!-- body 左侧 -->
-      <transition name="module" >
-        <nav-view v-if="$route.name === 'index'"/>
-      </transition>
-
-      <!-- body页面中间 -->
-      <!-- 这块是有问题的 style="$route.name === 'index'?'width: 42.5em;margin: 0 0 0 12.5em;':'width: 55em;margin: 0 0 0 0;'" 导致其他页面样式错误 计划将左边竖列表横起来 -->
-      <div id="main-content" class="main-content" :style="$route.name === 'index'?'width: 42.5em;margin: 0 0 0 12.5em;':'width: 55em;margin: 0 0 0 0;'"
+    
+      <!-- body页面中间 --> <!-- full-column:62.5em 删除   class="main-content" 这个样式删了也没什么改变，此处应该去除div这一层-->
+      <div id="main-content" 
         :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }">
         <nuxt :nuxtChildKey="$route.name" keep-alive />
       </div>
       
       <!-- 页面右侧  v-if="false" 点击进入文章时隐藏右侧标签栏或者左侧标签栏-->
-      <transition name="aside">
+      <!-- <transition name="aside">
         <aside-view key="aside" v-if="!isTwoColumns && !isThreeColumns" />
-      </transition>
+      </transition>  -->
 
     </main>
     <no-ssr>
@@ -45,7 +41,6 @@
 
 <script>
   import { mapState } from 'vuex'
-  import NavView from './nav'
   import HeaderView from './header'
   import FooterView from './footer'
   import AsideView from './aside/main'
@@ -67,7 +62,7 @@
     components: {
       ToolBox, ShareBox, LanguagePsm,
       Webrtc, EmojiRain, WallFlower, Background, Barrage, // 实体
-      HeaderView, FooterView, AsideView, NavView, // 布局
+      HeaderView, FooterView, AsideView // 布局
     },
     mounted() {
       // const isHidden = document.hidden || document.webkitHidden || document.mozHidden
@@ -150,9 +145,9 @@
       }
 
       .main-content {
-        float: left;
-        width: 42.5em; 
-        margin: 0 0 0 12.5em;
+        //float: left;
+        width: 81em; 
+        margin: 0 0 0 0;
         position: relative;
         overflow: hidden;
         @include css3-prefix(transition, width .35s);

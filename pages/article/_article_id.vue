@@ -3,15 +3,11 @@
   <article id="article" class="article" :class="{ mobile: isMobile }">
     <div class="detail" ref="detail">
       <transition name="module">
-        <div
-          v-if="!isFetching"
-          class="oirigin"
-          :class="{
+        <div v-if="!isFetching" class="oirigin" :class="{
             self: !article.origin,
             other: article.origin === constants.OriginState.Reprint,
             hybrid: article.origin === constants.OriginState.Hybrid
-          }"
-        >
+          }">
           <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
           <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"></span>
           <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"></span>
@@ -49,12 +45,8 @@
     <div class="share">
       <transition name="module" mode="out-in">
         <div class="skeleton" key="skeleton" v-if="isFetching">
-          <skeleton-base
-            :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
-            :radius="0"
-            :key="item"
-            v-for="item in (isMobile ? 3 : 10)"
-          />
+          <skeleton-base :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
+            :radius="0" :key="item" v-for="item in (isMobile ? 3 : 10)" />
         </div>
         <share-box key="share" class="article" v-else />
       </transition>
@@ -71,12 +63,8 @@
             <span>{{ buildDateTitle(article.create_at) }}</span>
           </nuxt-link>
           <span>&nbsp;in category&nbsp;</span>
-          <nuxt-link
-            :key="index"
-            :to="`/category/${category.slug}`"
-            :title="category.description || category.name"
-            v-for="(category, index) in article.category"
-          >
+          <nuxt-link :key="index" :to="`/category/${category.slug}`" :title="category.description || category.name"
+            v-for="(category, index) in article.category">
             <span>{{ category.name }}</span>
             <span v-if="article.category.length && article.category[index + 1]">、</span>
           </nuxt-link>
@@ -125,11 +113,8 @@
             <span>自由转载-署名-非商业性使用</span>
             <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
           </span>
-          <a
-            target="_blank"
-            rel="external nofollow noopenter"
-            href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh"
-          >Creative Commons BY-NC 3.0 CN</a>
+          <a target="_blank" rel="external nofollow noopenter"
+            href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh">Creative Commons BY-NC 3.0 CN</a>
         </div>
       </div>
     </transition>
@@ -144,27 +129,13 @@
         <div class="article-list swiper" v-if="!isMobile" v-swiper:swiper="swiperOption">
           <div class="swiper-wrapper">
             <div class="swiper-slide item" :key="index" v-for="(article, index) in relatedArticles">
-              <a
-                v-if="article.ad"
-                class="item-box"
-                :href="article.link"
-                rel="external nofollow noopener"
-                target="_blank"
-              >
+              <a v-if="article.ad" class="item-box" :href="article.link" rel="external nofollow noopener"
+                target="_blank">
                 <img :src="article.img" class="thumb" :alt="article.title">
                 <span class="title">{{ article.title }}</span>
               </a>
-              <nuxt-link
-                v-else
-                :to="`/article/${article.id}`"
-                :title="article.title"
-                class="item-box"
-              >
-                <img
-                  :src="buildThumb(article.thumb)"
-                  class="thumb"
-                  :alt="article.title"
-                >
+              <nuxt-link v-else :to="`/article/${article.id}`" :title="article.title" class="item-box">
+                <img :src="buildThumb(article.thumb)" class="thumb" :alt="article.title">
                 <span class="title">{{ article.title }}</span>
               </nuxt-link>
             </div>
@@ -172,24 +143,14 @@
         </div>
         <ul class="article-list" v-else>
           <li class="item" v-for="(article, index) in relatedArticles" :key="index">
-            <a
-              v-if="article.ad"
-              class="item-link"
-              :href="article.link"
-              rel="external nofollow noopener"
-              target="_blank"
-            >
+            <a v-if="article.ad" class="item-link" :href="article.link" rel="external nofollow noopener"
+              target="_blank">
               <span class="sign">《</span>
               <span class="title">{{ article.title }}</span>
               <span class="sign">》</span>
               <small class="tip">- 狠狠地阅读</small>
             </a>
-            <nuxt-link
-              v-else
-              class="item-link"
-              :to="`/article/${article.id}`"
-              :title="`「 ${article.title} 」- 继续阅读`"
-            >
+            <nuxt-link v-else class="item-link" :to="`/article/${article.id}`" :title="`「 ${article.title} 」- 继续阅读`">
               <span class="sign">《</span>
               <span class="title">{{ article.title }}</span>
               <span class="sign">》</span>
@@ -200,11 +161,7 @@
       </div>
     </transition>
     <div class="comment">
-      <comment-box
-        :fetching="isFetching"
-        :post-id="routeArticleId"
-        :likes="article.meta && article.meta.likes"
-      />
+      <comment-box :fetching="isFetching" :post-id="routeArticleId" :likes="article.meta && article.meta.likes" />
     </div>
   </article>
 </template>
@@ -224,7 +181,7 @@
     validate({ params, store }) {
       return params.article_id && !isNaN(Number(params.article_id))
     },
-    
+
     fetch({ store, params, error }) {
       return Promise.all([
         store.dispatch('article/fetchDetail', params).catch(err => {
@@ -233,15 +190,15 @@
         store.dispatch('comment/fetchList', { post_id: params.article_id })
       ])
     },
-    
+
     head() {
       const { article } = this
       return {
         title: article.title || '...',
         meta: [
           {
-            hid: 'keywords', 
-            name: 'keywords', 
+            hid: 'keywords',
+            name: 'keywords',
             content: (article.keywords ? article.keywords.join(',') : article.title) || ''
           },
           { hid: 'description', name: 'description', content: article.description }
@@ -412,46 +369,46 @@
 
     &.mobile {
 
-      > .metas {
+      >.metas {
         line-height: 2.3em;
 
-        > .item {
+        >.item {
           margin: 0;
           padding: 0;
           border: none;
 
-          > .title.en {
+          >.title.en {
             width: auto;
             margin-right: 1rem;
           }
         }
       }
 
-      > .related {
+      >.related {
         height: auto;
 
-        > .article-list {
+        >.article-list {
           padding: 0;
           margin: 0;
           list-style: none;
           overflow: hidden;
           opacity: .9;
 
-          > .item {
+          >.item {
 
-            > .item-link {
+            >.item-link {
               display: flex;
               width: 100%;
               height: 2.2em;
               line-height: 2.2em;
 
-              > .title {
+              >.title {
                 max-width: 70%;
                 display: inline-block;
                 @include text-overflow();
               }
 
-              > .tip {
+              >.tip {
                 display: inline-block;
               }
             }
@@ -459,20 +416,20 @@
         }
       }
 
-      > .detail {
+      >.detail {
 
-        > .oirigin {
+        >.oirigin {
           font-size: $font-size-base;
         }
 
-        > .knowledge {
+        >.knowledge {
 
-          > .content {
+          >.content {
 
             pre {
               padding-left: 0;
 
-              > .code-lines {
+              >.code-lines {
                 display: none;
               }
             }
@@ -481,30 +438,30 @@
       }
     }
 
-    > .detail,
-    > .ad,
-    > .metas,
-    > .related {
+    >.detail,
+    >.ad,
+    >.metas,
+    >.related {
       margin-bottom: 1em;
       background-color: $module-bg;
     }
 
-    > .ad {
+    >.ad {
 
       .ad-skeleton {
         padding: 1em;
       }
     }
 
-    > .detail {
+    >.detail {
       padding: 1em 2em;
       position: relative;
       overflow: hidden;
       height: auto;
       transition: height .25s;
 
-      > .skeleton {
-        
+      >.skeleton {
+
         .title {
           width: 60%;
           height: 26px;
@@ -517,7 +474,7 @@
         }
       }
 
-      > .oirigin {
+      >.oirigin {
         position: absolute;
         top: -0.9rem;
         left: -2.4rem;
@@ -545,15 +502,15 @@
         }
       }
 
-      > .knowledge {
+      >.knowledge {
 
-        > .title {
+        >.title {
           text-align: center;
           margin: 1em 0 1.5em 0;
           font-weight: 700;
         }
 
-        > .content {
+        >.content {
           iframe {
             width: 100%;
             margin-bottom: 1em;
@@ -632,9 +589,10 @@
             list-style-type: square;
           }
 
-          ul, ol {
+          ul,
+          ol {
 
-            > li {
+            >li {
               line-height: 1.8em;
               padding: .5em .8em;
 
@@ -642,11 +600,11 @@
                 background-color: $module-hover-bg;
               }
 
-              > p {
+              >p {
                 text-indent: 0;
               }
 
-              > ul {
+              >ul {
 
                 &:last-child {
                   margin-bottom: 0;
@@ -691,7 +649,7 @@
               text-align: center;
             }
 
-            > .code-lines {
+            >.code-lines {
               position: absolute;
               left: 0;
               top: $code-line-height;
@@ -702,7 +660,7 @@
               text-align: center;
               background-color: rgba(0, 0, 0, 0.2);
 
-              > .code-line-number {
+              >.code-line-number {
                 padding: 0;
                 position: relative;
                 list-style-type: none;
@@ -732,7 +690,7 @@
               }
             }
 
-            > code {
+            >code {
               margin: 0;
               padding: 1em;
               // padding-top: $code-line-height + 1em;
@@ -748,37 +706,41 @@
         }
 
         @keyframes readmorebtn {
-          0% { 
+          0% {
             transform: translate3d(0, 0, 0);
             background-color: $module-hover-bg;
           }
-          25% { 
+
+          25% {
             transform: translate3d(0, .5rem, 0);
             background-color: $primary;
             color: white;
           }
-          50% { 
+
+          50% {
             transform: translate3d(0, 0, 0);
             background-color: $module-hover-bg;
           }
-          75% { 
+
+          75% {
             transform: translate3d(0, .5rem, 0);
             background-color: $primary;
             color: white;
           }
-          100% { 
+
+          100% {
             transform: translate3d(0, 0, 0);
             background-color: $module-hover-bg;
           }
         }
 
-        > .readmore {
+        >.readmore {
           width: 100%;
           display: flex;
           justify-content: center;
           margin-bottom: .8rem;
 
-          > .readmore-btn {
+          >.readmore-btn {
             width: 80%;
             text-align: center;
             height: 3rem;
@@ -791,11 +753,11 @@
             }
 
             &:hover {
-              background-color: $primary!important;
-              color: white!important;
+              background-color: $primary !important;
+              color: white !important;
             }
 
-            > .iconfont {
+            >.iconfont {
               margin-left: .5rem;
             }
           }
@@ -808,17 +770,17 @@
       margin-bottom: 1em;
       background-color: $module-bg;
 
-      > .skeleton {
+      >.skeleton {
         display: flex;
         justify-content: space-between;
         height: 3rem;
       }
     }
 
-    > .metas {
+    >.metas {
       padding: 1em;
 
-      > .item {
+      >.item {
         border-left: solid .5em $body-bg;
         padding-left: 1rem;
         word-break: break-all;
@@ -827,7 +789,7 @@
           text-decoration: underline;
         }
 
-        > .title.en {
+        >.title.en {
           width: 11rem;
           display: inline-block;
         }
@@ -844,14 +806,14 @@
       }
     }
 
-    > .related {
+    >.related {
       padding: 1em 0;
       border-width: 0 1em;
       border-color: transparent;
       overflow: hidden;
       height: 10em;
 
-      > .skeleton-list {
+      >.skeleton-list {
         padding: 0;
         margin: 0;
         height: 100%;
@@ -868,13 +830,13 @@
         }
       }
 
-      > .swiper.article-list {
+      >.swiper.article-list {
 
-        > .swiper-wrapper {
+        >.swiper-wrapper {
           height: 8em;
           overflow: hidden;
 
-          > .swiper-slide.item {
+          >.swiper-slide.item {
             width: auto;
             margin-right: 1rem;
 
@@ -882,7 +844,7 @@
               margin-right: 0;
             }
 
-            > .item-box {
+            >.item-box {
               display: block;
               position: relative;
               overflow: hidden;
@@ -898,19 +860,19 @@
                   @include css3-prefix(transition, all 1s);
                 }
 
-                > .title {
+                >.title {
                   opacity: 1;
                 }
               }
 
-              > .thumb {
+              >.thumb {
                 width: auto;
                 height: 100%;
                 @include css3-prefix(transform, scale(1) rotate(0deg));
                 @include css3-prefix(transition, all 1s);
               }
 
-              > .title {
+              >.title {
                 position: absolute;
                 bottom: 0;
                 left: 0;
