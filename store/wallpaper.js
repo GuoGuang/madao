@@ -41,7 +41,7 @@ export const actions = {
     if (state.papers.data) {
       return Promise.resolve(state.papers.data)
     }
-
+    
     // 不存在则请求新数据
     commit('updatePapersFetching', true)
     return this.$axios.$get(`/wallpaper/list`)

@@ -28,7 +28,7 @@ export const actions = {
 
   // 获取开源项目列表
   fetchRepositories({ commit, state }) {
-
+    
     // 如果数据已存在，则直接返回
     if (state.repositories.data.length) {
       return Promise.resolve(state.repositories.data)
