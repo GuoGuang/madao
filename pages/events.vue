@@ -1,49 +1,56 @@
 <template>
-    <!-- 活动界面 -->
-  <div class="events" :class="{ mobile: isMobile }">
+
+  <el-row class="events">
+    <el-col :span="5">
+      <div class="grid-content bg-purple" style="background-color:black">
+          111111111111111111111111111111
+      </div>
+    </el-col>
+    <el-col :span="5">
+      <div class="grid-content bg-purple-light" style="background-color:blue">
+          2222222222222222222222222222222
+      </div>
+      </el-col>
+      <el-col :span="5">
+      <div class="grid-content bg-purple" style="background-color:purple">
+          333333333333333333333333333333
+      </div>
+    </el-col>
+    <el-col :span="5">
+      <div class="grid-content bg-purple-light" style="background-color:red">
+          4444444444444444444444444444444
+      </div>
+      </el-col>
+  </el-row>
+
+  <!-- 活动界面 -->
+ <!--  <div class="events" :class="{ mobile: isMobile }">
     <ul class="event-list">
-      <li
-        class="item"
-        :key="index"
-        :class="{ last: buildLastClass(index) }"
-        v-for="(project, index) in projects"
-      >
-        <a
-          target="_blank"
-          class="item-content"
-          rel="external nofollow noopenter"
-          :href="project.html_url"
-          :title="project.description"
-        >
-          <i
-            class="iconfont"
-            :class="buildIcon(project).icon"
-            :style="{ color: buildIcon(project).color }"
-          ></i>
-          <h3 class="title">{{ project.name }}</h3>
-          <p
-            class="description"
-            style="-webkit-box-orient: vertical;"
-          >{{ project.description }}</p>
+      <li class="item" :key="index" :class="{ last: buildLastClass(index) }" v-for="(event, index) in events">
+        <a target="_blank" class="item-content" rel="external nofollow noopenter" :href="event.html_url"
+          :title="event.description">
+          <i class="iconfont" :class="buildIcon(event).icon" :style="{ color: buildIcon(event).color }"></i>
+          <h3 class="title">{{ event.name }}</h3>
+          <p class="description" style="-webkit-box-orient: vertical;">{{ event.description }}</p>
           <hr>
           <p class="meta">
             <span class="item star">
               <i class="iconfont icon-star"></i>
-              <span>{{ project.stargazers_count }}</span>
+              <span>{{ event.stargazers_count }}</span>
             </span>
             <span class="item fork">
               <i class="iconfont icon-git-fork"></i>
-              <span>{{ project.forks_count }}</span>
+              <span>{{ event.forks_count }}</span>
             </span>
             <span class="item issues">
               <i class="iconfont icon-git-issue"></i>
-              <span>{{ project.open_issues_count }}</span>
+              <span>{{ event.open_issues_count }}</span>
             </span>
           </p>
         </a>
       </li>
     </ul>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -55,7 +62,7 @@
       }
     },
     fetch({ store }) {
-      return store.dispatch('project/fetchRepositories')
+      return store.dispatch('events/fetchEvents')
     },
     computed: {
       isEnLang() {
@@ -64,88 +71,88 @@
       isMobile() {
         return this.$store.state.global.isMobile
       },
-      projects() {
-        return this.$store.state.project.repositories.data
+      events() {
+        return this.$store.state.events.events.data
       }
     },
     methods: {
       buildLastClass(index) {
-        const projects = this.projects
-        return projects.length % 4
-          ? index >= (projects.length - projects.length % 4) // 取余
-          : index >= projects.length - 4 // 取整
+        const events = this.events
+        return events.length % 4
+          ? index >= (events.length - events.length % 4) // 取余
+          : index >= events.length - 4 // 取整
       },
-      buildIcon(project) {
+      buildIcon(events) {
 
         const iconRules = [{
-            desc: 'netease',
-            icon: 'netease-music',
-            color: '#ab3419'
-          }, {
-            name: 'react',
-            desc: 'react',
-            color: '#5dd4fa'
-          }, {
-            name: 'linux',
-            color: '#000000'
-          }, {
-            name: 'deploy',
-            icon: 'linux',
-            color: '#000000'
-          }, {
-            name: 'sre',
-            icon: 'linux',
-            color: '#000000'
-          }, {
-            name: 'youyd',
-            icon: 'think',
-            color: '#0088f5'
-          }, {
-            name: 'emoji',
-            color: '#f4c449'
-          }, {
-            name: 'vue',
-            desc: 'vue',
-            icon: 'vuejs-gray',
-            color: '#62b287'
-          }, {
-            name: 'chrome',
-            color: '#4aa066'
-          }, {
-            name: 'jquery',
-            color: '#8bcdf1'
-          }, {
-            desc: 'music',
-            color: '#ab3419'
-          }, {
-            name: 'theme',
-            color: 'rgb(245, 119, 0)'
-          }, {
-            name: 'wordpress',
-            color: '#24282d'
-          }, {
-            name: 'javascript',
-            color: '#f4c449'
-          }, {
-            name: 'wallpaper',
-            color: '#2c343d'
-          }, {
-            name: 'node',
-            icon: 'nodejs',
-            color: '#8dbb39'
-          }, {
-            name: 'angular',
-            icon: 'angularjs',
-            color: '#cc3427'
-          }, {
-            name: 'ngx',
-            icon: 'angularjs',
-            color: '#cc3427'
-          }
+          desc: 'netease',
+          icon: 'netease-music',
+          color: '#ab3419'
+        }, {
+          name: 'react',
+          desc: 'react',
+          color: '#5dd4fa'
+        }, {
+          name: 'linux',
+          color: '#000000'
+        }, {
+          name: 'deploy',
+          icon: 'linux',
+          color: '#000000'
+        }, {
+          name: 'sre',
+          icon: 'linux',
+          color: '#000000'
+        }, {
+          name: 'youyd',
+          icon: 'think',
+          color: '#0088f5'
+        }, {
+          name: 'emoji',
+          color: '#f4c449'
+        }, {
+          name: 'vue',
+          desc: 'vue',
+          icon: 'vuejs-gray',
+          color: '#62b287'
+        }, {
+          name: 'chrome',
+          color: '#4aa066'
+        }, {
+          name: 'jquery',
+          color: '#8bcdf1'
+        }, {
+          desc: 'music',
+          color: '#ab3419'
+        }, {
+          name: 'theme',
+          color: 'rgb(245, 119, 0)'
+        }, {
+          name: 'wordpress',
+          color: '#24282d'
+        }, {
+          name: 'javascript',
+          color: '#f4c449'
+        }, {
+          name: 'wallpaper',
+          color: '#2c343d'
+        }, {
+          name: 'node',
+          icon: 'nodejs',
+          color: '#8dbb39'
+        }, {
+          name: 'angular',
+          icon: 'angularjs',
+          color: '#cc3427'
+        }, {
+          name: 'ngx',
+          icon: 'angularjs',
+          color: '#cc3427'
+        }
         ]
 
-        const isIncludeName = key => project.name.toLowerCase().includes(key)
-        const isIncludeDesc = key => project.description.toLowerCase().includes(key)
+        const isIncludeName = key => events.name.toLowerCase().includes(key)
+        const isIncludeDesc = key => events.description.toLowerCase().includes(key)
         const targetRule = iconRules.find(rule => {
           const includeName = rule.name ? isIncludeName(rule.name) : false
           const includeDesc = rule.desc ? isIncludeDesc(rule.desc) : false
@@ -166,15 +173,23 @@
 </script>
 
 <style lang="scss" scoped>
-  .events {
+  .events{
+    .el-col{
+      display: flex;
+      justify-content:space-around;
+  }
+    
+  }
+
+  .eveqqqqnts {
     min-height: 40em;
 
     &.mobile {
       min-height: auto;
 
-      > .event-list {
+      >.event-list {
 
-        > .item {
+        >.item {
           width: 100%;
           height: auto;
           float: none;
@@ -189,19 +204,19 @@
             margin: 0;
           }
 
-          > .item-content {
+          >.item-content {
             width: 100%;
             height: auto;
 
-            > .title {
+            >.title {
               margin: 1em 0;
             }
 
-            > .iconfont {
+            >.iconfont {
               font-size: 3em;
             }
 
-            > .description {
+            >.description {
               height: auto;
             }
           }
@@ -209,7 +224,7 @@
       }
     }
 
-    > .event-list {
+    >.event-list {
       padding: 0;
       margin: 0;
       display: flex;
@@ -218,7 +233,7 @@
       list-style: none;
       justify-content: flex-start;
 
-      > .item {
+      >.item {
         margin-right: 1rem;
         margin-bottom: 1rem;
         width: 23.9%;
@@ -232,7 +247,7 @@
           margin-right: 0;
         }
 
-        > .item-content {
+        >.item-content {
           display: block;
           width: 100%;
           height: 100%;
@@ -246,13 +261,13 @@
             transition: transform 1s, background-color .5s;
           }
 
-          > .iconfont {
+          >.iconfont {
             display: block;
             height: 1.3em;
             font-size: 6rem;
           }
 
-          > .title {
+          >.title {
             @include text-overflow();
             padding: 0 1em;
             margin-bottom: 1.2em;
@@ -260,7 +275,7 @@
             text-transform: capitalize;
           }
 
-          > .description {
+          >.description {
             margin-bottom: 1rem;
             text-align: left;
             line-height: 2em;
@@ -271,12 +286,12 @@
             @include clamp(2);
           }
 
-          > .meta {
+          >.meta {
             margin-bottom: .5rem;
             display: flex;
             justify-content: space-around;
 
-            > .item {
+            >.item {
               font-weight: 400;
               color: $secondary;
 
@@ -285,7 +300,7 @@
                 font-weight: bold;
               }
 
-              > .iconfont {
+              >.iconfont {
                 margin-right: .3rem;
               }
             }
