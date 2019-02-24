@@ -114,6 +114,7 @@
       }
     },
     methods: {
+      /* 由于样式问题 此处需要使用父子组件传递事件 */
       ssss(){
         this.loginDialogVisible = true;
       },
