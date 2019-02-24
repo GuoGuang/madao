@@ -48,7 +48,7 @@
 
       > .item {
         line-height: 3em;
-        margin: 0 0 0 30px;
+        margin: 0 30px 0 0;
         font-size: 16px;
 
         &:hover {
