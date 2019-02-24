@@ -1,18 +1,7 @@
 <template>
   <div id="app-main">
-    <header-view/>
+    <header-view @loginClick="loginClick"/>
 
-<el-dialog
-  title="提示"
-  :visible.sync="loginDialogVisible"
-  width="30%"
-  center>
-  <span>需要注意的是内容是默认不居中的</span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="loginDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="loginDialogVisible = false">确 定</el-button>
-  </span>
-</el-dialog>
 
     <no-ssr>
       <!-- 背景 -->
@@ -48,6 +37,24 @@
       <emoji-rain v-if="!onPowerSavingMode"/>
     </no-ssr>
     <footer-view/>
+
+    
+    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%">
+          <!-- :model="formLabelAlign" -->
+            <el-form label-position="top" label-width="80px"  size="mini">
+              <el-form-item label="手机号 或 Email">
+                <el-input placeholder="11 位手机号 或 Email"></el-input>
+              </el-form-item>
+              <el-form-item label="密码">
+                <span class="pull-right"><a href="/user/forgot" tabindex="4">忘记密码</a></span>
+                <el-input placeholder="请输入密码"></el-input>
+              </el-form-item>
+            </el-form>
+
+
+
+    </el-dialog>
+
   </div>
 </template>
 
@@ -75,6 +82,11 @@
       ToolBox, ShareBox, LanguagePsm,
       Webrtc, EmojiRain, WallFlower, Background, Barrage, // 实体
       HeaderView, FooterView, AsideView // 布局
+    },
+    data() {
+      return {
+        loginDialogVisible: false // 是否显示登录框
+      }
     },
     mounted() {
       // const isHidden = document.hidden || document.webkitHidden || document.mozHidden
@@ -141,6 +153,13 @@
         document.addEventListener("mozfullscreenchange", fullscreenchange, false)
         document.addEventListener("webkitfullscreenchange", fullscreenchange, false)
         document.addEventListener("msfullscreenchange", fullscreenchange, false)
+      },
+
+      /**
+       * 监听子组件登录摁钮事件
+       */
+      loginClick(){
+        this.loginDialogVisible = true;
       }
     }
   }
@@ -148,7 +167,6 @@
 
 <style lang="scss" scoped>
   #app-main {
-
     main {
       position: relative;
 
@@ -195,3 +213,39 @@
     }
   }
 </style>
+
+
+
+<style lang="scss">
+/* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
+  .loginDialog{
+    .el-dialog{
+      margin-top:5vh!important;
+      width: 33%;
+    }
+    .el-dialog__header{
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        background-color: #f3f3f3;
+    }
+     .el-dialog__body{
+        padding: 30px 130px;
+        .el-form{
+          .el-form-item{
+              .pull-right{
+                float: right
+              }
+          }
+          .el-form-item__label{
+              font-weight: bold;
+              padding: 0 0 0px; 
+              line-height: 25px;
+          }
+        }
+        
+    }
+  }
+
+</style>
+
+

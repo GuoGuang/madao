@@ -21,7 +21,7 @@
 
         <div class="navbar-login">
           
-            <a style="color: #009a61;font-size: 14px;" href="#" @click="ssss">{{$i18n.nav.login}}</a>
+            <a style="color: #009a61;font-size: 14px;" href="#" @click="goMainLogin">{{$i18n.nav.login}}</a>
           
           <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
              <el-button size="small" type="success" >{{$i18n.nav.register}}</el-button>
@@ -114,9 +114,9 @@
       }
     },
     methods: {
-      /* 由于样式问题 此处需要使用父子组件传递事件 */
-      ssss(){
-        this.loginDialogVisible = true;
+      /* 由于样式问题 此处需要使用父子组件传递事件,否则登录的弹框遮罩会覆盖全屏 */
+      goMainLogin(){
+        this.$emit("loginClick","")
       },
       togglePlay() {
         music.humanizeOperation(music.player.togglePlay)
@@ -136,6 +136,7 @@
 
 <style lang="scss" scoped>
 
+        
 .el-button--success{
     color: #fff;
     background-color: #009a61;
