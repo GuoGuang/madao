@@ -1,12 +1,23 @@
 <template>
 
   <el-row class="events">
-    <el-col :span="5">
+    <el-col :span="5" :key="index" v-for="(event, index) in events">
       <div class="grid-content bg-purple" style="background-color:black">
-          111111111111111111111111111111
+         <div class="widget-event">
+            <a href="/e/1160000018042952"><img class="widget-event__banner lazy" data-original="https://activity-static.segmentfault.com/238/590/2385906813-5c4fd6b4c54ad_medium" src="https://activity-static.segmentfault.com/238/590/2385906813-5c4fd6b4c54ad_medium" style="display: inline;"></a>
+            <div class="widget-event__info" style="padding: 15px 15px 0;">
+                <h2 class="title"><a href="/e/1160000018042952">MTSC2019 第五届中国移动互联网测试开发大会</a></h2>
+                <ul class="widget-event__meta">
+                    <li>时间：2019-06-28 周五</li>
+                    <li>城市：北京</li>
+                </ul>
+              
+                <el-button type="success" plain class="btn " target="_blank"  size="small">立即报名</el-button>
+            </div>
+        </div>
       </div>
     </el-col>
-    <el-col :span="5">
+    <!--  <el-col :span="5">
       <div class="grid-content bg-purple-light" style="background-color:blue">
           2222222222222222222222222222222
       </div>
@@ -20,7 +31,7 @@
       <div class="grid-content bg-purple-light" style="background-color:red">
           4444444444444444444444444444444
       </div>
-      </el-col>
+      </el-col> -->
   </el-row>
 
   <!-- 活动界面 -->
@@ -174,12 +185,46 @@
 
 <style lang="scss" scoped>
   .events{
-    .el-col{
-      display: flex;
-      justify-content:space-around;
+      .el-col{
+        padding-right: 20px;
+        width: 25%;
+        .widget-event{
+          margin-bottom: 20px;
+          border: 1px solid #eee;
+          background: #f3f3f3;
+          //height: 282px;
+          border-radius: 2px;
+          overflow: hidden;
+
+          .widget-event__meta{
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+            font-size: 13px;
+            color: #999;
+          }
+          .btn{
+            position: sticky;
+            float: right;
+            right: 15px;
+            bottom: 15px;
+            color: #fff;
+            background-color: #009a61;
+            border-color: #008151;
+          }
+          .widget-event__banner{
+            height:150px;
+          }
+          .title{
+            margin: 0;
+            font-size: 16px;
+            max-height: 45px;
+            overflow: hidden;
+            }
+        }
+      }
   }
-    
-  }
+  
 
   .eveqqqqnts {
     min-height: 40em;

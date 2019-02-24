@@ -15,6 +15,28 @@
             </transition>
         </div>
 
+        <div class="navbar-search">
+          <!--参考 element Ui  -->
+          <el-autocomplete
+            popper-class="my-autocomplete"
+            
+
+            placeholder="搜索问题或关键字"
+            >
+            <i
+              class="el-icon-edit el-input__icon"
+              slot="suffix"
+              >
+            </i>
+            <template slot-scope="{ item }">
+              <div class="name">{{ item.value }}</div>
+              <span class="addr">{{ item.address }}</span>
+            </template>
+          </el-autocomplete>
+        </div>
+
+        
+
         <div class="navbar-login">
           <nuxt-link to="/project" class="">
             <span style="color: #009a61;font-size: 14px;">{{$i18n.nav.login}}</span>
@@ -149,7 +171,7 @@
       .navbar-container {
         height: $header-height;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
 
         .navbar-menu{
           height: $header-height;
@@ -157,7 +179,18 @@
           position: relative;
           align-items: center;
           padding-left: .5em;
-          width: 43em;
+          //width: 43em;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .navbar-search{
+          height: $header-height;
+          display: flex;
+          position: relative;
+          align-items: center;
+          padding-left: .5em;
+          //width: 43em;
           position: relative;
           overflow: hidden;
         }
@@ -198,7 +231,7 @@
           position: relative;
           align-items: center;
           padding-left: .5em;
-          width: 12em;
+          // width: 12em;
           position: relative;
           overflow: hidden;
 
@@ -255,7 +288,7 @@
           
           .navbar-logo {
             width: 11rem;
-            margin-right: 4rem;
+            margin-right: 0;
             filter: $theme-logo-rotate;
 
             .logo-st {
