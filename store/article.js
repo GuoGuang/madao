@@ -59,7 +59,7 @@ export const mutations = {
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
-    state.hotList.data = action.result.data
+    state.hotList.data = action.data.records
   },
 
   // 文章详情

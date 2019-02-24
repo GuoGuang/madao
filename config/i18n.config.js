@@ -228,7 +228,7 @@ module.exports = {
           en: 'No Result Article.'
         },
         hotlist: {
-          zh: '群贤毕至',
+          zh: '今日热议',
           en: 'hot'
         },
         loadmore: {

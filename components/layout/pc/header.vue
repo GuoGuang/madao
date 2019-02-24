@@ -16,26 +16,8 @@
         </div>
 
         <div class="navbar-search">
-          <!--参考 element Ui  -->
-          <el-autocomplete
-            popper-class="my-autocomplete"
-            
-
-            placeholder="搜索问题或关键字"
-            >
-            <i
-              class="el-icon-edit el-input__icon"
-              slot="suffix"
-              >
-            </i>
-            <template slot-scope="{ item }">
-              <div class="name">{{ item.value }}</div>
-              <span class="addr">{{ item.address }}</span>
-            </template>
-          </el-autocomplete>
+            <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
         </div>
-
-        
 
         <div class="navbar-login">
           <nuxt-link to="/project" class="">
@@ -105,6 +87,7 @@
     },
     data() {
       return {
+        input:"",
         preload: false
       }
     },

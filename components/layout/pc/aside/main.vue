@@ -1,24 +1,11 @@
 <template>
   <!-- 页面body区-右侧边栏 -->
   <aside id="aside" class="aside">
-    <div class="aside-search">
-      <div class="search-box">
-        <input id="keyword" required list="keywords" type="search" name="search" class="search-input" :class="language"
-          :placeholder="$i18n.text.search" v-model.trim="keyword" @keyup.enter="handleSearch">
-          <button class="search-btn" @click="handleSearch">
-          <i class="iconfont icon-search"></i>
-        </button>
-        <nuxt-link to="/sitemap" class="sitemap-btn">
-          <i class="iconfont icon-sitemap"></i>
-        </nuxt-link>
-        <no-ssr>
-          <datalist class="search-keywords" id="keywords" v-if="tags.length">
-            <option class="iiem" :value="isEnLang ? tag.slug : tag.name" :label="tag.description" :key="tag.slug"
-              v-for="tag in tags" />
-          </datalist>
-        </no-ssr>
-      </div>
+    <!-- 广告 -->
+    <div class="recommend" role="alert">
+      <small><a class="report" href="https://segmentfault.com/ls/1650000011318558">精品课推荐：PHP 进阶之路</a></small>
     </div>
+
     <div class="aside-article">
       <p class="title">
         <i class="iconfont icon-hotfill"></i>
@@ -211,63 +198,22 @@
     width: $aside-width;
     margin: 0;
 
-    .aside-search,
+    .recommend{
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+      color: #8a6d3b;
+      padding: 15px; 
+      }
+
     .aside-article,
     .aside-calendar,
     .aside-ad,
     .aside-tag {
       background-color: $module-bg;
-    }
-
-    .aside-search {
-      margin-bottom: 1em;
-
-      >.search-box {
-        padding: 0.5em;
-        overflow: hidden;
-
-        >.search-input,
-        >.search-btn,
-        >.sitemap-btn {
-          background-color: $module-hover-bg;
-          height: 2em;
-          line-height: 2em;
-          float: left;
-
-          &:hover {
-            background-color: $module-hover-bg-darken-20;
-          }
-        }
-
-        >.search-input {
-          margin-right: 0;
-          width: calc(100% - 6.5em - 1px);
-          box-sizing: border-box;
-
-          &::-webkit-calendar-picker-indicator {
-            display: none;
-          }
-        }
-
-        >.search-btn {
-          width: 2em;
-          background-color: $module-hover-bg-darken-20;
-
-          &:hover {
-            background-color: $module-hover-bg-darken-40;
-          }
-        }
-
-        >.sitemap-btn {
-          text-align: center;
-          float: right;
-          width: 4em;
-        }
-
-        >.search-keywords {
-          >.item {}
-        }
-      }
     }
 
     >.aside-article {

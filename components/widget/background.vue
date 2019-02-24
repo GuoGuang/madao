@@ -1,4 +1,5 @@
 <template>
+  <!-- 背景 -->
   <div class="global-background">
     <div class="background-image"></div>
     <div id="particles-background" class="background-canvas" v-if="!onPowerSavingMode"></div>

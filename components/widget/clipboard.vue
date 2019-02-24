@@ -1,4 +1,5 @@
 <template>
+  <!-- 剪切板 -->
   <div id="clipboard">
     <input type="text" v-model="text" class="clipboard-input" ref="clipboard">
   </div>
