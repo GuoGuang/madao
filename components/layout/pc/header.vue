@@ -20,13 +20,16 @@
         </div>
 
         <div class="navbar-login">
-          <nuxt-link to="/project" class="">
-            <span style="color: #009a61;font-size: 14px;">{{$i18n.nav.login}}</span>
-          </nuxt-link>
+          
+            <a style="color: #009a61;font-size: 14px;" href="#" @click="ssss">{{$i18n.nav.login}}</a>
+          
           <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
              <el-button size="small" type="success" >{{$i18n.nav.register}}</el-button>
           </nuxt-link>
         </div>
+
+
+        
 
         <!-- 音乐 -->
         <!-- <div class="navbar-player">
@@ -88,7 +91,8 @@
     data() {
       return {
         input:"",
-        preload: false
+        preload: false,
+        loginDialogVisible: true
       }
     },
     mounted() {
@@ -110,6 +114,9 @@
       }
     },
     methods: {
+      ssss(){
+        this.loginDialogVisible = true;
+      },
       togglePlay() {
         music.humanizeOperation(music.player.togglePlay)
       },
