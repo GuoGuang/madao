@@ -198,6 +198,7 @@
         .navbar-login{
           height: $header-height;
           display: flex;
+          justify-content: flex-end;
           align-items: center;
           padding-left: .5em;
           width: 15em;
@@ -211,7 +212,7 @@
               display: block;
               height: 3em;
               line-height: 3em;
-              padding: 0 1em;
+              padding-left: 1em;
               text-decoration: none;
               text-transform: uppercase;
               font-weight: 700;
