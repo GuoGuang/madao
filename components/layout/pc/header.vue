@@ -6,13 +6,38 @@
       <!-- :model="formLabelAlign" -->
         <el-form label-position="top" label-width="80px"  size="mini">
           <el-form-item label="手机号 或 Email">
-            <el-input placeholder="11 位手机号 或 Email"></el-input>
+            <el-input placeholder="11 位手机号 或 Email" size="small"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <span class="pull-right"><a href="/user/forgot" tabindex="4">忘记密码</a></span>
-            <el-input placeholder="请输入密码"></el-input>
+            <el-input placeholder="请输入密码"  size="small"></el-input>
           </el-form-item>
+          
+          <el-form-item >
+            <a href="#" class="phoneLogin">手机验证码登录</a>
+            <a href="#" class="forget">忘记密码</a>
+          </el-form-item>
+
+          <el-form-item>
+            <el-button type="success" @click="submitForm('ruleForm')" size="medium ">登录</el-button>
+          </el-form-item>
+
+          <div class="more-login-area">
+              <span class="more-login-words" >更多登录方式</span>
+          </div>
+
+
         </el-form>
+
+          <div class="widget-login">
+            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-google"></use></svg></a>
+            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-qq"></use></svg></a>
+            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-weixin"></use></svg></a>
+          </div>
+
+        <p class="terms">
+          登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a>
+        </p>
+
     </el-dialog>
 
     <nav class="navbar">
@@ -376,18 +401,62 @@
         padding: 30px 130px;
         .el-form{
           .el-form-item{
-              .pull-right{
-                float: right
-              }
+              margin-bottom: 10px;
+             .phoneLogin{
+               color: #009a61;
+               text-decoration: none;
+             }
+             .forget{
+               color: #009a61;
+               text-decoration: none;
+               float: right;
+             }
+             .el-button{
+                width: 100%;
+                color: #fff;
+                background-color: #009a61;
+                border-color: #008151;
+             }
           }
           .el-form-item__label{
               font-weight: bold;
               padding: 0 0 0px; 
-              line-height: 25px;
+              line-height: 30px;
+          }
+
+          .more-login-area{
+              margin-top: 30px;
+              margin-bottom: 25px;
+              border-bottom: 1px solid #eee;
+              position: relative;
+              .more-login-words{
+                  position: relative;
+                  position: absolute;
+                  left: calc(50% - 52px);
+                  top: -10px;
+                  padding: 0 10px;
+                  background: #fff;
+              }
           }
         }
-        
     }
+    .widget-login{
+        text-align: center;
+        .icon{
+          height: 2em;
+          width: 2em;
+        }
+     }
+     .terms{
+        margin-top: 15px;
+        color: #777;
+        text-align: center; 
+        margin-bottom: 0;
+        a{
+          color: #009a61;
+          text-decoration: none;
+        }
+     }
   }
 
 </style>
