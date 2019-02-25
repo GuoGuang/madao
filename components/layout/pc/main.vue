@@ -1,6 +1,6 @@
 <template>
   <div id="app-main">
-    <header-view @loginClick="loginClick"/>
+    <header-view />
 
 
     <no-ssr>
@@ -39,21 +39,7 @@
     <footer-view/>
 
     
-    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%">
-          <!-- :model="formLabelAlign" -->
-            <el-form label-position="top" label-width="80px"  size="mini">
-              <el-form-item label="手机号 或 Email">
-                <el-input placeholder="11 位手机号 或 Email"></el-input>
-              </el-form-item>
-              <el-form-item label="密码">
-                <span class="pull-right"><a href="/user/forgot" tabindex="4">忘记密码</a></span>
-                <el-input placeholder="请输入密码"></el-input>
-              </el-form-item>
-            </el-form>
 
-
-
-    </el-dialog>
 
   </div>
 </template>
@@ -85,7 +71,7 @@
     },
     data() {
       return {
-        loginDialogVisible: false // 是否显示登录框
+        
       }
     },
     mounted() {
@@ -153,13 +139,6 @@
         document.addEventListener("mozfullscreenchange", fullscreenchange, false)
         document.addEventListener("webkitfullscreenchange", fullscreenchange, false)
         document.addEventListener("msfullscreenchange", fullscreenchange, false)
-      },
-
-      /**
-       * 监听子组件登录摁钮事件
-       */
-      loginClick(){
-        this.loginDialogVisible = true;
       }
     }
   }
@@ -213,39 +192,3 @@
     }
   }
 </style>
-
-
-
-<style lang="scss">
-/* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
-  .loginDialog{
-    .el-dialog{
-      margin-top:5vh!important;
-      width: 33%;
-    }
-    .el-dialog__header{
-        border-bottom: 1px solid #e5e5e5;
-        text-align: left;
-        background-color: #f3f3f3;
-    }
-     .el-dialog__body{
-        padding: 30px 130px;
-        .el-form{
-          .el-form-item{
-              .pull-right{
-                float: right
-              }
-          }
-          .el-form-item__label{
-              font-weight: bold;
-              padding: 0 0 0px; 
-              line-height: 25px;
-          }
-        }
-        
-    }
-  }
-
-</style>
-
-

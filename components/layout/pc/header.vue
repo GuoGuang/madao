@@ -1,6 +1,20 @@
 <template>
   <!-- 页面头部 -->
   <header id="header" class="header">
+
+    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%" >
+      <!-- :model="formLabelAlign" -->
+        <el-form label-position="top" label-width="80px"  size="mini">
+          <el-form-item label="手机号 或 Email">
+            <el-input placeholder="11 位手机号 或 Email"></el-input>
+          </el-form-item>
+          <el-form-item label="密码">
+            <span class="pull-right"><a href="/user/forgot" tabindex="4">忘记密码</a></span>
+            <el-input placeholder="请输入密码"></el-input>
+          </el-form-item>
+        </el-form>
+    </el-dialog>
+
     <nav class="navbar">
       <div class="navbar-container container">
         <div class="navbar-header">
@@ -21,7 +35,7 @@
 
         <div class="navbar-login">
           
-            <a style="color: #009a61;font-size: 14px;" href="#" @click="goMainLogin">{{$i18n.nav.login}}</a>
+            <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
           
           <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
              <el-button size="small" type="success" >{{$i18n.nav.register}}</el-button>
@@ -92,7 +106,7 @@
       return {
         input:"",
         preload: false,
-        loginDialogVisible: true
+        loginDialogVisible: false
       }
     },
     mounted() {
@@ -114,9 +128,8 @@
       }
     },
     methods: {
-      /* 由于样式问题 此处需要使用父子组件传递事件,否则登录的弹框遮罩会覆盖全屏 */
-      goMainLogin(){
-        this.$emit("loginClick","")
+      loginDialog(){
+        this.loginDialogVisible = true
       },
       togglePlay() {
         music.humanizeOperation(music.player.togglePlay)
@@ -150,7 +163,6 @@
   
 
   .header {
-
     .navbar {
       position: fixed;
       top: 0;
@@ -159,7 +171,6 @@
       height: $header-height;
       background-color: $module-bg;
       z-index: 999;
-
       .navbar-container {
         height: $header-height;
         display: flex;
@@ -347,4 +358,36 @@
       }
     }
   }
+</style>
+
+<style lang="scss">
+/* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
+  .loginDialog{
+    .el-dialog{
+      margin-top:5vh!important;
+      width: 33%;
+    }
+    .el-dialog__header{
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        background-color: #f3f3f3;
+    }
+     .el-dialog__body{
+        padding: 30px 130px;
+        .el-form{
+          .el-form-item{
+              .pull-right{
+                float: right
+              }
+          }
+          .el-form-item__label{
+              font-weight: bold;
+              padding: 0 0 0px; 
+              line-height: 25px;
+          }
+        }
+        
+    }
+  }
+
 </style>
