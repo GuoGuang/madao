@@ -1,26 +1,30 @@
 <template>
   <!-- 问答 -->
-  <div>
-    <el-row :key="index" v-for="(question, index) in question">
-      <el-col :span="3">
-        <div class="" style="color:red">
-          votes
-          answers
-          13 views
+    <el-row >
+      <el-col :span="4">
+        <div c>
+            66
         </div>
       </el-col>
-      <el-col :span="21" >
-        <div class="" style="color:blue">
-            How can i search variable value in View page source using selenium
+      <el-col :span="14" >
+        <div class="" style="color:blue" :key="index" v-for="(question, index) in question">
+           Read and Write from serial port gives “OUTPUT_BUFFER_EMPTY” (maybe crc calc is not correct)
         </div>
       </el-col>
+
+
+      <el-col :span="6">
+          <div >
+            <aside-view key="aside"/>
+          </div>
+    </el-col>
     </el-row>
-</div>
 
 
 </template>
 
 <script>
+  import AsideView from '~/components/layout/pc/aside/main'
   export default {
     name: 'question',
     head() {
@@ -30,6 +34,9 @@
     },
     fetch({ store }) {
       return store.dispatch('events/fetchEvents')
+    },
+    components: {
+        AsideView
     },
     computed: {
       question() {
