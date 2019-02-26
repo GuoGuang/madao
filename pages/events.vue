@@ -1,5 +1,5 @@
 <template>
-
+  <!-- 活动 -->
   <el-row class="events">
     <el-col :span="5" :key="index" v-for="(event, index) in events">
       <div class="grid-content bg-purple" style="background-color:black">
@@ -11,7 +11,6 @@
                     <li>时间：2019-06-28 周五</li>
                     <li>城市：北京</li>
                 </ul>
-              
                 <el-button type="success" plain class="btn " target="_blank"  size="small">立即报名</el-button>
             </div>
         </div>

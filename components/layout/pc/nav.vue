@@ -5,8 +5,8 @@
       <nuxt-link :to="'/'" class="item" exact>
         <span v-text="$i18n.nav.home"></span>
       </nuxt-link>
-      <nuxt-link to="/ask" class="item">
-        <span v-text="$i18n.nav.ask"></span>
+      <nuxt-link to="/question" class="item">
+        <span v-text="$i18n.nav.question"></span>
       </nuxt-link>
       <nuxt-link to="/lesson" class="item">
         <span v-text="$i18n.nav.lesson"></span>

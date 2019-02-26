@@ -24,9 +24,9 @@ module.exports = {
         zh: '首页',
         en: 'home'
       },
-      ask: {
+      question: {
         zh: '问答',
-        en: 'ask'
+        en: 'question'
       },
       lesson: {
         zh: '讲堂',
