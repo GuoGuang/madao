@@ -2,41 +2,44 @@
   <!-- 页面头部 -->
   <header id="header" class="header">
 
-    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%" >
+    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%">
       <!-- :model="formLabelAlign" -->
-        <el-form label-position="top" label-width="80px"  size="mini">
-          <el-form-item label="手机号 或 Email">
-            <el-input placeholder="11 位手机号 或 Email" size="small"></el-input>
-          </el-form-item>
-          <el-form-item label="密码">
-            <el-input placeholder="请输入密码"  size="small"></el-input>
-          </el-form-item>
-          
-          <el-form-item >
-            <a href="#" class="phoneLogin">手机验证码登录</a>
-            <a href="#" class="forget">忘记密码</a>
-          </el-form-item>
+      <el-form label-position="top" label-width="80px" size="mini">
+        <el-form-item label="手机号 或 Email">
+          <el-input placeholder="11 位手机号 或 Email" size="small"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input placeholder="请输入密码" size="small"></el-input>
+        </el-form-item>
 
-          <el-form-item>
-            <el-button type="success" @click="submitForm('ruleForm')" size="medium ">登录</el-button>
-          </el-form-item>
+        <el-form-item>
+          <a href="#" class="phoneLogin">手机验证码登录</a>
+          <a href="#" class="forget">忘记密码</a>
+        </el-form-item>
 
-          <div class="more-login-area">
-              <span class="more-login-words" >更多登录方式</span>
-          </div>
+        <el-form-item>
+          <el-button @click="submitForm('ruleForm')" size="medium ">登录</el-button>
+        </el-form-item>
 
+        <div class="more-login-area">
+          <span class="more-login-words">更多登录方式</span>
+        </div>
+      </el-form>
+      <div class="widget-login">
+        <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true">
+            <use xlink:href="#youyd-icon-google"></use>
+          </svg></a>
+        <a href="/user/oauth/qq" class=""><svg class="icon" aria-hidden="true">
+            <use xlink:href="#youyd-icon-qq"></use>
+          </svg></a>
+        <a href="/user/oauth/weixin" class=""><svg class="icon" aria-hidden="true">
+            <use xlink:href="#youyd-icon-weixin"></use>
+          </svg></a>
+      </div>
 
-        </el-form>
-
-          <div class="widget-login">
-            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-google"></use></svg></a>
-            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-qq"></use></svg></a>
-            <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-weixin"></use></svg></a>
-          </div>
-
-        <p class="terms">
-          登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a>
-        </p>
+      <p class="terms">
+        登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a>
+      </p>
 
     </el-dialog>
 
@@ -47,28 +50,28 @@
           <img src="/images/logo.svg" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
-        
+
         <div class="navbar-menu">
-            <transition name="module" >
-              <nav-view />
-            </transition>
+          <transition name="module">
+            <nav-view />
+          </transition>
         </div>
 
         <div class="navbar-search">
-            <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search" ></el-input>
+          <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"></el-input>
         </div>
 
         <div class="navbar-login">
-          
-            <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
-          
+
+          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
+
           <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
-             <el-button size="small" type="success" >{{$i18n.nav.register}}</el-button>
+            <el-button size="small" type="success">{{$i18n.nav.register}}</el-button>
           </nuxt-link>
         </div>
 
 
-        
+
 
         <!-- 音乐 -->
         <!-- <div class="navbar-player">
@@ -101,7 +104,7 @@
           </div>
           <div class="song" v-else>{{ $i18n.text.music.empty }}</div>
         </div> -->
-        
+
       </div>
       <div class="pre-load">
         <img v-if="preload" :src="currentSongPicUrl" alt="song-thumb">
@@ -125,11 +128,11 @@
   export default {
     name: 'layout-header',
     components: {
-       NavView // 布局
+      NavView // 布局
     },
     data() {
       return {
-        input:"",
+        input: "",
         preload: false,
         loginDialogVisible: false
       }
@@ -153,7 +156,7 @@
       }
     },
     methods: {
-      loginDialog(){
+      loginDialog() {
         this.loginDialogVisible = true
       },
       togglePlay() {
@@ -173,19 +176,17 @@
 </script>
 
 <style lang="scss" scoped>
-
-        
-.el-button--success{
+  .el-button--success {
     color: #fff;
     background-color: #009a61;
     border-color: #008151;
     font-size: 14px;
-}
+  }
 
-.nav-login-btn{
+  .nav-login-btn {
     color: #009a61;
-}
-  
+  }
+
 
   .header {
     .navbar {
@@ -196,12 +197,13 @@
       height: $header-height;
       background-color: $module-bg;
       z-index: 999;
+
       .navbar-container {
         height: $header-height;
         display: flex;
         justify-content: space-between;
 
-        .navbar-menu{
+        .navbar-menu {
           height: $header-height;
           display: flex;
           position: relative;
@@ -212,7 +214,7 @@
           overflow: hidden;
         }
 
-        .navbar-search{
+        .navbar-search {
           height: $header-height;
           display: flex;
           position: relative;
@@ -222,8 +224,8 @@
           position: relative;
           overflow: hidden;
         }
-        
-        .navbar-login{
+
+        .navbar-login {
           height: $header-height;
           display: flex;
           justify-content: flex-end;
@@ -234,24 +236,25 @@
           overflow: hidden;
           padding: 0;
           margin: 0;
-           > .item {
-             font-size: 12px;
-              border: none;
-              display: block;
-              height: 3em;
-              line-height: 3em;
-              padding-left: 1em;
-              text-decoration: none;
-              text-transform: uppercase;
-              font-weight: 700;
-              border-radius: 1px;
-              color: $secondary;
-              font-family: webfont-normal, DINRegular;
-              letter-spacing: 0.5px;
-              margin-bottom: .5em;
-              position: relative;
-              
-              }
+
+          >.item {
+            font-size: 12px;
+            border: none;
+            display: block;
+            height: 3em;
+            line-height: 3em;
+            padding-left: 1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 1px;
+            color: $secondary;
+            font-family: webfont-normal, DINRegular;
+            letter-spacing: 0.5px;
+            margin-bottom: .5em;
+            position: relative;
+
+          }
         }
 
         .navbar-header {
@@ -269,26 +272,44 @@
               opacity: 0;
               transform: translateX(-10%);
             }
-            5% { opacity: 1 }
-            35% { opacity: 1 }
-            39% { opacity: 0 }
-            50% { opacity: .8 }
-            60% { opacity: .8 }
+
+            5% {
+              opacity: 1
+            }
+
+            35% {
+              opacity: 1
+            }
+
+            39% {
+              opacity: 0
+            }
+
+            50% {
+              opacity: .8
+            }
+
+            60% {
+              opacity: .8
+            }
+
             65% {
               opacity: .8;
               transform: translateX(100%);
             }
+
             70% {
               opacity: 0;
               transform: translateX(100%);
             }
+
             100% {
               opacity: 0;
               transform: translateX(100%);
             }
           }
 
-          > .navbar-blank {
+          >.navbar-blank {
             position: absolute;
             top: 0;
             left: 0;
@@ -314,7 +335,7 @@
             width: 100%;
             height: 100%;
           }
-          
+
           .navbar-logo {
             width: 11rem;
             margin-right: 0;
@@ -339,28 +360,28 @@
             opacity: 1;
           }
 
-          > .panel {
+          >.panel {
             display: flex;
             justify-content: flex-start;
             margin-bottom: .2rem;
 
-            > .btn {
+            >.btn {
               margin-right: 1em;
 
               &:hover {
 
-                > .iconfont {
+                >.iconfont {
                   color: $link-hover-color;
                 }
               }
             }
           }
 
-          > .song {
+          >.song {
             font-size: 1rem;
             @include text-overflow();
 
-            > .link {
+            >.link {
               color: $dividers;
 
               &:hover {
@@ -375,7 +396,7 @@
         }
       }
 
-      > .pre-load {
+      >.pre-load {
         visibility: hidden;
         width: 0;
         height: 0;
@@ -386,77 +407,88 @@
 </style>
 
 <style lang="scss">
-/* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
-  .loginDialog{
-    .el-dialog{
-      margin-top:5vh!important;
+  /* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
+  .loginDialog {
+    .el-dialog {
+      margin-top: 5vh !important;
       width: 33%;
     }
-    .el-dialog__header{
-        border-bottom: 1px solid #e5e5e5;
-        text-align: left;
-        background-color: #f3f3f3;
+
+    .el-dialog__header {
+      border-bottom: 1px solid #e5e5e5;
+      text-align: left;
+      background-color: #f3f3f3;
     }
-     .el-dialog__body{
-        padding: 30px 130px;
-        .el-form{
-          .el-form-item{
-              margin-bottom: 10px;
-             .phoneLogin{
-               color: #009a61;
-               text-decoration: none;
-             }
-             .forget{
-               color: #009a61;
-               text-decoration: none;
-               float: right;
-             }
-             .el-button{
-                width: 100%;
-                color: #fff;
-                background-color: #009a61;
-                border-color: #008151;
-             }
-          }
-          .el-form-item__label{
-              font-weight: bold;
-              padding: 0 0 0px; 
-              line-height: 30px;
+
+    .el-dialog__body {
+      padding: 30px 130px;
+
+      .el-form {
+        .el-form-item {
+          margin-bottom: 10px;
+
+          .phoneLogin {
+            color: #009a61;
+            text-decoration: none;
           }
 
-          .more-login-area{
-              margin-top: 30px;
-              margin-bottom: 25px;
-              border-bottom: 1px solid #eee;
-              position: relative;
-              .more-login-words{
-                  position: relative;
-                  position: absolute;
-                  left: calc(50% - 52px);
-                  top: -10px;
-                  padding: 0 10px;
-                  background: #fff;
-              }
+          .forget {
+            color: #009a61;
+            text-decoration: none;
+            float: right;
+          }
+
+          .el-button {
+            width: 100%;
+            color: #fff;
+            background-color: #009a61;
+            border-color: #008151;
           }
         }
+
+        .el-form-item__label {
+          font-weight: bold;
+          padding: 0 0 0px;
+          line-height: 30px;
+        }
+
+        .more-login-area {
+          margin-top: 30px;
+          margin-bottom: 25px;
+          border-bottom: 1px solid #eee;
+          position: relative;
+
+          .more-login-words {
+            position: relative;
+            position: absolute;
+            left: calc(50% - 52px);
+            top: -10px;
+            padding: 0 10px;
+            background: #fff;
+          }
+        }
+      }
     }
-    .widget-login{
-        text-align: center;
-        .icon{
-          height: 2em;
-          width: 2em;
-        }
-     }
-     .terms{
-        margin-top: 15px;
-        color: #777;
-        text-align: center; 
-        margin-bottom: 0;
-        a{
-          color: #009a61;
-          text-decoration: none;
-        }
-     }
+
+    .widget-login {
+      text-align: center;
+
+      .icon {
+        height: 2em;
+        width: 2em;
+      }
+    }
+
+    .terms {
+      margin-top: 15px;
+      color: #777;
+      text-align: center;
+      margin-bottom: 0;
+
+      a {
+        color: #009a61;
+        text-decoration: none;
+      }
+    }
   }
-
 </style>
