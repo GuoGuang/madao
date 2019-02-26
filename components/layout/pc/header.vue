@@ -26,21 +26,40 @@
         </div>
       </el-form>
       <div class="widget-login">
-        <a href="/user/oauth/google" class=""><svg class="icon" aria-hidden="true">
+        <a href="/user/oauth/google" class="">
+          <svg class="icon" aria-hidden="true">
             <use xlink:href="#youyd-icon-google"></use>
-          </svg></a>
-        <a href="/user/oauth/qq" class=""><svg class="icon" aria-hidden="true">
+          </svg>
+        </a>
+        <a href="/user/oauth/qq" class="">
+          <svg class="icon" aria-hidden="true">
             <use xlink:href="#youyd-icon-qq"></use>
-          </svg></a>
-        <a href="/user/oauth/weixin" class=""><svg class="icon" aria-hidden="true">
+          </svg>
+        </a>
+        <a href="/user/oauth/weixin" class="">
+          <svg class="icon" aria-hidden="true">
             <use xlink:href="#youyd-icon-weixin"></use>
-          </svg></a>
+          </svg>
+        </a>
       </div>
-
       <p class="terms">
         登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a>
       </p>
+    </el-dialog>
 
+    
+    <el-dialog class="registDialog" title="注册" :visible.sync="registDialogVisible" width="30%">
+      <el-form label-position="top" label-width="80px" size="mini">
+        <el-form-item label="手机号">
+          <el-input placeholder="请输入手机号" size="small"></el-input>
+        </el-form-item>
+        <p class="terms">
+          同意<a href="/tos" target="_blank">《用户协议》《隐私政策》</a>
+        </p>
+        <el-form-item>
+          <el-button @click="submitForm('ruleForm')" size="medium ">注册</el-button>
+        </el-form-item>
+      </el-form>
     </el-dialog>
 
     <nav class="navbar">
@@ -64,10 +83,9 @@
         <div class="navbar-login">
 
           <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
-
-          <nuxt-link to="/project" class="item" style="margin-left: 10px !important;">
-            <el-button size="small" type="success">{{$i18n.nav.register}}</el-button>
-          </nuxt-link>
+          <div class="item" style="margin-left: 10px !important;">
+            <el-button size="small" type="success" @click="registDialogVisible = true">{{$i18n.nav.register}}</el-button>
+          </div>
         </div>
 
 
@@ -134,7 +152,8 @@
       return {
         input: "",
         preload: false,
-        loginDialogVisible: false
+        loginDialogVisible: false,
+        registDialogVisible: false
       }
     },
     mounted() {
@@ -236,7 +255,6 @@
           overflow: hidden;
           padding: 0;
           margin: 0;
-
           >.item {
             font-size: 12px;
             border: none;
@@ -413,31 +431,25 @@
       margin-top: 5vh !important;
       width: 33%;
     }
-
     .el-dialog__header {
       border-bottom: 1px solid #e5e5e5;
       text-align: left;
       background-color: #f3f3f3;
     }
-
     .el-dialog__body {
       padding: 30px 130px;
-
       .el-form {
         .el-form-item {
           margin-bottom: 10px;
-
           .phoneLogin {
             color: #009a61;
             text-decoration: none;
           }
-
           .forget {
             color: #009a61;
             text-decoration: none;
             float: right;
           }
-
           .el-button {
             width: 100%;
             color: #fff;
@@ -445,13 +457,11 @@
             border-color: #008151;
           }
         }
-
         .el-form-item__label {
           font-weight: bold;
           padding: 0 0 0px;
           line-height: 30px;
         }
-
         .more-login-area {
           margin-top: 30px;
           margin-bottom: 25px;
@@ -469,26 +479,72 @@
         }
       }
     }
-
     .widget-login {
       text-align: center;
-
       .icon {
         height: 2em;
         width: 2em;
       }
     }
-
     .terms {
       margin-top: 15px;
       color: #777;
       text-align: center;
       margin-bottom: 0;
-
       a {
         color: #009a61;
         text-decoration: none;
       }
     }
   }
+
+   .registDialog {
+    .el-dialog {
+      margin-top: 5vh !important;
+      width: 33%;
+    }
+    .el-dialog__header {
+      border-bottom: 1px solid #e5e5e5;
+      text-align: left;
+      background-color: #f3f3f3;
+    }
+    .el-dialog__body {
+      padding: 30px 130px;
+      .el-form {
+        .el-form-item {
+          margin-bottom: 10px;
+          .el-button {
+            margin-top: 10px;
+            width: 100%;
+            color: #fff;
+            background-color: #009a61;
+            border-color: #008151;
+          }
+        }
+        .el-form-item__label {
+          font-weight: bold;
+          padding: 0 0 0px;
+          line-height: 30px;
+        }
+      }
+    }
+    .widget-login {
+      text-align: center;
+      .icon {
+        height: 2em;
+        width: 2em;
+      }
+    }
+    .terms {
+      margin-top: 15px;
+      color: #777;
+      text-align: center;
+      margin-bottom: 0;
+      margin-top:3em;
+      a {
+        color: #009a61;
+        text-decoration: none;
+      }
+    }
+   }
 </style>
