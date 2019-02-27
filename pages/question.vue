@@ -1,23 +1,25 @@
 <template>
   <!-- 问答 -->
     <el-row >
+      
       <el-col :span="4">
-        <div c>
-            66
-        </div>
+        <ul>
+          <li>标签</li>
+          <li>用户</li>
+        </ul>
       </el-col>
+
       <el-col :span="14" >
         <div class="" style="color:blue" :key="index" v-for="(question, index) in question">
            Read and Write from serial port gives “OUTPUT_BUFFER_EMPTY” (maybe crc calc is not correct)
         </div>
       </el-col>
 
-
       <el-col :span="6">
           <div >
             <aside-view key="aside"/>
           </div>
-    </el-col>
+      </el-col>
     </el-row>
 
 
