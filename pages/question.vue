@@ -105,8 +105,8 @@
   .qa-main {
     .nav-link {
       .stream-list__item {
-        border-bottom: 1px solid #989696;
-        padding: 12px 0;
+        border-bottom: 1px solid #cecbcb;
+        padding: 17px 0;
         display: flex;
         .qa-rank {
           display: flex;
