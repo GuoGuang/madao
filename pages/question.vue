@@ -37,7 +37,12 @@
               </ul>
             </div>
 
-          </section>
+          </section>  
+          <el-pagination style="text-align: center;padding: 2em;"
+            background
+            layout="prev, pager, next"
+            :total="1000">
+          </el-pagination>
 
         </el-tab-pane>
         <el-tab-pane label="精选" name="second">精选</el-tab-pane>
@@ -71,14 +76,14 @@
       }
     },
     fetch({ store }) {
-      return store.dispatch('events/fetchEvents')
+      return store.dispatch('question/fetchQuestion')
     },
     components: {
       AsideView
     },
     computed: {
       question() {
-        return this.$store.state.events.events.data
+        return this.$store.state.question.question.data
       },
       isEnLang() {
         return this.$store.getters['global/isEnLang']

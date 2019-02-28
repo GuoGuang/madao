@@ -189,6 +189,11 @@
           margin: -1em 0;
         }
       }
+
+      footer{
+        position: relative;
+        
+      }
     }
   }
 </style>
