@@ -82,7 +82,7 @@ $monospace: Menlo, Monaco, Consolas, 'Courier New', monospace;
 $font-family: $sans-serif;
 
 // Typography
-$font-size-base: 15px;
+$font-size-base: 14px; // 如果改了这个会导致main页面右侧上下拉标签跟随失效
 $font-size-large: 1.2rem;
 $font-size-small: .85rem;
 $font-size-h1: 2rem;
