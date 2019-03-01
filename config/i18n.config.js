@@ -86,6 +86,22 @@ module.exports = {
       }
     },
     text: {
+      it:{
+        zh: '技术',
+        en: 'it'
+      },
+      interesting:{
+        zh: '好玩',
+        en: 'interesting'
+      },
+      creativity:{
+        zh: '创意',
+        en: 'creativity'
+      },
+      workStack:{
+        zh: '工作栈',
+        en: 'work stack'
+      },
       empty: {
         zh: '空空如也',
         en: 'No Result Data.'
