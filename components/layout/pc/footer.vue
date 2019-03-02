@@ -96,10 +96,10 @@
       <el-row>
         <el-col :span="24" style="    padding: 2em 0 2em 0;">
             <div class="copyright">
-            Copyright © 2011-2019 SegmentFault. 当前呈现版本 19.02.27<br>
-            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
-            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
-            <span class="ml5">杭州堆栈科技有限公司版权所有</span>
+            Copyright © 2011-2019 StackEx. 当前呈现版本 19.02.27<br>
+            <a href="" rel="nofollow">浙ICP备 Demo号-2</a> &nbsp;
+            <a target="_blank" href="" rel="nofollow">浙公网安备 demo号</a>
+            <span class="ml5">GuoGuang</span>
             <p class="mt30">CDN 存储服务由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 赞助提供 </p>
         </div>
         </el-col>
