@@ -8,18 +8,18 @@
       <nuxt-link to="/question" class="item">
         <span v-text="$i18n.nav.question"></span>
       </nuxt-link>
-      <nuxt-link to="/lesson" class="item">
-        <span v-text="$i18n.nav.lesson"></span>
-      </nuxt-link>
       <nuxt-link to="/apesCircle" class="item">
         <span v-text="$i18n.nav.apesCircle"></span>
+      </nuxt-link>
+      <nuxt-link to="/book" class="item">
+        <span v-text="$i18n.nav.book "></span>
       </nuxt-link>
       <nuxt-link to="/events" class="item">
         <span v-text="$i18n.nav.events"></span>
       </nuxt-link>
-      <nuxt-link to="/vlog" class="item">
+      <!-- <nuxt-link to="/vlog" class="item">
         <span v-text="$i18n.nav.vlog"></span>
-      </nuxt-link>
+      </nuxt-link> -->
       <nuxt-link to="/about" class="item">
         <span v-text="$i18n.nav.about"></span>
       </nuxt-link>
