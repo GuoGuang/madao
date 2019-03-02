@@ -28,9 +28,9 @@ module.exports = {
         zh: '问答',
         en: 'question'
       },
-      lesson: {
-        zh: '讲堂',
-        en: 'lesson'
+      book: {
+        zh: '书栈',
+        en: 'book'
       },
       apesCircle: {
         zh: '猿圈',
