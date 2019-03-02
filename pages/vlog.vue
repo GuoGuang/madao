@@ -45,7 +45,7 @@
       </li>
     </ul>
     <div class="loadmore">
-      <a
+     <!--  <a
         href="https://space.bilibili.com/27940710/video"
         target="_blank"
         class="button"
@@ -56,7 +56,7 @@
           <i class="iconfont icon-peachblossom"></i>
         </span>
         <span v-text="$i18n.text.article.loadmore"></span>
-      </a>
+      </a> -->
     </div>
   </div>
 </template>
