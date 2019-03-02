@@ -141,6 +141,11 @@
         title: `${this.isEnLang ? '' : this.$i18n.nav.question + ' | '}event`
       }
     },
+    data(){
+      return{
+        textarea:""
+      }
+    },
     fetch({ store }) {
       return store.dispatch('events/fetchEvents')
     },
