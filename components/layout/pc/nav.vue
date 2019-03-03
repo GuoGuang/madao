@@ -8,8 +8,8 @@
       <nuxt-link to="/question" class="item">
         <span v-text="$i18n.nav.question"></span>
       </nuxt-link>
-      <nuxt-link to="/apesCircle" class="item">
-        <span v-text="$i18n.nav.apesCircle"></span>
+      <nuxt-link to="/tweets" class="item">
+        <span v-text="$i18n.nav.tweets"></span>
       </nuxt-link>
       <nuxt-link to="/book" class="item">
         <span v-text="$i18n.nav.book "></span>

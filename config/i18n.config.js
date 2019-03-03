@@ -32,9 +32,9 @@ module.exports = {
         zh: '书栈',
         en: 'book'
       },
-      apesCircle: {
+      tweets: {
         zh: '猿圈',
-        en: 'Apes circle'
+        en: 'tweets'
       },
       events: {
         zh: '活动',
