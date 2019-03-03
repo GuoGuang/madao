@@ -28,7 +28,7 @@
 <script>
   import AsideView from '~/components/layout/pc/aside/main'
   export default {
-    name: 'apesCircle',
+    name: 'book',
     head() {
       return {
         title: `${this.isEnLang ? '' : this.$i18n.nav.question + ' | '}event`
