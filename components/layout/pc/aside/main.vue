@@ -18,7 +18,7 @@
         <li class="item" :key="item.id" v-for="item in articles">
           <span class="index"></span>
           <nuxt-link class="title" :to="`/article/${item.id}`"
-            :title="`${item.title} - 「 ${item.meta.comments} ${$i18n.text.comment.count} | ${item.meta.likes} ${$i18n.text.comment.like} 」`">
+            :title="`${item.title} - 「 ${item.comment} ${$i18n.text.comment.count} | ${item.comment} ${$i18n.text.comment.like} 」`">
             <span v-text="item.title"></span>
           </nuxt-link>
         </li>

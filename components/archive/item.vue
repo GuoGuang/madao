@@ -3,7 +3,7 @@
     <div class="item-content" :class="{ mobile: isMobile }">
       <div class="item-thumb" v-if="!isMobile">
         <nuxt-link :to="`/article/${article.id}`">
-          <span
+          <!-- <span
             class="item-oirigin"
             :class="{
               self: !article.origin,
@@ -14,10 +14,11 @@
             <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
             <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"></span>
             <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"></span>
-          </span>
+          </span> -->
+          <!--  :src="buildThumb(article.thumb)" -->
           <img
             class="item-thumb-img"
-            :src="buildThumb(article.thumb)"
+           
             :alt="article.title"
             :title="article.title"
           />
@@ -37,19 +38,19 @@
             <i class="iconfont icon-clock"></i>
             <span>{{ article.create_at | toYMD(language) }}</span>
           </span>
-          <span class="views">
+          <span class="visits">
             <i class="iconfont icon-eye"></i>
-            <span>{{ article.meta.views || 0 }}</span>
+            <span>{{ article.visits || 0 }}</span>
           </span>
-          <span class="comments">
+          <span class="comment">
             <i class="iconfont icon-comment"></i>
-            <span>{{ article.meta.comments || 0 }}</span>
+            <span>{{ article.comment || 0 }}</span>
           </span>
-          <span class="likes">
+          <!-- <span class="likes">
             <i class="iconfont icon-like" :class="{ liked: isLiked }"></i>
-            <span>{{ article.meta.likes || 0 }}</span>
-          </span>
-          <span class="categories">
+            <span>{{ article.likes || 0 }}</span>
+          </span> -->
+          <!-- <span class="categories">
             <i class="iconfont icon-list"></i>
             <template v-if="article.category.length">
               <nuxt-link
@@ -72,7 +73,7 @@
               />
             </template>
             <span v-else v-text="$i18n.text.tag.empty"></span>
-          </span>
+          </span> -->
         </div>
       </div>
     </div>
