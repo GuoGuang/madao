@@ -2,261 +2,98 @@
   <!--问答详情页 -->
   <el-row class="question-detail">
     <el-col :span="18">
-      <div class="block-for-right-border" style="    margin-bottom: 1em;">
-        <div class="post-topheader__info mb15">
-          <h1
-            class="h2 post-topheader__info--title"
-            style="font-size: 30px;margin: 0 0 10px 0;line-height: 1.2;"
-          >
-            <a href="/q/1010000017235204">在vue项目中 ios端的微信分享无效</a>
-          </h1>
-          <span>429</span> 次浏览
-        </div>
-      </div>
+
+
+     <div class="top-title">
+        <h1> <a href="/q/1010000017235204">在vue项目中 ios端的微信分享无效</a> </h1>
+        <span>429</span> 次浏览
+     </div>
 
       <!-- 问题内容 -->
-      <el-row>
-        <el-col :span="2" style="    display: grid;text-align: center;">
+      <el-row class="top-info" >
+        <el-col :span="2">
           <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
           <span>赞成</span>
           <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
         </el-col>
-        <el-col
-          :span="22"
-          style="line-height: 1.6;    font-size: 15px;"
-        >在vue项目中(spa) ios端的微信分享配置不起作用，但是重新刷新下页面就正常了，安卓端的没有任何问题。有大神碰到过这个问题吗</el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="18" style="display: flex;">
-          <div
-            class="post-opt col-md-8"
-            style="line-height: 1; 
-                                                  padding-top: 9px; 
-                                                  padding-bottom: 9px; "
-          >
-            <ul class="list-inline mb0" style="display:flex;list-style:none">
-              <li style="padding-right: 1em;">
-                <button
-                  type="button"
-                  id="sideFollow"
-                  class="btn btn-success btn-xs"
-                  data-id="1010000017235204"
-                  data-do="follow"
-                  data-type="question"
-                  data-original-title
-                  title
-                >关注&nbsp;
-                  <span class="vertical-bar">|</span>&nbsp;3
-                </button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button
-                  type="button"
-                  id="sideBookmark"
-                  class="btn btn-default btn-xs"
-                  data-id="1010000017235204"
-                  data-type="question"
-                >收藏</button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button
-                  href="javascript:void(0);"
-                  class="comments"
-                  data-id="1010000017235204"
-                  data-target="#comment-1010000017235204"
-                >
-                  <i class="fa fa-commenting mr4" aria-hidden="true"></i>
-                  评论
-                </button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button
-                  class
-                  href="javascript:;"
-                  data-title="在vue项目中 ios端的微信分享无效"
-                  data-url="http://sfau.lt/bNbktPk"
-                  data-id="1010000017235204"
-                >邀请回答</button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button href="javascript:;">编辑</button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                </button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button href="#911" data-toggle="modal" data-target="#911" data-action="report">举报</button>
-              </li>
-              <li style="padding-right: 1em;">
-                <button href="/q/1010000017235204/revision">历史版本</button>
-              </li>
-            </ul>
-          </div>
-        </el-col>
-        <el-col :span="6">
-          <div class="question__author col-md-4" style="display:flex">
-            <a href="/u/huixu">
-              <img
-                src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"
-                style="width: 40px;
-                                                                                                          height: 40px;
-                                                                                                          border-radius: 50%;
-                                                                                                          margin-right: 10px !important;"
-                class="avatar-40 mr10"
-                data-toggle="popover"
-                data-slug="huixu"
-                data-id="1030000011948650"
-              >
-            </a>
-            <div style="display:flex; flex-direction:column">
-              <div class="mb3">
-                <a href="/u/huixu" class="mr5">
-                  <strong>huixu</strong>
-                </a>
-                <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
-                <span style="color:#BF7158">24</span>
-              </div>
-              <span style="font-size:13px; color:#999">2018-12-03 提问</span>
-            </div>
-          </div>
+        <el-col :span="22" > 
+            在vue项目中(spa) ios端的微信分享配置不起作用，但是重新刷新下页面就正常了，安卓端的没有任何问题。有大神碰到过这个问题吗
         </el-col>
       </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <div
-            class="subheader answers-subheader"
-            style="display: flex;justify-content: space-between;    border-bottom: 1px solid #ddd;line-height: 5em;"
-          >
-            <h2 data-answercount="1">
-              3 个回答
-              <span style="display:none;" itemprop="answerCount">1</span>
-            </h2>
-            <div>
-              <div id="tabs">
-                <a
-                  style="padding: 0 1em;"
-                  href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top"
-                  data-nav-xhref
-                  title="Answers with the latest activity first"
-                  data-value="active"
-                  data-shortcut="A"
-                >活跃</a>
-                <a
-                  style="padding: 0 1em;"
-                  href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top"
-                  data-nav-xhref
-                  title="Answers in the order they were provided"
-                  data-value="oldest"
-                  data-shortcut="O"
-                >最新</a>
-                <a
-                  style="padding: 0 1em;"
-                  class="youarehere is-selected"
-                  href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top"
-                  data-nav-xhref
-                  title="Answers with the highest score first"
-                  data-value="votes"
-                  data-shortcut="V"
-                >票数</a>
+      <!-- 扩展操作 -->
+      <el-row class="ext-action">
+        <el-col :span="18">
+            <ul>
+              <li><button type="button">关注&nbsp;<span>|</span>&nbsp;3</button></li>
+              <li><button type="button">收藏&nbsp;<span>|</span>&nbsp;</button></li>
+              <li><button type="button">评论&nbsp;<span>|</span>&nbsp;</button></li>
+              <li><button type="button">邀请回答&nbsp;<span>|</span>&nbsp;3</button></li>
+              <li><button href="javascript:;">编辑</button></li>
+              <li><button href="javascript:void(0);"><i></i></button></li>
+              <li><button href="#911" >举报</button></li>
+              <li><button href="/q/1010000017235204/revision">历史版本</button></li>
+            </ul>
+        </el-col>
+        <el-col :span="6">
+            <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
+            <div class="profile-info">
+              <div>
+                <a href="/u/huixu" class="mr5"> <strong>huixu</strong> </a>
+                <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
+                <span style="color:#BF7158">24</span>
               </div>
+              <span class="profile-date">2018-12-03 提问</span>
             </div>
-          </div>
         </el-col>
       </el-row>
 
       <!-- 答案区 -->
-      <el-row
-        :key="index"
-        v-for="(question, index) in question"
-        style="padding-bottom: 1em; padding-top: 1em;border-bottom: 1px solid #ddd;"
-      >
-        <el-col :span="2" style="    display: grid;text-align: center;">
+      <el-row class="answers-header">
+        <el-col :span="24">
+            <h2>3 个回答</h2>
+            <div class="tabs">
+              <a class="default-check" href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top" >活跃</a>
+              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top" >最新</a>
+              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top" >票数</a>
+            </div>
+        </el-col>
+      </el-row>
+
+      <el-row class="answers-list" :key="index"  v-for="(question, index) in question">
+        <el-col :span="2">
           <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
           <span>赞成</span>
           <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
         </el-col>
         <el-col :span="22">
           <el-row>
-            <p>调用微信
-              <code>jsdk</code>，后端接口返回时间戳去做微信分享页面缩略图描述吗？
-            </p>
+            0
+
+I think the logical thing would be to lock the location. If I understand the domain correctly you are reserving a specific location (such as a room) for a time slot given by start time and duration? In that case you probably have an entity for location already. If not you can perhaps create one and add a matching table. The code would then be simple:
+
+Get a pessimistic lock on the location from the request with JPA
+Check the database for conflicts
+Insert the new reservation
+Commit
+A table lock will really hurt scalability, but locking a specific location should work.
           </el-row>
 
           <!-- 回答者信息区 -->
-          <el-row>
-            <el-col :span="18" style="display: flex;">
-              <div
-                class="post-opt col-md-8"
-                style="line-height: 1; 
-                                                  padding-top: 9px; 
-                                                  padding-bottom: 9px; "
-              >
-                <ul class="list-inline mb0" style="display:flex;list-style:none">
-                  <li style="padding-right: 1em;">
-                    <button
-                      href="javascript:void(0);"
-                      class="comments"
-                      data-id="1010000017235204"
-                      data-target="#comment-1010000017235204"
-                    >
-                      <i class="fa fa-commenting mr4" aria-hidden="true"></i>
-                      评论
-                    </button>
-                  </li>
-                  <li style="padding-right: 1em;">
-                    <button
-                      class
-                      href="javascript:;"
-                      data-title="在vue项目中 ios端的微信分享无效"
-                      data-url="http://sfau.lt/bNbktPk"
-                      data-id="1010000017235204"
-                    >邀请回答</button>
-                  </li>
-                  <li style="padding-right: 1em;">
-                    <button href="javascript:;">编辑</button>
-                  </li>
-                  <li style="padding-right: 1em;">
-                    <button
-                      href="javascript:void(0);"
-                      class="dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                    </button>
-                  </li>
-                  <li style="padding-right: 1em;">
-                    <button
-                      href="#911"
-                      data-toggle="modal"
-                      data-target="#911"
-                      data-action="report"
-                    >举报</button>
-                  </li>
-                  <li style="padding-right: 1em;">
-                    <button href="/q/1010000017235204/revision">历史版本</button>
-                  </li>
+          <el-row class="answerer-profile">
+            <el-col :span="18">
+                <ul>
+                  <li><button href="javascript:void(0);"><i></i>评论</button></li>
+                  <li><button href="javascript:;">邀请回答</button></li>
+                  <li><button href="javascript:;">编辑</button></li>
+                  <li><button href="javascript:void(0);"><i></i></button></li>
+                  <li><button href="#911">举报</button></li>
+                  <li><button href="/q/1010000017235204/revision">历史版本</button></li>
                 </ul>
-              </div>
             </el-col>
             <el-col :span="6">
-              <div class="question__author col-md-4" style="display:flex">
-                <a href="/u/huixu">
-                  <img
-                    src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"
-                    style="width: 40px;
-                                                                                                          height: 40px;
-                                                                                                          border-radius: 50%;
-                                                                                                          margin-right: 10px !important;"
-                    class="avatar-40 mr10"
-                    data-toggle="popover"
-                    data-slug="huixu"
-                    data-id="1030000011948650"
-                  >
-                </a>
-                <div style="display:flex; flex-direction:column">
+                <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
+                <div class="" style="display:flex; flex-direction:column">
                   <div class="mb3">
                     <a href="/u/huixu" class="mr5">
                       <strong>huixu</strong>
@@ -266,7 +103,7 @@
                   </div>
                   <span style="font-size:13px; color:#999">2018-12-03 提问</span>
                 </div>
-              </div>
+              
             </el-col>
           </el-row>
         </el-col>
@@ -309,4 +146,126 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.question-detail{
+  .top-title{
+      margin-bottom: 1em;
+      h1{
+        font-size: 30px;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+      }
+  }
+  .top-info{
+     .el-col-2{
+        display: grid;
+        text-align: center;
+     }
+     .el-col-22{
+       line-height: 1.6;    
+       font-size: 15px;
+     }
+  }
+  .ext-action{
+    .el-col-18{
+      display: flex;
+      line-height: 1;  
+      padding-top: 9px; 
+      padding-bottom: 9px;
+      ul{
+        display:flex;
+        list-style:none;
+        li{
+          padding-right: 1em;
+        }
+      }
+    }
+    .el-col-6{
+       display:flex;
+       .profile-img{
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px !important;
+       }
+       .profile-info{
+         display:flex; 
+         flex-direction:column;
+         .profile-date{
+           font-size:13px; 
+           color:#999
+         }
+       }
+    }
+  }
+
+  // 答案区
+  .answers-header{
+    .el-col-24{
+      display: flex;
+      justify-content: space-between;    
+      border-bottom: 1px solid #ddd;
+      padding-top: 1em;
+      .tabs{
+        a{
+          padding: 0 1em;
+          float: left;
+          margin-right: 8px;
+          padding: 12px 8px 14px;
+          color: #848d95;
+          line-height: 1;
+          text-decoration: none;
+          border-bottom: 2px solid transparent;
+          transition: all .1s ease-in-out;
+        }
+        a:hover {
+          background-color: #ddd;
+          
+          border-bottom-color: transparent;
+      }
+      }
+    }
+  }
+  .answers-list{
+    padding-bottom: 1em; 
+    padding-top: 1em;
+    border-bottom: 1px solid #ddd;
+    .el-col-2{
+      display: grid;
+      text-align: center;
+    }
+    .el-col-22{
+     .answerer-profile{
+        .el-col-18{
+          display: flex;
+          line-height: 1;  
+          padding-top: 9px;  
+          padding-bottom: 9px;
+          ul{
+            display:flex;
+            list-style:none;
+            li{
+              padding-right: 1em;
+            }
+          }
+        }
+        .el-col-6{
+          display:flex;
+          .profile-img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px !important;
+          }
+        }
+     }
+    }
+  }
+  font-size: 15px;
+  .default-check{
+     background-color: #ddd;
+     
+     border-bottom-color: transparent;
+     border: 1px solid #ddd;
+  }
+}
 </style>
