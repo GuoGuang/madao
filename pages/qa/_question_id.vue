@@ -2,63 +2,112 @@
   <!--问答详情页 -->
   <el-row class="question-detail">
     <el-col :span="18">
-        <div class="qa-area">
-          <el-row  style="border-bottom: 1px solid #e4e6e8;">  
-            <h1 itemprop="name" style="0 0 10px;" class="grid--cell fs-headline1 fl1 ow-break-word"><a href="/questions/54979667/how-do-i-replace-the-commas-in-my-string-without-affecting-the-commas-in-my-csv" class="question-hyperlink"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何在不影响CSV文件中的逗号的情况下替换字符串中的逗号？</font></font></a></h1>
+
+
+     <div class="top-title">
+        <h1> <a href="/q/1010000017235204">在vue项目中 ios端的微信分享无效</a> </h1>
+        <span>429</span> 次浏览
+     </div>
+
+      <!-- 问题内容 -->
+      <el-row class="top-info" >
+        <el-col :span="2">
+          <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
+          <span>赞成</span>
+          <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
+        </el-col>
+        <el-col :span="22" > 
+            在vue项目中(spa) ios端的微信分享配置不起作用，但是重新刷新下页面就正常了，安卓端的没有任何问题。有大神碰到过这个问题吗
+        </el-col>
+      </el-row>
+
+      <!-- 扩展操作 -->
+      <el-row class="ext-action">
+        <el-col :span="18">
+            <ul>
+              <li><button type="button">关注&nbsp;<span>|</span>&nbsp;3</button></li>
+              <li><button type="button">收藏&nbsp;<span>|</span>&nbsp;</button></li>
+              <li><button type="button">评论&nbsp;<span>|</span>&nbsp;</button></li>
+              <li><button type="button">邀请回答&nbsp;<span>|</span>&nbsp;3</button></li>
+              <li><button href="javascript:;">编辑</button></li>
+              <li><button href="javascript:void(0);"><i></i></button></li>
+              <li><button href="#911" >举报</button></li>
+              <li><button href="/q/1010000017235204/revision">历史版本</button></li>
+            </ul>
+        </el-col>
+        <el-col :span="6">
+            <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
+            <div class="profile-info">
+              <div>
+                <a href="/u/huixu" class="mr5"> <strong>huixu</strong> </a>
+                <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
+                <span style="color:#BF7158">24</span>
+              </div>
+              <span class="profile-date">2018-12-03 提问</span>
+            </div>
+        </el-col>
+      </el-row>
+
+      <!-- 答案区 -->
+      <el-row class="answers-header">
+        <el-col :span="24">
+            <h2>3 个回答</h2>
+            <div class="tabs">
+              <a class="default-check" href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top" >活跃</a>
+              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top" >最新</a>
+              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top" >票数</a>
+            </div>
+        </el-col>
+      </el-row>
+
+      <el-row class="answers-list" :key="index"  v-for="(question, index) in question">
+        <el-col :span="2">
+          <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
+          <span>赞成</span>
+          <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
+        </el-col>
+        <el-col :span="22">
+          <el-row>
+            0
+
+I think the logical thing would be to lock the location. If I understand the domain correctly you are reserving a specific location (such as a room) for a time slot given by start time and duration? In that case you probably have an entity for location already. If not you can perhaps create one and add a matching table. The code would then be simple:
+
+Get a pessimistic lock on the location from the request with JPA
+Check the database for conflicts
+Insert the new reservation
+Commit
+A table lock will really hurt scalability, but locking a specific location should work.
           </el-row>
-          <el-row style="background-color:red"> 
-            I have a data set which I'm loading with strings and it contains something like this:
-              "10, 14, 15, "20,152", 37, "42,167", 22"
-              How can I use Java to parse the data so that the commas inside the quotation marks are safely removed and the other commas are not affected?
+
+          <!-- 回答者信息区 -->
+          <el-row class="answerer-profile">
+            <el-col :span="18">
+                <ul>
+                  <li><button href="javascript:void(0);"><i></i>评论</button></li>
+                  <li><button href="javascript:;">邀请回答</button></li>
+                  <li><button href="javascript:;">编辑</button></li>
+                  <li><button href="javascript:void(0);"><i></i></button></li>
+                  <li><button href="#911">举报</button></li>
+                  <li><button href="/q/1010000017235204/revision">历史版本</button></li>
+                </ul>
+            </el-col>
+            <el-col :span="6">
+                <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
+                <div class="" style="display:flex; flex-direction:column">
+                  <div class="mb3">
+                    <a href="/u/huixu" class="mr5">
+                      <strong>huixu</strong>
+                    </a>
+                    <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
+                    <span style="color:#BF7158">24</span>
+                  </div>
+                  <span style="font-size:13px; color:#999">2018-12-03 提问</span>
+                </div>
+              
+            </el-col>
           </el-row>
-
-           <el-row style="background-color:red"> 
-              1答案
-          </el-row>
-         
-        </div>
-         
-
-         <div class="answer-area">
-          <el-row style="background-color:black">  
-            试试这个：
-          </el-row>
-          <el-row style="background-color:red"> 
-              <code>
-                import java.util.ArrayList;
-
-public class Main {
-
-    public static void main(String args[]) {
-        String input = "'10,11', '12,14', 15, '20,152', 37, '42,167', 22"; //
-        String[] list = input.split("'"); // Split the string using "'" as delimeter(change it to quotation mark)
-        ArrayLis elements = new ArrayList();
-        for (int i = 0; i  list.length; i++) {
-                        // condition to check if it is outside/outside the quotation mark
-            if (i % 2 != 0) {  // if inside a quotation mark
-                if (!list[i].trim().isEmpty()) { // so that spaces will not be included
-                    elements.add(list[i].trim()); // add the element to the list
-                }
-            } else { //if outside the quotation marks
-                String[] tmp = list[i].split(","); // split the regular comma separated values
-                for (String s : tmp) { // iterate each splits
-                    if (!s.trim().isEmpty()) { // check for spaces
-                        elements.add(s.trim()); // add element to the list
-                    }
-                }
-            }
-        }
-
-        for (String s : elements) {
-            System.out.println(s);
-        }
-    }
-
-}
-              </code>
-          </el-row>
-        </div>
-
+        </el-col>
+      </el-row>
     </el-col>
     <el-col :span="6">&nbsp;</el-col>
   </el-row>
@@ -77,9 +126,12 @@ export default {
     ShareBox
   },
   fetch({ store }) {
-    return store.dispatch('events/fetchEvents')
+    return store.dispatch('question/fetchQuestion')
   },
   computed: {
+    question() {
+      return this.$store.state.question.question.data
+    },
     comments() {
       return this.$store.state.events.events.data
     },
@@ -94,5 +146,126 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.question-detail{
+  .top-title{
+      margin-bottom: 1em;
+      h1{
+        font-size: 30px;
+        margin: 0 0 10px 0;
+        line-height: 1.2;
+      }
+  }
+  .top-info{
+     .el-col-2{
+        display: grid;
+        text-align: center;
+     }
+     .el-col-22{
+       line-height: 1.6;    
+       font-size: 15px;
+     }
+  }
+  .ext-action{
+    .el-col-18{
+      display: flex;
+      line-height: 1;  
+      padding-top: 9px; 
+      padding-bottom: 9px;
+      ul{
+        display:flex;
+        list-style:none;
+        li{
+          padding-right: 1em;
+        }
+      }
+    }
+    .el-col-6{
+       display:flex;
+       .profile-img{
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px !important;
+       }
+       .profile-info{
+         display:flex; 
+         flex-direction:column;
+         .profile-date{
+           font-size:13px; 
+           color:#999
+         }
+       }
+    }
+  }
 
+  // 答案区
+  .answers-header{
+    .el-col-24{
+      display: flex;
+      justify-content: space-between;    
+      border-bottom: 1px solid #ddd;
+      padding-top: 1em;
+      .tabs{
+        a{
+          padding: 0 1em;
+          float: left;
+          margin-right: 8px;
+          padding: 12px 8px 14px;
+          color: #848d95;
+          line-height: 1;
+          text-decoration: none;
+          border-bottom: 2px solid transparent;
+          transition: all .1s ease-in-out;
+        }
+        a:hover {
+          background-color: #ddd;
+          
+          border-bottom-color: transparent;
+      }
+      }
+    }
+  }
+  .answers-list{
+    padding-bottom: 1em; 
+    padding-top: 1em;
+    border-bottom: 1px solid #ddd;
+    .el-col-2{
+      display: grid;
+      text-align: center;
+    }
+    .el-col-22{
+     .answerer-profile{
+        .el-col-18{
+          display: flex;
+          line-height: 1;  
+          padding-top: 9px;  
+          padding-bottom: 9px;
+          ul{
+            display:flex;
+            list-style:none;
+            li{
+              padding-right: 1em;
+            }
+          }
+        }
+        .el-col-6{
+          display:flex;
+          .profile-img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px !important;
+          }
+        }
+     }
+    }
+  }
+  font-size: 15px;
+  .default-check{
+     background-color: #ddd;
+     
+     border-bottom-color: transparent;
+     border: 1px solid #ddd;
+  }
+}
 </style>
