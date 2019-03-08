@@ -29,7 +29,7 @@
                   <nuxt-link to="/music">Jazz-HipHop, Electronic, Disco, Rock, Punk.</nuxt-link>
                 </p>
                 <p class="item webfont">
-                  <i class="iconfont icon-like"></i>
+                  <i class="iconfont icon-upvote"></i>
                   <span v-if="isEnLang">code. beauty. whisky. music. vagrant.</span>
                   <span v-else>
                     <span>恋何物？</span>
@@ -550,7 +550,7 @@
                     color: $black;
                   }
 
-                  &.icon-like {
+                  &.icon-upvote {
                     color: $red;
                   }
 

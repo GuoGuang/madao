@@ -3,7 +3,7 @@
     <div class="item-content" :class="{ mobile: isMobile }">
       <div class="item-thumb" v-if="!isMobile">
         <nuxt-link :to="`/article/${article.id}`">
-          <!-- <span
+           <span
             class="item-oirigin"
             :class="{
               self: !article.origin,
@@ -11,14 +11,13 @@
               hybrid: article.origin === constants.OriginState.Hybrid
             }"
           >
-            <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
+           <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
             <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"></span>
             <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"></span>
-          </span> -->
-          <!--  :src="buildThumb(article.thumb)" -->
+          </span>
           <img
             class="item-thumb-img"
-           
+            :src="article.image"
             :alt="article.title"
             :title="article.title"
           />
@@ -46,34 +45,24 @@
             <i class="iconfont icon-comment"></i>
             <span>{{ article.comment || 0 }}</span>
           </span>
-          <!-- <span class="likes">
-            <i class="iconfont icon-like" :class="{ liked: isLiked }"></i>
-            <span>{{ article.likes || 0 }}</span>
-          </span> -->
-          <!-- <span class="categories">
+          <span class="upvote">
+            <i class="iconfont icon-upvote" :class="{ liked: isLiked }"></i>
+            <span>{{ article.upvote || 0 }}</span>
+          </span>
+          <span class="categories">
             <i class="iconfont icon-list"></i>
-            <template v-if="article.category.length">
+            <template v-if="article.category.name">
+              <!-- :key="index" v-for="(category, index) in article.category" -->
               <nuxt-link
-                :key="index"
-                :to="`/category/${category.slug}`"
-                v-for="(category, index) in article.category"
-                v-text="isEnLang ? category.slug : category.name"
+                
+                :to="`/category/${article.category.id}`"
+               
+                v-text="isEnLang ? article.category.name : article.category.name"
               />
             </template>
             <span v-else v-text="$i18n.text.category.empty"></span>
           </span>
-          <span class="tags" v-if="false">
-            <i class="iconfont icon-tag"></i>
-            <template v-if="article.tag.length">
-              <nuxt-link
-                :key="index"
-                :to="`/tag/${tag.slug}`"
-                v-for="(tag, index) in article.tag"
-                v-text="isEnLang ? tag.slug : tag.name"
-              />
-            </template>
-            <span v-else v-text="$i18n.text.tag.empty"></span>
-          </span> -->
+         
         </div>
       </div>
     </div>
@@ -253,14 +242,14 @@
             min-width: 4rem;
           }
 
-          > .likes {
+          > .upvote {
 
             > .liked {
               color: $red;
             }
           }
 
-          > .likes,
+          > .upvote,
           > .comments {
             min-width: 3em;
           }
@@ -268,7 +257,7 @@
           > .date,
           > .views,
           > .comments,
-          > .likes,
+          > .upvote,
           > .tags,
           > .categories {
             margin-right: 1em;
@@ -312,7 +301,7 @@
             > .date,
             > .views,
             > .comments,
-            > .likes,
+            > .upvote,
             > .tags,
             > .categories {
               margin: 0;

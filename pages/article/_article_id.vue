@@ -59,28 +59,28 @@
         <p class="item" v-if="isEnLang">
           <span>Article created at</span>
           <span>&nbsp;</span>
-          <nuxt-link :title="buildDateTitle(article.create_at)" :to="buildDateLink(article.create_at)">
-            <span>{{ buildDateTitle(article.create_at) }}</span>
+          <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
+            <span>{{ buildDateTitle(article.createAt) }}</span>
           </nuxt-link>
           <span>&nbsp;in category&nbsp;</span>
-          <nuxt-link :key="index" :to="`/category/${category.slug}`" :title="category.description || category.name"
+          <!-- <nuxt-link :key="index" :to="`/category/${category.slug}`" :title="category.description || category.name"
             v-for="(category, index) in article.category">
             <span>{{ category.name }}</span>
             <span v-if="article.category.length && article.category[index + 1]">、</span>
-          </nuxt-link>
+          </nuxt-link> 
           <span v-if="!article.category.length">no catgory</span>
           <span>,&nbsp;&nbsp;</span>
           <span>{{ article.meta.views || 0 }}</span>
-          <span>&nbsp;Views</span>
+          <span>&nbsp;Views</span> -->
         </p>
         <p class="item" v-else>
           <span>本文于</span>
           <span>&nbsp;</span>
-          <nuxt-link :title="buildDateTitle(article.create_at)" :to="buildDateLink(article.create_at)">
-            <span>{{ buildDateTitle(article.create_at) }}</span>
+          <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
+            <span>{{ buildDateTitle(article.createAt) }}</span>
           </nuxt-link>
           <span>&nbsp;发布在&nbsp;</span>
-          <span :key="index" v-for="(category, index) in article.category">
+          <!-- <span :key="index" v-for="(category, index) in article.category">
             <nuxt-link :to="`/category/${category.slug}`" :title="category.description || category.name">
               <span>{{ isEnLang ? category.slug : category.name }}</span>
             </nuxt-link>
@@ -89,9 +89,9 @@
           <span v-if="!article.category.length">未知</span>
           <span>&nbsp;分类下，当前已被围观&nbsp;</span>
           <span>{{ article.meta.views || 0 }}</span>
-          <span>&nbsp;次</span>
+          <span>&nbsp;次</span> -->
         </p>
-        <p class="item">
+        <!-- <p class="item">
           <span class="title" :class="language">{{ isEnLang ? 'Related tags:' : '相关标签：' }}</span>
           <span v-if="!article.tag.length" v-text="$i18n.text.tag.empty"></span>
           <span :key="index" v-for="(tag, index) in article.tag">
@@ -100,7 +100,7 @@
             </nuxt-link>
             <span v-if="article.tag.length && article.tag[index + 1]">、</span>
           </span>
-        </p>
+        </p> -->
         <p class="item">
           <span class="title" :class="language">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
           <span class="site-url" @click="copyArticleUrl">
@@ -125,7 +125,7 @@
           <skeleton-base class="article" :key="item" v-for="item in 4" />
         </ul>
       </div>
-      <div class="related" key="related" v-else-if="article.related && article.related.length">
+      <!-- <div class="related" key="related" v-else-if="article.related && article.related.length">
         <div class="article-list swiper" v-if="!isMobile" v-swiper:swiper="swiperOption">
           <div class="swiper-wrapper">
             <div class="swiper-slide item" :key="index" v-for="(article, index) in relatedArticles">
@@ -158,11 +158,11 @@
             </nuxt-link>
           </li>
         </ul>
-      </div>
+      </div> -->
     </transition>
-    <div class="comment">
+    <!-- <div class="comment">
       <comment-box :fetching="isFetching" :post-id="routeArticleId" :likes="article.meta && article.meta.likes" />
-    </div>
+    </div> -->
   </article>
 </template>
 
@@ -199,7 +199,8 @@
           {
             hid: 'keywords',
             name: 'keywords',
-            content: (article.keywords ? article.keywords.join(',') : article.title) || ''
+            //content: (article.keywords ? article.keywords.join(',') : article.title) || ''
+            content: (article.keywords ? article.keywords : article.title) || ''
           },
           { hid: 'description', name: 'description', content: article.description }
         ]
@@ -265,11 +266,12 @@
         if (!content) {
           return ''
         }
-        const hasTags = this.tags && this.tags.length
+        //const hasTags = this.tags && this.tags.length
 
         // 正常长度，正常渲染
         if (!this.isContentTooMore || isRenderedFullContent) {
-          return marked(content, hasTags ? this.tags : false, true)
+          // return marked(content, hasTags ? this.tags : false, true)
+          return marked(content, false ? this.tags : false, true)
         }
 
         // 内容过多，进行分段处理，避免渲染时间太长

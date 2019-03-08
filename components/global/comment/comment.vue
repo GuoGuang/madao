@@ -17,7 +17,7 @@
             <span v-text="$i18n.text.comment.count"></span>
           </div>
           <a href class="like" :class="{ liked: isLikedPage }" @click.stop.prevent="likePage">
-            <i class="iconfont icon-like"></i>
+            <i class="iconfont icon-upvote"></i>
             <strong>{{ likes || 0 }}</strong>
             <span v-text="(isMobile && !isEnLang) ? '人喜欢' : $i18n.text.comment.like"></span>
           </a>
