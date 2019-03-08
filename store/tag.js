@@ -16,7 +16,7 @@ export const mutations = {
     state.fetching = action
   },
   updateListData(state, action) {
-    state.data = action.result.data
+    state.data = action.data.records
   }
 }
 

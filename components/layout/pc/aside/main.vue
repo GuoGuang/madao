@@ -46,8 +46,9 @@
         <ul class="aside-tag-list" v-else>
           <nuxt-link tag="li" class="item" :key="index" :to="`/tag/${tag.slug}`" v-for="(tag, index) in tags">
             <a class="title" :title="tag.description">
-              <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
-                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i>
+              <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
+                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
+              <i class="iconfont" :class="tag.icon"></i>
               <span>{{ isEnLang ? tag.slug : tag.name }}</span>
               <span>({{ tag.count || 0 }})</span>
             </a>
