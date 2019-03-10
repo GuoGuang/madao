@@ -50,7 +50,7 @@
                 v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
               <i class="iconfont" :class="tag.icon"></i>
               <span>{{ isEnLang ? tag.slug : tag.name }}</span>
-              <span>({{ tag.count || 0 }})</span>
+              <span>({{ tag.tagsCount || 0 }})</span>
             </a>
           </nuxt-link>
         </ul>
