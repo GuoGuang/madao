@@ -9,6 +9,10 @@ export const state = () => {
     question: {
       fetching: false,
       data: []
+    },
+    detail: {
+      fetching: false,
+      data: {}
     }
   }
 }
@@ -18,7 +22,12 @@ export const mutations = {
     state.question.fetching = action
   },
   updateQuestionData(state, action) {
-    state.question.data = action
+    state.question.data = action.records
+  },
+  updateQuestionDetail(state, action) {
+    console.log("1")
+    console.error(action)
+    state.detail.data = action
   },
 }
 
@@ -33,11 +42,28 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateQuestionFetching', true)
-    return this.$axios.$get('/question')
-      .then(response => {
-        commit('updateQuestionData', response.result)
+    return this.$axios.$get('/question').then(response => {
+        commit('updateQuestionData', response.data)
         commit('updateQuestionFetching', false)
       })
       .catch(error => commit('updateQuestionFetching', false))
   },
+
+  
+  // 获取问题详情
+  fetchDetail({ commit }, params = {}) {
+    commit('updateQuestionFetching', true)
+    commit('updateQuestionDetail', {})
+    return this.$axios.$get(`/question/${params.question_id}`).then(response => {
+      console.log("2")
+      commit('updateQuestionDetail', response.data)
+      console.log("3")
+      commit('updateQuestionFetching', false)
+      })
+      .catch(error => {
+        commit('updateQuestionFetching', false)
+        return Promise.reject(error)
+      })
+  },
+
 }

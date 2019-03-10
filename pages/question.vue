@@ -29,8 +29,10 @@
                 </li>
               </ul>
               <h2 class="title">
-                <nuxt-link to="/qa/1" text="">
-                    关于后端 api 接口设计的疑关于后端 api 接口设计的疑问后端 api 接口设计的疑计的疑
+                <nuxt-link :to="`/qa/${question.id}`" text="">
+                    <p style="-webkit-box-orient: vertical;"
+                      v-html="question.content"
+                    ></p>
                 </nuxt-link>
               </h2>
 

@@ -2,65 +2,103 @@
   <!--问答详情页 -->
   <el-row class="question-detail">
     <el-col :span="18">
-
-
-     <div class="top-title">
-        <h1> <a href="/q/1010000017235204">在vue项目中 ios端的微信分享无效</a> </h1>
+      <div class="top-title">
+        <h1>
+          <a href="/q/1010000017235204">{{ question.title }}</a>
+        </h1>
         <span>429</span> 次浏览
-     </div>
+      </div>
 
       <!-- 问题内容 -->
-      <el-row class="top-info" >
+      <el-row class="top-info">
         <el-col :span="2">
           <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
           <span>赞成</span>
           <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
         </el-col>
-        <el-col :span="22" > 
-            在vue项目中(spa) ios端的微信分享配置不起作用，但是重新刷新下页面就正常了，安卓端的没有任何问题。有大神碰到过这个问题吗
-        </el-col>
+        <el-col :span="22">{{ question.comment }}</el-col>
       </el-row>
 
       <!-- 扩展操作 -->
       <el-row class="ext-action">
         <el-col :span="18">
-            <ul>
-              <li><button type="button">关注&nbsp;<span>|</span>&nbsp;3</button></li>
-              <li><button type="button">收藏&nbsp;<span>|</span>&nbsp;</button></li>
-              <li><button type="button">评论&nbsp;<span>|</span>&nbsp;</button></li>
-              <li><button type="button">邀请回答&nbsp;<span>|</span>&nbsp;3</button></li>
-              <li><button href="javascript:;">编辑</button></li>
-              <li><button href="javascript:void(0);"><i></i></button></li>
-              <li><button href="#911" >举报</button></li>
-              <li><button href="/q/1010000017235204/revision">历史版本</button></li>
-            </ul>
+          <ul>
+            <li>
+              <button type="button">关注&nbsp;
+                <span>|</span>&nbsp;3
+              </button>
+            </li>
+            <li>
+              <button type="button">收藏&nbsp;
+                <span>|</span>&nbsp;
+              </button>
+            </li>
+            <li>
+              <button type="button">评论&nbsp;
+                <span>|</span>&nbsp;
+              </button>
+            </li>
+            <li>
+              <button type="button">邀请回答&nbsp;
+                <span>|</span>&nbsp;3
+              </button>
+            </li>
+            <li>
+              <button href="javascript:;">编辑</button>
+            </li>
+            <li>
+              <button href="javascript:void(0);">
+                <i></i>
+              </button>
+            </li>
+            <li>
+              <button href="#911">举报</button>
+            </li>
+            <li>
+              <button href="/q/1010000017235204/revision">历史版本</button>
+            </li>
+          </ul>
         </el-col>
         <el-col :span="6">
-            <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
-            <div class="profile-info">
-              <div>
-                <a href="/u/huixu" class="mr5"> <strong>huixu</strong> </a>
-                <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
-                <span style="color:#BF7158">24</span>
-              </div>
-              <span class="profile-date">2018-12-03 提问</span>
+          <a href="/u/huixu">
+            <img
+              class="profile-img"
+              src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"
+            >
+          </a>
+          <div class="profile-info">
+            <div>
+              <a href="/u/huixu" class="mr5">
+                <strong>huixu</strong>
+              </a>
+              <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
+              <span style="color:#BF7158">24</span>
             </div>
+            <span class="profile-date">2018-12-03 提问</span>
+          </div>
         </el-col>
       </el-row>
 
       <!-- 答案区 -->
       <el-row class="answers-header">
         <el-col :span="24">
-            <h2>3 个回答</h2>
-            <div class="tabs">
-              <a class="default-check" href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top" >活跃</a>
-              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top" >最新</a>
-              <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top" >票数</a>
-            </div>
+          <h2>3 个回答</h2>
+          <div class="tabs">
+            <a
+              class="default-check"
+              href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top"
+            >活跃</a>
+            <a
+              href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top"
+            >最新</a>
+            <a
+              href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top"
+            >票数</a>
+          </div>
         </el-col>
       </el-row>
 
-      <el-row class="answers-list" :key="index"  v-for="(question, index) in question">
+      <el-row class="answers-list" :key="index" v-for="(question, index) in question">
         <el-col :span="2">
           <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
           <span>赞成</span>
@@ -69,41 +107,59 @@
         <el-col :span="22">
           <el-row>
             0
-
-I think the logical thing would be to lock the location. If I understand the domain correctly you are reserving a specific location (such as a room) for a time slot given by start time and duration? In that case you probably have an entity for location already. If not you can perhaps create one and add a matching table. The code would then be simple:
-
-Get a pessimistic lock on the location from the request with JPA
-Check the database for conflicts
-Insert the new reservation
-Commit
-A table lock will really hurt scalability, but locking a specific location should work.
+            I think the logical thing would be to lock the location. If I understand the domain correctly you are reserving a specific location (such as a room) for a time slot given by start time and duration? In that case you probably have an entity for location already. If not you can perhaps create one and add a matching table. The code would then be simple:
+            Get a pessimistic lock on the location from the request with JPA
+            Check the database for conflicts
+            Insert the new reservation
+            Commit
+            A table lock will really hurt scalability, but locking a specific location should work.
           </el-row>
 
           <!-- 回答者信息区 -->
           <el-row class="answerer-profile">
             <el-col :span="18">
-                <ul>
-                  <li><button href="javascript:void(0);"><i></i>评论</button></li>
-                  <li><button href="javascript:;">邀请回答</button></li>
-                  <li><button href="javascript:;">编辑</button></li>
-                  <li><button href="javascript:void(0);"><i></i></button></li>
-                  <li><button href="#911">举报</button></li>
-                  <li><button href="/q/1010000017235204/revision">历史版本</button></li>
-                </ul>
+              <ul>
+                <li>
+                  <button href="javascript:void(0);">
+                    <i></i>评论
+                  </button>
+                </li>
+                <li>
+                  <button href="javascript:;">邀请回答</button>
+                </li>
+                <li>
+                  <button href="javascript:;">编辑</button>
+                </li>
+                <li>
+                  <button href="javascript:void(0);">
+                    <i></i>
+                  </button>
+                </li>
+                <li>
+                  <button href="#911">举报</button>
+                </li>
+                <li>
+                  <button href="/q/1010000017235204/revision">历史版本</button>
+                </li>
+              </ul>
             </el-col>
             <el-col :span="6">
-                <a href="/u/huixu"><img class="profile-img" src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"></a>
-                <div class="" style="display:flex; flex-direction:column">
-                  <div class="mb3">
-                    <a href="/u/huixu" class="mr5">
-                      <strong>huixu</strong>
-                    </a>
-                    <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
-                    <span style="color:#BF7158">24</span>
-                  </div>
-                  <span style="font-size:13px; color:#999">2018-12-03 提问</span>
+              <a href="/u/huixu">
+                <img
+                  class="profile-img"
+                  src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"
+                >
+              </a>
+              <div class style="display:flex; flex-direction:column">
+                <div class="mb3">
+                  <a href="/u/huixu" class="mr5">
+                    <strong>huixu</strong>
+                  </a>
+                  <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
+                  <span style="color:#BF7158">24</span>
                 </div>
-              
+                <span style="font-size:13px; color:#999">2018-12-03 提问</span>
+              </div>
             </el-col>
           </el-row>
         </el-col>
@@ -125,12 +181,17 @@ export default {
   components: {
     ShareBox
   },
-  fetch({ store }) {
-    return store.dispatch('question/fetchQuestion')
+  fetch({ store, params, error }) {
+    return Promise.all([
+      store.dispatch('question/fetchDetail', params).catch(err => {
+        error({ statusCode: 404, message: '众里寻他 我已不再' })
+      })
+      // store.dispatch('comment/fetchList', { post_id: params.article_id })
+    ])
   },
   computed: {
     question() {
-      return this.$store.state.question.question.data
+      return this.$store.state.question.detail.data
     },
     comments() {
       return this.$store.state.events.events.data
@@ -146,67 +207,67 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.question-detail{
-  .top-title{
-      margin-bottom: 1em;
-      h1{
-        font-size: 30px;
-        margin: 0 0 10px 0;
-        line-height: 1.2;
-      }
+.question-detail {
+  .top-title {
+    margin-bottom: 1em;
+    h1 {
+      font-size: 30px;
+      margin: 0 0 10px 0;
+      line-height: 1.2;
+    }
   }
-  .top-info{
-     .el-col-2{
-        display: grid;
-        text-align: center;
-     }
-     .el-col-22{
-       line-height: 1.6;    
-       font-size: 15px;
-     }
+  .top-info {
+    .el-col-2 {
+      display: grid;
+      text-align: center;
+    }
+    .el-col-22 {
+      line-height: 1.6;
+      font-size: 15px;
+    }
   }
-  .ext-action{
-    .el-col-18{
+  .ext-action {
+    .el-col-18 {
       display: flex;
-      line-height: 1;  
-      padding-top: 9px; 
+      line-height: 1;
+      padding-top: 9px;
       padding-bottom: 9px;
-      ul{
-        display:flex;
-        list-style:none;
-        li{
+      ul {
+        display: flex;
+        list-style: none;
+        li {
           padding-right: 1em;
         }
       }
     }
-    .el-col-6{
-       display:flex;
-       .profile-img{
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          margin-right: 10px !important;
-       }
-       .profile-info{
-         display:flex; 
-         flex-direction:column;
-         .profile-date{
-           font-size:13px; 
-           color:#999
-         }
-       }
+    .el-col-6 {
+      display: flex;
+      .profile-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px !important;
+      }
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        .profile-date {
+          font-size: 13px;
+          color: #999;
+        }
+      }
     }
   }
 
   // 答案区
-  .answers-header{
-    .el-col-24{
+  .answers-header {
+    .el-col-24 {
       display: flex;
-      justify-content: space-between;    
+      justify-content: space-between;
       border-bottom: 1px solid #ddd;
       padding-top: 1em;
-      .tabs{
-        a{
+      .tabs {
+        a {
           padding: 0 1em;
           float: left;
           margin-right: 8px;
@@ -215,57 +276,57 @@ export default {
           line-height: 1;
           text-decoration: none;
           border-bottom: 2px solid transparent;
-          transition: all .1s ease-in-out;
+          transition: all 0.1s ease-in-out;
         }
         a:hover {
           background-color: #ddd;
-          
+
           border-bottom-color: transparent;
-      }
+        }
       }
     }
   }
-  .answers-list{
-    padding-bottom: 1em; 
+  .answers-list {
+    padding-bottom: 1em;
     padding-top: 1em;
     border-bottom: 1px solid #ddd;
-    .el-col-2{
+    .el-col-2 {
       display: grid;
       text-align: center;
     }
-    .el-col-22{
-     .answerer-profile{
-        .el-col-18{
+    .el-col-22 {
+      .answerer-profile {
+        .el-col-18 {
           display: flex;
-          line-height: 1;  
-          padding-top: 9px;  
+          line-height: 1;
+          padding-top: 9px;
           padding-bottom: 9px;
-          ul{
-            display:flex;
-            list-style:none;
-            li{
+          ul {
+            display: flex;
+            list-style: none;
+            li {
               padding-right: 1em;
             }
           }
         }
-        .el-col-6{
-          display:flex;
-          .profile-img{
+        .el-col-6 {
+          display: flex;
+          .profile-img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             margin-right: 10px !important;
           }
         }
-     }
+      }
     }
   }
   font-size: 15px;
-  .default-check{
-     background-color: #ddd;
-     
-     border-bottom-color: transparent;
-     border: 1px solid #ddd;
+  .default-check {
+    background-color: #ddd;
+
+    border-bottom-color: transparent;
+    border: 1px solid #ddd;
   }
 }
 </style>
