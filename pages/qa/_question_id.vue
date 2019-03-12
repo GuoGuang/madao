@@ -98,21 +98,15 @@
         </el-col>
       </el-row>
 
-      <el-row class="answers-list" :key="index" v-for="(question, index) in question">
+      <el-row class="answers-list" :key="index" v-for="(answers, index) in question.answers">
         <el-col :span="2">
           <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
           <span>赞成</span>
           <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
         </el-col>
         <el-col :span="22">
-          <el-row>
-            0
-            I think the logical thing would be to lock the location. If I understand the domain correctly you are reserving a specific location (such as a room) for a time slot given by start time and duration? In that case you probably have an entity for location already. If not you can perhaps create one and add a matching table. The code would then be simple:
-            Get a pessimistic lock on the location from the request with JPA
-            Check the database for conflicts
-            Insert the new reservation
-            Commit
-            A table lock will really hurt scalability, but locking a specific location should work.
+          <el-row v-html="answers.content">
+           
           </el-row>
 
           <!-- 回答者信息区 -->
