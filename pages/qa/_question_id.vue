@@ -84,8 +84,7 @@
         <el-col :span="24">
           <h2>3 个回答</h2>
           <div class="tabs">
-            <a
-              class="default-check"
+            <a class="default-check"
               href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top"
             >活跃</a>
             <a
