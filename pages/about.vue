@@ -154,12 +154,12 @@
             <div class="about-map" v-if="!isMobile">
               <iframe class="iframe" src="/partials/map.html"></iframe>
             </div>
-            <div class="about-project">
+            <!-- <div class="about-project">
               <nuxt-link to="/project" class="project-link">
                 <p class="title">Get More Project</p>
                 <p class="item">了解更多关于我的开源项目的进展</p>
               </nuxt-link>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

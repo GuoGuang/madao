@@ -39,6 +39,9 @@
   url('//at.alicdn.com/t/webfont_mxaab9ec8dl.svg#NotoSansHans-Black') format('svg'); /* iOS 4.1- */
 }
 
+.pull-right{
+  float: right
+}
 ::selection {
   background: $primary; 
   color: $white;

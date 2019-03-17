@@ -80,12 +80,41 @@
           <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"></el-input>
         </div>
 
-        <div class="navbar-login">
-
+        <!-- 未登录 -->
+        <div class="navbar-login" v-if="false">
           <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
           <div class="item" style="margin-left: 10px !important;">
             <el-button size="small" type="success" @click="registDialogVisible = true">{{$i18n.nav.register}}</el-button>
           </div>
+        </div>
+        <!-- 已登录 -->
+        <div class="user-profile" v-else>
+          <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
+            <el-menu-item index="1">私信</el-menu-item>
+            <el-submenu index="2">
+              <template slot="title">
+                <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
+              </template>
+              <el-menu-item index="2-1">
+                <div class="profile-hover-info" style="    text-align: left;">
+                              
+                                <span style="float:left;">GuoGuang</span>
+                             
+                  
+                 <span style="float:right;"> <a href="/profile" class="float:right" style="display: inline-block;
+                                                                                            border: 1px solid #25bb9b;
+                                                                                            padding: 9px 5px;
+                                                                                            font-size: 12px;
+                                                                                            float: right;
+                                                                                            border-radius: 4px;
+                                                                                            color: #25bb9b;
+                                                                                            line-height: 1;">个人主页</a></span>
+                </div>
+              </el-menu-item>
+              <el-menu-item index="2-2">账号设置</el-menu-item>
+              <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
+            </el-submenu>
+          </el-menu>
         </div>
 
 
@@ -189,12 +218,21 @@
       },
       nextSong() {
         music.humanizeOperation(music.player.nextSong)
+      },
+      logout(){
+        console.log("")
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+
   .el-button--success {
     color: #fff;
     background-color: #009a61;
@@ -275,6 +313,15 @@
           }
         }
 
+        .user-profile{
+          .image{
+            width: 36px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+          }
+        }
         .navbar-header {
           height: $header-height;
           display: flex;
