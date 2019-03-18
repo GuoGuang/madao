@@ -210,7 +210,7 @@ module.exports = {
     sizes: [16, 120, 144, 152, 192, 384, 512]
   },
   router: {
-    middleware: ['change-page-col'],
+    middleware: ['change-page-col', 'auth'],
     linkActiveClass: 'link-active',
     extendRoutes(routes) {},
     scrollBehavior(to, from, savedPosition) {

@@ -2,14 +2,14 @@
   <!-- 页面头部 -->
   <header id="header" class="header">
 
-    <el-dialog class="loginDialog" title="登录" :visible.sync="loginDialogVisible" width="30%">
+    <el-dialog :visible.sync="loginDialogVisible" class="loginDialog" title="登录" width="30%">
       <!-- :model="formLabelAlign" -->
       <el-form label-position="top" label-width="80px" size="mini">
         <el-form-item label="手机号 或 Email">
-          <el-input placeholder="11 位手机号 或 Email" size="small"></el-input>
+          <el-input placeholder="11 位手机号 或 Email" size="small"/>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input placeholder="请输入密码" size="small"></el-input>
+          <el-input placeholder="请输入密码" size="small"/>
         </el-form-item>
 
         <el-form-item>
@@ -18,7 +18,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button @click="submitForm('ruleForm')" size="medium ">登录</el-button>
+          <el-button size="medium " @click="submitForm('ruleForm')">登录</el-button>
         </el-form-item>
 
         <div class="more-login-area">
@@ -28,17 +28,17 @@
       <div class="widget-login">
         <a href="/user/oauth/google" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-google"></use>
+            <use xlink:href="#youyd-icon-google"/>
           </svg>
         </a>
         <a href="/user/oauth/qq" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-qq"></use>
+            <use xlink:href="#youyd-icon-qq"/>
           </svg>
         </a>
         <a href="/user/oauth/weixin" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-weixin"></use>
+            <use xlink:href="#youyd-icon-weixin"/>
           </svg>
         </a>
       </div>
@@ -47,17 +47,16 @@
       </p>
     </el-dialog>
 
-    
-    <el-dialog class="registDialog" title="注册" :visible.sync="registDialogVisible" width="30%">
+    <el-dialog :visible.sync="registDialogVisible" class="registDialog" title="注册" width="30%">
       <el-form label-position="top" label-width="80px" size="mini">
         <el-form-item label="手机号">
-          <el-input placeholder="请输入手机号" size="small"></el-input>
+          <el-input placeholder="请输入手机号" size="small"/>
         </el-form-item>
         <p class="terms">
           同意<a href="/tos" target="_blank">《用户协议》《隐私政策》</a>
         </p>
         <el-form-item>
-          <el-button @click="submitForm('ruleForm')" size="medium ">注册</el-button>
+          <el-button size="medium " @click="submitForm('ruleForm')">注册</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -65,7 +64,7 @@
     <nav class="navbar">
       <div class="navbar-container container">
         <div class="navbar-header">
-          <span class="navbar-blank"></span>
+          <span class="navbar-blank"/>
           <img src="/images/logo.svg" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
@@ -77,18 +76,18 @@
         </div>
 
         <div class="navbar-search">
-          <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"></el-input>
+          <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"/>
         </div>
 
         <!-- 未登录 -->
-        <div class="navbar-login" v-if="false">
-          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{$i18n.nav.login}}</a>
+        <div v-if="loginStatus" class="navbar-login">
+          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
           <div class="item" style="margin-left: 10px !important;">
-            <el-button size="small" type="success" @click="registDialogVisible = true">{{$i18n.nav.register}}</el-button>
+            <el-button size="small" type="success" @click="registDialogVisible = true">{{ $i18n.nav.register }}</el-button>
           </div>
         </div>
         <!-- 已登录 -->
-        <div class="user-profile" v-else>
+        <div v-else class="user-profile">
           <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
             <el-menu-item index="1">私信</el-menu-item>
             <el-submenu index="2">
@@ -97,11 +96,13 @@
               </template>
               <el-menu-item index="2-1">
                 <div class="profile-hover-info" style="    text-align: left;">
-                              
-                                <span style="float:left;">GuoGuang</span>
-                             
-                  
-                 <span style="float:right;"> <a href="/profile" class="float:right" style="display: inline-block;
+
+                  <span style="float:left;">GuoGuang</span>
+
+                  <span style="float:right;"> <a
+                    href="/profile"
+                    class="float:right"
+                    style="display: inline-block;
                                                                                             border: 1px solid #25bb9b;
                                                                                             padding: 9px 5px;
                                                                                             font-size: 12px;
@@ -116,9 +117,6 @@
             </el-submenu>
           </el-menu>
         </div>
-
-
-
 
         <!-- 音乐 -->
         <!-- <div class="navbar-player">
@@ -169,61 +167,64 @@
 </template>
 
 <script>
-  import music from '~/expansions/music'
-  import { isBrowser } from '~/environment/esm'
-  import NavView from '~/components/layout/pc/nav'
-  export default {
-    name: 'layout-header',
-    components: {
-      NavView // 布局
+import music from '~/expansions/music'
+import { isBrowser } from '~/environment/esm'
+import NavView from '~/components/layout/pc/nav'
+export default {
+  name: 'LayoutHeader',
+  components: {
+    NavView // 布局
+  },
+  data() {
+    return {
+      input: '',
+      preload: false,
+      loginDialogVisible: false,
+      registDialogVisible: false
+    }
+  },
+  computed: {
+    loginStatus() {
+      return this.$store.getters.loginStatus
     },
-    data() {
-      return {
-        input: "",
-        preload: false,
-        loginDialogVisible: false,
-        registDialogVisible: false
-      }
+    playerState() {
+      return music.state
     },
-    mounted() {
-      if (isBrowser) {
-        window.addLoadedTask(() => {
-          this.preload = true;
-        })
-      }
+    currentSong() {
+      return music.currentSong
     },
-    computed: {
-      playerState() {
-        return music.state
-      },
-      currentSong() {
-        return music.currentSong
-      },
-      currentSongPicUrl() {
-        return music.currentSongPicUrl
-      }
+    currentSongPicUrl() {
+      return music.currentSongPicUrl
+    }
+  },
+  mounted() {
+    if (isBrowser) {
+      window.addLoadedTask(() => {
+        this.preload = true
+      })
+    }
+  },
+  methods: {
+    loginDialog() {
+      this.loginDialogVisible = true
     },
-    methods: {
-      loginDialog() {
-        this.loginDialogVisible = true
-      },
-      togglePlay() {
-        music.humanizeOperation(music.player.togglePlay)
-      },
-      toggleMuted() {
-        music.humanizeOperation(music.player.toggleMuted)
-      },
-      prevSong() {
-        music.humanizeOperation(music.player.prevSong)
-      },
-      nextSong() {
-        music.humanizeOperation(music.player.nextSong)
-      },
-      logout(){
-        console.log("")
-      }
+    togglePlay() {
+      music.humanizeOperation(music.player.togglePlay)
+    },
+    toggleMuted() {
+      music.humanizeOperation(music.player.toggleMuted)
+    },
+    prevSong() {
+      music.humanizeOperation(music.player.prevSong)
+    },
+    nextSong() {
+      music.humanizeOperation(music.player.nextSong)
+    },
+    logout() {
+      console.log('')
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -243,7 +244,6 @@
   .nav-login-btn {
     color: #009a61;
   }
-
 
   .header {
     .navbar {
