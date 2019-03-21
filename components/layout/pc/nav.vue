@@ -3,25 +3,25 @@
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
       <nuxt-link :to="'/'" class="item" exact>
-        <span v-text="$i18n.nav.home"></span>
+        <span v-text="$i18n.nav.home"/>
       </nuxt-link>
       <nuxt-link to="/question" class="item">
-        <span v-text="$i18n.nav.question"></span>
+        <span v-text="$i18n.nav.question"/>
       </nuxt-link>
       <nuxt-link to="/tweets" class="item">
-        <span v-text="$i18n.nav.tweets"></span>
+        <span v-text="$i18n.nav.tweets"/>
       </nuxt-link>
       <nuxt-link to="/book" class="item">
-        <span v-text="$i18n.nav.book "></span>
+        <span v-text="$i18n.nav.book "/>
       </nuxt-link>
       <nuxt-link to="/events" class="item">
-        <span v-text="$i18n.nav.events"></span>
+        <span v-text="$i18n.nav.events"/>
       </nuxt-link>
       <!-- <nuxt-link to="/vlog" class="item">
         <span v-text="$i18n.nav.vlog"></span>
       </nuxt-link> -->
       <nuxt-link to="/about" class="item">
-        <span v-text="$i18n.nav.about"></span>
+        <span v-text="$i18n.nav.about"/>
       </nuxt-link>
 
     </nav>
@@ -29,18 +29,17 @@
 </template>
 
 <script>
-  import adConfig from '~/config/ad.config'
-  export default {
-    name: 'layout-nav',
-    computed: {
-      adsForPcNav: () => adConfig.pc.nav
-    }
+import adConfig from '~/config/ad.config'
+export default {
+  name: 'LayoutNav',
+  computed: {
+    adsForPcNav: () => adConfig.pc.nav
   }
+}
 </script>
 
 <style lang="scss" scoped>
   .header-nav {
-    
 
     .nav-list {
       padding: 0;
@@ -74,7 +73,7 @@
             animation: superscript-icon-color 1s infinite;
           }
         }
-        
+
         &.ad {
           height: 5rem;
           line-height: 5rem;

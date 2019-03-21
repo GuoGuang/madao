@@ -11,45 +11,45 @@
 </template>
 
 <script>
-  import Flower from './flower'
-  export default {
-    name: 'flower-garden',
-    components: { Flower },
-    data() {
-      return {
-        id: 0,
-        flowers: [],
-        contentIndex: -1,
-        flowerContents: ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']
+import Flower from './flower'
+export default {
+  name: 'FlowerGarden',
+  components: { Flower },
+  data() {
+    return {
+      id: 0,
+      flowers: [],
+      contentIndex: -1,
+      flowerContents: ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']
+    }
+  },
+  mounted() {
+    window.addEventListener('click', this.eventHandle)
+  },
+  beforeDestroy() {
+    window.removeEventListener('click', this.eventHandle)
+  },
+  methods: {
+    eventHandle(event) {
+      this.contentIndex++
+      if (this.contentIndex >= this.flowerContents.length) {
+        this.contentIndex = 0
       }
+      this.flowers.push({
+        id: ++this.id,
+        x: event.x || event.clientX,
+        y: event.y || event.clientY,
+        text: this.flowerContents[this.contentIndex]
+      })
     },
-    methods: {
-      eventHandle(event) {
-        this.contentIndex++
-        if (this.contentIndex >= this.flowerContents.length) {
-          this.contentIndex = 0
-        }
-        this.flowers.push({
-          id: ++this.id,
-          x: event.x || event.clientX,
-          y: event.y || event.clientY,
-          text: this.flowerContents[this.contentIndex]
-        })
-      },
-      handleAnimationEnd(id) {
-        const targetIndex = this.flowers.findIndex(flower => flower.id === id)
-        if (targetIndex > -1) {
-          this.flowers.splice(targetIndex, 1)
-        }
+    handleAnimationEnd(id) {
+      const targetIndex = this.flowers.findIndex(flower => flower.id === id)
+      if (targetIndex > -1) {
+        this.flowers.splice(targetIndex, 1)
       }
-    },
-    mounted() {
-      window.addEventListener('click', this.eventHandle)
-    },
-    beforeDestroy() {
-      window.removeEventListener('click', this.eventHandle)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'adsense-aside'
-  }
+export default {
+  name: 'AdsenseAside'
+}
 </script>
 

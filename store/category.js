@@ -22,7 +22,7 @@ export const mutations = {
 
 export const actions = {
   fetchList({ commit }, params) {
-    console.error('/categor');
+    console.error('/categor')
     commit('updateFetching', true)
     return this.$axios.$get(`/category`, { params })
       .then(response => {
@@ -30,6 +30,7 @@ export const actions = {
         commit('updateFetching', false)
       })
       .catch(error => {
+        console.error(error)
         commit('updateFetching', false)
       })
   }

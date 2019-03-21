@@ -1,6 +1,6 @@
 <template>
   <!-- app程序页面 -->
-  <div class="page" :style="{ height: height }" :class="{ mobile: isMobile }">
+  <div :style="{ height: height }" :class="{ mobile: isMobile }" class="page">
     <div class="app">
       <div class="logo">
         <img src="/images/app-logo.png" alt="app-logo">
@@ -12,17 +12,17 @@
         <div class="download">
           <img src="/images/app-qrcode.png" class="qrcode" alt="qrcode">
           <a
-            target="_blank"
             :href="`${cdnUrl}/app/surmon.me.apk`"
+            target="_blank"
             class="btn"
             v-text="$i18n.text.device.android"
-          ></a>
+          />
           <a
-            target="_blank"
             :href="`${cdnUrl}/app/surmon.me.ipa`"
+            target="_blank"
             class="btn"
             v-text="$i18n.text.device.ios"
-          ></a>
+          />
         </div>
       </div>
     </div>
@@ -30,49 +30,49 @@
 </template>
 
 <script>
-  export default {
-    name: 'app',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.app + ' | '}App`
-      }
+export default {
+  name: 'App',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.app + ' | '}App`
+    }
+  },
+  data() {
+    return {
+      height: 0
+    }
+  },
+  computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
     },
-    data() {
-      return {
-        height: 0
-      }
-    },
-    computed: {
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      }
-    },
-    activated() {
-      this.updateScreenHeight()
-      window.addEventListener('resize', this.updateScreenHeight)
-    },
-    deactivated() {
-      window.removeEventListener('resize', this.updateScreenHeight)
-    },
-    methods: {
-      updateScreenHeight(event) {
-        if (this.isMobile) {
-          this.height = 'auto'
+    isMobile() {
+      return this.$store.state.global.isMobile
+    }
+  },
+  activated() {
+    this.updateScreenHeight()
+    window.addEventListener('resize', this.updateScreenHeight)
+  },
+  deactivated() {
+    window.removeEventListener('resize', this.updateScreenHeight)
+  },
+  methods: {
+    updateScreenHeight(event) {
+      if (this.isMobile) {
+        this.height = 'auto'
+      } else {
+        const screenHeight = window.innerHeight
+        const minHeight = 14 * 62
+        if (screenHeight - 14 * 4 > minHeight) {
+          this.height = `${screenHeight - (14 * 12)}px`
         } else {
-          const screenHeight = window.innerHeight
-          const minHeight = 14 * 62
-          if (screenHeight - 14 * 4 > minHeight) {
-            this.height = `${screenHeight - (14 * 12)}px`
-          } else {
-            this.height = `${minHeight}px`
-          }
+          this.height = `${minHeight}px`
         }
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

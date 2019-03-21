@@ -6,3 +6,4 @@
 
 import Favico from 'favico.js'
 export default Favico
+

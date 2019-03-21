@@ -4,11 +4,11 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-const SUCCESS_STATUS_TEXT = 'success'
+// const SUCCESS_STATUS_TEXT = 'success'
 
-export default function ({ $axios }) {
+export default function({ $axios }) {
   $axios.onResponse(response => {
-    console.log("response")
+    console.log('response')
     console.log(response)
     return response
     /*
@@ -21,10 +21,10 @@ export default function ({ $axios }) {
       : Promise.reject(response)
     */
   })
- /* $axios.onError(error => {
+  /* $axios.onError(error => {
     alert("error了")
     /* if(error.response.status === 500) {
       redirect('/sorry')
-    } 
+    }
   })*/
 }

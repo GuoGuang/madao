@@ -1,26 +1,26 @@
 <template>
   <div class="article-list-item">
-    <div class="item-content" :class="{ mobile: isMobile }">
-      <div class="item-thumb" v-if="!isMobile">
+    <div :class="{ mobile: isMobile }" class="item-content">
+      <div v-if="!isMobile" class="item-thumb">
         <nuxt-link :to="`/article/${article.id}`">
-           <span
-            class="item-oirigin"
+          <span
             :class="{
               self: !article.origin,
               other: article.origin === constants.OriginState.Reprint,
               hybrid: article.origin === constants.OriginState.Hybrid
             }"
+            class="item-oirigin"
           >
-           <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
-            <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"></span>
-            <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"></span>
+            <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
+            <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
+            <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
           </span>
           <img
-            class="item-thumb-img"
             :src="article.image"
             :alt="article.title"
             :title="article.title"
-          />
+            class="item-thumb-img"
+          >
         </nuxt-link>
       </div>
       <div class="item-body">
@@ -31,38 +31,38 @@
           class="item-description"
           style="-webkit-box-orient: vertical;"
           v-html="article.description"
-        ></p>
+        />
         <div class="item-meta">
           <span class="date">
-            <i class="iconfont icon-clock"></i>
+            <i class="iconfont icon-clock"/>
             <span>{{ article.create_at | toYMD(language) }}</span>
           </span>
           <span class="visits">
-            <i class="iconfont icon-eye"></i>
+            <i class="iconfont icon-eye"/>
             <span>{{ article.visits || 0 }}</span>
           </span>
           <span class="comment">
-            <i class="iconfont icon-comment"></i>
+            <i class="iconfont icon-comment"/>
             <span>{{ article.comment || 0 }}</span>
           </span>
           <span class="upvote">
-            <i class="iconfont icon-upvote" :class="{ liked: isLiked }"></i>
+            <i :class="{ liked: isLiked }" class="iconfont icon-upvote"/>
             <span>{{ article.upvote || 0 }}</span>
           </span>
           <span class="categories">
-            <i class="iconfont icon-list"></i>
+            <i class="iconfont icon-list"/>
             <template v-if="article.category.name">
               <!-- :key="index" v-for="(category, index) in article.category" -->
               <nuxt-link
-                
+
                 :to="`/category/${article.category.id}`"
-               
+
                 v-text="isEnLang ? article.category.name : article.category.name"
               />
             </template>
-            <span v-else v-text="$i18n.text.category.empty"></span>
+            <span v-else v-text="$i18n.text.category.empty"/>
           </span>
-         
+
         </div>
       </div>
     </div>
@@ -70,37 +70,40 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import { localUser, localHistoryLikes } from '~/transforms/local-storage'
+import { mapState } from 'vuex'
+import { /* localUser */ localHistoryLikes } from '~/transforms/local-storage'
 
-  export default {
-    name: 'article-list-item',
-    props: {
-      article: Object
-    },
-    data() {
-      return {
-        isLiked: false
-      }
-    },
-    computed: {
-      ...mapState('global', ['imageExt', 'language', 'isMobile', 'constants']),
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-    },
-    methods: {
-      buildThumb(thumb) {
-        return thumb
-          ? `${thumb}?imageView2/1/w/350/h/238/format/${this.imageExt}/interlace/1/q/75|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/460/fill/I0ZGRkZGRg==/dissolve/23/gravity/SouthWest/dx/15/dy/7|imageslim`
-          : `${this.cdnUrl}/images/thumb-article.jpg`
-      }
-    },
-    mounted() {
-      const historyLikes = localHistoryLikes.get()
-      this.isLiked = historyLikes && historyLikes.pages.includes(this.article.id)
+export default {
+  name: 'ArticleListItem',
+  props: {
+    article: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      isLiked: false
+    }
+  },
+  computed: {
+    ...mapState('global', ['imageExt', 'language', 'isMobile', 'constants']),
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    }
+  },
+  mounted() {
+    const historyLikes = localHistoryLikes.get()
+    this.isLiked = historyLikes && historyLikes.pages.includes(this.article.id)
+  },
+  methods: {
+    buildThumb(thumb) {
+      return thumb
+        ? `${thumb}?imageView2/1/w/350/h/238/format/${this.imageExt}/interlace/1/q/75|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/460/fill/I0ZGRkZGRg==/dissolve/23/gravity/SouthWest/dx/15/dy/7|imageslim`
+        : `${this.cdnUrl}/images/thumb-article.jpg`
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

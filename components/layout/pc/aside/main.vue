@@ -8,18 +8,20 @@
 
     <div class="aside-article">
       <p class="title">
-        <i class="iconfont icon-hotfill"></i>
-        <span v-text="$i18n.text.article.hotlist"></span>
+        <i class="iconfont icon-hotfill"/>
+        <span v-text="$i18n.text.article.hotlist"/>
       </p>
       <empty-box v-if="!articles.length">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
-      <ul class="aside-article-list" v-else>
-        <li class="item" :key="item.id" v-for="item in articles">
-          <span class="index"></span>
-          <nuxt-link class="title" :to="`/article/${item.id}`"
-            :title="`${item.title} - 「 ${item.comment} ${$i18n.text.comment.count} | ${item.comment} ${$i18n.text.comment.like} 」`">
-            <span v-text="item.title"></span>
+      <ul v-else class="aside-article-list">
+        <li v-for="item in articles" :key="item.id" class="item">
+          <span class="index"/>
+          <nuxt-link
+            :to="`/article/${item.id}`"
+            :title="`${item.title} - 「 ${item.comment} ${$i18n.text.comment.count} | ${item.comment} ${$i18n.text.comment.like} 」`"
+            class="title">
+            <span v-text="item.title"/>
           </nuxt-link>
         </li>
       </ul>
@@ -29,42 +31,42 @@
       <calendar />
     </div>
     <transition name="module">
-      <div class="aside-ad" key="ad" v-if="renderAd">
+      <div v-if="renderAd" key="ad" class="aside-ad">
         <adsense-aside />
       </div>
     </transition>
-    <div class="aside-fixed-box" :class="{ fixed: fixedMode.fixed }" v-scroll-top>
+    <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
       <no-ssr>
         <transition name="fade">
-          <aside-ad :initIndex="adIndex" @slideChange="handleChangeAdSwiper" v-if="fixedMode.fixed" />
+          <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
         </transition>
       </no-ssr>
       <div class="aside-tag">
         <empty-box v-if="!tags.length">
           <slot>{{ $i18n.text.tag.empty }}</slot>
         </empty-box>
-        <ul class="aside-tag-list" v-else>
-          <nuxt-link tag="li" class="item" :key="index" :to="`/tag/${tag.slug}`" v-for="(tag, index) in tags">
-            <a class="title" :title="tag.description">
+        <ul v-else class="aside-tag-list">
+          <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.slug}`" tag="li" class="item">
+            <a :title="tag.description" class="title">
               <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
                 v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
-              <i class="iconfont" :class="tag.icon"></i>
+              <i :class="tag.icon" class="iconfont"/>
               <span>{{ isEnLang ? tag.slug : tag.name }}</span>
               <span>({{ tag.tagsCount || 0 }})</span>
             </a>
           </nuxt-link>
         </ul>
       </div>
-      <div class="aside-tools" v-if="isArticlePage">
+      <div v-if="isArticlePage" class="aside-tools">
         <div class="full-column" @click="handleSetFullColumn">
-          <span v-text="$i18n.text.article.fullcolread"></span>
+          <span v-text="$i18n.text.article.fullcolread"/>
           <span>&nbsp;&nbsp;</span>
-          <i class="iconfont icon-read"></i>
+          <i class="iconfont icon-read"/>
         </div>
         <div class="full-page" @click="handleFullScreen">
-          <span v-text="$i18n.text.article.fullscreenread"></span>
+          <span v-text="$i18n.text.article.fullscreenread"/>
           <span>&nbsp;&nbsp;</span>
-          <i class="iconfont icon-fullscreen"></i>
+          <i class="iconfont icon-fullscreen"/>
         </div>
       </div>
     </div>
@@ -72,122 +74,124 @@
 </template>
 
 <script>
-  import AsideAd from './ad'
-  import Calendar from './calendar'
-  import { mapState } from 'vuex'
-  import { Route } from '~/constants/system'
-  import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
-  export default {
-    name: 'pc-aside',
-    components: {
-      AsideAd,
-      Calendar
-    },
-    data() {
-      return {
-        adIndex: 0,
-        renderAd: true,
-        keyword: '',
-        fixedMode: {
-          fixed: false,
-          element: null,
-          sidebarFixedOffsetTop: 0
-        }
-      }
-    },
-    mounted() {
-      this.updateAd()
-      if (isSearchArchiveRoute(this.$route.name)) {
-        this.keyword = this.$route.params.keyword
-      }
-    },
-    computed: {
-      ...mapState({
-        tags: state => state.tag.data,
-        articles: state => state.article.hotList.data,
-        language: state => state.global.language
-      }),
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isArticlePage() {
-        return isArticleDetailRoute(this.$route.name)
-      }
-    },
-    methods: {
-      updateAd() {
-        this.renderAd = false
-        this.$nextTick(() => {
-          this.renderAd = true
+import AsideAd from './ad'
+import Calendar from './calendar'
+import { mapState } from 'vuex'
+import { Route } from '~/constants/system'
+import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
+export default {
+  name: 'PcAside',
+  components: {
+    AsideAd,
+    Calendar
+  },
+
+  directives: {
+    scrollTop: {
+      inserted(element, _, VNode) {
+        // context
+        const context = VNode.context
+        // element
+        context.fixedMode.element = element
+        // 检测此元素相对于文档Document原点的绝对位置，并且这个值是不变化的
+        context.fixedMode.sidebarFixedOffsetTop = element.offsetTop
+        // 初始化应用
+        context.parseScroll()
+        // 监听滚动事件
+        window.addEventListener('scroll', context.parseScroll, {
+          passive: true
         })
       },
-      handleSearch() {
-        const keyword = this.keyword
-        const paramsKeyword = this.$route.params.keyword
-        const isSearchPage = isSearchArchiveRoute(this.$route.name)
-        if (keyword && (isSearchPage ? paramsKeyword !== keyword : true)) {
-          this.$router.push({ name: Route.SearchArchive, params: { keyword } })
-        }
-      },
-      handleSlideChange(index) {
-        this.adIndex = index
-      },
-      handleChangeAdSwiper(index) {
-        this.$refs.asideAd.swiper.slideToLoop(index)
-      },
-      handleSetFullColumn() {
-        this.$store.commit('global/updateThreeColumnsState', true)
-      },
-      handleFullScreen() {
-        this.handleSetFullColumn()
-        const docElm = document.documentElement
-        const requestEvent =
+      unbind(element, _, VNode) {
+        window.removeEventListener('scroll', VNode.context.parseScroll)
+      }
+    }
+  },
+  data() {
+    return {
+      adIndex: 0,
+      renderAd: true,
+      keyword: '',
+      fixedMode: {
+        fixed: false,
+        element: null,
+        sidebarFixedOffsetTop: 0
+      }
+    }
+  },
+
+  computed: {
+    ...mapState({
+      tags: state => state.tag.data,
+      articles: state => state.article.hotList.data,
+      language: state => state.global.language
+    }),
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    isArticlePage() {
+      return isArticleDetailRoute(this.$route.name)
+    }
+  },
+  mounted() {
+    this.updateAd()
+    if (isSearchArchiveRoute(this.$route.name)) {
+      this.keyword = this.$route.params.keyword
+    }
+  },
+  methods: {
+    updateAd() {
+      this.renderAd = false
+      this.$nextTick(() => {
+        this.renderAd = true
+      })
+    },
+    handleSearch() {
+      const keyword = this.keyword
+      const paramsKeyword = this.$route.params.keyword
+      const isSearchPage = isSearchArchiveRoute(this.$route.name)
+      if (keyword && (isSearchPage ? paramsKeyword !== keyword : true)) {
+        this.$router.push({ name: Route.SearchArchive, params: { keyword }})
+      }
+    },
+    handleSlideChange(index) {
+      this.adIndex = index
+    },
+    handleChangeAdSwiper(index) {
+      this.$refs.asideAd.swiper.slideToLoop(index)
+    },
+    handleSetFullColumn() {
+      this.$store.commit('global/updateThreeColumnsState', true)
+    },
+    handleFullScreen() {
+      this.handleSetFullColumn()
+      const docElm = document.documentElement
+      const requestEvent =
           docElm.requestFullscreen ||
           docElm.mozRequestFullScreen ||
           docElm.webkitRequestFullScreen ||
           docElm.msRequestFullscreen
-        if (requestEvent) requestEvent.bind(docElm)()
-      },
-      parseScroll() {
-        const element = this.fixedMode.element
-        const sidebarFixedOffsetTop = this.fixedMode.sidebarFixedOffsetTop
-        const windowScrollTop =
+      if (requestEvent) requestEvent.bind(docElm)()
+    },
+    parseScroll() {
+      const element = this.fixedMode.element
+      const sidebarFixedOffsetTop = this.fixedMode.sidebarFixedOffsetTop
+      const windowScrollTop =
           document.documentElement.scrollTop ||
           window.pageYOffset ||
           window.scrollY ||
           document.body.scrollTop
-        const newSidebarFixedOffsetTop = element.offsetTop
-        this.fixedMode.sidebarFixedOffsetTop =
+      const newSidebarFixedOffsetTop = element.offsetTop
+      this.fixedMode.sidebarFixedOffsetTop =
           newSidebarFixedOffsetTop !== sidebarFixedOffsetTop &&
             newSidebarFixedOffsetTop !== 77
             ? newSidebarFixedOffsetTop
             : sidebarFixedOffsetTop
-        const isFixed = windowScrollTop > sidebarFixedOffsetTop
-        this.fixedMode.fixed = isFixed && element
-      }
-    },
-    directives: {
-      scrollTop: {
-        inserted(element, _, VNode) {
-          // context
-          const context = VNode.context
-          // element
-          context.fixedMode.element = element
-          // 检测此元素相对于文档Document原点的绝对位置，并且这个值是不变化的
-          context.fixedMode.sidebarFixedOffsetTop = element.offsetTop
-          // 初始化应用
-          context.parseScroll()
-          // 监听滚动事件
-          window.addEventListener('scroll', context.parseScroll, {
-            passive: true
-          })
-        },
-        unbind(element, _, VNode) {
-          window.removeEventListener('scroll', VNode.context.parseScroll)
-        }
-      }
+      const isFixed = windowScrollTop > sidebarFixedOffsetTop
+      this.fixedMode.fixed = isFixed && element
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -207,7 +211,7 @@
       background-color: #fcf8e3;
       border-color: #faebcc;
       color: #8a6d3b;
-      padding: 15px; 
+      padding: 15px;
       }
 
     .aside-article,

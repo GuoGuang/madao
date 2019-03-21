@@ -1,24 +1,24 @@
 <template>
-  <div class="projects" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="projects">
     <ul class="project-list">
       <li
-        class="item"
+        v-for="(project, index) in projects"
         :key="index"
         :class="{ last: buildLastClass(index) }"
-        v-for="(project, index) in projects"
+        class="item"
       >
         <a
+          :href="project.html_url"
+          :title="project.description"
           target="_blank"
           class="item-content"
           rel="external nofollow noopenter"
-          :href="project.html_url"
-          :title="project.description"
         >
           <i
-            class="iconfont"
             :class="buildIcon(project).icon"
             :style="{ color: buildIcon(project).color }"
-          ></i>
+            class="iconfont"
+          />
           <h3 class="title">{{ project.name }}</h3>
           <p
             class="description"
@@ -27,15 +27,15 @@
           <hr>
           <p class="meta">
             <span class="item star">
-              <i class="iconfont icon-star"></i>
+              <i class="iconfont icon-star"/>
               <span>{{ project.stargazers_count }}</span>
             </span>
             <span class="item fork">
-              <i class="iconfont icon-git-fork"></i>
+              <i class="iconfont icon-git-fork"/>
               <span>{{ project.forks_count }}</span>
             </span>
             <span class="item issues">
-              <i class="iconfont icon-git-issue"></i>
+              <i class="iconfont icon-git-issue"/>
               <span>{{ project.open_issues_count }}</span>
             </span>
           </p>
@@ -46,122 +46,121 @@
 </template>
 
 <script>
-  export default {
-    name: 'project',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}Project`
-      }
+export default {
+  name: 'Project',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}Project`
+    }
+  },
+  fetch({ store }) {
+    return store.dispatch('project/fetchRepositories')
+  },
+  computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
     },
-    fetch({ store }) {
-      return store.dispatch('project/fetchRepositories')
+    isMobile() {
+      return this.$store.state.global.isMobile
     },
-    computed: {
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      },
-      projects() {
-        return this.$store.state.project.repositories.data
-      }
+    projects() {
+      return this.$store.state.project.repositories.data
+    }
+  },
+  methods: {
+    buildLastClass(index) {
+      const projects = this.projects
+      return projects.length % 4
+        ? index >= (projects.length - projects.length % 4) // 取余
+        : index >= projects.length - 4 // 取整
     },
-    methods: {
-      buildLastClass(index) {
-        const projects = this.projects
-        return projects.length % 4
-          ? index >= (projects.length - projects.length % 4) // 取余
-          : index >= projects.length - 4 // 取整
-      },
-      buildIcon(project) {
-
-        const iconRules = [{
-            desc: 'netease',
-            icon: 'netease-music',
-            color: '#ab3419'
-          }, {
-            name: 'react',
-            desc: 'react',
-            color: '#5dd4fa'
-          }, {
-            name: 'linux',
-            color: '#000000'
-          }, {
-            name: 'deploy',
-            icon: 'linux',
-            color: '#000000'
-          }, {
-            name: 'sre',
-            icon: 'linux',
-            color: '#000000'
-          }, {
-            name: 'youyd',
-            icon: 'think',
-            color: '#0088f5'
-          }, {
-            name: 'emoji',
-            color: '#f4c449'
-          }, {
-            name: 'vue',
-            desc: 'vue',
-            icon: 'vuejs-gray',
-            color: '#62b287'
-          }, {
-            name: 'chrome',
-            color: '#4aa066'
-          }, {
-            name: 'jquery',
-            color: '#8bcdf1'
-          }, {
-            desc: 'music',
-            color: '#ab3419'
-          }, {
-            name: 'theme',
-            color: 'rgb(245, 119, 0)'
-          }, {
-            name: 'wordpress',
-            color: '#24282d'
-          }, {
-            name: 'javascript',
-            color: '#f4c449'
-          }, {
-            name: 'wallpaper',
-            color: '#2c343d'
-          }, {
-            name: 'node',
-            icon: 'nodejs',
-            color: '#8dbb39'
-          }, {
-            name: 'angular',
-            icon: 'angularjs',
-            color: '#cc3427'
-          }, {
-            name: 'ngx',
-            icon: 'angularjs',
-            color: '#cc3427'
-          }
-        ]
-
-        const isIncludeName = key => project.name.toLowerCase().includes(key)
-        const isIncludeDesc = key => project.description.toLowerCase().includes(key)
-        const targetRule = iconRules.find(rule => {
-          const includeName = rule.name ? isIncludeName(rule.name) : false
-          const includeDesc = rule.desc ? isIncludeDesc(rule.desc) : false
-          return includeName || includeDesc
-        })
-
-        const targetIcon = targetRule
-          ? targetRule.icon || targetRule.name || targetRule.desc
-          : 'code'
-
-        const defaultColor = 'inherit'
-        const targetColor = targetRule ? targetRule.color || defaultColor : defaultColor
-
-        return { icon: `icon-${targetIcon}`, color: targetColor }
+    buildIcon(project) {
+      const iconRules = [{
+        desc: 'netease',
+        icon: 'netease-music',
+        color: '#ab3419'
+      }, {
+        name: 'react',
+        desc: 'react',
+        color: '#5dd4fa'
+      }, {
+        name: 'linux',
+        color: '#000000'
+      }, {
+        name: 'deploy',
+        icon: 'linux',
+        color: '#000000'
+      }, {
+        name: 'sre',
+        icon: 'linux',
+        color: '#000000'
+      }, {
+        name: 'youyd',
+        icon: 'think',
+        color: '#0088f5'
+      }, {
+        name: 'emoji',
+        color: '#f4c449'
+      }, {
+        name: 'vue',
+        desc: 'vue',
+        icon: 'vuejs-gray',
+        color: '#62b287'
+      }, {
+        name: 'chrome',
+        color: '#4aa066'
+      }, {
+        name: 'jquery',
+        color: '#8bcdf1'
+      }, {
+        desc: 'music',
+        color: '#ab3419'
+      }, {
+        name: 'theme',
+        color: 'rgb(245, 119, 0)'
+      }, {
+        name: 'wordpress',
+        color: '#24282d'
+      }, {
+        name: 'javascript',
+        color: '#f4c449'
+      }, {
+        name: 'wallpaper',
+        color: '#2c343d'
+      }, {
+        name: 'node',
+        icon: 'nodejs',
+        color: '#8dbb39'
+      }, {
+        name: 'angular',
+        icon: 'angularjs',
+        color: '#cc3427'
+      }, {
+        name: 'ngx',
+        icon: 'angularjs',
+        color: '#cc3427'
       }
+      ]
+
+      const isIncludeName = key => project.name.toLowerCase().includes(key)
+      const isIncludeDesc = key => project.description.toLowerCase().includes(key)
+      const targetRule = iconRules.find(rule => {
+        const includeName = rule.name ? isIncludeName(rule.name) : false
+        const includeDesc = rule.desc ? isIncludeDesc(rule.desc) : false
+        return includeName || includeDesc
+      })
+
+      const targetIcon = targetRule
+        ? targetRule.icon || targetRule.name || targetRule.desc
+        : 'code'
+
+      const defaultColor = 'inherit'
+      const targetColor = targetRule ? targetRule.color || defaultColor : defaultColor
+
+      return { icon: `icon-${targetIcon}`, color: targetColor }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

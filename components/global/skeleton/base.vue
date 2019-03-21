@@ -1,41 +1,43 @@
 <template>
-  <div class="skeleton base" :style="style"></div>
+  <div :style="style" class="skeleton base"/>
 </template>
 
 <script>
-  export default {
-    name: 'skeleton-base',
-    props: {
-      width: {
-        type: Number,
-      },
-      height: {
-        type: Number,
-      },
-      circle: {
-        type: Boolean,
-        default: false
-      },
-      radius: {
-        type: Number,
-        default: 2
-      }
+export default {
+  name: 'SkeletonBase',
+  props: {
+    width: {
+      type: Number,
+      default: 1
     },
-    computed: {
-      style() {
-        const style = {
-          'border-radius': this.circle ? '100%' : `${this.radius}px`,
-        }
-        if (this.width) {
-          style.width = this.width + 'px'
-        }
-        if (this.height) {
-          style.height = this.height + 'px'
-        }
-        return style
+    height: {
+      type: Number,
+      default: 1
+    },
+    circle: {
+      type: Boolean,
+      default: false
+    },
+    radius: {
+      type: Number,
+      default: 2
+    }
+  },
+  computed: {
+    style() {
+      const style = {
+        'border-radius': this.circle ? '100%' : `${this.radius}px`
       }
+      if (this.width) {
+        style.width = this.width + 'px'
+      }
+      if (this.height) {
+        style.height = this.height + 'px'
+      }
+      return style
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +53,7 @@
       background-position: 350px 50px
     }
   }
-  
+
   .skeleton.base {
     width: 100%;
     height: 100%;

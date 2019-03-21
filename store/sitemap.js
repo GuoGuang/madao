@@ -41,7 +41,8 @@ export const actions = {
         commit('updateArticleListFetching', false)
       })
       .catch(error => {
+        console.error(error)
         commit('updateArticleListFetching', false)
       })
-  },
+  }
 }

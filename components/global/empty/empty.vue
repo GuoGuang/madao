@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'empty-box'
-  }
+export default {
+  name: 'EmptyBox'
+}
 </script>
 
 <style lang="scss">

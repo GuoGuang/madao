@@ -1,37 +1,39 @@
 <template>
-  <div class="skeleton line" :style="style">
+  <div :style="style" class="skeleton line">
     <skeleton-base />
   </div>
 </template>
 
 <script>
-  import SkeletonBase from './base'
-  export default {
-    name: 'skeleton-line',
-    components: {
-      SkeletonBase
+import SkeletonBase from './base'
+export default {
+  name: 'SkeletonLine',
+  components: {
+    SkeletonBase
+  },
+  props: {
+    width: {
+      type: Number,
+      default: 1
     },
-    props: {
-      width: {
-        type: Number,
-      },
-      height: {
-        type: Number,
+    height: {
+      type: Number,
+      default: 1
+    }
+  },
+  computed: {
+    style() {
+      const style = {}
+      if (this.width) {
+        style.width = this.width + 'px'
       }
-    },
-    computed: {
-      style() {
-        const style = {}
-        if (this.width) {
-          style.width = this.width + 'px'
-        }
-        if (this.height) {
-          style.height = this.height + 'px'
-        }
-        return style
+      if (this.height) {
+        style.height = this.height + 'px'
       }
+      return style
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

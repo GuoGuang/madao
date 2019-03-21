@@ -1,29 +1,39 @@
 <template>
   <div
-    class="color-block-box"
     :style="{ transform: `rotate(-60deg) translateY(${left}%)` }"
     :class="{
-        gray: gray,
-        [color || '']: true,
-        'border-left': border === 'left',
-        'border-right': border === 'right'
-      }"
-  ></div>
+      gray: gray,
+      [color || '']: true,
+      'border-left': border === 'left',
+      'border-right': border === 'right'
+    }"
+    class="color-block-box"
+  />
 </template>
 
 <script>
-  export default {
-    name: 'color-block-box',
-    props: {
-      gray: Boolean,
-      left: Number,
-      color: String,
-      border: {
-        type: String,
-        default: 'right'
-      }
+export default {
+  name: 'ColorBlockBox',
+  props: {
+
+    gray: {
+      type: Boolean,
+      default: true
+    },
+    left: {
+      type: Number,
+      default: 0
+    },
+    color: {
+      type: String,
+      default: ''
+    },
+    border: {
+      type: String,
+      default: 'right'
     }
   }
+}
 </script>
 
 <style lang="scss">

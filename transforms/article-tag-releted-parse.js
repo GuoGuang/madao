@@ -5,7 +5,6 @@
  */
 
 export default (text, tags) => {
-
   // 首字母大写
   const toFirstUpperCase = string => {
     return string.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
@@ -23,6 +22,7 @@ export default (text, tags) => {
   }, {})).sort((prev, next) => prev.length < next.length)
 
   // 构造正则
+  // eslint-disable-next-line no-eval
   const tagRegexp = eval(`/${tagNames.join('|')}/ig`)
 
   // 如果字符被 tagNames 包含，即字符本身是个单词，即字符本身是连接，则直接返回字符，不再处理
@@ -32,7 +32,6 @@ export default (text, tags) => {
 
   // 正则替换方法
   return text.replace(tagRegexp, tag => {
-
     // 找到本身为自身、大写为自身、小写为自身、首字母大写为自身
     const findedTag = tags.find(t =>
       Object.is(t.name, tag) ||

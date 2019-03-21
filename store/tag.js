@@ -30,6 +30,7 @@ export const actions = {
         commit('updateFetching', false)
       })
       .catch(error => {
+        console.error(error)
         commit('updateFetching', false)
       })
   }

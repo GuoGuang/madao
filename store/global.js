@@ -171,7 +171,10 @@ export const actions = {
         commit('updateAppOptionData', response)
         commit('updateAppOptionFetching', false)
       })
-      .catch(error => commit('updateAppOptionFetching', false))
+      .catch(error => {
+        console.error(error)
+        commit('updateAppOptionFetching', false)
+      })
   },
 
   // 喜欢主站

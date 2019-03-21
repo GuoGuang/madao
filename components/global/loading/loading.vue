@@ -1,51 +1,51 @@
 <template>
-  <div class="spinner-box" v-show="loading">
+  <div v-show="loading" class="spinner-box">
     <div class="spinner-inner">
       <div class="la-ball-beat">
-        <div :style="spinnerStyle"></div>
-        <div :style="spinnerStyle"></div>
-        <div :style="spinnerStyle"></div>
+        <div :style="spinnerStyle"/>
+        <div :style="spinnerStyle"/>
+        <div :style="spinnerStyle"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'loading-box',
-    props: {
-      loading: {
-        type: Boolean,
-        default: true
-      },
-      color: {
-        type: String,
-        default: 'rgba(197, 197, 197, 0.4)'
-      },
-      height: {
-        type: String,
-        default: '15px'
-      },
-      width: {
-        type: String,
-        default: '15px'
-      },
-      margin: {
-        type: String,
-        default: '5px'
-      }
+export default {
+  name: 'LoadingBox',
+  props: {
+    loading: {
+      type: Boolean,
+      default: true
     },
-    data () {
-      return {
-        spinnerStyle: {
-          backgroundColor: this.color,
-          height: this.height,
-          width: this.width,
-          margin: this.margin
-        }
+    color: {
+      type: String,
+      default: 'rgba(197, 197, 197, 0.4)'
+    },
+    height: {
+      type: String,
+      default: '15px'
+    },
+    width: {
+      type: String,
+      default: '15px'
+    },
+    margin: {
+      type: String,
+      default: '5px'
+    }
+  },
+  data() {
+    return {
+      spinnerStyle: {
+        backgroundColor: this.color,
+        height: this.height,
+        width: this.width,
+        margin: this.margin
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

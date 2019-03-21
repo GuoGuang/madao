@@ -1,33 +1,33 @@
 <template>
   <!-- 剪切板 -->
   <div id="clipboard">
-    <input type="text" v-model="text" class="clipboard-input" ref="clipboard">
+    <input ref="clipboard" v-model="text" type="text" class="clipboard-input">
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'clipboard',
-    data() {
-      return {
-        text: ''
-      }
-    },
-    mounted() {
-      this.$root.$copyToClipboard = this.copyToClipboard
-    },
-    methods: {
-      copyToClipboard(text) {
-        this.text = text
-        window.clickCopy = true
-        setTimeout(() => {
-          this.$refs.clipboard.select()
-          document.execCommand('Copy')
-          window.clickCopy = false
-        })
-      }
-    },
+export default {
+  name: 'Clipboard',
+  data() {
+    return {
+      text: ''
+    }
+  },
+  mounted() {
+    this.$root.$copyToClipboard = this.copyToClipboard
+  },
+  methods: {
+    copyToClipboard(text) {
+      this.text = text
+      window.clickCopy = true
+      setTimeout(() => {
+        this.$refs.clipboard.select()
+        document.execCommand('Copy')
+        window.clickCopy = false
+      })
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

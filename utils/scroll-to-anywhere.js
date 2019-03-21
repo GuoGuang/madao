@@ -54,7 +54,7 @@ export const scrollTo = (element, duration = 500, options) => {
     'keyup',
     'touchmove'
   ]
-  
+
   let abort = false
 
   const abortFn = function() {

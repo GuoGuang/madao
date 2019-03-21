@@ -8,7 +8,6 @@ import { proxyUrl } from '~/config/api.config.esm'
 import { Howler, Howl } from 'howler'
 
 export default music => {
-
   const proxyPath = proxyUrl + 'music/'
   const playList = music.list.data.tracks
 
@@ -40,7 +39,6 @@ export default music => {
 
   // 进度条的一帧帧更新
   const playerStep = () => {
-
     // Get the Howl we want to manipulate.
     const sound = playerList[music.state.index].howl
 
@@ -60,7 +58,6 @@ export default music => {
 
     // 播放
     play(index) {
-
       // 实例前拦截
       index = typeof index === 'number' ? index : music.state.index
 
@@ -70,16 +67,14 @@ export default music => {
 
       // 如果目标歌曲已存在实例
       if (currentOldSong && currentOldSong.howl) {
-
         // 如果目标歌曲和正在当前实例歌曲相同，且处于播放状态，则终止
         if (Object.is(index, music.state.index)) {
-
           if (!currentOldSong.howl.playing()) {
             currentOldSong.song_id = currentOldSong.howl.play()
             currentOldSong.howl.fade(0, music.state.volume, 1000, currentOldSong.song_id)
           }
           return false
-          
+
         // 否则停止当前正在播放歌曲，停止所有正在播放的歌曲
         } else if (currentOldSong.howl.playing()) {
           currentOldSong.howl.stop()
@@ -108,7 +103,7 @@ export default music => {
         music.state.index = (index < 0) ? 0 : index
         music.player.nextSong()
         music.state.ready = true
-      } 
+      }
 
       // 实例播放轨方法
       const buildHowl = song => {
@@ -180,18 +175,19 @@ export default music => {
             song.src = response.result.data[0].url
             // console.log('得到异步数据', '要播放这一首：', music.state.targetIndex, '异步数据的id是：', song.id, '目标歌曲的id是', playerList[music.state.targetIndex].id)
             // 用户可能是在频繁切换，这里判断如果当前歌曲下标不是请求的歌曲，则仅仅赋值 src，不做播放器构建
-            if (song.id == playerList[music.state.targetIndex].id) {
+            if (song.id === playerList[music.state.targetIndex].id) {
               buildHowl(song)
             }
           } else {
             errorAndNextSong(song)
           }
         }).catch(error => {
+          console.log(error)
           errorAndNextSong(song)
         })
       }
     },
-    
+
     // 暂停
     pause() {
       const sound = playerList[music.state.index]
@@ -225,7 +221,6 @@ export default music => {
 
     // 跳到某首歌
     skipToSong(index) {
-
       // 停止当前音乐
       const currentTrack = playerList[music.state.index]
       if (currentTrack && currentTrack.howl) {

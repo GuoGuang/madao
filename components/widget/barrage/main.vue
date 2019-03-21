@@ -1,48 +1,48 @@
 <template>
-  <div class="global-barrage" :class="{ active: barrageState }">
+  <div :class="{ active: barrageState }" class="global-barrage">
     <div class="barrage-box">
-      <div class="list-box" ref="barrageBox">
+      <div ref="barrageBox" class="list-box">
         <ul class="barrages-list">
           <barrage-item
+            v-for="barrage in barrages"
             :id="barrage.id"
             :key="barrage.id"
             :barrage="barrage"
             :delay="config.delay"
             @end="handleAnimationEnd"
-            v-for="barrage in barrages"
-          ></barrage-item>
+          />
         </ul>
       </div>
       <div class="input-box">
         <div class="input-inner">
           <div class="size">
-            <div class="active size" :class="'s-' + sizeIndex">{{ currentSize }}</div>
+            <div :class="'s-' + sizeIndex" class="active size">{{ currentSize }}</div>
             <ul class="size list">
               <li
-                class="item"
+                v-for="(size, index) in sizes"
                 :key="index"
                 :class="'s-' + index"
-                v-for="(size, index) in sizes"
+                class="item"
                 @click="sizeIndex = index"
               >{{ size }}</li>
             </ul>
           </div>
           <div class="color">
-            <div class="active color" :class="'color-' + colorIndex">{{ currentColor }}</div>
+            <div :class="'color-' + colorIndex" class="active color">{{ currentColor }}</div>
             <ul class="color list">
               <li
-                class="item"
+                v-for="(color, index) in colors"
                 :key="index"
                 :class="'color-' + index"
-                v-for="(color, index) in colors"
+                class="item"
                 @click="colorIndex = index"
               >{{ color }}</li>
             </ul>
           </div>
           <input
+            v-model="barrage"
             type="text"
             class="input"
-            v-model="barrage"
             placeholder="Let's fuck"
             @keyup.enter="sendbarrage"
           >
@@ -58,129 +58,129 @@
 </template>
 
 <script>
-  import socket from '~/plugins/socket.io'
-  import BarrageItem from './item'
-  export default {
-    name: 'barrage',
-    components: {
-      BarrageItem
-    },
-    data() {
-      const sizes = ['粗大', '很大', '大']
-      const colors = ['老王绿', '原谅绿', '姨妈红', '基佬紫', '百合粉', '东莞黄', '李太白', '木耳黑']
-      return {
-        sizes,
-        colors,
-        socket,
-        counts: {
-          users: 0,
-          count: 0
-        },
-        config: {
-          delay: 10,
-          moveDelay: 3
-        },
-        barrage: '',
-        barrages: [],
-        moveTimer: null,
-        barrageLimit: 0,
-        sizeIndex: sizes.length - 1,
-        colorIndex: colors.length - 1
-      }
-    },
-    computed: {
-      currentColor() {
-        return this.colors[this.colorIndex]
+import socket from '~/plugins/socket.io'
+import BarrageItem from './item'
+export default {
+  name: 'Barrage',
+  components: {
+    BarrageItem
+  },
+  data() {
+    const sizes = ['粗大', '很大', '大']
+    const colors = ['老王绿', '原谅绿', '姨妈红', '基佬紫', '百合粉', '东莞黄', '李太白', '木耳黑']
+    return {
+      sizes,
+      colors,
+      socket,
+      counts: {
+        users: 0,
+        count: 0
       },
-      currentSize() {
-        return this.sizes[this.sizeIndex]
+      config: {
+        delay: 10,
+        moveDelay: 3
       },
-      barrageState() {
-        return this.$store.state.global.onBarrage
-      }
+      barrage: '',
+      barrages: [],
+      moveTimer: null,
+      barrageLimit: 0,
+      sizeIndex: sizes.length - 1,
+      colorIndex: colors.length - 1
+    }
+  },
+  computed: {
+    currentColor() {
+      return this.colors[this.colorIndex]
     },
-    beforeMount() {
-      this.socket.emit('barrage-last-list', barrages => {
-        barrages.forEach((b, i) => {
-          b.id = i + 1
-        })
-        // 生成随机的时间，push 进不同的内容，而不是一次性赋值
-        const moveBarrages = () => {
+    currentSize() {
+      return this.sizes[this.sizeIndex]
+    },
+    barrageState() {
+      return this.$store.state.global.onBarrage
+    }
+  },
+  beforeMount() {
+    this.socket.emit('barrage-last-list', barrages => {
+      barrages.forEach((b, i) => {
+        b.id = i + 1
+      })
+      // 生成随机的时间，push 进不同的内容，而不是一次性赋值
+      const moveBarrages = () => {
+        if (barrages.length) {
+          // console.log('moveBarrages， 还有', barrages.length)
+          this.barrages.push(barrages[0])
+          barrages.splice(0, 1)
           if (barrages.length) {
-            // console.log('moveBarrages， 还有', barrages.length)
-            this.barrages.push(barrages[0])
-            barrages.splice(0, 1)
-            if (barrages.length) {
-              this.moveTimer = setTimeout(moveBarrages, parseInt(this.randomPer(this.config.moveDelay), 0) * 100)
-            }
+            this.moveTimer = setTimeout(moveBarrages, parseInt(this.randomPer(this.config.moveDelay), 0) * 100)
           }
         }
-        moveBarrages()
-        this.barrageLimit = barrages.length + 2
-      })
-      this.socket.emit('barrage-count', counts => {
-        this.counts = counts
-      })
-      this.socket.on('barrage-update-count', counts => {
-        this.counts = counts
-      })
-      this.socket.on('barrage-create', barrage => {
-        this.barrages.push(barrage)
-      })
-    },
-    beforeDestroy() {
-      if (this.moveTimer) {
-        clearTimeout(this.moveTimer)
       }
-      this.clearBarrages()
+      moveBarrages()
+      this.barrageLimit = barrages.length + 2
+    })
+    this.socket.emit('barrage-count', counts => {
+      this.counts = counts
+    })
+    this.socket.on('barrage-update-count', counts => {
+      this.counts = counts
+    })
+    this.socket.on('barrage-create', barrage => {
+      this.barrages.push(barrage)
+    })
+  },
+  beforeDestroy() {
+    if (this.moveTimer) {
+      clearTimeout(this.moveTimer)
+    }
+    this.clearBarrages()
+  },
+  methods: {
+    // 发布弹幕
+    sendbarrage() {
+      const text = this.barrage.trim()
+      if (!text) return
+      const barrage = {
+        text,
+        style: {
+          size: this.sizeIndex,
+          color: this.colorIndex
+        },
+        date: new Date().getTime()
+      }
+      this.socket.emit('barrage-send', barrage)
+      barrage.id = this.barrageLimit++
+      this.barrages.push(barrage)
+      this.counts.count += 1
+      this.barrage = ''
     },
-    methods: {
-      // 发布弹幕
-      sendbarrage() {
-        const text = this.barrage.trim()
-        if (!text) return
-        const barrage = {
-          text,
-          style: {
-            size: this.sizeIndex,
-            color: this.colorIndex
-          },
-          date: new Date().getTime()
-        }
-        this.socket.emit('barrage-send', barrage)
-        barrage.id = this.barrageLimit++
-        this.barrages.push(barrage)
-        this.counts.count += 1
-        this.barrage = ''
-      },
-      // 时间转换
-      transferDate(timestamp) {
-        return new Date(timestamp).toLocaleString()
-      },
-      // 计算随机数
-      randomPer(pre = 3) {
-        const rnd = seed => {
-          seed = (seed * 9301 + 49297) % 233280
-          return seed / (233280.0)
-        }
-        const rand = number => {
-          const seed = new Date().getTime()
-          return rnd(seed) * number + Math.random()
-        }
-        return rand(pre)
-      },
-      // 清空动画队列
-      clearBarrages() {
-        this.barrages = []
-      },
-      handleAnimationEnd(id) {
-        const targetIndex = this.barrages.findIndex(barrage => barrage.id === id)
-        if (targetIndex > -1) {
-          this.barrages.splice(targetIndex, 1)
-        }
+    // 时间转换
+    transferDate(timestamp) {
+      return new Date(timestamp).toLocaleString()
+    },
+    // 计算随机数
+    randomPer(pre = 3) {
+      const rnd = seed => {
+        seed = (seed * 9301 + 49297) % 233280
+        return seed / (233280.0)
+      }
+      const rand = number => {
+        const seed = new Date().getTime()
+        return rnd(seed) * number + Math.random()
+      }
+      return rand(pre)
+    },
+    // 清空动画队列
+    clearBarrages() {
+      this.barrages = []
+    },
+    handleAnimationEnd(id) {
+      const targetIndex = this.barrages.findIndex(barrage => barrage.id === id)
+      if (targetIndex > -1) {
+        this.barrages.splice(targetIndex, 1)
       }
     }
   }
+}
 </script>
 
 <style lang="scss">
@@ -277,8 +277,8 @@
     opacity: 0;
     visibility: hidden;
     transform: translate3d(0, -100%, 0);
-    animation-duration: .5s; 
-    animation-fill-mode: both; 
+    animation-duration: .5s;
+    animation-fill-mode: both;
     animation-name: barrage-out;
     background-color: $module-hover-bg-darken-20;
     backface-visibility: hidden;
@@ -290,7 +290,7 @@
       opacity: 1;
       visibility: visible;
       animation-duration: 1.556s;
-      animation-fill-mode: both; 
+      animation-fill-mode: both;
       animation-name: barrage-in;
       animation-timing-function: ease;
 
@@ -299,8 +299,8 @@
         > .input-box {
           // transition: transform 5s;
           animation-delay: 1.6s;
-          animation-duration: .5s; 
-          animation-fill-mode: both; 
+          animation-duration: .5s;
+          animation-fill-mode: both;
           animation-name: input-box-in;
           animation-timing-function: ease;
           // transform: translate3d(0, 0, 0);
@@ -335,8 +335,8 @@
           }
 
           .barrages-list-leave-active {
-            animation-duration: 30s; 
-            animation-fill-mode: both; 
+            animation-duration: 30s;
+            animation-fill-mode: both;
             animation-name: barrages-list-out;
           }
         }

@@ -12,3 +12,4 @@ export const isSearchArchiveRoute = name => name === systemConstants.Route.Searc
 export const isGuestbookRoute = name => name === systemConstants.Route.Guestbook
 export const isServiceRoute = name => name === systemConstants.Route.Service
 export const isAppRoute = name => name === systemConstants.Route.App
+

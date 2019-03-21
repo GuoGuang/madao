@@ -21,14 +21,13 @@ export const mutations = {
     state.events.data = action
       .filter(repo => !repo.fork && (!repo.description || !repo.description.startsWith('#')))
       .sort((prev, next) => next.stargazers_count - prev.stargazers_count)
-  },
+  }
 }
 
 export const actions = {
 
   // 获取开源项目列表
   fetchEvents({ commit, state }) {
-    
     // 如果数据已存在，则直接返回
     if (state.events.data.length) {
       return Promise.resolve(state.events.data)
@@ -38,11 +37,12 @@ export const actions = {
     commit('updateEventsFetching', true)
     return this.$axios.$get('/events')
       .then(response => {
-        
         commit('updateEventsData', response.result)
         commit('updateEventsFetching', false)
-        
       })
-      .catch(error => commit('updateEventsFetching', false))
-  },
+      .catch(error => {
+        console.error(error)
+        commit('updateEventsFetching', false)
+      })
+  }
 }

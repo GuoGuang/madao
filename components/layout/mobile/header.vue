@@ -1,39 +1,39 @@
 <template>
   <header class="header">
-    <form class="search" :class="{ actived: search }" @submit.stop.prevent="toSearch()">
+    <form :class="{ actived: search }" class="search" @submit.stop.prevent="toSearch()">
       <input
         ref="input"
+        v-model.trim="keyword"
+        :placeholder="$i18n.text.search"
         type="text"
         class="input"
         list="keywords"
         required
-        v-model.trim="keyword"
-        :placeholder="$i18n.text.search"
         @keyup.enter.stop.prevent="toSearch"
-      />
+      >
       <span class="close" @click.stop.prevent="search = false">
-        <i class="iconfont icon-cancel"></i>
+        <i class="iconfont icon-cancel"/>
       </span>
       <no-ssr>
-        <datalist class="search-keywords" id="keywords" v-if="tags.length">
-          <option class="iiem" :value="tag.name" :label="tag.description" :key="tag.slug" v-for="tag in tags" />
+        <datalist v-if="tags.length" id="keywords" class="search-keywords">
+          <option v-for="tag in tags" :value="tag.name" :label="tag.description" :key="tag.slug" class="iiem" />
         </datalist>
       </no-ssr>
     </form>
     <transition name="module">
-      <div v-if="search" class="search-mask"></div>
+      <div v-if="search" class="search-mask"/>
     </transition>
     <nav class="navbar">
       <div class="navbar-container">
         <div class="navbar-header">
           <a href class="navbar-menu" @click.stop.prevent="toggleSidebar(!onMobileSidebar)">
-            <i class="iconfont icon-menu"></i>
+            <i class="iconfont icon-menu"/>
           </a>
           <nuxt-link to="/" class="navbar-logo">
             <img src="/images/logo.svg">
           </nuxt-link>
           <a href class="navbar-search" @click.stop.prevent="openSearch">
-            <i class="iconfont icon-search"></i>
+            <i class="iconfont icon-search"/>
           </a>
         </div>
       </div>
@@ -42,43 +42,43 @@
 </template>
 
 <script>
-  export default {
-    name: 'mobile-header',
-    data() {
-      return {
-        search: false,
-        keyword: ''
-      }
+export default {
+  name: 'MobileHeader',
+  data() {
+    return {
+      search: false,
+      keyword: ''
+    }
+  },
+  computed: {
+    tags() {
+      return this.$store.state.tag.data
     },
-    computed: {
-      tags() {
-        return this.$store.state.tag.data
-      },
-      onMobileSidebar() {
-        return this.$store.state.global.onMobileSidebar
-      }
+    onMobileSidebar() {
+      return this.$store.state.global.onMobileSidebar
+    }
+  },
+  watch: {
+    '$route'(newVel, oldVel) {
+      this.search = false
+      this.toggleSidebar(false)
+    }
+  },
+  methods: {
+    openSearch() {
+      this.search = true
+      this.$nextTick(() => {
+        this.$refs.input.focus()
+      })
     },
-    watch: {
-      '$route'(newVel, oldVel) {
-        this.search = false
-        this.toggleSidebar(false)
-      }
+    toSearch() {
+      this.$router.push({ name: 'search-keyword', params: { keyword: this.keyword }})
     },
-    methods: {
-      openSearch() {
-        this.search = true
-        this.$nextTick(() => {
-          this.$refs.input.focus()
-        })
-      },
-      toSearch() {
-        this.$router.push({ name: 'search-keyword', params: { keyword: this.keyword }})
-      },
-      toggleSidebar(open) {
-        this.$store.commit('global/updateMobileSidebarOnState', open)
-      }
+    toggleSidebar(open) {
+      this.$store.commit('global/updateMobileSidebarOnState', open)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

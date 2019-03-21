@@ -2,37 +2,37 @@
   <div id="tool-left">
     <div class="tool-box">
       <div
+        :class="language"
         class="item language"
         title="Switch language"
-        :class="language"
         @click="tooggleLanguage"
       >{{ language }}</div>
-   
+
     </div>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import systemConstants from '~/constants/system'
-  export default {
-    name: 'language-psm',
-    computed: {
-      ...mapState('global', ['language']),
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      }
-    },
-    methods: {
-      tooggleLanguage() {
-        this.$ga.event('系统语言', '切换', 'tool')
-        this.$store.commit(
-          'global/updateLanguage',
-          this.isEnLang ? systemConstants.Language.Zh : systemConstants.Language.En
-        )
-      }
+import { mapState } from 'vuex'
+import systemConstants from '~/constants/system'
+export default {
+  name: 'LanguagePsm',
+  computed: {
+    ...mapState('global', ['language']),
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    }
+  },
+  methods: {
+    tooggleLanguage() {
+      this.$ga.event('系统语言', '切换', 'tool')
+      this.$store.commit(
+        'global/updateLanguage',
+        this.isEnLang ? systemConstants.Language.Zh : systemConstants.Language.En
+      )
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

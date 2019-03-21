@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'adsense-archive-mobile'
-  }
+export default {
+  name: 'AdsenseArchiveMobile'
+}
 </script>

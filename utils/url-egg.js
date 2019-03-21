@@ -9,7 +9,7 @@ import { isBrowser } from '~/environment/esm'
 let eggTimer = null
 const replaceLocation = emoji => {
   if (isBrowser) {
-    const path = window.$nuxt.$route.path
+    // const path = window.$nuxt.$route.path
     // location.hash = emoji
     // window.$nuxt.$router.replace(`${path}${emojis ? ('#' + emojis) : ''}`)
   }
@@ -30,13 +30,13 @@ const eggs = [
       let emoji = ''
       for (let i = 0; i < 10; i++) {
         const index = Math.floor(emojis.length * ((Math.sin((Date.now() / 100) + i) + 1) / 2))
-        emoji += '👶' + emojis[index];
+        emoji += '👶' + emojis[index]
       }
       replaceLocation(emoji)
       setTimeout(loopEmojis, 66)
     }
     loopEmojis()
-  },
+  }
 ]
 
 export const startUrlEgg = () => {

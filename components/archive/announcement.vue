@@ -2,27 +2,27 @@
   <div class="announcement">
     <color-block-box :left="-59" :gray="true" />
     <div class="title">
-      <i class="iconfont icon-radio"></i>
+      <i class="iconfont icon-radio"/>
     </div>
     <transition name="module" mode="out-in">
-      <empty-box class="announcement-empty-box" key="empty" v-if="!announcement.data.length">
+      <empty-box v-if="!announcement.data.length" key="empty" class="announcement-empty-box">
         <slot>{{ $i18n.text.announcement.empty }}</slot>
       </empty-box>
-      <div class="swiper" key="swiper" v-swiper:swiper="swiperOption" v-else-if="renderSwiper">
+      <div v-swiper:swiper="swiperOption" v-else-if="renderSwiper" key="swiper" class="swiper">
         <div class="swiper-wrapper">
           <div
+            v-for="(announcement, index) in announcement.data"
             :key="index"
             class="swiper-slide slide-item"
-            v-for="(announcement, index) in announcement.data"
           >
-            <div class="content" v-html="markedContent(announcement.content)"></div>
+            <div class="content" v-html="markedContent(announcement.content)"/>
           </div>
         </div>
         <div class="swiper-button-prev">
-          <i class="iconfont icon-announcement-prev"></i>
+          <i class="iconfont icon-announcement-prev"/>
         </div>
         <div class="swiper-button-next">
-          <i class="iconfont icon-announcement-next"></i>
+          <i class="iconfont icon-announcement-next"/>
         </div>
       </div>
     </transition>
@@ -30,50 +30,51 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import marked from '~/plugins/marked'
-  export default {
-    name: 'index-announcement',
-    props: {
-      announcement: {
-        type: Object
+// import { mapState } from 'vuex'
+import marked from '~/plugins/marked'
+export default {
+  name: 'IndexAnnouncement',
+  props: {
+    announcement: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      renderSwiper: true,
+      swiperOption: {
+        height: 34,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          clickable: true
+        },
+        allowTouchMove: false,
+        slidesPerView: 1,
+        setWrapperSize: true,
+        direction: 'vertical'
       }
-    },
-    data() {
-      return {
-        renderSwiper: true,
-        swiperOption: {
-          height: 34,
-          autoplay: {
-            delay: 3500,
-            disableOnInteraction: false
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          },
-          pagination: {
-            clickable: true
-          },
-          allowTouchMove: false,
-          slidesPerView: 1,
-          setWrapperSize: true,
-          direction: 'vertical'
-        }
-      }
-    },
-    methods: {
-      markedContent(content) {
-        return marked(content, null, true)
-      }
-    },
-    activated() {
-      this.renderSwiper = true
-    },
-    deactivated() {
-      this.renderSwiper = false
+    }
+  },
+  activated() {
+    this.renderSwiper = true
+  },
+  deactivated() {
+    this.renderSwiper = false
+  },
+  methods: {
+    markedContent(content) {
+      return marked(content, null, true)
     }
   }
+}
 </script>
 
 <style lang="scss">

@@ -7,7 +7,6 @@
 import { isBrowser } from '~/environment/esm'
 
 if (isBrowser) {
-
   // 销毁 Iframe 弹窗
   const closeIframePopup = () => {
     const mask = document.getElementById('iframe-popup')
@@ -40,7 +39,7 @@ if (isBrowser) {
     mask.setAttribute('id', 'iframe-popup')
     mask.appendChild(iframe)
     document.body.appendChild(mask)
-    
+
     setTimeout(() => {
       mask.setAttribute('class', 'display')
     }, 100)

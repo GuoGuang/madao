@@ -1,33 +1,37 @@
+/* eslint-disable vue/order-in-components */
 <template>
   <!-- 文章详情页 -->
-  <article id="article" class="article" :class="{ mobile: isMobile }">
-    <div class="detail" ref="detail">
+  <article id="article" :class="{ mobile: isMobile }" class="article">
+    <div ref="detail" class="detail">
       <transition name="module">
-        <div v-if="!isFetching" class="oirigin" :class="{
+        <div
+          v-if="!isFetching"
+          :class="{
             self: !article.origin,
             other: article.origin === constants.OriginState.Reprint,
             hybrid: article.origin === constants.OriginState.Hybrid
-          }">
-          <span v-if="!article.origin" v-text="$i18n.text.origin.original"></span>
-          <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"></span>
-          <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"></span>
+          }"
+          class="oirigin">
+          <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
+          <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
+          <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
         </div>
       </transition>
       <transition name="module" mode="out-in" @after-enter="contentAnimatieDone">
-        <div class="skeleton" key="skeleton" v-if="isFetching">
+        <div v-if="isFetching" key="skeleton" class="skeleton">
           <no-ssr>
             <skeleton-line class="title" />
-            <skeleton-paragraph class="content" :lines="9" line-height="1.2em" />
+            <skeleton-paragraph :lines="9" class="content" line-height="1.2em" />
           </no-ssr>
         </div>
-        <div class="knowledge" key="knowledge" v-else>
+        <div v-else key="knowledge" class="knowledge">
           <h2 class="title">{{ article.title }}</h2>
-          <div class="content" id="article-content" v-html="articleContent"></div>
+          <div id="article-content" class="content" v-html="articleContent"/>
           <transition name="module" mode="out-in" @after-leave="readmoreAnimatieDone">
-            <div class="readmore" v-if="isCanReadMore">
-              <button class="readmore-btn" :disabled="isReadMoreLoading" @click="readMore()">
+            <div v-if="isCanReadMore" class="readmore">
+              <button :disabled="isReadMoreLoading" class="readmore-btn" @click="readMore()">
                 <span>{{ isReadMoreLoading ? $i18n.text.article.rendering : $i18n.text.article.readAll }}</span>
-                <i class="iconfont icon-next-bottom"></i>
+                <i class="iconfont icon-next-bottom"/>
               </button>
             </div>
           </transition>
@@ -37,26 +41,29 @@
     <no-ssr>
       <div class="ad">
         <transition name="module" mode="out-in">
-          <skeleton-paragraph class="ad-skeleton" key="skeleton" v-if="isFetching" :lines="4" line-height="1em" />
-          <adsense-article key="adsense" v-else-if="renderAd" />
+          <skeleton-paragraph v-if="isFetching" key="skeleton" :lines="4" class="ad-skeleton" line-height="1em" />
+          <adsense-article v-else-if="renderAd" key="adsense" />
         </transition>
       </div>
     </no-ssr>
     <div class="share">
       <transition name="module" mode="out-in">
-        <div class="skeleton" key="skeleton" v-if="isFetching">
-          <skeleton-base :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
-            :radius="0" :key="item" v-for="item in (isMobile ? 3 : 10)" />
+        <div v-if="isFetching" key="skeleton" class="skeleton">
+          <skeleton-base
+            v-for="item in (isMobile ? 3 : 10)"
+            :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
+            :radius="0"
+            :key="item" />
         </div>
-        <share-box key="share" class="article" v-else />
+        <share-box v-else key="share" class="article" />
       </transition>
     </div>
     <transition name="module" mode="out-in">
-      <div class="metas" key="skeleton" v-if="isFetching">
+      <div v-if="isFetching" key="skeleton" class="metas">
         <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
       </div>
-      <div class="metas" key="metas" v-else>
-        <p class="item" v-if="isEnLang">
+      <div v-else key="metas" class="metas">
+        <p v-if="isEnLang" class="item">
           <span>Article created at</span>
           <span>&nbsp;</span>
           <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
@@ -67,13 +74,13 @@
             v-for="(category, index) in article.category">
             <span>{{ category.name }}</span>
             <span v-if="article.category.length && article.category[index + 1]">、</span>
-          </nuxt-link> 
+          </nuxt-link>
           <span v-if="!article.category.length">no catgory</span>
           <span>,&nbsp;&nbsp;</span>
           <span>{{ article.meta.views || 0 }}</span>
           <span>&nbsp;Views</span> -->
         </p>
-        <p class="item" v-else>
+        <p v-else class="item">
           <span>本文于</span>
           <span>&nbsp;</span>
           <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
@@ -102,27 +109,29 @@
           </span>
         </p> -->
         <p class="item">
-          <span class="title" :class="language">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
+          <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
           <span class="site-url" @click="copyArticleUrl">
             <span>https://youyd.com/article/{{ article.id }}</span>
           </span>
         </p>
         <div class="item">
-          <span class="title" :class="language">{{ isEnLang ? 'Copyright Clarify:' : '版权声明：' }}</span>
+          <span :class="language" class="title">{{ isEnLang ? 'Copyright Clarify:' : '版权声明：' }}</span>
           <span v-if="!isEnLang">
             <span>自由转载-署名-非商业性使用</span>
             <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
           </span>
-          <a target="_blank" rel="external nofollow noopenter"
+          <a
+            target="_blank"
+            rel="external nofollow noopenter"
             href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh">Creative Commons BY-NC 3.0 CN</a>
         </div>
       </div>
     </transition>
     <transition name="module" mode="out-in">
-      <div class="related" key="skeleton" v-if="isFetching">
-        <skeleton-paragraph class="skeleton" v-if="isMobile" :lines="4" line-height="1em" />
-        <ul class="skeleton-list" v-else>
-          <skeleton-base class="article" :key="item" v-for="item in 4" />
+      <div v-if="isFetching" key="skeleton" class="related">
+        <skeleton-paragraph v-if="isMobile" :lines="4" class="skeleton" line-height="1em" />
+        <ul v-else class="skeleton-list">
+          <skeleton-base v-for="item in 4" :key="item" class="article" />
         </ul>
       </div>
       <!-- <div class="related" key="related" v-else-if="article.related && article.related.length">
@@ -167,203 +176,203 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import { isBrowser } from '~/environment/esm'
-  import lozad from '~/plugins/lozad'
-  import marked from '~/plugins/marked'
-  import adConfig from '~/config/ad.config'
-  import ShareBox from '~/components/widget/share'
-  export default {
-    name: 'article-detail',
-    components: {
-      ShareBox
-    },
-    validate({ params, store }) {
-      return params.article_id && !isNaN(Number(params.article_id))
-    },
+import { mapState } from 'vuex'
+import { isBrowser } from '~/environment/esm'
+import lozad from '~/plugins/lozad'
+import marked from '~/plugins/marked'
+import adConfig from '~/config/ad.config'
+import ShareBox from '~/components/widget/share'
+export default {
+  name: 'ArticleDetail',
+  components: {
+    ShareBox
+  },
+  validate({ params, store }) {
+    return params.article_id && !isNaN(Number(params.article_id))
+  },
 
-    fetch({ store, params, error }) {
-      return Promise.all([
-        store.dispatch('article/fetchDetail', params).catch(err => {
-          error({ statusCode: 404, message: '众里寻他 我已不再' })
-        }),
-        store.dispatch('comment/fetchList', { post_id: params.article_id })
-      ])
-    },
+  fetch({ store, params, error }) {
+    return Promise.all([
+      store.dispatch('article/fetchDetail', params), // .catch(err => {
+      // error({ statusCode: 404, message: '众里寻他 我已不再' })
+      // }),
+      store.dispatch('comment/fetchList', { post_id: params.article_id })
+    ])
+  },
 
-    head() {
-      const { article } = this
-      return {
-        title: article.title || '...',
-        meta: [
-          {
-            hid: 'keywords',
-            name: 'keywords',
-            //content: (article.keywords ? article.keywords.join(',') : article.title) || ''
-            content: (article.keywords ? article.keywords : article.title) || ''
-          },
-          { hid: 'description', name: 'description', content: article.description }
-        ]
-      }
-    },
-    data() {
-      return {
-        swiperOption: {
-          setWrapperSize: true,
-          simulateTouch: false,
-          mousewheel: {
-            sensitivity: 1,
-          },
-          autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-          },
-          observeParents: true,
-          grabCursor: true,
-          slidesPerView: 'auto'
+  head() {
+    const { article } = this
+    return {
+      title: article.title || '...',
+      meta: [
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          // content: (article.keywords ? article.keywords.join(',') : article.title) || ''
+          content: (article.keywords ? article.keywords : article.title) || ''
         },
-        lozadObserver: null,
-        isReadMoreLoading: false,
-        renderAd: true
+        { hid: 'description', name: 'description', content: article.description }
+      ]
+    }
+  },
+  data() {
+    return {
+      swiperOption: {
+        setWrapperSize: true,
+        simulateTouch: false,
+        mousewheel: {
+          sensitivity: 1
+        },
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false
+        },
+        observeParents: true,
+        grabCursor: true,
+        slidesPerView: 'auto'
+      },
+      lozadObserver: null,
+      isReadMoreLoading: false,
+      renderAd: true
+    }
+  },
+  computed: {
+    ...mapState({
+      constants: state => state.global.constants,
+      language: state => state.global.language,
+      tags: state => state.tag.data,
+      imageExt: state => state.global.imageExt,
+      article: state => state.article.detail.data,
+      isFetching: state => state.article.detail.fetching,
+      isMobile: state => state.global.isMobile
+    }),
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    routeArticleId() {
+      return Number(this.$route.params.article_id)
+    },
+    isContentTooMore() {
+      const { content } = this.article
+      return content && content.length > 13688
+    },
+    isCanReadMore() {
+      return this.isContentTooMore && !this.article.isRenderedFullContent
+    },
+    articleContent() {
+      const { content, isRenderedFullContent } = this.article
+      if (!content) {
+        return ''
       }
-    },
-    mounted() {
-      if (isBrowser) {
-        this.observeLozad()
+      const hasTags = this.tags && this.tags.length
+      const aa = false
+      // 正常长度，正常渲染
+      if (!this.isContentTooMore || isRenderedFullContent) {
+        // return marked(content, hasTags ? this.tags : false, true)
+        return marked(content, aa ? this.tags : false, true)
       }
-    },
-    activated() {
-      this.updateAd()
-    },
-    deactivated() {
-      this.lozadObserver = null
-    },
-    computed: {
-      ...mapState({
-        constants: state => state.global.constants,
-        language: state => state.global.language,
-        tags: state => state.tag.data,
-        imageExt: state => state.global.imageExt,
-        article: state => state.article.detail.data,
-        isFetching: state => state.article.detail.fetching,
-        isMobile: state => state.global.isMobile,
-      }),
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      routeArticleId() {
-        return Number(this.$route.params.article_id)
-      },
-      isContentTooMore() {
-        const { content } = this.article
-        return content && content.length > 13688
-      },
-      isCanReadMore() {
-        return this.isContentTooMore && !this.article.isRenderedFullContent
-      },
-      articleContent() {
-        const { content, isRenderedFullContent } = this.article
-        if (!content) {
-          return ''
-        }
-        //const hasTags = this.tags && this.tags.length
 
-        // 正常长度，正常渲染
-        if (!this.isContentTooMore || isRenderedFullContent) {
-          // return marked(content, hasTags ? this.tags : false, true)
-          return marked(content, false ? this.tags : false, true)
-        }
-
-        // 内容过多，进行分段处理，避免渲染时间太长
-        let shortContent = content.substring(0, 11688)
-        const lastH4Index = shortContent.lastIndexOf('\n####')
-        const lastH3Index = shortContent.lastIndexOf('\n###')
-        const lastCodeIndex = shortContent.lastIndexOf('\n\n```')
-        const lastLineIndex = shortContent.lastIndexOf('\n\n**')
-        const lastReadindex = Math.max(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex);
-        // console.log(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex, 'min', lastReadindex)
-        shortContent = shortContent.substring(0, lastReadindex)
-        return marked(shortContent, hasTags ? this.tags : false, true)
-      },
-      relatedArticles() {
-        const relateds = [...this.article.related].slice(0, 10)
-        const adArticle = adConfig.common.articleRelated(this.tags, this.isMobile)
-        adArticle && relateds.splice(2, 0, adArticle)
-        return relateds
+      // 内容过多，进行分段处理，避免渲染时间太长
+      let shortContent = content.substring(0, 11688)
+      const lastH4Index = shortContent.lastIndexOf('\n####')
+      const lastH3Index = shortContent.lastIndexOf('\n###')
+      const lastCodeIndex = shortContent.lastIndexOf('\n\n```')
+      const lastLineIndex = shortContent.lastIndexOf('\n\n**')
+      const lastReadindex = Math.max(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex)
+      // console.log(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex, 'min', lastReadindex)
+      shortContent = shortContent.substring(0, lastReadindex)
+      return marked(shortContent, hasTags ? this.tags : false, true)
+    },
+    relatedArticles() {
+      const relateds = [...this.article.related].slice(0, 10)
+      const adArticle = adConfig.common.articleRelated(this.tags, this.isMobile)
+      adArticle && relateds.splice(2, 0, adArticle)
+      return relateds
+    }
+  },
+  mounted() {
+    if (isBrowser) {
+      this.observeLozad()
+    }
+  },
+  activated() {
+    this.updateAd()
+  },
+  deactivated() {
+    this.lozadObserver = null
+  },
+  methods: {
+    readMore() {
+      this.isReadMoreLoading = true
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.$store.commit('article/updateDetailRenderedState', true)
+          this.isReadMoreLoading = false
+        }, 0)
+      })
+    },
+    updateAd() {
+      this.renderAd = false
+      this.$nextTick(() => {
+        this.renderAd = true
+      })
+    },
+    contentAnimatieDone() {
+      this.observeLozad()
+    },
+    readmoreAnimatieDone() {
+      this.observeLozad()
+    },
+    observeLozad() {
+      const contentElement = this.$refs.detail.querySelector('#article-content')
+      const lozadElements = contentElement && contentElement.querySelectorAll('.lozad')
+      if (!lozadElements || !lozadElements.length) {
+        return false
+      }
+      // console.log('计算出的文档:', this.$refs.detail, contentElement, lozadElements)
+      this.lozadObserver = lozad(lozadElements, {
+        loaded: element => element.classList.add('loaded')
+      })
+      this.lozadObserver.observe()
+      // console.log('重新监听 observer', this.lozadObserver)
+    },
+    copyArticleUrl() {
+      if (this.article.title) {
+        this.$root.$copyToClipboard(`https://youyd.com/article/${this.article.id}`)
       }
     },
-    methods: {
-      readMore() {
-        this.isReadMoreLoading = true
-        this.$nextTick(() => {
-          setTimeout(() => {
-            this.$store.commit('article/updateDetailRenderedState', true)
-            this.isReadMoreLoading = false
-          }, 0)
-        })
-      },
-      updateAd() {
-        this.renderAd = false
-        this.$nextTick(() => {
-          this.renderAd = true
-        })
-      },
-      contentAnimatieDone() {
-        this.observeLozad()
-      },
-      readmoreAnimatieDone() {
-        this.observeLozad()
-      },
-      observeLozad() {
-        const contentElement = this.$refs.detail.querySelector('#article-content')
-        const lozadElements = contentElement && contentElement.querySelectorAll('.lozad')
-        if (!lozadElements || !lozadElements.length) {
-          return false
-        }
-        // console.log('计算出的文档:', this.$refs.detail, contentElement, lozadElements)
-        this.lozadObserver = lozad(lozadElements, {
-          loaded: element => element.classList.add('loaded')
-        })
-        this.lozadObserver.observe()
-        // console.log('重新监听 observer', this.lozadObserver)
-      },
-      copyArticleUrl() {
-        if (this.article.title) {
-          this.$root.$copyToClipboard(`https://youyd.com/article/${this.article.id}`)
-        }
-      },
-      buildThumb(thumb) {
-        return thumb
-          ? `${thumb}?imageView2/1/w/300/h/230/format/${this.imageExt}/interlace/1/q/80|imageslim`
-          : `${this.cdnUrl}/images/thumb-releted.jpg`
-      },
-      buildDateTitle(date) {
-        if (!date) {
-          return date
-        }
-        date = new Date(date)
-        const am = this.isEnLang ? 'AM' : '上午'
-        const pm = this.isEnLang ? 'PM' : '下午'
-        const year = date.getFullYear()
-        const month = date.getMonth() + 1
-        const day = date.getDate()
-        const meridiem = date.getHours() > 11 ? pm : am
-        return `${year}/${month}/${day} ${meridiem}`
-      },
-      buildDateLink(date) {
-        if (!date) {
-          return date
-        }
-        date = new Date(date)
-        const year = date.getFullYear()
-        let month = (date.getMonth() + 1).toString()
-        let day = date.getDate().toString()
-        month = month.length === 1 ? `0${month}` : month
-        day = day.length === 1 ? `0${day}` : day
-        return `/date/${year}-${month}-${day}`
+    buildThumb(thumb) {
+      return thumb
+        ? `${thumb}?imageView2/1/w/300/h/230/format/${this.imageExt}/interlace/1/q/80|imageslim`
+        : `${this.cdnUrl}/images/thumb-releted.jpg`
+    },
+    buildDateTitle(date) {
+      if (!date) {
+        return date
       }
+      date = new Date(date)
+      const am = this.isEnLang ? 'AM' : '上午'
+      const pm = this.isEnLang ? 'PM' : '下午'
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      const meridiem = date.getHours() > 11 ? pm : am
+      return `${year}/${month}/${day} ${meridiem}`
+    },
+    buildDateLink(date) {
+      if (!date) {
+        return date
+      }
+      date = new Date(date)
+      const year = date.getFullYear()
+      let month = (date.getMonth() + 1).toString()
+      let day = date.getDate().toString()
+      month = month.length === 1 ? `0${month}` : month
+      day = day.length === 1 ? `0${day}` : day
+      return `/date/${year}-${month}-${day}`
     }
   }
+}
 </script>
 
 <style lang="scss">

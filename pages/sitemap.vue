@@ -1,13 +1,13 @@
 <template>
-  <div class="page" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="page">
     <div class="sitemap">
       <div class="module articles">
-        <h3 class="title" v-text="$i18n.text.article.name"></h3>
-        <p v-if="!articles.length" v-text="$i18n.text.article.empty"></p>
-        <ul class="article-list" v-else>
-          <li class="item" :key="index" v-for="(article, index) in articles">
+        <h3 class="title" v-text="$i18n.text.article.name"/>
+        <p v-if="!articles.length" v-text="$i18n.text.article.empty"/>
+        <ul v-else class="article-list">
+          <li v-for="(article, index) in articles" :key="index" class="item">
             <p class="item-content">
-              <a class="link" :href="`/article/${article.id}`" target="_blank" :title="article.title">
+              <a :href="`/article/${article.id}`" :title="article.title" class="link" target="_blank">
                 <span class="sign">「</span>
                 <span class="title">{{ article.title }}</span>
                 <span class="sign">」</span>
@@ -19,12 +19,12 @@
                   class="toggle-link"
                   @click.prevent="$store.commit('sitemap/updateArticleOpenState', index)"
                   v-text="$i18n.text.action[article.open ? 'close' : 'open']"
-                ></a>
+                />
               </small>
             </p>
             <transition name="module">
               <p v-show="article.open" class="item-description">
-                <span v-html="article.description || $i18n.text.article.empty"></span>
+                <span v-html="article.description || $i18n.text.article.empty"/>
               </p>
             </transition>
           </li>
@@ -32,16 +32,16 @@
       </div>
       <br>
       <div class="module categories">
-        <h3 class="title" v-text="$i18n.text.category.name"></h3>
-        <p v-if="!categories.length" v-text="$i18n.text.article.empty"></p>
-        <ul class="categories-list" v-else>
-          <li class="item" :key="index" v-for="(category, index) in categories">
+        <h3 class="title" v-text="$i18n.text.category.name"/>
+        <p v-if="!categories.length" v-text="$i18n.text.article.empty"/>
+        <ul v-else class="categories-list">
+          <li v-for="(category, index) in categories" :key="index" class="item">
             <p class="item-content">
               <a
-                class="name"
-                target="_blank"
                 :href="`/category/${category.slug}`"
                 :title="category.name"
+                class="name"
+                target="_blank"
               >{{ isEnLang ? category.slug : category.name }}</a>
               <span>（{{ category.count || 0 }}）</span>
               <span>&nbsp;-&nbsp;</span>
@@ -54,12 +54,12 @@
       <div class="module tags">
         <h3 class="title" v-text="$i18n.text.tag.name">tags</h3>
         <p v-if="!tags.length" v-text="$i18n.text.article.empty">暂无标签</p>
-        <ul class="tag-list" v-else>
-          <li class="item" :key="index" v-for="(tag, index) in tags">
+        <ul v-else class="tag-list">
+          <li v-for="(tag, index) in tags" :key="index" class="item">
             <a
-              target="_blank"
               :href="`/tag/${tag.slug}`"
               :title="tag.description"
+              target="_blank"
             >{{ isEnLang ? tag.slug : tag.name }}</a>
             <span>（{{ tag.count || 0 }}）</span>
           </li>
@@ -94,29 +94,29 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  export default {
-    name: 'sitemap',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.map + ' | '}Sitemap`
-      }
-    },
-    fetch({ store }) {
-      return store.dispatch('sitemap/fetchArticles', { per_page: 666 })
-    },
-    computed: {
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      ...mapState({
-        tags: state => state.tag.data,
-        categories: state => state.category.data,
-        articles: state => state.sitemap.articles.data,
-        isMobile: state => state.global.isMobile,
-      })
+import { mapState } from 'vuex'
+export default {
+  name: 'Sitemap',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.map + ' | '}Sitemap`
     }
+  },
+  fetch({ store }) {
+    return store.dispatch('sitemap/fetchArticles', { per_page: 666 })
+  },
+  computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    ...mapState({
+      tags: state => state.tag.data,
+      categories: state => state.category.data,
+      articles: state => state.sitemap.articles.data,
+      isMobile: state => state.global.isMobile
+    })
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -127,7 +127,7 @@
 
     $border-guide: 1px solid;
     $margin-guide: 1.2em;
-    
+
     &.mobile {
       padding: 1.666rem;
 

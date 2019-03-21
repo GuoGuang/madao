@@ -6,7 +6,6 @@
  */
 
 export default i18nConfig => {
-
   const languages = i18nConfig.languages.map(lang => lang.code)
   const languageDatas = i18nConfig.data
   const productData = {}

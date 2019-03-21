@@ -25,16 +25,15 @@ export const mutations = {
     state.question.data = action.records
   },
   updateQuestionDetail(state, action) {
-    console.log("1")
+    console.log('1')
     console.error(action)
     state.detail.data = action
-  },
+  }
 }
 
 export const actions = {
 
   fetchQuestion({ commit, state }) {
-    
     // 如果数据已存在，则直接返回
     if (state.question.data.length) {
       return Promise.resolve(state.question.data)
@@ -43,27 +42,29 @@ export const actions = {
     // 不存在则请求新数据
     commit('updateQuestionFetching', true)
     return this.$axios.$get('/question').then(response => {
-        commit('updateQuestionData', response.data)
+      commit('updateQuestionData', response.data)
+      commit('updateQuestionFetching', false)
+    })
+      .catch(error => {
+        console.error(error)
         commit('updateQuestionFetching', false)
       })
-      .catch(error => commit('updateQuestionFetching', false))
   },
 
-  
   // 获取问题详情
   fetchDetail({ commit }, params = {}) {
     commit('updateQuestionFetching', true)
     commit('updateQuestionDetail', {})
     return this.$axios.$get(`/question/${params.question_id}`).then(response => {
-      console.log("2")
+      console.log('2')
       commit('updateQuestionDetail', response.data)
-      console.log("3")
+      console.log('3')
       commit('updateQuestionFetching', false)
-      })
+    })
       .catch(error => {
         commit('updateQuestionFetching', false)
         return Promise.reject(error)
       })
-  },
+  }
 
 }

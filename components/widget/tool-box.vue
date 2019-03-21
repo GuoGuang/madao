@@ -7,7 +7,7 @@
           @click="toggleWebrtc"
           :title="$i18n.text.webrtc"
           :disabled="barrageState || onPowerSavingMode"
-          :class="{ 
+          :class="{
             active: webrtcState,
             close: barrageState
           }"
@@ -15,33 +15,33 @@
           <i class="iconfont icon-webrtc"></i>
         </button> -->
         <button
+          :title="$i18n.text.barrage.name"
           class="barrage"
           @click="toggleBarrage"
-          :title="$i18n.text.barrage.name"
-        
+
         >
-          <i class="iconfont icon-barrage"></i>
+          <i class="iconfont icon-barrage"/>
         </button>
-        <a class="feedback" href="mailto:guoguang0536@gmail.com" :title="$i18n.text.feedback">
-          <i class="iconfont icon-mail"></i>
+        <a :title="$i18n.text.feedback" class="feedback" href="mailto:guoguang0536@gmail.com">
+          <i class="iconfont icon-mail"/>
         </a>
         <button
-          class="to-top"
           :title="$i18n.text.totop"
+          class="to-top"
           @click="totop"
           @mouseover="setButtonState('top', true, true)"
           @mouseleave="setButtonState('top', false)"
         >
-          <i class="iconfont icon-totop"></i>
+          <i class="iconfont icon-totop"/>
         </button>
         <button
-          class="to-bottom"
           :title="$i18n.text.tobottom"
+          class="to-bottom"
           @click="toBottom"
           @mouseover="setButtonState('bottom', true, true)"
           @mouseleave="setButtonState('bottom', false)"
         >
-          <i class="iconfont icon-tobottom"></i>
+          <i class="iconfont icon-tobottom"/>
         </button>
       </div>
     </div>
@@ -49,73 +49,73 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import underscore from '~/utils/underscore-simple'
-  import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
+import { mapState } from 'vuex'
+// import underscore from '~/utils/underscore-simple'
+import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
 
-  export default {
-    name: 'tool-box',
-    data() {
-      return {
-        topBtnMouseOver: false,
-        bottomBtnMouseOver: false,
-        toggleWebrtcFn: null,
-        animationFrameId: null
-      }
+export default {
+  name: 'ToolBox',
+  data() {
+    return {
+      topBtnMouseOver: false,
+      bottomBtnMouseOver: false,
+      toggleWebrtcFn: null,
+      animationFrameId: null
+    }
+  },
+  computed: {
+    ...mapState('global', {
+
+      language: 'language',
+      onPowerSavingMode: 'onPowerSavingMode'
+    }),
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    }
+  },
+  methods: {
+    totop() {
+      scrollTo('body', 300, { easing: Easing['ease-in'] })
     },
-    computed: {
-      ...mapState('global', {
-     
-        language: 'language',
-        onPowerSavingMode: 'onPowerSavingMode'
-      }),
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      }
+    toBottom() {
+      scrollTo(window.scrollY + window.innerHeight, 300, { easing: Easing['ease-in'] })
     },
-    methods: {
-      totop() {
-        scrollTo('body', 300, { easing: Easing['ease-in'] })
-      },
-      toBottom() {
-        scrollTo(window.scrollY + window.innerHeight, 300, { easing: Easing['ease-in'] })
-      },
-      setButtonState(position, state, start) {
-        this[position === 'bottom' ? 'bottomBtnMouseOver' : 'topBtnMouseOver'] = state
-        window.cancelAnimationFrame(this.animationFrameId)
-        start && this.slowMoveToAnyWhere()
-      },
-      slowMoveToAnyWhere() {
-        const step = () => {
-          let targetScrollY = window.scrollY
-          const currentScrollY = document.body.scrollHeight - window.innerHeight
-          if (this.bottomBtnMouseOver) targetScrollY += 1
-          if (this.topBtnMouseOver) targetScrollY -= 1
-          if (targetScrollY < 0) {
-            targetScrollY = 0
-          } else if (targetScrollY >= currentScrollY) {
-            targetScrollY = currentScrollY
-          }
-          const canScrollTo = targetScrollY > 0 && targetScrollY < currentScrollY
-          if (!canScrollTo) {
-            return false
-          }
-          window.scrollTo(0, targetScrollY)
-          if (this.bottomBtnMouseOver || this.topBtnMouseOver) {
-            this.animationFrameId = window.requestAnimationFrame(step)
-          } else {
-            window.cancelAnimationFrame(this.animationFrameId)
-            return false
-          }
+    setButtonState(position, state, start) {
+      this[position === 'bottom' ? 'bottomBtnMouseOver' : 'topBtnMouseOver'] = state
+      window.cancelAnimationFrame(this.animationFrameId)
+      start && this.slowMoveToAnyWhere()
+    },
+    slowMoveToAnyWhere() {
+      const step = () => {
+        let targetScrollY = window.scrollY
+        const currentScrollY = document.body.scrollHeight - window.innerHeight
+        if (this.bottomBtnMouseOver) targetScrollY += 1
+        if (this.topBtnMouseOver) targetScrollY -= 1
+        if (targetScrollY < 0) {
+          targetScrollY = 0
+        } else if (targetScrollY >= currentScrollY) {
+          targetScrollY = currentScrollY
         }
-        this.animationFrameId = window.requestAnimationFrame(step)
-      },
-      toggleBarrage() {
-        this.$ga.event('弹幕功能', '切换', 'tool')
-        this.$store.commit('global/updateBarrageOnState')
-      },
+        const canScrollTo = targetScrollY > 0 && targetScrollY < currentScrollY
+        if (!canScrollTo) {
+          return false
+        }
+        window.scrollTo(0, targetScrollY)
+        if (this.bottomBtnMouseOver || this.topBtnMouseOver) {
+          this.animationFrameId = window.requestAnimationFrame(step)
+        } else {
+          window.cancelAnimationFrame(this.animationFrameId)
+          return false
+        }
+      }
+      this.animationFrameId = window.requestAnimationFrame(step)
+    },
+    toggleBarrage() {
+      this.$ga.event('弹幕功能', '切换', 'tool')
+      this.$store.commit('global/updateBarrageOnState')
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

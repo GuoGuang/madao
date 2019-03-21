@@ -3,27 +3,27 @@
   <div class="articles">
 
     <!-- 非首页列表头 -->
-    <div class="article-list-header" v-if="!isIndexRoute">
+    <div v-if="!isIndexRoute" class="article-list-header">
       <list-header />
     </div>
 
     <!-- 广告啦 -->
     <transition name="module">
-      <component :is="isMobile ? 'adsense-archive-mobile' : 'adsense-archive'" v-if="renderAd" />
+      <component v-if="renderAd" :is="isMobile ? 'adsense-archive-mobile' : 'adsense-archive'" />
     </transition>
 
     <!-- 列表 -->
     <div class="article-list">
       <transition name="module" mode="out-in">
-        <transition-group key="list" name="fade" tag="div" v-if="article.data.records && article.data.records.length">
+        <transition-group v-if="article.data.records && article.data.records.length" key="list" name="fade" tag="div">
           <list-item
+            v-for="articleItem in article.data.records"
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
-            v-for="articleItem in article.data.records"
           />
         </transition-group>
-        <empty-box key="empty" class="article-empty-box" v-else>
+        <empty-box v-else key="empty" class="article-empty-box">
           <slot>{{ $i18n.text.article.empty }}</slot>
         </empty-box>
       </transition>
@@ -48,59 +48,60 @@
 </template>
 
 <script>
-  import ListItem from './item.vue'
-  import ListHeader from './header.vue'
-  import underscore from '~/utils/underscore-simple'
-  import { isIndexRoute } from '~/utils/route'
-  export default {
-    name: 'article-list',
-    components: {
-      ListItem,
-      ListHeader
+import ListItem from './item.vue'
+import ListHeader from './header.vue'
+// import underscore from '~/utils/underscore-simple'
+import { isIndexRoute } from '~/utils/route'
+export default {
+  name: 'ArticleList',
+  components: {
+    ListItem,
+    ListHeader
+  },
+  props: {
+    article: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      renderAd: true
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.global.isMobile
     },
-    props: {
-      article: {
-        type: Object
-      }
-    },
-    data() {
-      return {
-        renderAd: true
-      }
-    },
-    computed: {
-      isMobile() {
-        return this.$store.state.global.isMobile
-      },
-      /* isCanLoadMore() {
+    /* isCanLoadMore() {
         const { current_page, total_page } = this.article.data.pagination
         const hasArticles = this.article.data.pagination
         return hasArticles ? (current_page < total_page) : false
       }, */
-      isIndexRoute() {
-        return isIndexRoute(this.$route.name)
-      },
-      btnColorBlockLeft() {
-        return this.isMobile ? 60 : 75
+    isIndexRoute() {
+      return isIndexRoute(this.$route.name)
+    },
+    btnColorBlockLeft() {
+      return this.isMobile ? 60 : 75
+    }
+  },
+  activated() {
+    this.updateAd()
+  },
+  methods: {
+    toDetail(article) {
+      if (this.isMobile) {
+        this.$router.push(`/article/${article.id}`)
       }
     },
-    activated() {
-      this.updateAd()
-    },
-    methods: {
-      toDetail(article) {
-        if (this.isMobile) {
-          this.$router.push(`/article/${article.id}`)
-        }
-      },
-      updateAd() {
-        this.renderAd = false
-        this.$nextTick(() => {
-          this.renderAd = true
-        })
-      }
+    updateAd() {
+      this.renderAd = false
+      this.$nextTick(() => {
+        this.renderAd = true
+      })
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

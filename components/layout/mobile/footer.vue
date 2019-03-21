@@ -7,14 +7,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'mobile-footer',
-    computed: {
-      year() {
-        return new Date().getFullYear()
-      }
+export default {
+  name: 'MobileFooter',
+  computed: {
+    year() {
+      return new Date().getFullYear()
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

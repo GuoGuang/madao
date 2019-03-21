@@ -5,8 +5,8 @@
  * remote: https://github.com/andyet/signalmaster/blob/master/sockets.js
  */
 
-const crypto = require('crypto')
-const uuid = require('node-uuid')
+// const crypto = require('crypto')
+// const uuid = require('node-uuid')
 const { argv } = require('yargs')
 
 const config = {
@@ -43,11 +43,10 @@ const filters = {}
 const beautys = {}
 
 // 过滤回调函数
-const safeCb = cb => (typeof cb === 'function') ? cb : (() => {})
+const safeCb = cb => (typeof cb === 'function') ? cb : () => {}
 
 // 服务
 const webrtcService = io => {
-
   // webrtc
   io.on('connection', socket => {
     // console.log('webrtc socket 有人加入')
@@ -81,7 +80,7 @@ const webrtcService = io => {
       const romeCount = Object.keys(io.sockets.sockets)
       // console.log('有人加入房间', name, romeCount)
       if (config.rooms && config.rooms.maxClients > 0 && romeCount >= config.rooms.maxClients) {
-          return safeCb(cb)('full')
+        return safeCb(cb)('full')
       }
       removeFeed()
       safeCb(cb)(null, (name => {
@@ -136,14 +135,14 @@ const webrtcService = io => {
       // console.log('webrtc socket 有人加入房间', name)
       join(name, cb)
     })
-    
+
     // we don't want to pass "leave" directly because the
     // event type string of "socket end" gets passed too.
     socket.on('disconnect', () => {
       // console.log('webrtc socket 有人失去连接')
       removeFeed()
     })
-    
+
     socket.on('leave', () => {
       // console.log('webrtc socket 有人离开')
       removeFeed()
@@ -151,8 +150,8 @@ const webrtcService = io => {
 
     socket.on('create', (name, cb) => {
       // console.log('webrtc socket 有人创建房间', name)
-      if (arguments.length == 2) {
-        cb = (typeof cb == 'function') ? cb : function () {}
+      /* if (arguments.length == 2) {
+        cb = (typeof cb === 'function') ? cb : function() {}
         name = name || uuid()
       } else {
         cb = name
@@ -165,14 +164,14 @@ const webrtcService = io => {
       } else {
         join(name)
         safeCb(cb)(null, name)
-      }
+      } */
     })
 
     // 当前所有滤镜
     socket.on('webrtc-filters', callback => {
       callback(filters)
     })
-    
+
     // 当前所有美颜状态
     socket.on('webrtc-beautys', callback => {
       callback(beautys)
@@ -217,7 +216,7 @@ const webrtcService = io => {
     // tell socket about stun and turn servers and generate nonces
     // console.log('server send stuns', config.stunservers || [])
     socket.emit('stunservers', config.stunservers || [])
-    
+
     console.log('server send turnservers', config.turnservers, credentials)
     socket.emit('turnservers', credentials)
     socket.emit('turnservers', config.turnservers)

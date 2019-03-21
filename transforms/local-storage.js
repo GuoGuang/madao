@@ -21,3 +21,4 @@ export const buildStorageReader = key => ({
 
 export const localUser = buildStorageReader(systemConstants.StorageField.User)
 export const localHistoryLikes = buildStorageReader(systemConstants.StorageField.UserLikeHistory)
+

@@ -56,9 +56,8 @@ export const mutations = {
 export const actions = {
 
   fetchList({ commit, rootState }, params = {}) {
-
     const { SortType } = rootState.global.constants
-    
+
     // 修正参数
     params = Object.assign({
       page: 1,
@@ -73,9 +72,9 @@ export const actions = {
     isRestart &&
     commit('updateListData', getDefaultListData())
     commit('updateListFetchig', true)
-    
+
     const delay = fetchDelay()
-    
+
     return this.$axios.$get(`/comment`, { params })
       .then(response => {
         isDescSort && response.result.data.reverse()
@@ -84,7 +83,10 @@ export const actions = {
           commit('updateListFetchig', false)
         })
       })
-      .catch(error => commit('updateListFetchig', false))
+      .catch(error => {
+        console.error(error)
+        commit('updateListFetchig', false)
+      })
   },
 
   // 发布评论

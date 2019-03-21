@@ -3,10 +3,10 @@
   <el-row class="qa">
     <!--  -->
     <el-col :span="18" class="qa-main">
-      <el-tabs class="nav-link" v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName" class="nav-link" @tab-click="handleClick">
         <el-tab-pane label="最新" name="first">
 
-          <section class="stream-list__item" :key="index" v-for="(question, index) in question">
+          <section v-for="(question, index) in question" :key="index" class="stream-list__item">
             <div class="qa-rank">
               <div class="votes ">
                 0<small>得票</small>
@@ -19,34 +19,37 @@
               </div>
             </div>
 
-
             <div class="summary">
               <ul class="author list-inline">
                 <li>
                   <a href="/u/liudao6">琉刀</a>
-                  <span class="split"></span>
+                  <span class="split"/>
                   <a href="/q/1010000018329749/a-1020000018330567">37 分钟前回答</a>
                 </li>
               </ul>
               <h2 class="title">
                 <nuxt-link :to="`/qa/${question.id}`" text="">
-                    <p style="-webkit-box-orient: vertical;"
-                      v-html="question.content"
-                    ></p>
+                  <p
+                    style="-webkit-box-orient: vertical;"
+                    v-html="question.content"
+                  />
                 </nuxt-link>
               </h2>
 
               <ul class="taglist--inline">
                 <li class="tagPopup">
-                  <a class="tag" href="/t/javascript" data-toggle="popover" data-original-title="javascript"
+                  <a
+                    class="tag"
+                    href="/t/javascript"
+                    data-toggle="popover"
+                    data-original-title="javascript"
                     data-id="1040000000089436">javascript</a>
                 </li>
               </ul>
             </div>
 
           </section>
-          <el-pagination style="text-align: center;padding: 2em;" background layout="prev, pager, next" :total="1000">
-          </el-pagination>
+          <el-pagination :total="1000" style="text-align: center;padding: 2em;" background layout="prev, pager, next"/>
 
         </el-tab-pane>
         <el-tab-pane label="精选" name="second">精选</el-tab-pane>
@@ -62,17 +65,19 @@
     </el-col>
   </el-row>
 
-
 </template>
 
 <script>
 import AsideView from '~/components/layout/pc/aside/main'
 export default {
-  name: 'question',
+  name: 'Question',
   head() {
     return {
       title: `${this.isEnLang ? '' : this.$i18n.nav.question + ' | '}event`
     }
+  },
+  components: {
+    AsideView
   },
   data() {
     return {
@@ -81,9 +86,6 @@ export default {
   },
   fetch({ store }) {
     return store.dispatch('question/fetchQuestion')
-  },
-  components: {
-    AsideView
   },
   computed: {
     question() {
@@ -101,7 +103,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss">
 .qa-main {

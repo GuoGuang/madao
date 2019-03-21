@@ -7,7 +7,6 @@
 import { isBrowser } from '~/environment/esm'
 
 if (isBrowser) {
-
   // 销毁图片弹窗
   const closeImgPopup = () => {
     const mask = document.getElementById('image-popup')

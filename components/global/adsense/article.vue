@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'adsense-article'
-  }
+export default {
+  name: 'AdsenseArticle'
+}
 </script>
 

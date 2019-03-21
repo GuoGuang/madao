@@ -8,7 +8,7 @@ import Vue from 'vue'
 import { isBrowser } from '~/environment/esm'
 import { fetchDelay } from '~/utils/fetch-delay'
 import { isArticleDetailRoute } from '~/utils/route'
-import onResponse from '~/plugins/axios'
+// import onResponse from '~/plugins/axios'
 import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
 
 const getDefaultListData = () => {
@@ -39,15 +39,15 @@ export const mutations = {
 
   // 文章列表
   updateListFetchig(state, action) {
-    console.log("文章列表"); 
+    console.log('文章列表')
     state.list.fetching = action
   },
   updateListData(state, action) {
-    console.log("updateListData")
+    console.log('updateListData')
     state.list.data = action
   },
   updateExistingListData(state, action) {
-    console.log("updateExistingListData")
+    console.log('updateExistingListData')
     console.log(action)
     state.list.data.data.push(...action.data)
     state.list.data.pagination = action.pagination
@@ -55,7 +55,7 @@ export const mutations = {
 
   // 热门文章
   updateHotListFetchig(state, action) {
-    console.log("热门文章"); 
+    console.log('热门文章')
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
@@ -90,7 +90,7 @@ export const actions = {
 
   // 获取文章列表
   fetchList({ commit }, params = {}) {
-    console.error("文章")
+    console.error('文章')
     const isRestart = !params.page || params.page === 1
     const isLoadMore = params.page && params.page > 1
 
@@ -101,8 +101,8 @@ export const actions = {
     return this.$axios.$get(`/article`, { params })
       .then(response => {
         // 直接在此处调用结果打印即可
-        console.log("666")
-      
+        console.log('666')
+
         commit('updateListFetchig', false)
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {
@@ -115,7 +115,12 @@ export const actions = {
           })
         }
       })
-      .catch(error => commit('updateListFetchig', false))
+      .catch(error => {
+        console.error(error)
+        commit('updateListFetchig', false)
+      }
+
+      )
   },
 
   // 获取最热文章列表
@@ -127,7 +132,10 @@ export const actions = {
         commit('updateHotListData', response)
         commit('updateHotListFetchig', false)
       })
-      .catch(error => commit('updateHotListFetchig', false))
+      .catch(error => {
+        console.error(error)
+        commit('updateHotListFetchig', false)
+      })
   },
 
   // 获取文章详情
@@ -150,7 +158,7 @@ export const actions = {
             commit('updateDetailFetchig', false)
             resolve(response)
           })
-        }) 
+        })
       })
       .catch(error => {
         commit('updateDetailFetchig', false)

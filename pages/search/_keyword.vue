@@ -5,43 +5,43 @@
 </template>
 
 <script>
-  import ArticleList from '~/components/archive/list'
+import ArticleList from '~/components/archive/list'
 
-  export default {
-    name: 'category-article-list',
-    validate({ params }) {
-      return !!params.keyword
+export default {
+  name: 'CategoryArticleList',
+  validate({ params }) {
+    return !!params.keyword
+  },
+  fetch({ store, params }) {
+    return store.dispatch('article/fetchList', params)
+  },
+  head() {
+    return {
+      title: `${this.defaultParams.keyword} | Search`
+    }
+  },
+  components: {
+    ArticleList
+  },
+  computed: {
+    article() {
+      return this.$store.state.article.list
     },
-    fetch({ store, params }) {
-      return store.dispatch('article/fetchList', params)
-    },
-    head () {
+    defaultParams() {
       return {
-        title: `${this.defaultParams.keyword} | Search`
+        keyword: this.$route.params.keyword
       }
     },
-    components: {
-      ArticleList
-    },
-    computed: {
-      article() {
-        return this.$store.state.article.list
-      },
-      defaultParams() {
-        return {
-          keyword: this.$route.params.keyword
-        }
-      },
-      nextPageParams() {
-        return Object.assign({
-          page: this.article.data.pagination.current_page + 1
-        }, this.defaultParams)
-      }
-    },
-    methods: {
-      loadmoreArticle() {
-        this.$store.dispatch('article/fetchList', this.nextPageParams)
-      }
+    nextPageParams() {
+      return Object.assign({
+        page: this.article.data.pagination.current_page + 1
+      }, this.defaultParams)
+    }
+  },
+  methods: {
+    loadmoreArticle() {
+      this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
+}
 </script>

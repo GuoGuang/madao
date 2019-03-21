@@ -1,51 +1,51 @@
 <template>
-  <div class="videos" :class="{ mobile: isMobile }">
-    <ul class="video-list" ref="videoList">
+  <div :class="{ mobile: isMobile }" class="videos">
+    <ul ref="videoList" class="video-list">
       <li
-        class="item"
-        :key="index"
         v-for="(video, index) in videoList"
+        :key="index"
+        class="item"
         @click="handlePlay(video)"
       >
         <div class="thumb">
           <div class="mask">
             <div class="button">
-              <i class="iconfont icon-music-play" id="9696999"></i>
+              <i id="9696999" class="iconfont icon-music-play"/>
             </div>
           </div>
           <div
-            class="background lozad"
             :data-background-image="getThumbUrl(video.pic)"
+            class="background lozad"
             bak-style="{
               'background-image': `url(${getThumbUrl(video.pic)})`
             }"
-          ></div>
+          />
         </div>
-        <h3 class="title" v-text="video.title"></h3>
-        <p class="description" style="-webkit-box-orient: vertical;" v-text="video.description || '-'"></p>
+        <h3 class="title" v-text="video.title"/>
+        <p class="description" style="-webkit-box-orient: vertical;" v-text="video.description || '-'"/>
         <hr class="split">
         <p class="meta">
           <span class="item favorites">
-            <i class="iconfont icon-upvote"></i>
+            <i class="iconfont icon-upvote"/>
             <span>{{ video.favorites }}</span>
           </span>
           <span class="item play">
-            <i class="iconfont icon-video-play"></i>
+            <i class="iconfont icon-video-play"/>
             <span>{{ video.play }}</span>
           </span>
           <span class="item comment">
-            <i class="iconfont icon-comment"></i>
+            <i class="iconfont icon-comment"/>
             <span>{{ video.comment }}</span>
           </span>
           <span class="item created">
-            <i class="iconfont icon-clock"></i>
+            <i class="iconfont icon-clock"/>
             <span>{{ (video.created * 1000) | timeAgo(language) }}</span>
           </span>
         </p>
       </li>
     </ul>
     <div class="loadmore">
-     <!--  <a
+      <!--  <a
         href="https://space.bilibili.com/27940710/video"
         target="_blank"
         class="button"
@@ -62,79 +62,79 @@
 </template>
 
 <script>
-  export default {
-    name: 'vlog',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.vlog + ' | '}Vlog`
+export default {
+  name: 'Vlog',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.vlog + ' | '}Vlog`
+    }
+  },
+  fetch({ store }) {
+    return store.dispatch('vlog/fetchVideos')
+  },
+  data() {
+    return {
+      lozadObserver: null
+    }
+  },
+  computed: {
+    language() {
+      return this.$store.state.global.language
+    },
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    isMobile() {
+      return this.$store.state.global.isMobile
+    },
+    imageExt() {
+      return this.$store.state.global.imageExt
+    },
+    video() {
+      return this.$store.state.vlog.video.data
+    },
+    videoList() {
+      return this.video.vlist
+    },
+    isFetching() {
+      return this.video.fetching
+    },
+    isCanLoadMore() {
+      const { pages, count } = this.video
+      return !!count && pages > 1
+    }
+  },
+  mounted() {
+    /* const listElement = this.$refs.videoList
+    const lozadElements = listElement && listElement.querySelectorAll('.lozad')
+    if (!lozadElements || !lozadElements.length) {
+      return false
+    }
+    this.lozadObserver = lozad(lozadElements, {
+      loaded: element => element.classList.add('loaded')
+    })
+    this.lozadObserver.observe() */
+  },
+  deactivated() {
+    this.lozadObserver = null
+  },
+  methods: {
+    getThumbUrl(url) {
+      return `${this.proxyUrl}bilibili/${url.replace('//', '')}@560w_350h.${this.imageExt}`
+    },
+    handlePlay(video) {
+      if (this.isMobile) {
+        window.open(`https://www.bilibili.com/video/av${video.aid}`)
+        return
       }
-    },
-    fetch({ store }) {
-      return store.dispatch('vlog/fetchVideos')
-    },
-    data() {
-      return {
-        lozadObserver: null
+      if (window.utils) {
+        const music = this.$root.$music
+        music && music.humanizeOperation(music.player.pause)
+        window.utils.openIframePopup(`//player.bilibili.com/player.html?aid=${video.aid}&page=1`)
       }
-    },
-    computed: {
-      language() {
-        return this.$store.state.global.language
-      },
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      },
-      imageExt() {
-        return this.$store.state.global.imageExt
-      },
-      video() {
-        return this.$store.state.vlog.video.data
-      },
-      videoList() {
-        return this.video.vlist
-      },
-      isFetching() {
-        return this.video.fetching
-      },
-      isCanLoadMore() {
-        const { pages, count } = this.video
-        return !!count && pages > 1
-      }
-    },
-    methods: {
-      getThumbUrl(url) {
-        return `${this.proxyUrl}bilibili/${url.replace('//', '')}@560w_350h.${this.imageExt}`
-      },
-      handlePlay(video) {
-        if (this.isMobile) {
-          window.open(`https://www.bilibili.com/video/av${video.aid}`)
-          return
-        }
-        if (window.utils) {
-          const music = this.$root.$music
-          music && music.humanizeOperation(music.player.pause)
-          window.utils.openIframePopup(`//player.bilibili.com/player.html?aid=${video.aid}&page=1`)
-        }
-      }
-    },
-    mounted() {
-      const listElement = this.$refs.videoList
-      const lozadElements = listElement && listElement.querySelectorAll('.lozad')
-      if (!lozadElements || !lozadElements.length) {
-        return false
-      }
-      this.lozadObserver = lozad(lozadElements, {
-        loaded: element => element.classList.add('loaded')
-      })
-      this.lozadObserver.observe()
-    },
-    deactivated() {
-      this.lozadObserver = null
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

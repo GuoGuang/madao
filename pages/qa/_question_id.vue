@@ -12,9 +12,9 @@
       <!-- 问题内容 -->
       <el-row class="top-info">
         <el-col :span="2">
-          <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
+          <i class="el-icon-caret-top" style="line-height: 1.5;"/>
           <span>赞成</span>
-          <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
+          <i class="el-icon-caret-bottom" style="line-height: 1.5;"/>
         </el-col>
         <el-col :span="22">{{ question.comment }}</el-col>
       </el-row>
@@ -48,7 +48,7 @@
             </li>
             <li>
               <button href="javascript:void(0);">
-                <i></i>
+                <i/>
               </button>
             </li>
             <li>
@@ -84,7 +84,8 @@
         <el-col :span="24">
           <h2>3 个回答</h2>
           <div class="tabs">
-            <a class="default-check"
+            <a
+              class="default-check"
               href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top"
             >活跃</a>
             <a
@@ -97,16 +98,14 @@
         </el-col>
       </el-row>
 
-      <el-row class="answers-list" :key="index" v-for="(answers, index) in question.answers">
+      <el-row v-for="(answers, index) in question.answers" :key="index" class="answers-list">
         <el-col :span="2">
-          <i class="el-icon-caret-top" style="line-height: 1.5;"></i>
+          <i class="el-icon-caret-top" style="line-height: 1.5;"/>
           <span>赞成</span>
-          <i class="el-icon-caret-bottom" style="line-height: 1.5;"></i>
+          <i class="el-icon-caret-bottom" style="line-height: 1.5;"/>
         </el-col>
         <el-col :span="22">
-          <el-row v-html="answers.content">
-           
-          </el-row>
+          <el-row v-html="answers.content"/>
 
           <!-- 回答者信息区 -->
           <el-row class="answerer-profile">
@@ -114,7 +113,7 @@
               <ul>
                 <li>
                   <button href="javascript:void(0);">
-                    <i></i>评论
+                    <i/>评论
                   </button>
                 </li>
                 <li>
@@ -125,7 +124,7 @@
                 </li>
                 <li>
                   <button href="javascript:void(0);">
-                    <i></i>
+                    <i/>
                   </button>
                 </li>
                 <li>
@@ -163,22 +162,22 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { isBrowser } from '~/environment/esm'
-import lozad from '~/plugins/lozad'
-import marked from '~/plugins/marked'
-import adConfig from '~/config/ad.config'
+// import { mapState } from 'vuex'
+// import { isBrowser } from '~/environment/esm'
+// import lozad from '~/plugins/lozad'
+// import marked from '~/plugins/marked'
+// import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 export default {
-  name: 'question-detail',
+  name: 'QuestionDetail',
   components: {
     ShareBox
   },
   fetch({ store, params, error }) {
     return Promise.all([
-      store.dispatch('question/fetchDetail', params).catch(err => {
-        error({ statusCode: 404, message: '众里寻他 我已不再' })
-      })
+      store.dispatch('question/fetchDetail', params) // .catch(err => {
+      // error({ statusCode: 404, message: '众里寻他 我已不再' })
+      // })
       // store.dispatch('comment/fetchList', { post_id: params.article_id })
     ])
   },

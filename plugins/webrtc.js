@@ -5,7 +5,7 @@
  */
 
 import SimpleWebRTC from 'simplewebrtc'
-
+ 
 // 妈的就为了删一行注释
 // https://github.com/andyet/SimpleWebRTC/blob/master/src/simplewebrtc.js#L327
 SimpleWebRTC.prototype.joinRoom = function (name, cb) {

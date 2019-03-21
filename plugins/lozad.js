@@ -12,3 +12,4 @@ if (isBrowser) {
 }
 
 export default lozad
+

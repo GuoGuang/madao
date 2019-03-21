@@ -3,12 +3,12 @@
     <div id="app-aside" :class="onMobileSidebarOpenClass">
       <aside-view :class="onMobileSidebarOpenClass" />
     </div>
-    <div id="app-main" :class="onMobileSidebarOpenClass" ref="appMain">
+    <div id="app-main" ref="appMain" :class="onMobileSidebarOpenClass">
       <header-view />
       <emoji-rain v-if="!onPowerSavingMode" />
       <main id="main">
         <div id="main-content" class="main-content">
-          <nuxt :nuxtChildKey="$route.name" keep-alive />
+          <nuxt :nuxt-child-key="$route.name" keep-alive />
         </div>
       </main>
       <footer-view />
@@ -17,40 +17,40 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import HeaderView from './header'
-  import FooterView from './footer'
-  import AsideView from './aside'
-  import EmojiRain from '~/components/widget/emoji-rain'
-  export default {
-    name: 'mobile-app',
-    components: {
-      HeaderView,
-      FooterView,
-      AsideView,
-      EmojiRain
-    },
-    computed: {
-      ...mapState('global', ['onMobileSidebar', 'onPowerSavingMode']),
-      onMobileSidebarOpenClass() {
-        return { open: this.onMobileSidebar }
-      },
-    },
-    methods: {
-      closeMobileSidebar(event) {
-        if (this.onMobileSidebar) {
-          this.$store.commit('global/updateMobileSidebarOnState', false)
-          event.cancelBubble = true
-          event.stopPropagation()
-          event.preventDefault()
-          return false
-        }
+import { mapState } from 'vuex'
+import HeaderView from './header'
+import FooterView from './footer'
+import AsideView from './aside'
+import EmojiRain from '~/components/widget/emoji-rain'
+export default {
+  name: 'MobileApp',
+  components: {
+    HeaderView,
+    FooterView,
+    AsideView,
+    EmojiRain
+  },
+  computed: {
+    ...mapState('global', ['onMobileSidebar', 'onPowerSavingMode']),
+    onMobileSidebarOpenClass() {
+      return { open: this.onMobileSidebar }
+    }
+  },
+  mounted() {
+    this.$refs.appMain.addEventListener('click', this.closeMobileSidebar, true)
+  },
+  methods: {
+    closeMobileSidebar(event) {
+      if (this.onMobileSidebar) {
+        this.$store.commit('global/updateMobileSidebarOnState', false)
+        event.cancelBubble = true
+        event.stopPropagation()
+        event.preventDefault()
+        return false
       }
-    },
-    mounted() {
-      this.$refs.appMain.addEventListener('click', this.closeMobileSidebar, true)
-    },
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

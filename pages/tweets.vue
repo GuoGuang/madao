@@ -3,38 +3,41 @@
   <el-row class="tweets">
 
     <el-col :span="4" class="left-sidebar">
-        <div id="nav" class="aside-nav">
-          <nuxt-link to="/music" class="item">
-            <span v-text="$i18n.text.it" style="padding-left: 8px;"></span>
-          </nuxt-link>
-          <nuxt-link to="/vlog" class="item">
-            <span v-text="$i18n.text.interesting" style="padding-left: 8px;"></span>
-          </nuxt-link>
-          <nuxt-link to="/about" class="item">
-            <span v-text="$i18n.text.creativity" style="padding-left: 8px;"></span>
-          </nuxt-link>
-          <nuxt-link to="/service" class="item">
-            <span v-text="$i18n.text.workStack" style="padding-left: 8px;"></span>
-            <span class="superscript">
-            </span>
-          </nuxt-link>
-        </div>
+      <div id="nav" class="aside-nav">
+        <nuxt-link to="/music" class="item">
+          <span style="padding-left: 8px;" v-text="$i18n.text.it"/>
+        </nuxt-link>
+        <nuxt-link to="/vlog" class="item">
+          <span style="padding-left: 8px;" v-text="$i18n.text.interesting"/>
+        </nuxt-link>
+        <nuxt-link to="/about" class="item">
+          <span style="padding-left: 8px;" v-text="$i18n.text.creativity"/>
+        </nuxt-link>
+        <nuxt-link to="/service" class="item">
+          <span style="padding-left: 8px;" v-text="$i18n.text.workStack"/>
+          <span class="superscript"/>
+        </nuxt-link>
+      </div>
     </el-col>
 
     <el-col :span="14" class="tweets-list">
 
       <div class="publish">
-        <el-input clear="textarea-input"  type="textarea" :rows="4" placeholder="猿圈一下~" resize="none"
-          v-model="textarea">
-        </el-input>
+        <el-input
+          :rows="4"
+          v-model="textarea"
+          clear="textarea-input"
+          type="textarea"
+          placeholder="猿圈一下~"
+          resize="none"/>
         <el-row class="ext-btn">
           <el-col :span="12">
-              <ul >
-                <li><a style="color:#007fff" href="#">表情</a></li>
-                <li><a style="color:#007fff" href="#">图片</a></li>
-                <li><a style="color:#007fff" href="#">链接</a></li>
-                <li><a style="color:#007fff" href="#">#话题</a></li>
-              </ul>
+            <ul >
+              <li><a style="color:#007fff" href="#">表情</a></li>
+              <li><a style="color:#007fff" href="#">图片</a></li>
+              <li><a style="color:#007fff" href="#">链接</a></li>
+              <li><a style="color:#007fff" href="#">#话题</a></li>
+            </ul>
           </el-col>
           <el-col :span="9" class="tips">
             <span >Ctrl or ⌘ + Enter</span>
@@ -47,11 +50,12 @@
         </el-row>
       </div>
 
-      <div :key="index" v-for="(tweet, index) in tweets" class="item-content">
+      <div v-for="(tweet, index) in tweets" :key="index" class="item-content">
 
         <el-row type="flex" class="account-group">
           <el-col :span="3" class="account-image">
-            <img class="user-profile"
+            <img
+              class="user-profile"
               src="https://user-gold-cdn.xitu.io/2019/2/26/169268d0793ad9be?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1">
           </el-col>
           <el-col :span="7">
@@ -81,7 +85,8 @@
         <el-row>
           <el-col :span="24">
             <div class="content">
-              <img style="width: 40%;"
+              <img
+                style="width: 40%;"
                 src="https://user-gold-cdn.xitu.io/2019/3/1/169387db4349d2eb?imageView2/1/w/460/h/316/q/85/format/jpg/interlace/1">
             </div>
           </el-col>
@@ -89,21 +94,21 @@
         <el-row class="action-box">
           <el-col :span="8">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#youyd-icon-caozuo-dianzan"></use>
+              <use xlink:href="#youyd-icon-caozuo-dianzan"/>
             </svg>
             <a>0</a>
           </el-col>
           <el-col :span="8" class="action-box-center" >
             <nuxt-link to="/tweet/1" text="">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#youyd-icon-pinglun"></use>
+                <use xlink:href="#youyd-icon-pinglun"/>
               </svg>
             </nuxt-link>
             0
           </el-col>
           <el-col :span="8">
             <svg class="icon" aria-hidden="true" style="padding-bottom: 8px;">
-              <use xlink:href="#youyd-icon-fenxiang"></use>
+              <use xlink:href="#youyd-icon-fenxiang"/>
             </svg>
             分享
           </el-col>
@@ -118,46 +123,44 @@
     </el-col>
   </el-row>
 
-
 </template>
 
 <script>
-  import AsideView from '~/components/layout/pc/aside/main'
-  export default {
-    name: 'tweets',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.tweets + ' | '}event`
-      }
-    },
-    data() {
-      return {
-        textarea: ""
-      }
-    },
-    fetch({ store }) {
-      return store.dispatch('events/fetchEvents')
-    },
-    components: {
-      AsideView
-    },
-    computed: {
-      tweets() {
-        return this.$store.state.events.events.data
-      },
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      }
-    },
-    methods: {
-
+import AsideView from '~/components/layout/pc/aside/main'
+export default {
+  name: 'Tweets',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.tweets + ' | '}event`
     }
-  }
-</script>
+  },
+  components: {
+    AsideView
+  },
+  data() {
+    return {
+      textarea: ''
+    }
+  },
+  fetch({ store }) {
+    return store.dispatch('events/fetchEvents')
+  },
+  computed: {
+    tweets() {
+      return this.$store.state.events.events.data
+    },
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    isMobile() {
+      return this.$store.state.global.isMobile
+    }
+  },
+  methods: {
 
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 
@@ -240,7 +243,7 @@
           margin: 0 2em 0 4em
         }
         >.action-box{
-          text-align: center;    
+          text-align: center;
           border-top: 1px solid #ebebeb;
           >svg{
             padding-bottom: 8px;

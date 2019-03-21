@@ -1,16 +1,16 @@
 <template>
   <!-- 轮播 -->
-  <div class="carrousel" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="carrousel">
     <transition name="module" mode="out-in">
-      <empty-box class="article-empty-box" key="empty" v-if="!article.data.records.length">
+      <empty-box v-if="!article.data.records.length" key="empty" class="article-empty-box">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
-      <div class="swiper index" key="swiper" v-swiper:swiper="swiperOption" v-else-if="renderSwiper">
+      <div v-swiper:swiper="swiperOption" v-else-if="renderSwiper" key="swiper" class="swiper index">
         <div class="swiper-wrapper">
           <div
+            v-for="(article, index) in article.data.records.slice(0, 9)"
             :key="index"
             class="swiper-slide slide-item"
-            v-for="(article, index) in article.data.records.slice(0, 9)"
           >
             <div class="content">
               <img :src="buildThumb(article.thumb)" :alt="article.title">
@@ -20,66 +20,67 @@
             </div>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination"/>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  export default {
-    name: 'index-carrousel',
-    props: {
-      article: {
-        type: Object
+import { mapState } from 'vuex'
+export default {
+  name: 'IndexCarrousel',
+  props: {
+    article: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      renderSwiper: true,
+      swiperOption: {
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false
+        },
+        pagination: {
+          clickable: true,
+          el: '.swiper-pagination'
+        },
+        setWrapperSize: true,
+        // autoHeight: true,
+        mousewheel: true,
+        observeParents: true,
+        grabCursor: true,
+        preloadImages: false,
+        lazy: true
       }
-    },
-    data() {
-      return {
-        renderSwiper: true,
-        swiperOption: {
-          autoplay: {
-            delay: 3500,
-            disableOnInteraction: false
-          },
-          pagination: {
-            clickable: true,
-            el: '.swiper-pagination'
-          },
-          setWrapperSize: true,
-          // autoHeight: true,
-          mousewheel: true,
-          observeParents: true,
-          grabCursor: true,
-          preloadImages: false,
-          lazy: true
-        }
-      }
-    },
-    computed: {
-      ...mapState('global', ['imageExt', 'isMobile'])
-    },
-    methods: {
-      buildThumb(thumb) {
-        if (thumb) {
-          if (this.isMobile) {
-            return `${thumb}?imageView2/1/w/768/h/271/format/${this.imageExt}/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/560/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim`
-          } else {
-            return `${thumb}?imageView2/1/w/1190/h/420/format/${this.imageExt}/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/680/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim`
-          }
+    }
+  },
+  computed: {
+    ...mapState('global', ['imageExt', 'isMobile'])
+  },
+  activated() {
+    this.renderSwiper = true
+  },
+  deactivated() {
+    this.renderSwiper = false
+  },
+  methods: {
+    buildThumb(thumb) {
+      if (thumb) {
+        if (this.isMobile) {
+          return `${thumb}?imageView2/1/w/768/h/271/format/${this.imageExt}/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/560/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim`
         } else {
-          return `${this.cdnUrl}/images/${this.isMobile ? 'mobile-' : ''}thumb-carrousel.jpg`
+          return `${thumb}?imageView2/1/w/1190/h/420/format/${this.imageExt}/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/680/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim`
         }
+      } else {
+        return `${this.cdnUrl}/images/${this.isMobile ? 'mobile-' : ''}thumb-carrousel.jpg`
       }
-    },
-    activated() {
-      this.renderSwiper = true
-    },
-    deactivated() {
-      this.renderSwiper = false
     }
   }
+}
 </script>
 
 <style lang="scss">

@@ -21,14 +21,13 @@ export const mutations = {
   },
   updateVideoData(state, action) {
     state.video.data = action.result
-  },
+  }
 }
 
 export const actions = {
 
   // 获取视频列表
   fetchVideos({ commit, state }, params = {}) {
-
     params.per_page = params.per_page || 66
 
     // 如果数据已存在，则直接返回
@@ -43,6 +42,9 @@ export const actions = {
         commit('updateVideoData', response)
         commit('updateVideoFetching', false)
       })
-      .catch(error => commit('updateVideoFetching', false))
-  },
+      .catch(error => {
+        console.error(error)
+        commit('updateVideoFetching', false)
+      })
+  }
 }

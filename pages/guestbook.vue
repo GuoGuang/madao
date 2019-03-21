@@ -1,5 +1,5 @@
 <template>
-  <div class="page" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="page">
     <div class="detail">
       <div class="content">
         <div class="guestbook-banner">
@@ -15,32 +15,32 @@
 </template>
 
 <script>
-  export default {
-    name: 'guestbook',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.guestbook + ' | '}Guestbook`
-      }
+export default {
+  name: 'Guestbook',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.guestbook + ' | '}Guestbook`
+    }
+  },
+  fetch({ store }) {
+    return Promise.all([
+      store.dispatch('global/fetchAppOption'),
+      store.dispatch('comment/fetchList', { post_id: 0 })
+    ])
+  },
+  computed: {
+    siteLikes() {
+      const appOption = this.$store.state.global.appOption.data
+      return appOption ? appOption.meta.likes : 0
     },
-    fetch({ store }) {
-      return Promise.all([
-        store.dispatch('global/fetchAppOption'),
-        store.dispatch('comment/fetchList', { post_id: 0 })
-      ])
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
     },
-    computed: {
-      siteLikes() {
-        const appOption = this.$store.state.global.appOption.data
-        return appOption ? appOption.meta.likes : 0
-      },
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      }
+    isMobile() {
+      return this.$store.state.global.isMobile
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

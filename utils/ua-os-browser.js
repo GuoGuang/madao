@@ -4,12 +4,12 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
+// eslint-disable-next-line no-eval
 const matchUa = (data, key) => data.match(eval(`/${key}/ig`))
 const buildSpan = (span, icon, text) => `<span class="${span}"><i class="iconfont icon-${icon}"></i>${text}</span>`
 
 // 浏览器解析
 export const browserParse = ua => {
-
   const getR1 = r => r[0].split('/')
   const defaultRule = () => buildSpan('ua_other', 'internet', '其它浏览器')
 
@@ -90,7 +90,6 @@ export const browserParse = ua => {
 
 // OS 解析
 export const osParse = ua => {
-
   const defaultRule = () => buildSpan('os_other', 'phone', 'Other')
   const matchWin = () => {
     if (matchUa(ua, 'nt 5.1')) {
@@ -111,33 +110,33 @@ export const osParse = ua => {
       return buildSpan('os_windows', 'windows', 'Windows')
     }
   }
-  
+
   const rules = [
     {
       key: 'win',
       template: () => matchWin()
     },
-    {  
+    {
       key: 'android',
       template: () => buildSpan('os_android', 'android', 'Android')
     },
-    {  
+    {
       key: 'ubuntu',
       template: () => buildSpan('os_ubuntu', 'ubuntu', 'Ubuntu')
     },
-    {  
+    {
       key: 'linux',
       template: () => buildSpan('os_linux', 'linux', 'Linux')
     },
-    {  
+    {
       key: 'iphone',
       template: () => buildSpan('os_mac', 'mac', 'iPhone OS')
     },
-    {  
+    {
       key: 'mac',
       template: () => buildSpan('os_mac', 'mac', 'Mac OS X')
     },
-    {  
+    {
       key: 'unix',
       template: () => buildSpan('os_unix', 'unix', 'Unix')
     }

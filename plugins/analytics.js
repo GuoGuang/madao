@@ -9,7 +9,6 @@ import VueAnalytics from 'vue-analytics'
 import { isBrowser, isProdMode } from '~/environment/esm'
 
 if (isBrowser) {
-  
   // 新版本解决方案
   window.onNuxtReady(app => {
     Vue.use(VueAnalytics, {

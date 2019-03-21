@@ -6,71 +6,71 @@
       </div>
       <div class="profile">
         <h3 class="name">Youyd</h3>
-        <p class="email" v-text="$i18n.text.slogan"></p>
+        <p class="email" v-text="$i18n.text.slogan"/>
       </div>
     </div>
     <div class="aside-nav">
       <nav class="nav-list">
         <nuxt-link :to="'/'" class="item" exact>
-          <i class="iconfont icon-home"></i>
-          <span v-text="$i18n.nav.home"></span>
+          <i class="iconfont icon-home"/>
+          <span v-text="$i18n.nav.home"/>
         </nuxt-link>
         <nuxt-link to="/category/code" class="item">
-          <i class="iconfont icon-code"></i>
-          <span v-text="$i18n.nav.code"></span>
+          <i class="iconfont icon-code"/>
+          <span v-text="$i18n.nav.code"/>
         </nuxt-link>
         <nuxt-link to="/project" class="item">
-          <i class="iconfont icon-tool"></i>
-          <span v-text="$i18n.nav.project"></span>
+          <i class="iconfont icon-tool"/>
+          <span v-text="$i18n.nav.project"/>
         </nuxt-link>
         <nuxt-link to="/category/think" class="item">
-          <i class="iconfont icon-think"></i>
-          <span v-text="$i18n.nav.think"></span>
+          <i class="iconfont icon-think"/>
+          <span v-text="$i18n.nav.think"/>
         </nuxt-link>
         <nuxt-link to="/sitemap" class="item">
-          <i class="iconfont icon-peachblossom"></i>
-          <span v-text="$i18n.nav.map"></span>
+          <i class="iconfont icon-peachblossom"/>
+          <span v-text="$i18n.nav.map"/>
         </nuxt-link>
         <nuxt-link to="/vlog" class="item">
-          <i class="iconfont icon-vlog"></i>
-          <span v-text="$i18n.nav.vlog"></span>
+          <i class="iconfont icon-vlog"/>
+          <span v-text="$i18n.nav.vlog"/>
         </nuxt-link>
         <nuxt-link to="/about" class="item">
-          <i class="iconfont icon-user"></i>
-          <span v-text="$i18n.nav.about"></span>
+          <i class="iconfont icon-user"/>
+          <span v-text="$i18n.nav.about"/>
         </nuxt-link>
         <nuxt-link to="/service" class="item">
-          <i class="iconfont icon-zan"></i>
-          <span v-text="$i18n.nav.service"></span>
+          <i class="iconfont icon-zan"/>
+          <span v-text="$i18n.nav.service"/>
         </nuxt-link>
         <nuxt-link to="/guestbook" class="item guestbook">
-          <i class="iconfont icon-comment"></i>
-          <span v-text="$i18n.nav.guestbook"></span>
+          <i class="iconfont icon-comment"/>
+          <span v-text="$i18n.nav.guestbook"/>
         </nuxt-link>
         <a
-          :href="ads.taobao"
           v-if="false"
+          :href="ads.taobao"
           rel="external nofollow noopener"
           class="item ad taobao"
           target="_blank"
         >
-          <i class="iconfont icon-taobao"></i>
-          <span v-text="$i18n.nav.taobao"></span>
+          <i class="iconfont icon-taobao"/>
+          <span v-text="$i18n.nav.taobao"/>
         </a>
         <a
-          :href="ads.aliyun"
           v-if="false"
+          :href="ads.aliyun"
           rel="external nofollow noopener"
           class="item ad aliyun"
           target="_blank"
         >
-          <i class="iconfont icon-aliyun"></i>
-          <span v-text="$i18n.nav.aliyun"></span>
+          <i class="iconfont icon-aliyun"/>
+          <span v-text="$i18n.nav.aliyun"/>
         </a>
 
         <nuxt-link to="/app" class="item app">
-          <i class="iconfont icon-app"></i>
-          <span v-text="$i18n.nav.app"></span>
+          <i class="iconfont icon-app"/>
+          <span v-text="$i18n.nav.app"/>
         </nuxt-link>
       </nav>
     </div>
@@ -78,22 +78,22 @@
 </template>
 
 <script>
-  import adConfig from '~/config/ad.config'
-  export default {
-    name: 'mobile-aside',
-    mounted() {
-      return this.$store.dispatch('global/fetchAdminInfo')
-    },
-    computed: {
-      ads: () => adConfig.mobile.aside,
-      gravatar() {
-        const gravatar = this.$store.state.global.adminInfo.gravatar
-        return gravatar 
-          ? `${gravatar}?imageView2/1/w/180/h/180/interlace/1/q/75|imageslim` 
-          : `${this.cdnUrl}/images/gravatar.jpg`
-      }
+import adConfig from '~/config/ad.config'
+export default {
+  name: 'MobileAside',
+  computed: {
+    ads: () => adConfig.mobile.aside,
+    gravatar() {
+      const gravatar = this.$store.state.global.adminInfo.gravatar
+      return gravatar
+        ? `${gravatar}?imageView2/1/w/180/h/180/interlace/1/q/75|imageslim`
+        : `${this.cdnUrl}/images/gravatar.jpg`
     }
+  },
+  mounted() {
+    return this.$store.dispatch('global/fetchAdminInfo')
   }
+}
 </script>
 
 <style lang="scss" scoped>

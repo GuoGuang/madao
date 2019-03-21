@@ -1,7 +1,7 @@
 <template>
-  <div class="comment-box" id="comment-box" :class="{ mobile: isMobile }">
+  <div id="comment-box" :class="{ mobile: isMobile }" class="comment-box">
     <transition name="module" mode="out-in">
-      <div class="tools" key="skeleton" v-if="fetching">
+      <div v-if="fetching" key="skeleton" class="tools">
         <div class="total-skeleton">
           <skeleton-line class="count-skeleton" />
           <skeleton-line class="like-skeleton" />
@@ -10,33 +10,33 @@
           <skeleton-line />
         </div>
       </div>
-      <div class="tools" key="tools" v-else>
+      <div v-else key="tools" class="tools">
         <div class="total">
           <div class="count">
             <strong class="count">{{ comment.pagination.total || 0 }}</strong>
-            <span v-text="$i18n.text.comment.count"></span>
+            <span v-text="$i18n.text.comment.count"/>
           </div>
-          <a href class="like" :class="{ liked: isLikedPage }" @click.stop.prevent="likePage">
-            <i class="iconfont icon-upvote"></i>
+          <a :class="{ liked: isLikedPage }" href class="like" @click.stop.prevent="likePage">
+            <i class="iconfont icon-upvote"/>
             <strong>{{ likes || 0 }}</strong>
-            <span v-text="(isMobile && !isEnLang) ? '人喜欢' : $i18n.text.comment.like"></span>
+            <span v-text="(isMobile && !isEnLang) ? '人喜欢' : $i18n.text.comment.like"/>
           </a>
           <a href class="shang" @click.stop.prevent="shang">
-            <i class="iconfont icon-shang"></i>
+            <i class="iconfont icon-shang"/>
           </a>
         </div>
         <div class="sort">
           <a
+            :class="{ actived: Object.is(sortMode, constants.SortType.Desc) }"
             href
             class="sort-btn"
-            :class="{ actived: Object.is(sortMode, constants.SortType.Desc) }"
             @click.stop.prevent="sortComemnts(constants.SortType.Desc)"
             v-text="$i18n.text.comment.new"
           >最新</a>
           <a
+            :class="{ actived: Object.is(sortMode, constants.SortType.Hot) }"
             href
             class="sort-btn"
-            :class="{ actived: Object.is(sortMode, constants.SortType.Hot) }"
             @click.stop.prevent="sortComemnts(constants.SortType.Hot)"
             v-text="$i18n.text.comment.hot"
           >最热</a>
@@ -44,9 +44,9 @@
       </div>
     </transition>
     <transition name="module" mode="out-in">
-      <div class="list-box list-skeleton" key="skeleton" v-if="isFetching">
+      <div v-if="isFetching" key="skeleton" class="list-box list-skeleton">
         <ul class="comment-list">
-          <li class="comment-item" :key="item" v-for="item in (isMobile ? 3 : 5)">
+          <li v-for="item in (isMobile ? 3 : 5)" :key="item" class="comment-item">
             <div class="gravatar">
               <skeleton-base />
             </div>
@@ -57,24 +57,24 @@
         </ul>
       </div>
       <div
+        v-else-if="!comment.data.length"
         key="empty"
         class="empty-box"
-        v-else-if="!comment.data.length"
         v-text="$i18n.text.comment.empty"
-      ></div>
-      <div class="list-box" key="list" v-else>
+      />
+      <div v-else key="list" class="list-box">
         <transition-group name="fade" tag="ul" class="comment-list">
           <li
-            class="comment-item"
+            v-for="comment in comment.data"
             :id="`comment-item-${comment.id}`"
             :key="comment.id"
-            v-for="comment in comment.data"
+            class="comment-item"
           >
-            <div class="cm-avatar" v-if="!isMobile">
+            <div v-if="!isMobile" class="cm-avatar">
               <a
+                :href="comment.author.site"
                 target="_blank"
                 rel="external nofollow noopener"
-                :href="comment.author.site"
                 @click.stop="clickUser($event, comment.author)"
               >
                 <img
@@ -86,15 +86,15 @@
             <div class="cm-body">
               <div class="cm-header">
                 <a
+                  :href="comment.author.site"
                   class="user-name"
                   target="_blank"
                   rel="external nofollow noopener"
-                  :href="comment.author.site"
                   @click.stop="clickUser($event, comment.author)"
                 >{{ comment.author.name | firstUpperCase }}</a>
-                <span class="os" v-html="osParse(comment.agent)" v-if="comment.agent"></span>
-                <span class="ua" v-html="browserParse(comment.agent)" v-if="comment.agent"></span>
-                <span class="location" v-if="comment.ip_location && !isMobile">
+                <span v-if="comment.agent" class="os" v-html="osParse(comment.agent)"/>
+                <span v-if="comment.agent" class="ua" v-html="browserParse(comment.agent)"/>
+                <span v-if="comment.ip_location && !isMobile" class="location">
                   <span>{{ comment.ip_location.country }}</span>
                   <span v-if="comment.ip_location.country && comment.ip_location.city">&nbsp;-&nbsp;</span>
                   <span>{{ comment.ip_location.city }}</span>
@@ -102,7 +102,7 @@
                 <span class="flool">#{{ comment.id }}</span>
               </div>
               <div class="cm-content">
-                <p class="reply" v-if="!!comment.pid">
+                <p v-if="!!comment.pid" class="reply">
                   <span v-text="$i18n.text.comment.reply">回复</span>
                   <span>&nbsp;</span>
                   <a href @click.stop.prevent="toSomeAnchorById(`comment-item-${comment.pid}`)">
@@ -111,21 +111,21 @@
                   </a>
                   <span>：</span>
                 </p>
-                <div v-html="marked(comment.content)"></div>
+                <div v-html="marked(comment.content)"/>
               </div>
               <div class="cm-footer">
                 <span class="create_at">{{ comment.create_at | timeAgo(language) }}</span>
                 <a href class="reply" @click.stop.prevent="replyComment(comment)">
-                  <i class="iconfont icon-reply"></i>
+                  <i class="iconfont icon-reply"/>
                   <span v-text="$i18n.text.comment.reply">回复</span>
                 </a>
                 <a
+                  :class="{ liked: getCommentLiked(comment.id), actived: !!comment.likes }"
                   href
                   class="like"
-                  :class="{ liked: getCommentLiked(comment.id), actived: !!comment.likes }"
                   @click.stop.prevent="likeComment(comment)"
                 >
-                  <i class="iconfont icon-zan"></i>
+                  <i class="iconfont icon-zan"/>
                   <span v-text="$i18n.text.comment.ding">顶</span>
                   <span>&nbsp;({{ comment.likes }})</span>
                 </a>
@@ -136,36 +136,36 @@
       </div>
     </transition>
     <transition name="module">
-      <div class="pagination-box" v-if="!isFetching && comment.pagination.total_page > 1">
-        <ul class="pagination-list" v-if="Object.is(sortMode, constants.SortType.Hot)">
-          <li class="item" :key="index" v-for="(item, index) in comment.pagination.total_page">
+      <div v-if="!isFetching && comment.pagination.total_page > 1" class="pagination-box">
+        <ul v-if="Object.is(sortMode, constants.SortType.Hot)" class="pagination-list">
+          <li v-for="(item, index) in comment.pagination.total_page" :key="index" class="item">
             <a
+              :class="{ 'actived disabled': Object.is(item, comment.pagination.current_page) }"
               href
               class="pagination-btn"
-              :class="{ 'actived disabled': Object.is(item, comment.pagination.current_page) }"
-              @click.stop.prevent="Object.is(item, comment.pagination.current_page) 
-               ? false 
-               : loadComemntList({ page: item })"
+              @click.stop.prevent="Object.is(item, comment.pagination.current_page)
+                ? false
+              : loadComemntList({ page: item })"
             >{{ item }}</a>
           </li>
         </ul>
-        <ul class="pagination-list" v-else>
+        <ul v-else class="pagination-list">
           <li class="item">
             <a href class="pagination-btn prev disabled" @click.stop.prevent>
               <span>—</span>
               <span v-text="$i18n.text.comment.pagenation.old">old</span>
             </a>
           </li>
-          <li class="item" :key="index" v-for="(item, index) in comment.pagination.total_page">
+          <li v-for="(item, index) in comment.pagination.total_page" :key="index" class="item">
             <a
+              :class="{ 'actived disabled': paginationReverseActive(item) }"
               href
               class="pagination-btn"
-              :class="{ 'actived disabled': paginationReverseActive(item) }"
               @click.stop.prevent="paginationReverseActive(item)
-                ? false 
-                : loadComemntList({ 
-                    page: comment.pagination.total_page + 1 - item 
-                })"
+                ? false
+                : loadComemntList({
+                  page: comment.pagination.total_page + 1 - item
+              })"
             >{{ item }}</a>
           </li>
           <li class="item">
@@ -177,55 +177,55 @@
         </ul>
       </div>
     </transition>
-    <form class="post-box" name="comment" id="post-box">
+    <form id="post-box" class="post-box" name="comment">
       <!-- 用户编辑部分 -->
       <transition name="module" mode="out-in">
-        <div class="user" key="edit" v-if="!userCacheMode || userCacheEditing">
+        <div v-if="!userCacheMode || userCacheEditing" key="edit" class="user">
           <div class="name">
             <input
+              :class="language"
+              :placeholder="$i18n.text.comment.profile.name + ' *'"
+              v-model="user.name"
               required
               type="text"
               name="name"
               autocomplete="on"
-              :class="language"
-              :placeholder="$i18n.text.comment.profile.name + ' *'"
-              v-model="user.name"
             >
           </div>
           <div class="email">
             <input
+              :class="language"
+              :placeholder="$i18n.text.comment.profile.email + ' *'"
+              v-model="user.email"
               required
               type="email"
               name="email"
               autocomplete="on"
-              :class="language"
-              :placeholder="$i18n.text.comment.profile.email + ' *'"
-              v-model="user.email"
               @blur="upadteUserGravatar"
             >
           </div>
           <div class="site">
             <input
-              type="url"
-              name="url"
-              autocomplete="on"
               :class="language"
               :placeholder="$i18n.text.comment.profile.site"
               v-model="user.site"
+              type="url"
+              name="url"
+              autocomplete="on"
             >
           </div>
-          <div class="save" v-if="userCacheEditing">
+          <div v-if="userCacheEditing" class="save">
             <button type="submit" @click="updateUserCache($event)">
-              <i class="iconfont icon-success"></i>
+              <i class="iconfont icon-success"/>
             </button>
           </div>
         </div>
         <!-- 用户设置部分 -->
-        <div class="user" key="user" v-else-if="userCacheMode && !userCacheEditing">
+        <div v-else-if="userCacheMode && !userCacheEditing" key="user" class="user">
           <div class="edit">
             <strong class="name">{{ user.name | firstUpperCase }}</strong>
             <a href class="setting" @click.stop.prevent>
-              <i class="iconfont icon-setting"></i>
+              <i class="iconfont icon-setting"/>
               <span class="account-setting" v-text="$i18n.text.comment.setting.account">账户设置</span>
               <ul class="user-tool">
                 <li
@@ -240,7 +240,7 @@
       </transition>
       <div class="editor-box">
         <div class="user">
-          <div class="gravatar" v-if="!isMobile">
+          <div v-if="!isMobile" class="gravatar">
             <img
               :alt="user.name || $i18n.text.comment.anonymous"
               :src="user.gravatar || `${cdnUrl}/images/anonymous.jpg`"
@@ -249,7 +249,7 @@
         </div>
         <div class="editor">
           <transition name="module">
-            <div class="will-reply" key="reply" v-if="!!pid">
+            <div v-if="!!pid" key="reply" class="will-reply">
               <div class="reply-user">
                 <span>
                   <span v-text="$i18n.text.comment.reply">回复</span>
@@ -258,55 +258,55 @@
                     <strong>#{{ replyCommentSlef.id }} @{{ replyCommentSlef.author.name }}：</strong>
                   </a>
                 </span>
-                <a href class="cancel iconfont icon-cancel" @click.stop.prevent="cancelCommentReply"></a>
+                <a href class="cancel iconfont icon-cancel" @click.stop.prevent="cancelCommentReply"/>
               </div>
-              <div class="reply-preview" v-html="marked(replyCommentSlef.content)"></div>
+              <div class="reply-preview" v-html="marked(replyCommentSlef.content)"/>
             </div>
           </transition>
           <div class="markdown">
             <div
-              class="markdown-editor"
               ref="markdown"
-              contenteditable="true"
               :placeholder="$i18n.text.comment.placeholder"
+              class="markdown-editor"
+              contenteditable="true"
               @keyup="commentContentChange($event)"
-            ></div>
-            <div class="markdown-preview" :class="{ actived: previewMode }" v-html="previewContent"></div>
+            />
+            <div :class="{ actived: previewMode }" class="markdown-preview" v-html="previewContent"/>
           </div>
           <div class="editor-tools">
             <a href class="emoji" title="emoji" @click.stop.prevent>
-              <i class="iconfont icon-emoji"></i>
+              <i class="iconfont icon-emoji"/>
               <div class="emoji-box">
                 <ul class="emoji-list">
                   <li
-                    class="item"
-                    :key="index"
-                    @click="insertEmoji(emoji)"
                     v-for="(emoji, index) in emojis"
+                    :key="index"
+                    class="item"
+                    @click="insertEmoji(emoji)"
                     v-text="emoji"
-                  ></li>
+                  />
                 </ul>
               </div>
             </a>
             <a href class="image" title="image" @click.stop.prevent="insertContent('image')">
-              <i class="iconfont icon-image"></i>
+              <i class="iconfont icon-image"/>
             </a>
             <a href class="link" title="link" @click.stop.prevent="insertContent('link')">
-              <i class="iconfont icon-link-horizontal"></i>
+              <i class="iconfont icon-link-horizontal"/>
             </a>
             <a href class="code" title="code" @click.stop.prevent="insertContent('code')">
-              <i class="iconfont icon-code-comment"></i>
+              <i class="iconfont icon-code-comment"/>
             </a>
             <a href class="preview" title="preview" @click.stop.prevent="togglePreviewMode">
-              <i class="iconfont icon-eye"></i>
+              <i class="iconfont icon-eye"/>
             </a>
             <button
+              :disabled="commentPosting || isFetching"
               type="submit"
               class="submit"
-              :disabled="commentPosting || isFetching"
               @click="submitComment($event)"
             >
-              <span v-text="commentPosting ? $i18n.text.comment.submiting : $i18n.text.comment.submit"></span>
+              <span v-text="commentPosting ? $i18n.text.comment.submiting : $i18n.text.comment.submit"/>
             </button>
           </div>
         </div>
@@ -316,291 +316,293 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import marked from '~/plugins/marked'
-  import gravatar from '~/plugins/gravatar'
-  import { scrollTo } from '~/utils/scroll-to-anywhere'
-  import { browserParse, osParse } from '~/utils/ua-os-browser'
-  import { isArticleDetailRoute, isGuestbookRoute } from '~/utils/route'
-  import { localUser, localHistoryLikes } from '~/transforms/local-storage'
-  export default {
-    name: 'vue-comment',
-    props: {
-      fetching: {
-        type: Boolean,
-        default: false
-      },
-      likes: {
-        type: Number,
-      },
-      postId: {
-        type: Number,
-        required: true
-      }
+import { mapState } from 'vuex'
+import marked from '~/plugins/marked'
+import gravatar from '~/plugins/gravatar'
+import { scrollTo } from '~/utils/scroll-to-anywhere'
+import { browserParse, osParse } from '~/utils/ua-os-browser'
+// import { isArticleDetailRoute, isGuestbookRoute } from '~/utils/route'
+import { localUser, localHistoryLikes } from '~/transforms/local-storage'
+export default {
+  name: 'VueComment',
+  props: {
+    fetching: {
+      type: Boolean,
+      default: false
     },
-    data() {
-      return {
-        // 父级评论
-        pid: 0,
-        // 评论排序
-        sortMode: -1,
-        // 编辑器相关
-        comemntContentHtml: '',
-        comemntContentText: '',
-        previewContent: '',
-        previewMode: false,
-        // 用户相关
-        userCacheMode: false,
-        userCacheEditing: false,
-        user: {
-          name: '',
-          email: '',
-          site: '',
-          gravatar: null
-        },
-        // 用户历史数据
-        historyLikes: {
-          pages: [],
-          comments: []
-        },
-        regexs: {
-          email: /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/,
-          url: /^((https|http):\/\/)+[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/
-        },
-        emojis: ['😃', '😂', '😅', '😉', '😌', '😔', '😓', '😢', '😍', '😘', '😜', '😡', '😤', '😭', '😱', '😳', '😵', '🌚', '🙏', '👆', '👇', '👌', '🤘', '👍', '👎', '💪', '👏', '🌻', '🌹', '💊', '🇨🇳', '🇺🇸', '🇯🇵 ', '🚩', '🐶', '❤️', '💔', '💩', '👻']
-      }
+    likes: {
+      type: Number,
+      required: true
     },
-    computed: {
-      ...mapState({
-        comment: state => state.comment.data,
-        commentFetching: state => state.comment.fetching,
-        commentPosting: state => state.comment.posting,
-        constants: state => state.global.constants,
-        language: state => state.global.language,
-        isMobile: state => state.global.isMobile,
-        blacklist: state => state.global.appOption.data.blacklist,
-      }),
-      isFetching() {
-        // 1. 宿主组件还在加载时，列表和 tool 都呈加载状态
-        // 2. 宿主组件加载完成，如果自己还在请求，则列表呈加载状态
-        // 3. 自己已请求完，宿主组件还在加载，列表和 tool 都呈加载状态
-        return this.fetching || this.commentFetching
-      },
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isLikedPage() {
-        return this.historyLikes.pages.includes(this.postId)
-      },
-      isArticlePage() {
-        return this.$route.params.article_id
-      },
-      isGuestbookPage() {
-        return isGuestbookRoute(this.$route.name)
-      },
-      replyCommentSlef() {
-        return this.comment.data.find(comment => Object.is(comment.id, this.pid))
-      }
-    },
-    mounted() {
-      this.initAppOptionBlackList()
-    },
-    activated() {
-      this.initUser()
-      // 1. 组件不再负责初始加载评论列表数据的职责
-      // 2. 组件仅负责初评论列表数据翻页、排序的职责
-      // 3. 当容器组件还在请求时，组件全量 Loading
-      // 4. 当只有评论列表在请求时，列表单独 Loading
-    },
-    destroyed() {
-      this.$store.commit('comment/clearListData')
-    },
-    deactivated() {
-      this.$store.commit('comment/clearListData')
-    },
-    methods: {
-      browserParse,
-      osParse,
-      // 初始化本地用户即本地用户的点赞历史
-      initUser() {
-        const user = localUser.get()
-        const historyLikes = localHistoryLikes.get()
-        historyLikes && (this.historyLikes = historyLikes)
-        if (user) {
-          this.user = user
-          this.upadteUserGravatar()
-          this.userCacheMode = true
-        }
-      },
-      // 初始化黑名单
-      initAppOptionBlackList() {
-        this.$store.dispatch('global/fetchAppOption')
-      },
-      shang() {
-        this.$ga.event('内容赞赏', '点击', 'tool')
-        window.utils.openImgPopup(`${this.cdnUrl}/images/shang.jpg`, 'shang')
-      },
-      // markdown解析服务
-      marked(content) {
-        return marked(content, null, false)
-      },
-      // 头像服务
-      gravatar(email) {
-        if (!this.regexs.email.test(email)) return null
-        const gravatar_url = gravatar.url(email, { 
-          // size: '96', 
-          // rating: 'pg',
-          // default: 'https://gravatar.surmon.me/anonymous.jpg', 
-          protocol: 'https'
-        });
-        return gravatar_url.replace('https://s.gravatar.com/avatar', 'https://gravatar.surmon.me')
-      },
-      // 更新用户数据
-      updateUserCache(event) {
-        event.preventDefault()
-        if (!this.user.name) {
-          return alert(this.$i18n.text.comment.profile.name + '?')
-        }
-        if (!this.user.email) {
-          return alert(this.$i18n.text.comment.profile.email + '?')
-        }
-        if (!this.regexs.email.test(this.user.email)) {
-          return alert(this.$i18n.text.comment.profile.emailerr)
-        }
-        if (this.user.site && !this.regexs.url.test(this.user.site)) {
-          return alert(this.$i18n.text.comment.profile.siteerr)
-        }
-        localUser.set(this.user)
-        this.userCacheEditing = false
-      },
-      // 清空用户数据
-      claerUserCache() {
-        this.userCacheMode = false
-        this.userCacheEditing = false
-        localUser.remove()
-        Object.keys(this.user).forEach(key => {
-          this.user[key] = ''
-        })
-      },
-      // 更新当前用户头像
-      upadteUserGravatar() {
-        const emailIsVerified = this.regexs.email.test(this.user.email)
-        this.user.gravatar = emailIsVerified ? this.gravatar(this.user.email) : null
-      },
-      // 编辑器相关
-      commentContentChange() {
-        const html = this.$refs.markdown.innerHTML
-        const text = this.$refs.markdown.innerText
-        if (!Object.is(html, this.comemntContentHtml)) {
-          this.comemntContentHtml = html
-        }
-        if (!Object.is(text, this.comemntContentText)) {
-          this.comemntContentText = text
-        }
-      },
-      updateCommentContent({ start = '', end = '' }) {
-        if (!start && !end) return false
-        // 如果选中了内容，则把选中的内容替换，否则在光标位置插入新内容
-        const selectedText = (window.getSelection || document.getSelection)().toString()
-        const currentText = this.$refs.markdown.innerText
-        if (!!selectedText) {
-          const newText = currentText.replace(selectedText, start + selectedText + end)
-          this.$refs.markdown.innerText = newText
-        } else {
-          this.$refs.markdown.innerText = this.$refs.markdown.innerText += (start + end)
-          this.$refs.markdown.scrollTop = this.$refs.markdown.scrollHeight
-        }
-        this.commentContentChange()
-      },
-      clearCommentContent(content) {
-        this.comemntContentHtml = ''
-        this.$refs.markdown.innerHTML = this.comemntContentHtml
-        this.commentContentChange()
-      },
-      insertContent(type) {
-        const contents = {
-          image: {
-            start: `![`,
-            end: `](https://)`
-          },
-          link: {
-            start: `[`,
-            end: `](https://)`
-          },
-          code: {
-            start: '\n```javascript\n',
-            end: '\n```'
-          }
-        }
-        this.updateCommentContent(contents[type])
-      },
-      insertEmoji(emoji) {
-        this.updateCommentContent({ end: emoji })
-      },
-      // 切换预览模式
-      togglePreviewMode() {
-        this.previewContent = this.marked(this.comemntContentText)
-        this.previewMode = !this.previewMode
-      },
+    postId: {
+      type: Number,
+      required: true
+    }
+  },
+  data() {
+    return {
+      // 父级评论
+      pid: 0,
       // 评论排序
-      sortComemnts(sort) {
-        if (this.sortMode !== sort) {
-          this.sortMode = sort
-          this.loadComemntList()
+      sortMode: -1,
+      // 编辑器相关
+      comemntContentHtml: '',
+      comemntContentText: '',
+      previewContent: '',
+      previewMode: false,
+      // 用户相关
+      userCacheMode: false,
+      userCacheEditing: false,
+      user: {
+        name: '',
+        email: '',
+        site: '',
+        gravatar: null
+      },
+      // 用户历史数据
+      historyLikes: {
+        pages: [],
+        comments: []
+      },
+      regexs: {
+        email: /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/,
+        url: /^((https|http):\/\/)+[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/
+      },
+      emojis: ['😃', '😂', '😅', '😉', '😌', '😔', '😓', '😢', '😍', '😘', '😜', '😡', '😤', '😭', '😱', '😳', '😵', '🌚', '🙏', '👆', '👇', '👌', '🤘', '👍', '👎', '💪', '👏', '🌻', '🌹', '💊', '🇨🇳', '🇺🇸', '🇯🇵 ', '🚩', '🐶', '❤️', '💔', '💩', '👻']
+    }
+  },
+  computed: {
+    ...mapState({
+      comment: state => state.comment.data,
+      commentFetching: state => state.comment.fetching,
+      commentPosting: state => state.comment.posting,
+      constants: state => state.global.constants,
+      language: state => state.global.language,
+      isMobile: state => state.global.isMobile,
+      blacklist: state => state.global.appOption.data.blacklist
+    }),
+    isFetching() {
+      // 1. 宿主组件还在加载时，列表和 tool 都呈加载状态
+      // 2. 宿主组件加载完成，如果自己还在请求，则列表呈加载状态
+      // 3. 自己已请求完，宿主组件还在加载，列表和 tool 都呈加载状态
+      return this.fetching || this.commentFetching
+    },
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
+    isLikedPage() {
+      return this.historyLikes.pages.includes(this.postId)
+    },
+    isArticlePage() {
+      return this.$route.params.article_id
+    },
+    isGuestbookPage() {
+      // return isGuestbookRoute(this.$route.name)
+      return ''
+    },
+    replyCommentSlef() {
+      return this.comment.data.find(comment => Object.is(comment.id, this.pid))
+    }
+  },
+  mounted() {
+    this.initAppOptionBlackList()
+  },
+  activated() {
+    this.initUser()
+    // 1. 组件不再负责初始加载评论列表数据的职责
+    // 2. 组件仅负责初评论列表数据翻页、排序的职责
+    // 3. 当容器组件还在请求时，组件全量 Loading
+    // 4. 当只有评论列表在请求时，列表单独 Loading
+  },
+  destroyed() {
+    this.$store.commit('comment/clearListData')
+  },
+  deactivated() {
+    this.$store.commit('comment/clearListData')
+  },
+  methods: {
+    browserParse,
+    osParse,
+    // 初始化本地用户即本地用户的点赞历史
+    initUser() {
+      const user = localUser.get()
+      const historyLikes = localHistoryLikes.get()
+      historyLikes && (this.historyLikes = historyLikes)
+      if (user) {
+        this.user = user
+        this.upadteUserGravatar()
+        this.userCacheMode = true
+      }
+    },
+    // 初始化黑名单
+    initAppOptionBlackList() {
+      this.$store.dispatch('global/fetchAppOption')
+    },
+    shang() {
+      this.$ga.event('内容赞赏', '点击', 'tool')
+      window.utils.openImgPopup(`${this.cdnUrl}/images/shang.jpg`, 'shang')
+    },
+    // markdown解析服务
+    marked(content) {
+      return marked(content, null, false)
+    },
+    // 头像服务
+    gravatar(email) {
+      if (!this.regexs.email.test(email)) return null
+      const gravatar_url = gravatar.url(email, {
+        // size: '96',
+        // rating: 'pg',
+        // default: 'https://gravatar.surmon.me/anonymous.jpg',
+        protocol: 'https'
+      })
+      return gravatar_url.replace('https://s.gravatar.com/avatar', 'https://gravatar.surmon.me')
+    },
+    // 更新用户数据
+    updateUserCache(event) {
+      event.preventDefault()
+      if (!this.user.name) {
+        return alert(this.$i18n.text.comment.profile.name + '?')
+      }
+      if (!this.user.email) {
+        return alert(this.$i18n.text.comment.profile.email + '?')
+      }
+      if (!this.regexs.email.test(this.user.email)) {
+        return alert(this.$i18n.text.comment.profile.emailerr)
+      }
+      if (this.user.site && !this.regexs.url.test(this.user.site)) {
+        return alert(this.$i18n.text.comment.profile.siteerr)
+      }
+      localUser.set(this.user)
+      this.userCacheEditing = false
+    },
+    // 清空用户数据
+    claerUserCache() {
+      this.userCacheMode = false
+      this.userCacheEditing = false
+      localUser.remove()
+      Object.keys(this.user).forEach(key => {
+        this.user[key] = ''
+      })
+    },
+    // 更新当前用户头像
+    upadteUserGravatar() {
+      const emailIsVerified = this.regexs.email.test(this.user.email)
+      this.user.gravatar = emailIsVerified ? this.gravatar(this.user.email) : null
+    },
+    // 编辑器相关
+    commentContentChange() {
+      const html = this.$refs.markdown.innerHTML
+      const text = this.$refs.markdown.innerText
+      if (!Object.is(html, this.comemntContentHtml)) {
+        this.comemntContentHtml = html
+      }
+      if (!Object.is(text, this.comemntContentText)) {
+        this.comemntContentText = text
+      }
+    },
+    updateCommentContent({ start = '', end = '' }) {
+      if (!start && !end) return false
+      // 如果选中了内容，则把选中的内容替换，否则在光标位置插入新内容
+      const selectedText = (window.getSelection || document.getSelection)().toString()
+      const currentText = this.$refs.markdown.innerText
+      if (selectedText) {
+        const newText = currentText.replace(selectedText, start + selectedText + end)
+        this.$refs.markdown.innerText = newText
+      } else {
+        this.$refs.markdown.innerText = this.$refs.markdown.innerText += (start + end)
+        this.$refs.markdown.scrollTop = this.$refs.markdown.scrollHeight
+      }
+      this.commentContentChange()
+    },
+    clearCommentContent(content) {
+      this.comemntContentHtml = ''
+      this.$refs.markdown.innerHTML = this.comemntContentHtml
+      this.commentContentChange()
+    },
+    insertContent(type) {
+      const contents = {
+        image: {
+          start: `![`,
+          end: `](https://)`
+        },
+        link: {
+          start: `[`,
+          end: `](https://)`
+        },
+        code: {
+          start: '\n```javascript\n',
+          end: '\n```'
         }
-      },
-      // 翻页反向计算
-      paginationReverseActive(index) {
-        const pagination = this.comment.pagination
-        return Object.is(index, pagination.total_page + 1 - pagination.current_page)
-      },
-      // 点击用户
-      clickUser(event, user) {
-        if (!user.site) event.preventDefault()
-      },
-      // 跳转到某条指定的id位置
-      toSomeAnchorById(id) {
-        const targetDom = document.getElementById(id)
-        if (targetDom) {
-          const isToEditor = Object.is(id, 'post-box')
-          scrollTo(targetDom, 200, { offset: isToEditor ? 0 : -300 })
-          // 如果是进入编辑模式，则需要激活光标
-          if (isToEditor) {
-            const p = this.$refs.markdown
-            const s = window.getSelection()
-            const r = document.createRange()
-            r.setStart(p, p.childElementCount)
-            r.setEnd(p, p.childElementCount)
-            s.removeAllRanges()
-            s.addRange(r)
-          }
+      }
+      this.updateCommentContent(contents[type])
+    },
+    insertEmoji(emoji) {
+      this.updateCommentContent({ end: emoji })
+    },
+    // 切换预览模式
+    togglePreviewMode() {
+      this.previewContent = this.marked(this.comemntContentText)
+      this.previewMode = !this.previewMode
+    },
+    // 评论排序
+    sortComemnts(sort) {
+      if (this.sortMode !== sort) {
+        this.sortMode = sort
+        this.loadComemntList()
+      }
+    },
+    // 翻页反向计算
+    paginationReverseActive(index) {
+      const pagination = this.comment.pagination
+      return Object.is(index, pagination.total_page + 1 - pagination.current_page)
+    },
+    // 点击用户
+    clickUser(event, user) {
+      if (!user.site) event.preventDefault()
+    },
+    // 跳转到某条指定的id位置
+    toSomeAnchorById(id) {
+      const targetDom = document.getElementById(id)
+      if (targetDom) {
+        const isToEditor = Object.is(id, 'post-box')
+        scrollTo(targetDom, 200, { offset: isToEditor ? 0 : -300 })
+        // 如果是进入编辑模式，则需要激活光标
+        if (isToEditor) {
+          const p = this.$refs.markdown
+          const s = window.getSelection()
+          const r = document.createRange()
+          r.setStart(p, p.childElementCount)
+          r.setEnd(p, p.childElementCount)
+          s.removeAllRanges()
+          s.addRange(r)
         }
-      },
-      // 回复评论
-      replyComment(comment) {
-        this.pid = comment.id
-        this.toSomeAnchorById('post-box')
-      },
-      // 取消回复
-      cancelCommentReply() {
-        this.pid = 0
-      },
-      // 找到回复来源
-      fondReplyParent(comment_id) {
-        const parent = this.comment.data.find(comment => Object.is(comment.id, comment_id))
-        return parent ? parent.author.name : null
-      },
-      // 喜欢当前页面
-      likePage() {
-        if (this.isLikedPage) {
-          return false
-        }
-        this.$store.dispatch(
-          this.postId === this.constants.CommentPostType.Guestbook
-            ? 'global/fetchLikeSite'
-            : 'article/fetchLikeArticle',
-          this.postId
-        )
+      }
+    },
+    // 回复评论
+    replyComment(comment) {
+      this.pid = comment.id
+      this.toSomeAnchorById('post-box')
+    },
+    // 取消回复
+    cancelCommentReply() {
+      this.pid = 0
+    },
+    // 找到回复来源
+    fondReplyParent(comment_id) {
+      const parent = this.comment.data.find(comment => Object.is(comment.id, comment_id))
+      return parent ? parent.author.name : null
+    },
+    // 喜欢当前页面
+    likePage() {
+      if (this.isLikedPage) {
+        return false
+      }
+      this.$store.dispatch(
+        this.postId === this.constants.CommentPostType.Guestbook
+          ? 'global/fetchLikeSite'
+          : 'article/fetchLikeArticle',
+        this.postId
+      )
         .then(data => {
           this.historyLikes.pages.push(this.postId)
           localHistoryLikes.set(this.historyLikes)
@@ -609,120 +611,121 @@
           console.warn('喜欢失败', err)
           alert(this.$i18n.text.comment.profile.actionerr)
         })
-      },
-      // 点赞某条评论
-      likeComment(comment) {
-        if (this.getCommentLiked(comment.id)) {
-          return false
-        }
-        this.$store.dispatch('comment/fetchLikeComment', comment)
-          .then(_ => {
-            this.historyLikes.comments.push(comment.id)
-            localHistoryLikes.set(this.historyLikes)
-          })
-          .catch(error => {
-            console.warn('评论点赞失败', error)
-            alert(this.$i18n.text.comment.profile.actionerr)
-          })
-      },
-      // 获取某条评论是否被点赞
-      getCommentLiked(comment_id) {
-        return this.historyLikes.comments.includes(comment_id)
-      },
-      // 获取评论列表
-      loadComemntList(params = {}) {
-        params.sort = this.sortMode
-        this.$store.dispatch('comment/fetchList', Object.assign(params, { post_id: this.postId }))
-      },
-      // 提交评论
-      submitComment(event) {
-        // 为了使用原生表单拦截，不使用事件修饰符
-        event.preventDefault()
-        if (!this.user.name) {
-          return alert(this.$i18n.text.comment.profile.name + '?')
-        }
-        if (!this.user.email) {
-          return alert(this.$i18n.text.comment.profile.email + '?')
-        }
-        if (!this.regexs.email.test(this.user.email)) {
-          return alert(this.$i18n.text.comment.profile.emailerr)
-        }
-        if (this.user.site && !this.regexs.url.test(this.user.site)) {
-          return alert(this.$i18n.text.comment.profile.siteerr)
-        }
-        if (!this.comemntContentText || !this.comemntContentText.replace(/\s/g, '')) {
-          return alert(this.$i18n.text.comment.profile.content + '?')
-        }
-        const lineOverflow = this.comemntContentText.split('\n').length > 36
-        const lengthOverflow = this.comemntContentText.length > 2000
-        if (lineOverflow || lengthOverflow) {
-          return alert(this.$i18n.text.comment.profile.contenterr)
-        }
-        // 使用服务单配置的黑名单在本地校验邮箱和关键字
-        if (this.blacklist.mails.includes(this.user.email) || 
-           (this.blacklist.keywords.length && 
-            eval(`/${this.blacklist.keywords.join('|')}/ig`).test(this.comemntContentText))) {
-          alert(this.$i18n.text.comment.profile.submiterr)
-          console.warn('评论发布失败\n1：被 Akismet 过滤\n2：邮箱/IP 被列入黑名单\n3：内容包含黑名单关键词')
-          return false
-        }
-        if (!this.user.site) {
-          Reflect.deleteProperty(this.user, 'site')
-        }
-        this.$store.dispatch('comment/fetchPostComment', {
-          pid: this.pid,
-          post_id: this.postId,
-          author: this.user,
-          content: this.comemntContentText,
-          agent: navigator.userAgent
-        }).then(data => {
-          // 发布成功后清空评论框内容并更新本地信息
-          const content = data.result.content
-          const emoji233333 = this.$root.$emoji233333
-          if (emoji233333 && emoji233333.launch) {
-            // 为表情做一次缓冲
-            const preImage = (url, callback) => {
-              const img = new Image()
-              img.src = url
-              if (img.complete) return callback(img)
-              img.onload = () => callback(img)
-            }
-            if (content.includes('2333') || content.includes('哈哈')) {
-              const emoji = emoji233333.defaultEmoji
-              emoji233333.update({
-                emoji,
-                speed: 12,
-                staggered: true,
-                increaseSpeed: 0.4,
-              })
-              preImage(emoji, emoji233333.launch.bind(emoji233333))
-            } else if (content.includes('666')) {
-              const emoji = '/images/emojis/666.png'
-              emoji233333.update({
-                emoji,
-                speed: 12,
-                staggered: true,
-                increaseSpeed: 0.4
-              })
-              preImage(emoji, emoji233333.launch.bind(emoji233333))
-            } else if (content.includes('呵呵')) {
-              const emoji = '/images/emojis/hehe.png'
-              emoji233333.update({ emoji, staggered: false, speed: 8, increaseSpeed: 0.04 })
-              preImage(emoji, emoji233333.launch.bind(emoji233333))
-            }
-          }
-          this.previewMode = false
-          this.userCacheMode = true
-          this.cancelCommentReply()
-          this.clearCommentContent()
-          localUser.set(this.user)
-        }).catch(error => {
-          console.warn('评论发布失败，可能原因：被 Akismet 过滤，或者：\n', error)
-          alert(this.$i18n.text.comment.profile.submiterr)
-        })
+    },
+    // 点赞某条评论
+    likeComment(comment) {
+      if (this.getCommentLiked(comment.id)) {
+        return false
       }
+      this.$store.dispatch('comment/fetchLikeComment', comment)
+        .then(_ => {
+          this.historyLikes.comments.push(comment.id)
+          localHistoryLikes.set(this.historyLikes)
+        })
+        .catch(error => {
+          console.warn('评论点赞失败', error)
+          alert(this.$i18n.text.comment.profile.actionerr)
+        })
+    },
+    // 获取某条评论是否被点赞
+    getCommentLiked(comment_id) {
+      return this.historyLikes.comments.includes(comment_id)
+    },
+    // 获取评论列表
+    loadComemntList(params = {}) {
+      params.sort = this.sortMode
+      this.$store.dispatch('comment/fetchList', Object.assign(params, { post_id: this.postId }))
+    },
+    // 提交评论
+    submitComment(event) {
+      // 为了使用原生表单拦截，不使用事件修饰符
+      event.preventDefault()
+      if (!this.user.name) {
+        return alert(this.$i18n.text.comment.profile.name + '?')
+      }
+      if (!this.user.email) {
+        return alert(this.$i18n.text.comment.profile.email + '?')
+      }
+      if (!this.regexs.email.test(this.user.email)) {
+        return alert(this.$i18n.text.comment.profile.emailerr)
+      }
+      if (this.user.site && !this.regexs.url.test(this.user.site)) {
+        return alert(this.$i18n.text.comment.profile.siteerr)
+      }
+      if (!this.comemntContentText || !this.comemntContentText.replace(/\s/g, '')) {
+        return alert(this.$i18n.text.comment.profile.content + '?')
+      }
+      const lineOverflow = this.comemntContentText.split('\n').length > 36
+      const lengthOverflow = this.comemntContentText.length > 2000
+      if (lineOverflow || lengthOverflow) {
+        return alert(this.$i18n.text.comment.profile.contenterr)
+      }
+      // 使用服务单配置的黑名单在本地校验邮箱和关键字
+      /* eval 是有害的原因 所以注释 */
+      // if (this.blacklist.mails.includes(this.user.email) ||
+      //      (this.blacklist.keywords.length &&
+      //       eval(`/${this.blacklist.keywords.join('|')}/ig`).test(this.comemntContentText))) {
+      //   alert(this.$i18n.text.comment.profile.submiterr)
+      //   console.warn('评论发布失败\n1：被 Akismet 过滤\n2：邮箱/IP 被列入黑名单\n3：内容包含黑名单关键词')
+      //   return false
+      // }
+      if (!this.user.site) {
+        Reflect.deleteProperty(this.user, 'site')
+      }
+      this.$store.dispatch('comment/fetchPostComment', {
+        pid: this.pid,
+        post_id: this.postId,
+        author: this.user,
+        content: this.comemntContentText,
+        agent: navigator.userAgent
+      }).then(data => {
+        // 发布成功后清空评论框内容并更新本地信息
+        const content = data.result.content
+        const emoji233333 = this.$root.$emoji233333
+        if (emoji233333 && emoji233333.launch) {
+          // 为表情做一次缓冲
+          const preImage = (url, callback) => {
+            const img = new Image()
+            img.src = url
+            if (img.complete) return callback(img)
+            img.onload = () => callback(img)
+          }
+          if (content.includes('2333') || content.includes('哈哈')) {
+            const emoji = emoji233333.defaultEmoji
+            emoji233333.update({
+              emoji,
+              speed: 12,
+              staggered: true,
+              increaseSpeed: 0.4
+            })
+            preImage(emoji, emoji233333.launch.bind(emoji233333))
+          } else if (content.includes('666')) {
+            const emoji = '/images/emojis/666.png'
+            emoji233333.update({
+              emoji,
+              speed: 12,
+              staggered: true,
+              increaseSpeed: 0.4
+            })
+            preImage(emoji, emoji233333.launch.bind(emoji233333))
+          } else if (content.includes('呵呵')) {
+            const emoji = '/images/emojis/hehe.png'
+            emoji233333.update({ emoji, staggered: false, speed: 8, increaseSpeed: 0.04 })
+            preImage(emoji, emoji233333.launch.bind(emoji233333))
+          }
+        }
+        this.previewMode = false
+        this.userCacheMode = true
+        this.cancelCommentReply()
+        this.clearCommentContent()
+        localUser.set(this.user)
+      }).catch(error => {
+        console.warn('评论发布失败，可能原因：被 Akismet 过滤，或者：\n', error)
+        alert(this.$i18n.text.comment.profile.submiterr)
+      })
     }
   }
+}
 </script>
 
 <style lang="scss">
@@ -871,7 +874,7 @@
       .sort-skeleton {
         height: 2rem;
       }
-      
+
       .total-skeleton {
         display: flex;
         width: 70%;
@@ -885,7 +888,7 @@
           width: 40%;
         }
       }
-      
+
       .sort-skeleton {
         width: 20%;
       }
@@ -1045,7 +1048,7 @@
 
                 &:hover {
                   text-decoration: underline;
-                } 
+                }
               }
 
               > .os,

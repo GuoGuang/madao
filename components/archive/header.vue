@@ -1,42 +1,42 @@
 <template>
-  <div class="header-box" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="header-box">
     <div
-      class="background"
       :style="{
         'background-color': currentBackgroundColor,
         'background-image': `url(${currentBackgroundImage})`
       }"
-    ></div>
+      class="background"
+    />
     <div class="logo-box">
       <p class="logo">
         <transition name="module" mode="out-in">
           <!-- data -->
-          <i class="iconfont icon-clock" key="date" v-if="currentDate"></i>
+          <i v-if="currentDate" key="date" class="iconfont icon-clock"/>
           <!-- tag -->
-          <i class="iconfont" key="tag" v-else-if="currentTag" :class="currentTagIconClass"></i>
+          <i v-else-if="currentTag" key="tag" :class="currentTagIconClass" class="iconfont"/>
           <!-- category -->
-          <i class="iconfont" key="category" v-else-if="currentCategory" :class="currentCategoryIconClass"></i>
+          <i v-else-if="currentCategory" key="category" :class="currentCategoryIconClass" class="iconfont"/>
           <!-- search -->
-          <i class="iconfont icon-search" key="search" v-else-if="currentKeyword"></i>
+          <i v-else-if="currentKeyword" key="search" class="iconfont icon-search"/>
         </transition>
       </p>
     </div>
     <div class="title-box">
       <transition name="module" mode="out-in">
         <!-- category -->
-        <h4 class="title" :key="`category${currentCategory.description}`" v-if="currentCategory">
+        <h4 v-if="currentCategory" :key="`category${currentCategory.description}`" class="title">
           <span>{{ currentCategory.description || '...' }}</span>
         </h4>
 
         <!-- tag -->
-        <h4 class="title" :key="`tag${currentTag.name}`" v-else-if="currentTag">
+        <h4 v-else-if="currentTag" :key="`tag${currentTag.name}`" class="title">
           <span>{{ currentTag.name }}</span>
           <span>&nbsp;-&nbsp;</span>
           <span>{{ currentTag.description || '...' }}</span>
         </h4>
 
         <!-- date -->
-        <h4 class="title" :key="`date${currentDate}`" v-else-if="currentDate">
+        <h4 v-else-if="currentDate" :key="`date${currentDate}`" class="title">
           <span v-if="isEnLang">
             <span>{{ currentDate }}&nbsp;</span>
             <span>articles</span>
@@ -49,7 +49,7 @@
         </h4>
 
         <!-- search -->
-        <h4 class="title" :key="`search${currentKeyword}`" v-else-if="currentKeyword">
+        <h4 v-else-if="currentKeyword" :key="`search${currentKeyword}`" class="title">
           <span v-if="isEnLang">
             <span>"{{ currentKeyword }}"</span>
             <span>related articles</span>
@@ -68,58 +68,58 @@
 </template>
 
 <script>
-  export default {
-    name: 'article-list-header',
-    methods: {
-      getExtendsValue(target, key) {
-        if (!target || !target.extends.length) {
-          return null
-        }
-        const targetExtend = target.extends.find(t => Object.is(t.name, key))
-        return targetExtend ? targetExtend.value : null
-      }
+export default {
+  name: 'ArticleListHeader',
+  computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
     },
-    computed: {
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      currentTag() {
-        return this.$store.state.tag.data.find((tag, index, arr) => {
-          return Object.is(tag.slug, this.$route.params.tag_slug)
-        })
-      },
-      currentTagIconClass() {
-        return this.getExtendsValue(this.currentTag, 'icon') || 'icon-tag'
-      },
-      currentCategory() {
-        return this.$store.state.category.data.find((category, index, arr) => {
-          return Object.is(category.slug, this.$route.params.category_slug)
-        })
-      },
-      currentCategoryIconClass() {
-        return this.getExtendsValue(this.currentCategory, 'icon') || 'icon-category'
-      },
-      currentBackgroundImage() {
-        const tagBg = this.getExtendsValue(this.currentTag, 'background')
-        const cateBg = this.getExtendsValue(this.currentCategory, 'background')
-        return tagBg || cateBg || '/images/service.jpg'
-      },
-      currentBackgroundColor() {
-        const tagBg = this.getExtendsValue(this.currentTag, 'bgcolor')
-        const cateBg = this.getExtendsValue(this.currentCategory, 'bgcolor')
-        return tagBg || cateBg || 'transparent'
-      },
-      currentDate() {
-        return this.$route.params.date
-      },
-      currentKeyword() {
-        return this.$route.params.keyword
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
+    currentTag() {
+      return this.$store.state.tag.data.find((tag, index, arr) => {
+        return Object.is(tag.slug, this.$route.params.tag_slug)
+      })
+    },
+    currentTagIconClass() {
+      return this.getExtendsValue(this.currentTag, 'icon') || 'icon-tag'
+    },
+    currentCategory() {
+      return this.$store.state.category.data.find((category, index, arr) => {
+        return Object.is(category.slug, this.$route.params.category_slug)
+      })
+    },
+    currentCategoryIconClass() {
+      return this.getExtendsValue(this.currentCategory, 'icon') || 'icon-category'
+    },
+    currentBackgroundImage() {
+      const tagBg = this.getExtendsValue(this.currentTag, 'background')
+      const cateBg = this.getExtendsValue(this.currentCategory, 'background')
+      return tagBg || cateBg || '/images/service.jpg'
+    },
+    currentBackgroundColor() {
+      const tagBg = this.getExtendsValue(this.currentTag, 'bgcolor')
+      const cateBg = this.getExtendsValue(this.currentCategory, 'bgcolor')
+      return tagBg || cateBg || 'transparent'
+    },
+    currentDate() {
+      return this.$route.params.date
+    },
+    currentKeyword() {
+      return this.$route.params.keyword
+    },
+    isMobile() {
+      return this.$store.state.global.isMobile
+    }
+  },
+  methods: {
+    getExtendsValue(target, key) {
+      if (!target || !target.extends.length) {
+        return null
       }
+      const targetExtend = target.extends.find(t => Object.is(t.name, key))
+      return targetExtend ? targetExtend.value : null
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

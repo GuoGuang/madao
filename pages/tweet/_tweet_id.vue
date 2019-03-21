@@ -49,20 +49,20 @@
         <el-row class="action-box">
           <el-col :span="8">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#youyd-icon-caozuo-dianzan"></use>
+              <use xlink:href="#youyd-icon-caozuo-dianzan"/>
             </svg>
             <a>0</a>
           </el-col>
           <el-col :span="8" class="action-box-center">
             <nuxt-link to="/tweet/1" text>
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#youyd-icon-pinglun"></use>
+                <use xlink:href="#youyd-icon-pinglun"/>
               </svg>
             </nuxt-link>0
           </el-col>
           <el-col :span="8">
             <svg class="icon" aria-hidden="true" style="padding-bottom: 8px;">
-              <use xlink:href="#youyd-icon-fenxiang"></use>
+              <use xlink:href="#youyd-icon-fenxiang"/>
             </svg>
             分享
           </el-col>
@@ -83,7 +83,7 @@
                 src="https://user-gold-cdn.xitu.io/2019/2/26/169268d0793ad9be?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1"
               >
             </el-col>
-            <el-input placeholder="输入评论" style="padding: 5px;"></el-input>
+            <el-input placeholder="输入评论" style="padding: 5px;"/>
           </el-row>
 
           <el-row class="ext-btn">
@@ -115,7 +115,7 @@
         </div>
 
         <!-- 评论列表 -->
-        <div class="comments-list" :key="index" v-for="(comment, index) in comments">
+        <div v-for="(comment, index) in comments" :key="index" class="comments-list">
           <el-row type="flex" class="account-comment-group">
             <el-col :span="3" class="account-image content">
               <img
@@ -158,14 +158,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { isBrowser } from '~/environment/esm'
-import lozad from '~/plugins/lozad'
-import marked from '~/plugins/marked'
-import adConfig from '~/config/ad.config'
+// import { mapState } from 'vuex'
+// import { isBrowser } from '~/environment/esm'
+// import lozad from '~/plugins/lozad'
+// import marked from '~/plugins/marked'
+// import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 export default {
-  name: 'tweet-detail',
+  name: 'TweetDetail',
   components: {
     ShareBox
   },

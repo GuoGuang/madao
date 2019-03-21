@@ -4,12 +4,12 @@
 
     <el-dialog :visible.sync="loginDialogVisible" class="loginDialog" title="登录" width="30%">
       <!-- :model="formLabelAlign" -->
-      <el-form label-position="top" label-width="80px" size="mini">
-        <el-form-item label="手机号 或 Email">
-          <el-input placeholder="11 位手机号 或 Email" size="small"/>
+      <el-form ref="loginForm" :rules="rules" :model="loginForm" label-position="top" label-width="80px" size="mini">
+        <el-form-item label="手机号 或 Email" prop="account">
+          <el-input v-model="loginForm.account" placeholder="11 位手机号 或 Email" size="small"/>
         </el-form-item>
-        <el-form-item label="密码">
-          <el-input placeholder="请输入密码" size="small"/>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="loginForm.password" placeholder="请输入密码" size="small"/>
         </el-form-item>
 
         <el-form-item>
@@ -18,7 +18,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button size="medium " @click="submitForm('ruleForm')">登录</el-button>
+          <el-button size="medium " @click="login('ruleForm')">登录</el-button>
         </el-form-item>
 
         <div class="more-login-area">
@@ -79,15 +79,8 @@
           <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"/>
         </div>
 
-        <!-- 未登录 -->
-        <div v-if="loginStatus" class="navbar-login">
-          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
-          <div class="item" style="margin-left: 10px !important;">
-            <el-button size="small" type="success" @click="registDialogVisible = true">{{ $i18n.nav.register }}</el-button>
-          </div>
-        </div>
         <!-- 已登录 -->
-        <div v-else class="user-profile">
+        <div v-if="loginStatus" class="user-profile">
           <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
             <el-menu-item index="1">私信</el-menu-item>
             <el-submenu index="2">
@@ -116,6 +109,14 @@
               <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
             </el-submenu>
           </el-menu>
+        </div>
+
+        <!-- 未登录 -->
+        <div v-else class="navbar-login">
+          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
+          <div class="item" style="margin-left: 10px !important;">
+            <el-button size="small" type="success" @click="registDialogVisible = true">{{ $i18n.nav.register }}</el-button>
+          </div>
         </div>
 
         <!-- 音乐 -->
@@ -170,6 +171,8 @@
 import music from '~/expansions/music'
 import { isBrowser } from '~/environment/esm'
 import NavView from '~/components/layout/pc/nav'
+import { setToken } from '@/utils/auth' // 从cookie中获取token getToken
+
 export default {
   name: 'LayoutHeader',
   components: {
@@ -180,12 +183,32 @@ export default {
       input: '',
       preload: false,
       loginDialogVisible: false,
-      registDialogVisible: false
+      registDialogVisible: false,
+
+      loginForm: {
+        id: '',
+        acoount: '',
+        password: ''
+
+      },
+
+      rules: {
+        account: [
+          { required: true, message: '不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '不能为空', trigger: 'blur' }
+        ]
+      }
+
     }
   },
   computed: {
     loginStatus() {
-      return this.$store.getters.loginStatus
+      console.error('this.$store.state.user.loginStatus')
+      console.error(this.$store.state.user.loginStatus)
+      return this.$store.state.user.loginStatus
+      // return getToken()
     },
     playerState() {
       return music.state
@@ -205,6 +228,27 @@ export default {
     }
   },
   methods: {
+    login() {
+      console.error('this.password')
+      console.error(this.password)
+      this.$refs['loginForm'].validate(valid => {
+        if (valid) {
+          setToken('5555')
+          window.location.reload
+          // const postData = Object.assign({}, this.temp)
+          /* updateData(postData).then(data => {
+              // this.$nextTick(() => {
+              //   this.$refs['loginForm'].resetFields()
+              // })
+              this.$message({
+                message: '更新成功',
+                type: 'success'
+              })
+            }) */
+        }
+      })
+    },
+
     loginDialog() {
       this.loginDialogVisible = true
     },
@@ -221,7 +265,8 @@ export default {
       music.humanizeOperation(music.player.nextSong)
     },
     logout() {
-      console.log('')
+
+      // this.$store.dispatch('user/logout')
     }
   }
 }

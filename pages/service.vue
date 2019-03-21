@@ -1,18 +1,18 @@
 <template>
-  <div class="page" :class="{ mobile: isMobile }">
+  <div :class="{ mobile: isMobile }" class="page">
     <div class="service">
       <div class="banner">
         <div class="banner-content container">
           <h2
             class="title"
             v-text="$i18n.text.service.slogan"
-          ></h2>
+          />
           <div class="submit">
             <button
               class="submit-btn"
-              v-text="$i18n.text.service.emailMe"
               @click="submitProject"
-            ></button>
+              v-text="$i18n.text.service.emailMe"
+            />
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
           <ul class="module-list">
             <li class="item">
               <p class="icon">
-                <i class="iconfont icon-web"></i>
+                <i class="iconfont icon-web"/>
               </p>
               <p class="name">Web Client</p>
               <p class="desc">Vue 应用开发</p>
@@ -30,7 +30,7 @@
             </li>
             <li class="item">
               <p class="icon">
-                <i class="iconfont icon-nodejs"></i>
+                <i class="iconfont icon-nodejs"/>
               </p>
               <p class="name">Nodejs</p>
               <p class="desc">Nodejs 整站建设</p>
@@ -39,7 +39,7 @@
             </li>
             <li class="item">
               <p class="icon">
-                <i class="iconfont icon-app"></i>
+                <i class="iconfont icon-app"/>
               </p>
               <p class="name">Application</p>
               <p class="desc">Weex 应用开发</p>
@@ -48,7 +48,7 @@
             </li>
             <li class="item">
               <p class="icon">
-                <i class="iconfont icon-wechat"></i>
+                <i class="iconfont icon-wechat"/>
               </p>
               <p class="name">Wechat</p>
               <p class="desc">H5 开发</p>
@@ -57,7 +57,7 @@
             </li>
             <li class="item">
               <p class="icon">
-                <i class="iconfont icon-consult"></i>
+                <i class="iconfont icon-consult"/>
               </p>
               <p class="name">技术咨询</p>
               <p class="desc">Vue 疑难杂症</p>
@@ -87,7 +87,7 @@
             </li>
             <li class="item">
               <p class="name">4. 预收修正</p>
-              <p class="desc">提供预览审核</p>
+              <p class="desc">提供预览审核</p >
               <p class="desc">根据需求修正</p>
             </li>
             <li class="item">
@@ -109,34 +109,34 @@
 </template>
 
 <script>
-  export default {
-    name: 'service',
-    head() {
-      return {
-        title: `${this.isEnLang ? '' : this.$i18n.nav.service + ' | '}Service`
-      }
+export default {
+  name: 'Service',
+  head() {
+    return {
+      title: `${this.isEnLang ? '' : this.$i18n.nav.service + ' | '}Service`
+    }
+  },
+  computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
     },
-    methods: {
-      submitProject() {
-        this.$ga.event('咨询邮件', '点击', 'tool')
-        const subject = `嗨！GuoGuang，久仰大名！`
-        const body = `我有一个需求：%0D%0A %0D%0A - 需求简述： %0D%0A %0D%0A - 需求文档：%0D%0A %0D%0A - 预算金额：%0D%0A %0D%0A - 预算周期：`
-        const mailAddress = 'mailto:guoguang0536@gmail.com' +
+    isMobile() {
+      return this.$store.state.global.isMobile
+    }
+  },
+  methods: {
+    submitProject() {
+      this.$ga.event('咨询邮件', '点击', 'tool')
+      const subject = `嗨！GuoGuang，久仰大名！`
+      const body = `我有一个需求：%0D%0A %0D%0A - 需求简述： %0D%0A %0D%0A - 需求文档：%0D%0A %0D%0A - 预算金额：%0D%0A %0D%0A - 预算周期：`
+      const mailAddress = 'mailto:guoguang0536@gmail.com' +
           (this.isMobile
             ? ''
             : `?subject=${subject}&body=${body}`)
-        window.location.href = mailAddress
-      }
-    },
-    computed: {
-      isEnLang() {
-        return this.$store.getters['global/isEnLang']
-      },
-      isMobile() {
-        return this.$store.state.global.isMobile
-      }
+      window.location.href = mailAddress
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

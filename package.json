@@ -26,6 +26,7 @@
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/style-resources": "^0.1.1",
     "bezier-easing": "^2.1.0",
+    "cookie": "^0.3.1",
     "cross-env": "^5.2.0",
     "element-ui": "^2.5.4",
     "emoji-233333": "^0.2.2",

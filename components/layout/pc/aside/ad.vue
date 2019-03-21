@@ -1,8 +1,8 @@
 <template>
   <div class="aside-ad">
-    <div class="swiper aside" v-swiper:swiper="swiperOption" @slideChange="slideChange">
+    <div v-swiper:swiper="swiperOption" class="swiper aside" @slideChange="slideChange">
       <div class="swiper-wrapper">
-        <div class="swiper-slide slide-item" v-for="(ad, index) in ads" :key="index">
+        <div v-for="(ad, index) in ads" :key="index" class="swiper-slide slide-item">
           <div class="content">
             <a
               :href="ad.url"
@@ -10,57 +10,57 @@
               target="_blank"
               class="ad-box"
             >
-              <img :src="ad.src" alt="aliyun-ad" />
+              <img :src="ad.src" alt= "aliyun-ad" >
             </a>
           </div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <div class="swiper-pagination"/>
     </div>
   </div>
 </template>
 
 <script>
-  import adConfig from '~/config/ad.config'
-  export default {
-    name: 'aside-ad',
-    props: {
-      initIndex: {
-        type: Number,
-        default: 0
-      }
-    },
-    methods: {
-      slideChange() {
-        this.$emit('slideChange', this.swiper.realIndex)
-      }
-    },
-    computed: {
-      ads: () => adConfig.pc.asideSwiper,
-      swiperOption() {
-        return {
-          initialSlide: this.initIndex,
-          loop: true,
-          simulateTouch: false,
-          direction : 'vertical',
-          autoplay: {
-            delay: 2960,
-            disableOnInteraction: false
-          },
-          pagination: {
-            clickable: true,
-            el: '.swiper-pagination'
-          },
-          setWrapperSize: true,
-          autoHeight: true,
-          mousewheel: true,
-          observeParents: true,
-          preloadImages: false,
-          lazy: true
-        }
+import adConfig from '~/config/ad.config'
+export default {
+  name: 'AsideAd',
+  props: {
+    initIndex: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    ads: () => adConfig.pc.asideSwiper,
+    swiperOption() {
+      return {
+        initialSlide: this.initIndex,
+        loop: true,
+        simulateTouch: false,
+        direction: 'vertical',
+        autoplay: {
+          delay: 2960,
+          disableOnInteraction: false
+        },
+        pagination: {
+          clickable: true,
+          el: '.swiper-pagination'
+        },
+        setWrapperSize: true,
+        autoHeight: true,
+        mousewheel: true,
+        observeParents: true,
+        preloadImages: false,
+        lazy: true
       }
     }
+  },
+  methods: {
+    slideChange() {
+      this.$emit('slideChange', this.swiper.realIndex)
+    }
   }
+}
 </script>
 
 <style lang="scss">

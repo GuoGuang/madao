@@ -33,15 +33,14 @@ export const mutations = {
 }
 
 export const actions = {
-  
+
   // 获取今日壁纸
   fetchPapers({ commit, state }) {
-
     // 如果数据已存在，则直接返回 Promise 成功，并返回数据
     if (state.papers.data) {
       return Promise.resolve(state.papers.data)
     }
-    
+
     // 不存在则请求新数据
     commit('updatePapersFetching', true)
     return this.$axios.$get(`/wallpaper/list`)
@@ -49,12 +48,14 @@ export const actions = {
         commit('updatePapersData', response)
         commit('updatePapersFetching', false)
       })
-      .catch(error => commit('updatePapersFetching', false))
+      .catch(error => {
+        console.error(error)
+        commit('updatePapersFetching', false)
+      })
   },
 
   // 获取今日壁纸故事
   fetchStory({ commit, state }) {
-
     // 如果数据已存在，则直接返回 Promise 成功，并返回数据
     if (state.story.data) {
       return Promise.resolve(state.story.data)
@@ -67,6 +68,9 @@ export const actions = {
         commit('updateStoryData', response)
         commit('updateStoryFetching', false)
       })
-      .catch(error => commit('updateStoryFetching', false))
-  },
+      .catch(error => {
+        console.error(error)
+        commit('updateStoryFetching', false)
+      })
+  }
 }

@@ -6,11 +6,11 @@
 
 exports.Language = {
   Zh: 'zh',
-  En: 'en',
+  En: 'en'
 }
 
 exports.Theme = {
-  Default: 'default',
+  Default: 'default'
 }
 
 exports.Route = {
@@ -24,15 +24,15 @@ exports.Route = {
   About: 'about',
   Project: 'project',
   Vlog: 'vlog',
-  Sitemap: 'sitemap',
+  Sitemap: 'sitemap'
 }
 
 exports.ImageExt = {
   Webp: 'webp',
-  Jpg: 'jpeg',
+  Jpg: 'jpeg'
 }
 
 exports.StorageField = {
   User: 'user',
-  UserLikeHistory: 'user_like_history',
+  UserLikeHistory: 'user_like_history'
 }

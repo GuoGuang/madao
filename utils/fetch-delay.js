@@ -9,13 +9,11 @@ import { isBrowser } from '~/environment/esm'
 
 // 恢复默认
 export const fetchDelay = delay => {
-  
   // 一个卑鄙的手段
   delay = delay != null ? delay : appConfig.fetch.delay
   const start = new Date().getTime()
 
   return action => {
-
     // 卑鄙手段
     const end = new Date().getTime()
     const time = end - start

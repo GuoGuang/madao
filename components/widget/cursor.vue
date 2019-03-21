@@ -1,38 +1,39 @@
 <template>
-  <div class="global-cursor" :style="positionStyle">
+  <div :style="positionStyle" class="global-cursor">
     <div class="cursor">
-      <div class="follower follower1"></div>
-      <div class="follower follower2"></div>
+      <div class="follower follower1"/>
+      <div class="follower follower2"/>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'global-cursor',
-    data() {
-      return { x: 0, y: 0 }
-    },
-    mounted() {
-      document.addEventListener('mousemove', this.getCursorPosition)
-    },
-    beforeDestroy() {
-      document.removeEventListener('mousemove', this.getCursorPosition)
-    },
-    methods: {
-      getCursorPosition(event) {
-        this.x = event.clientY
-        this.y = event.clientX
-      }
-    },
-    computed: {
-      positionStyle() {
-        return {
-          transform: `translate3d(${this.y}px, ${this.x}px, 0)`
-        }
+export default {
+  name: 'GlobalCursor',
+  data() {
+    return { x: 0, y: 0 }
+  },
+
+  computed: {
+    positionStyle() {
+      return {
+        transform: `translate3d(${this.y}px, ${this.x}px, 0)`
       }
     }
+  },
+  mounted() {
+    document.addEventListener('mousemove', this.getCursorPosition)
+  },
+  beforeDestroy() {
+    document.removeEventListener('mousemove', this.getCursorPosition)
+  },
+  methods: {
+    getCursorPosition(event) {
+      this.x = event.clientY
+      this.y = event.clientX
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

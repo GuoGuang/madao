@@ -78,7 +78,7 @@ export default new Vue({
         return timestamp.time <= currentTime && next && next.time > currentTime
       })
       return targetSentence ? targetSentence.sentence : '...'
-    },
+    }
   },
   watch: {
     currentSong() {
@@ -126,6 +126,7 @@ export default new Vue({
           this.list.data = response.result
         })
         .catch(error => {
+          console.log(error)
           this.list.fetching = false
           this.list.data = null
         })
@@ -139,6 +140,7 @@ export default new Vue({
           this.song.data = response.result
         })
         .catch(error => {
+          console.log(error)
           this.song.data = null
           this.song.fetching = false
         })
@@ -152,6 +154,7 @@ export default new Vue({
           this.lrc.data = response.result
         })
         .catch(error => {
+          console.log(error)
           this.lrc.fetching = false
           this.lrc.data = null
         })

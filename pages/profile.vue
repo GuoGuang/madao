@@ -37,7 +37,7 @@
               <a class="opacity25 icon-sn-twitter" target="_blank" href="/user/oauth/twitter">weibo</a>
             </li>
             <li>
-              <a class="opacity25 icon-sn-facebook" target="_blank" href="/user/oauth/facebook"></a>
+              <a class="opacity25 icon-sn-facebook" target="_blank" href="/user/oauth/facebook"/>
             </li>
           </ul>
         </div>
@@ -58,26 +58,26 @@
         </div>
         <div class="profile__heading--other" style="display:flex;flex-direction: column;">
           <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-map-marker"></i>
+            <i class="fa fa-map-marker"/>
             <span class="profile__city">
               潍坊
               <span class="profile__heading-edit btn btn-xs" data-type="city">
-                <i class="fa fa-pencil" aria-hidden="true"></i>编辑
+                <i class="fa fa-pencil" aria-hidden="true"/>编辑
               </span>
             </span>
           </span>
           <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <i class="fa fa-graduation-cap" aria-hidden="true"/>
             <span class="profile__school">
               山东大学
               <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>计算机
               <span class="profile__heading-edit btn btn-xs" data-type="school">
-                <i class="fa fa-pencil" aria-hidden="true"></i>编辑
+                <i class="fa fa-pencil" aria-hidden="true"/>编辑
               </span>
             </span>
           </span>
           <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            <i class="fa fa-briefcase" aria-hidden="true"/>
             <span class="profile__company">
               山东
               <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>java工程师
@@ -86,19 +86,19 @@
                 class="profile__heading-edit btn btn-xs"
                 data-type="company"
               >
-                <i class="fa fa-pencil" aria-hidden="true"></i>编辑
+                <i class="fa fa-pencil" aria-hidden="true"/>编辑
               </span>
             </span>
           </span>
           <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-link"></i>
+            <i class="fa fa-link"/>
             <span class="profile__site">
-              <a class="profile__heading--other-item-link" target="_blank" href="http://"></a>
+              <a class="profile__heading--other-item-link" target="_blank" href="http://"/>
               <span
                 class="profile__heading-edit btn btn-xs profile__heading-edit--init"
                 data-type="site"
               >
-                <i class="fa fa-pencil hide" aria-hidden="true"></i>填写个人主网站
+                <i class="fa fa-pencil hide" aria-hidden="true"/>填写个人主网站
               </span>
             </span>
           </span>
@@ -109,13 +109,13 @@
         <div class="profile__heading--desc">
           <div class="profile__heading--desc-heading">
             <span class="profile__heading--desc-heading-dot-warp">
-              <span class="profile__heading-dot profile__heading-dot--red"></span>
-              <span class="profile__heading-dot profile__heading-dot--yellow"></span>
-              <span class="profile__heading-dot profile__heading-dot--green"></span>
+              <span class="profile__heading-dot profile__heading-dot--red"/>
+              <span class="profile__heading-dot profile__heading-dot--yellow"/>
+              <span class="profile__heading-dot profile__heading-dot--green"/>
             </span>
             <div class="pull-right line-height">
               <span class="profile__heading-edit">
-                <i class="fa fa-pencil" aria-hidden="true"></i>编辑
+                <i class="fa fa-pencil" aria-hidden="true"/>编辑
               </span>
             </div>
           </div>
@@ -133,7 +133,7 @@
 
 <script>
 export default {
-  name: 'profile',
+  name: 'Profile',
   head() {
     return {
       title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}Project`
