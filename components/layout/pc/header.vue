@@ -184,7 +184,7 @@ export default {
       preload: false,
       loginDialogVisible: false,
       registDialogVisible: false,
-
+      loginStatus: this.$store.state.user.token,
       loginForm: {
         id: '',
         acoount: '',
@@ -204,12 +204,7 @@ export default {
     }
   },
   computed: {
-    loginStatus() {
-      console.error('this.$store.state.user.loginStatus')
-      console.error(this.$store.state.user.loginStatus)
-      return this.$store.state.user.loginStatus
-      // return getToken()
-    },
+
     playerState() {
       return music.state
     },
@@ -230,11 +225,11 @@ export default {
   methods: {
     login() {
       console.error('this.password')
-      console.error(this.password)
+      console.error(this.loginForm.password)
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
           setToken('5555')
-          window.location.reload
+          location.reload()
           // const postData = Object.assign({}, this.temp)
           /* updateData(postData).then(data => {
               // this.$nextTick(() => {
@@ -265,8 +260,9 @@ export default {
       music.humanizeOperation(music.player.nextSong)
     },
     logout() {
-
-      // this.$store.dispatch('user/logout')
+      this.$store.dispatch('user/logout').then(() => {
+        location.reload()
+      })
     }
   }
 }
