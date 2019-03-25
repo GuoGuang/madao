@@ -60,6 +60,7 @@ export const actions = {
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
+        alert('55')
         commit('SET_TOKEN', '')
         removeToken()
         resolve()
