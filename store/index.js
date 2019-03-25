@@ -48,7 +48,7 @@ export const actions = {
 
     // 判断用户是否登录
     const { token } = cookie.parse(req.headers.cookie)
-    store.commit('user/TOGGLE_LOGIN_STATUS', token)
+    store.commit('user/SET_TOKEN', token)
     console.error('完成')
 
     return Promise.all(initFetchAppData)

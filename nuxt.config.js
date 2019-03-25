@@ -4,8 +4,8 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-const path = require('path')
-const webpack = require('webpack')
+// const path = require('path')
+// const webpack = require('webpack')
 const appConfig = require('./config/app.config')
 const apiConfig = require('./config/api.config')
 const i18nConfig = require('./config/i18n.config')
@@ -44,10 +44,10 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|233333|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context);
+              return /swiper|233333|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
             },
             chunks: 'initial',
-            priority: 10,
+            priority: 10
           },
           vendors: {
             test: /[\\/]node_modules[\\/]/,
@@ -57,7 +57,7 @@ module.exports = {
             minChunks: 2,
             priority: -20,
             reuseExistingChunk: true
-          },
+          }
           // page -> 合并组件会导致运行异常
           /*
           page: {
@@ -110,7 +110,7 @@ module.exports = {
         return [
           [
             '@nuxtjs/babel-preset-app',
-            { targets: isServer ? { node: '10.4.0' } : { chrome: 69 } }
+            { targets: isServer ? { node: '10.4.0' } : { chrome: 69 }}
           ]
         ]
       }
@@ -132,7 +132,7 @@ module.exports = {
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
     { src: '~/plugins/element-ui' },
-    { src: '~/static/icon/iconfont.js', ssr: false}/* 阿里icon */
+    { src: '~/static/icon/iconfont.js', ssr: false }/* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],
   modules: [
@@ -185,7 +185,7 @@ module.exports = {
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
-    ],
+    ]
   },
   workbox: {
     // runtimeCaching: [
@@ -215,15 +215,15 @@ module.exports = {
     extendRoutes(routes) {},
     scrollBehavior(to, from, savedPosition) {
       return { x: 0, y: 0 }
-    },
+    }
   },
   css: [
-    "~/static/icon/iconfont.css",
+    '~/static/icon/iconfont.css',
     'swiper/dist/css/swiper.css',
     'highlight.js/styles/ocean.css',
     { src: '~assets/sass/app.scss', lang: 'sass' }
   ],
   styleResources: {
-    scss: './assets/sass/init.scss',
+    scss: './assets/sass/init.scss'
   }
 }

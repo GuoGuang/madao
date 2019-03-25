@@ -3,12 +3,12 @@
  * @module store/tag
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
-
-import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
+import { logout } from '@/api/login'
+import { getToken, removeToken } from '@/utils/auth' // 从cookie中获取token getToken
 
 export const state = () => {
   return {
-    loginStatus: '',
+    token: '',
     fetching: false,
     data: [],
     state: ''
@@ -23,10 +23,8 @@ export const mutations = {
   updateListData(state, action) {
     state.data = action.data
   },
-  TOGGLE_LOGIN_STATUS(state, getTok) {
-    console.error(getTok)
-    console.error('data')
-    state.loginStatus = getTok
+  SET_TOKEN(state, token) {
+    state.token = token
   }
 
 }
@@ -52,6 +50,22 @@ export const actions = {
    * @param {d} param0
    */
   toggleLoginStatus({ commit }) {
-    commit('TOGGLE_LOGIN_STATUS', getToken())
+    commit('SET_TOKEN', getToken())
+  },
+
+  /**
+   * 退出
+   * @param {d} param0
+   */
+  logout({ commit }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token).then(() => {
+        commit('SET_TOKEN', '')
+        removeToken()
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 }
