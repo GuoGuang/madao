@@ -29,7 +29,7 @@ export const actions = {
       store.commit('global/updateLanguage', systemConstants.Language.Zh)
     }
 
-    // 初始化时的全局任务
+    // 初始化时的全局任 务
     const initFetchAppData = [
       // 同构常量
       // store.dispatch('global/fetchConstants'),
