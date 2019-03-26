@@ -12,19 +12,21 @@
                     <span class="first-letter">I</span>'m GuoGuang, a (95+) (小) Javascript (鲜) stack (肉) developer.
                   </span>
                   <span v-else>
-                    <span class="first-letter">浪</span>
-                    <span>蝶游蜂，迈步九云中</span>
+                    <span class="first-letter">古</span>
+                    <b>之立大事者，不惟有超世之才，亦必有坚韧不拔之志。</b>
                   </span>
                 </p>
                 <p class="item">
                   <i class="iconfont icon-comment-discussion"/>
                   <span v-if="isEnLang">Taolu committee:</span>
                   <span v-else>国家套路委员会：</span>
+                  <!-- href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4">288325802</a> -->
                   <a
                     target="_blank"
                     rel="external nofollow noopenter"
-                    href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4">288325802</a>
-                  <span>.</span>
+
+                    href="#">1831682775</a>
+                  <span/>
                 </p>
                 <p class="item">
                   <i class="iconfont icon-music"/>
@@ -35,7 +37,7 @@
                   <span v-if="isEnLang">code. beauty. whisky. music. vagrant.</span>
                   <span v-else>
                     <span>恋何物？</span>
-                    <span>酒池肉林、日夜笙歌、依翠偎红、五音六律、目营心匠、桀骜不羁</span>
+                    <b>酒池肉林、日夜笙歌、依翠偎红、五音六律、目营心匠、桀骜不羁</b>
                   </span>
                 </p>
                 <p class="item">
@@ -43,7 +45,7 @@
                   <span class="accounts">
                     <span>
                       <a
-                        href="https://github.com/surmon-china"
+                        href="#"
                         target="_blank"
                         class="github"
                         rel="external nofollow noopenter">
@@ -51,46 +53,46 @@
                       </a>
                       <a
                         v-if="false"
-                        href="mailto:surmon@foxmail.com"
+                        href="#"
                         target="_blank"
                         class="mail"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-mail"/>
                       </a>
-                      <a href="https://t.me/surmon" target="_blank" class="telegram" rel="external nofollow noopenter">
+                      <a href="#" target="_blank" class="telegram" rel="external nofollow noopenter">
                         <i class="iconfont icon-telegram"/>
                       </a>
                       <a
                         v-if="false"
-                        href="https://juejin.im/user/5735611ac4c9710060f8fa5e"
+                        href="#"
                         target="_blank"
                         class="juejin"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-juejin"/>
                       </a>
                       <a
-                        href="https://www.zhihu.com/people/surmon/activities"
+                        href="#"
                         target="_blank"
                         class="zhihu"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-zhihu"/>
                       </a>
                       <a
-                        href="https://weibo.com/surmon"
+                        href="#"
                         target="_blank"
                         class="weibo"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-weibo"/>
                       </a>
                       <a
-                        href="https://www.youtube.com/channel/UCoL-j6T28PLSJ2U6ZdONS0w"
+                        href="#"
                         target="_blank"
                         class="youtube"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-youtube"/>
                       </a>
                       <a
-                        href="https://space.bilibili.com/27940710/#/video"
+                        href="#"
                         target="_blank"
                         class="bilibili"
                         rel="external nofollow noopenter">
@@ -100,28 +102,28 @@
                     <span v-if="!isMobile">
                       <a
                         v-if="false"
-                        href="https://surmon.taobao.com"
+                        href="#"
                         target="_blank"
                         class="taobao"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-taobao"/>
                       </a>
                       <a
-                        href="https://stackoverflow.com/users/6222535/surmon?tab=profile"
+                        href="#"
                         target="_blank"
                         class="stackoverflow"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-stackoverflow"/>
                       </a>
                       <a
-                        href="https://leetcode.com/surmon"
+                        href="#"
                         target="_blank"
                         class="algorithm"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-algorithm"/>
                       </a>
                       <a
-                        href="https://www.quora.com/profile/Surmon"
+                        href="#"
                         target="_blank"
                         class="quora"
                         rel="external nofollow noopenter">
@@ -129,14 +131,14 @@
                       </a>
                       <a
                         v-if="false"
-                        href="https://www.linkedin.com/in/surmon"
+                        href="#"
                         target="_blank"
                         class="linkedin"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-linkedin"/>
                       </a>
                       <a
-                        href="https://twitter.com/surmon_me"
+                        href="#"
                         target="_blank"
                         class="twitter"
                         rel="external nofollow noopenter">
@@ -144,14 +146,14 @@
                       </a>
                       <a
                         v-if="false"
-                        href="https://www.facebook.com/surmon.me"
+                        href="#"
                         target="_blank"
                         class="facebook"
                         rel="external nofollow noopenter">
                         <i class="iconfont icon-facebook"/>
                       </a>
                       <a
-                        href="https://www.instagram.com/surmon666/"
+                        href="#"
                         target="_blank"
                         class="instagram"
                         rel="external nofollow noopenter">
@@ -171,11 +173,11 @@
                 <p v-if="!isMobile" class="item">
                   <i class="iconfont icon-friend"/>
                   <span class="friends">
-                    <a href="http://skyrover.me/about" target="_blank" rel="external nofollow noopenter">「 skyrover
+                    <a href="#" target="_blank" rel="external nofollow noopenter">「 skyrover
                     」</a>
-                    <a href="https://blog.jimmylv.info" target="_blank" rel="external nofollow noopenter">「 JimmyLv
+                    <a href="#" target="_blank" rel="external nofollow noopenter">「 JimmyLv
                     」</a>
-                    <a href="https://www.funens.com" target="_blank" rel="external nofollow noopenter">「 Channg 」</a>
+                    <a href="#" target="_blank" rel="external nofollow noopenter">「 Channg 」</a>
                   </span>
                 </p>
               </div>
@@ -195,9 +197,9 @@
                 <img :src="gravatar" class="avatar">
                 <div class="desc">
                   <h2 class="name">
-                    <strong>Surmon</strong>
+                    <strong>Youyd</strong>
                   </h2>
-                  <p class="skill">JS Stack Developer.</p>
+                  <p class="skill">Java Developer.</p>
                 </div>
                 <a v-if="!isMobile" class="followme" href @click.stop.prevent>{{ isEnLang ? 'Friend me' : '众里寻他' }}</a>
                 <div v-if="!isMobile" class="wechat" @mouseenter="handleFollowMe"/>

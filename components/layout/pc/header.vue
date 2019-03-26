@@ -81,7 +81,37 @@
 
         <!-- 已登录 -->
         <div v-if="loginStatus" class="user-profile">
-          <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
+
+          <ul style="">
+            <li >
+              <a class="dropdown-toggle-letter" href="/user/messages">
+                <span class="sr-only">
+                  私信
+                </span>
+              </a>
+            </li>
+            <li >
+              <a class="dropdown-toggle-letter" href="/user/messages">
+                <span class="sr-only">
+                  新文章
+                </span>
+              </a>
+            </li>
+            <li >
+
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>GuoGuang</el-dropdown-item>
+                  <el-dropdown-item>我的档案</el-dropdown-item>
+                  <el-dropdown-item>个人设置</el-dropdown-item>
+                  <el-dropdown-item @click="logout">退出</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+          </li></ul>
+          <!-- <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
             <el-menu-item index="1">私信</el-menu-item>
             <el-submenu index="2">
               <template slot="title">
@@ -108,7 +138,7 @@
               <el-menu-item index="2-2">账号设置</el-menu-item>
               <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
             </el-submenu>
-          </el-menu>
+          </el-menu> -->
         </div>
 
         <!-- 未登录 -->
@@ -355,6 +385,37 @@ export default {
         }
 
         .user-profile{
+           height: 4.5em;
+            position: relative;
+            align-items: center;
+            padding-left: .5em;
+            position: relative;
+            overflow: hidden;
+            ul{
+                  margin: 1em;
+               display: flex;
+              li{
+                //line-height: 64px!important ;
+                position: relative;
+                padding: 0;
+                margin: 0 0 0 2px;
+                line-height: 34px;
+
+              }
+              li:hover{
+                  background-color: #f3f3f3
+              }
+            }
+            .dropdown-toggle-letter{
+              display: inline-block;
+              padding: 0 12px;
+              height: 34px;color: #757575;
+              font-weight: 500;
+              -moz-border-radius: 4px;
+              -webkit-border-radius: 4px;
+              border-radius: 4px;
+            }
+
           .image{
             width: 36px;
             border-radius: 50%;
