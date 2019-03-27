@@ -35,7 +35,7 @@
         <div class="item-meta">
           <span class="date">
             <i class="iconfont icon-clock"/>
-            <span>{{ article.create_at | toYMD(language) }}</span>
+            <span>{{ article.createAt | toYMD(language) }}</span>
           </span>
           <span class="visits">
             <i class="iconfont icon-eye"/>
@@ -54,9 +54,7 @@
             <template v-if="article.category.name">
               <!-- :key="index" v-for="(category, index) in article.category" -->
               <nuxt-link
-
                 :to="`/category/${article.category.id}`"
-
                 v-text="isEnLang ? article.category.name : article.category.name"
               />
             </template>

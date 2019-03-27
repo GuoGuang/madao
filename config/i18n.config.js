@@ -247,6 +247,10 @@ module.exports = {
           zh: '今日热议',
           en: 'hot'
         },
+        aside: {
+          zh: '关于作者',
+          en: 'about author'
+        },
         loadmore: {
           zh: '山河入梦',
           en: 'loadmore'

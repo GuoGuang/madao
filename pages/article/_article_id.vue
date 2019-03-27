@@ -1,76 +1,92 @@
 /* eslint-disable vue/order-in-components */
 <template>
   <!-- 文章详情页 -->
-  <article id="article" :class="{ mobile: isMobile }" class="article">
-    <div ref="detail" class="detail">
-      <transition name="module">
-        <div
-          v-if="!isFetching"
-          :class="{
-            self: !article.origin,
-            other: article.origin === constants.OriginState.Reprint,
-            hybrid: article.origin === constants.OriginState.Hybrid
-          }"
-          class="oirigin">
-          <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
-          <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
-          <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
+  <el-row :gutter="20">
+    <el-col :span="18">
+      <article id="article" :class="{ mobile: isMobile }" class="article">
+
+        <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
+
+          <!-- 文章左侧点赞区 -->
+          <div badge="186" class="like-btn panel-btn with-badge"/>
+          <div badge="186" class="comment-btn panel-btn with-badge"/>
+          <div badge="186" class="collect-btn panel-btn"/>
+          <div badge="186" class="share-title">分享</div>
+          <div class="weibo-btn share-btn panel-btn"/>
+          <div class="qq-btn share-btn panel-btn"/>
+          <div class="wechat-btn share-btn panel-btn"/>
+
         </div>
-      </transition>
-      <transition name="module" mode="out-in" @after-enter="contentAnimatieDone">
-        <div v-if="isFetching" key="skeleton" class="skeleton">
-          <no-ssr>
-            <skeleton-line class="title" />
-            <skeleton-paragraph :lines="9" class="content" line-height="1.2em" />
-          </no-ssr>
-        </div>
-        <div v-else key="knowledge" class="knowledge">
-          <h2 class="title">{{ article.title }}</h2>
-          <div id="article-content" class="content" v-html="articleContent"/>
-          <transition name="module" mode="out-in" @after-leave="readmoreAnimatieDone">
-            <div v-if="isCanReadMore" class="readmore">
-              <button :disabled="isReadMoreLoading" class="readmore-btn" @click="readMore()">
-                <span>{{ isReadMoreLoading ? $i18n.text.article.rendering : $i18n.text.article.readAll }}</span>
-                <i class="iconfont icon-next-bottom"/>
-              </button>
+
+        <div ref="detail" class="detail">
+          <transition name="module">
+            <div
+              v-if="!isFetching"
+              :class="{
+                self: !article.origin,
+                other: article.origin === constants.OriginState.Reprint,
+                hybrid: article.origin === constants.OriginState.Hybrid
+              }"
+              class="oirigin">
+              <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
+              <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
+              <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
+            </div>
+          </transition>
+          <transition name="module" mode="out-in" @after-enter="contentAnimatieDone">
+            <div v-if="isFetching" key="skeleton" class="skeleton">
+              <no-ssr>
+                <skeleton-line class="title" />
+                <skeleton-paragraph :lines="9" class="content" line-height="1.2em" />
+              </no-ssr>
+            </div>
+            <div v-else key="knowledge" class="knowledge">
+              <h2 class="title">{{ article.title }}</h2>
+              <div id="article-content" class="content" v-html="articleContent"/>
+              <transition name="module" mode="out-in" @after-leave="readmoreAnimatieDone">
+                <div v-if="isCanReadMore" class="readmore">
+                  <button :disabled="isReadMoreLoading" class="readmore-btn" @click="readMore()">
+                    <span>{{ isReadMoreLoading ? $i18n.text.article.rendering : $i18n.text.article.readAll }}</span>
+                    <i class="iconfont icon-next-bottom"/>
+                  </button>
+                </div>
+              </transition>
             </div>
           </transition>
         </div>
-      </transition>
-    </div>
-    <no-ssr>
-      <div class="ad">
+        <!--   <no-ssr>
+          <div class="ad">
+            <transition name="module" mode="out-in">
+              <skeleton-paragraph v-if="isFetching" key="skeleton" :lines="4" class="ad-skeleton" line-height="1em" />
+              <adsense-article v-else-if="renderAd" key="adsense" />
+            </transition>
+          </div>
+        </no-ssr>
+        <div class="share">
+          <transition name="module" mode="out-in">
+            <div v-if="isFetching" key="skeleton" class="skeleton">
+              <skeleton-base
+                v-for="item in (isMobile ? 3 : 10)"
+                :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
+                :radius="0"
+                :key="item" />
+            </div>
+            <share-box v-else key="share" class="article" />
+          </transition>
+        </div> -->
         <transition name="module" mode="out-in">
-          <skeleton-paragraph v-if="isFetching" key="skeleton" :lines="4" class="ad-skeleton" line-height="1em" />
-          <adsense-article v-else-if="renderAd" key="adsense" />
-        </transition>
-      </div>
-    </no-ssr>
-    <div class="share">
-      <transition name="module" mode="out-in">
-        <div v-if="isFetching" key="skeleton" class="skeleton">
-          <skeleton-base
-            v-for="item in (isMobile ? 3 : 10)"
-            :style="{ width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})` }"
-            :radius="0"
-            :key="item" />
-        </div>
-        <share-box v-else key="share" class="article" />
-      </transition>
-    </div>
-    <transition name="module" mode="out-in">
-      <div v-if="isFetching" key="skeleton" class="metas">
-        <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
-      </div>
-      <div v-else key="metas" class="metas">
-        <p v-if="isEnLang" class="item">
-          <span>Article created at</span>
-          <span>&nbsp;</span>
-          <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
-            <span>{{ buildDateTitle(article.createAt) }}</span>
-          </nuxt-link>
-          <span>&nbsp;in category&nbsp;</span>
-          <!-- <nuxt-link :key="index" :to="`/category/${category.slug}`" :title="category.description || category.name"
+          <div v-if="isFetching" key="skeleton" class="metas">
+            <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
+          </div>
+          <div v-else key="metas" class="metas">
+            <p v-if="isEnLang" class="item">
+              <span>Article created at</span>
+              <span>&nbsp;</span>
+              <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
+                <span>{{ buildDateTitle(article.createAt) }}</span>
+              </nuxt-link>
+              <span>&nbsp;in category&nbsp;</span>
+              <!-- <nuxt-link :key="index" :to="`/category/${category.slug}`" :title="category.description || category.name"
             v-for="(category, index) in article.category">
             <span>{{ category.name }}</span>
             <span v-if="article.category.length && article.category[index + 1]">、</span>
@@ -79,15 +95,15 @@
           <span>,&nbsp;&nbsp;</span>
           <span>{{ article.meta.views || 0 }}</span>
           <span>&nbsp;Views</span> -->
-        </p>
-        <p v-else class="item">
-          <span>本文于</span>
-          <span>&nbsp;</span>
-          <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
-            <span>{{ buildDateTitle(article.createAt) }}</span>
-          </nuxt-link>
-          <span>&nbsp;发布在&nbsp;</span>
-          <!-- <span :key="index" v-for="(category, index) in article.category">
+            </p>
+            <p v-else class="item">
+              <span>本文于</span>
+              <span>&nbsp;</span>
+              <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
+                <span>{{ buildDateTitle(article.createAt) }}</span>
+              </nuxt-link>
+              <span>&nbsp;发布在&nbsp;</span>
+              <!-- <span :key="index" v-for="(category, index) in article.category">
             <nuxt-link :to="`/category/${category.slug}`" :title="category.description || category.name">
               <span>{{ isEnLang ? category.slug : category.name }}</span>
             </nuxt-link>
@@ -97,8 +113,8 @@
           <span>&nbsp;分类下，当前已被围观&nbsp;</span>
           <span>{{ article.meta.views || 0 }}</span>
           <span>&nbsp;次</span> -->
-        </p>
-        <!-- <p class="item">
+            </p>
+            <!-- <p class="item">
           <span class="title" :class="language">{{ isEnLang ? 'Related tags:' : '相关标签：' }}</span>
           <span v-if="!article.tag.length" v-text="$i18n.text.tag.empty"></span>
           <span :key="index" v-for="(tag, index) in article.tag">
@@ -108,33 +124,33 @@
             <span v-if="article.tag.length && article.tag[index + 1]">、</span>
           </span>
         </p> -->
-        <p class="item">
-          <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
-          <span class="site-url" @click="copyArticleUrl">
-            <span>https://youyd.com/article/{{ article.id }}</span>
-          </span>
-        </p>
-        <div class="item">
-          <span :class="language" class="title">{{ isEnLang ? 'Copyright Clarify:' : '版权声明：' }}</span>
-          <span v-if="!isEnLang">
-            <span>自由转载-署名-非商业性使用</span>
-            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          </span>
-          <a
-            target="_blank"
-            rel="external nofollow noopenter"
-            href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh">Creative Commons BY-NC 3.0 CN</a>
-        </div>
-      </div>
-    </transition>
-    <transition name="module" mode="out-in">
-      <div v-if="isFetching" key="skeleton" class="related">
-        <skeleton-paragraph v-if="isMobile" :lines="4" class="skeleton" line-height="1em" />
-        <ul v-else class="skeleton-list">
-          <skeleton-base v-for="item in 4" :key="item" class="article" />
-        </ul>
-      </div>
-      <!-- <div class="related" key="related" v-else-if="article.related && article.related.length">
+            <p class="item">
+              <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
+              <span class="site-url" @click="copyArticleUrl">
+                <span>https://youyd.com/article/{{ article.id }}</span>
+              </span>
+            </p>
+            <div class="item">
+              <span :class="language" class="title">{{ isEnLang ? 'Copyright Clarify:' : '版权声明：' }}</span>
+              <span v-if="!isEnLang">
+                <span>自由转载-署名-非商业性使用</span>
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+              </span>
+              <a
+                target="_blank"
+                rel="external nofollow noopenter"
+                href="https://creativecommons.org/licenses/by-nc/3.0/cn/deed.zh">Creative Commons BY-NC 3.0 CN</a>
+            </div>
+          </div>
+        </transition>
+        <transition name="module" mode="out-in">
+          <div v-if="isFetching" key="skeleton" class="related">
+            <skeleton-paragraph v-if="isMobile" :lines="4" class="skeleton" line-height="1em" />
+            <ul v-else class="skeleton-list">
+              <skeleton-base v-for="item in 4" :key="item" class="article" />
+            </ul>
+          </div>
+          <!-- <div class="related" key="related" v-else-if="article.related && article.related.length">
         <div class="article-list swiper" v-if="!isMobile" v-swiper:swiper="swiperOption">
           <div class="swiper-wrapper">
             <div class="swiper-slide item" :key="index" v-for="(article, index) in relatedArticles">
@@ -168,11 +184,20 @@
           </li>
         </ul>
       </div> -->
-    </transition>
-    <!-- <div class="comment">
+        </transition>
+        <!-- <div class="comment">
       <comment-box :fetching="isFetching" :post-id="routeArticleId" :likes="article.meta && article.meta.likes" />
     </div> -->
-  </article>
+
+      </article>
+    </el-col>
+    <el-col :span="6">
+      <div class="main-right">
+        <aside-view key="aside"/>
+      </div>
+    </el-col>
+  </el-row>
+
 </template>
 
 <script>
@@ -182,11 +207,14 @@ import lozad from '~/plugins/lozad'
 import marked from '~/plugins/marked'
 import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
+import AsideView from '~/components/layout/pc/aside/article_main'
 export default {
   name: 'ArticleDetail',
   components: {
-    ShareBox
+    ShareBox,
+    AsideView
   },
+
   validate({ params, store }) {
     return params.article_id && !isNaN(Number(params.article_id))
   },
@@ -906,4 +934,60 @@ export default {
       }
     }
   }
+
+  .like-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg);
+  }
+  .comment-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/comment.7fc22c2.svg);
+  }
+  .collect-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/collect.1db122b.svg)
+  }
+  .weibo-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/weibo.2076a57.svg)
+  }
+  .qq-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/qq.0834411.svg)
+  }
+  .wechat-btn{
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/wechat.63e1ce0.svg)
+  }
+
+  .with-badge:after {
+    content: attr(badge);
+    position: absolute;
+    top: 0;
+    left: 75%;
+    padding: .1rem .4rem;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
+    color: #fff;
+    background-color: #b2bac2;
+    border-radius: .7rem;
+    transform-origin: left top;
+    transform: scale(.75)
+}
+.panel-btn {
+    background-position:53% 46%;
+    position:relative;
+    margin-bottom:.75rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: #fff;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.04);
+    cursor: pointer
+}
+.share-title{
+    margin: 2.5rem 0 1rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #c6c6c6;
+    user-select: none;
+}
 </style>

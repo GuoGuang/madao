@@ -76,7 +76,8 @@
         </div>
 
         <div class="navbar-search">
-          <el-input v-model="input" placeholder="请输入内容" suffix-icon="el-icon-search"/>
+          <el-input v-model="input" size="small" placeholder="请输入内容" suffix-icon="el-icon-search"/>
+
         </div>
 
         <!-- 已登录 -->
@@ -84,16 +85,18 @@
 
           <ul style="">
             <li >
-              <a class="dropdown-toggle-letter" href="/user/messages">
-                <span class="sr-only">
-                  私信
+              <el-dropdown :hide-on-click="false">
+                <span class="el-dropdown-link">
+                  新文章<i class="el-icon-arrow-down el-icon--right"/>
                 </span>
-              </a>
-            </li>
-            <li >
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>提问题</el-dropdown-item>
+                  <el-dropdown-item>发布猿点</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
               <a class="dropdown-toggle-letter" href="/user/messages">
                 <span class="sr-only">
-                  新文章
+                  消息
                 </span>
               </a>
             </li>
@@ -104,7 +107,11 @@
                   <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>GuoGuang</el-dropdown-item>
+                  <el-dropdown-item >
+                    <router-link to="/profile">
+                      GuoGuang
+                    </router-link>
+                  </el-dropdown-item>
                   <el-dropdown-item>我的档案</el-dropdown-item>
                   <el-dropdown-item>个人设置</el-dropdown-item>
                   <el-dropdown-item @click="logout">退出</el-dropdown-item>

@@ -19,13 +19,13 @@
                 <p class="item">
                   <i class="iconfont icon-comment-discussion"/>
                   <span v-if="isEnLang">Taolu committee:</span>
-                  <span v-else>国家套路委员会：</span>
+                  <span v-else>WeChat：</span>
                   <!-- href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4">288325802</a> -->
                   <a
                     target="_blank"
                     rel="external nofollow noopenter"
 
-                    href="#">1831682775</a>
+                    href="#">15866534150</a>
                   <span/>
                 </p>
                 <p class="item">
@@ -36,8 +36,8 @@
                   <i class="iconfont icon-upvote"/>
                   <span v-if="isEnLang">code. beauty. whisky. music. vagrant.</span>
                   <span v-else>
-                    <span>恋何物？</span>
-                    <b>酒池肉林、日夜笙歌、依翠偎红、五音六律、目营心匠、桀骜不羁</b>
+                    <span/>
+                    <b>"Everyone should learn how to program a computer because it teaches you how to think” </b>
                   </span>
                 </p>
                 <p class="item">
@@ -45,7 +45,7 @@
                   <span class="accounts">
                     <span>
                       <a
-                        href="#"
+                        href="https://github.com/GuoGuang0536"
                         target="_blank"
                         class="github"
                         rel="external nofollow noopenter">
