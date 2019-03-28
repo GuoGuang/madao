@@ -114,7 +114,9 @@
                   </el-dropdown-item>
                   <el-dropdown-item>我的档案</el-dropdown-item>
                   <el-dropdown-item>个人设置</el-dropdown-item>
-                  <el-dropdown-item @click="logout">退出</el-dropdown-item>
+                  <el-dropdown-item>
+                    <a @click="logout">退出</a>
+                  </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
           </li></ul>

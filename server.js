@@ -4,7 +4,6 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
@@ -39,15 +38,14 @@ const server = new http.Server(app)
 const io = socketio(server, { transports: ['websocket'] })
 
 if (config.dev) {
- 
   const handleProxy = path => (req, res) => {
     console.error(req.url)
-    console.error("req.url")
+    console.error('req.url')
     const targetUrl = 'http://' + req.url.replace('/proxy/' + (path ? path + '/' : ''), '')
     require('request').get(targetUrl).pipe(res)
   }
   console.log(handleProxy)
-  console.log("handleProxy")
+  console.log('handleProxy')
   app.get('/proxy/bilibili/*', handleProxy('bilibili'))
   app.get('/proxy/*', handleProxy)
 }
@@ -68,7 +66,7 @@ const bootstrap = () => {
 
 config.dev
   ? new Builder(nuxt).build().then(bootstrap).catch((error) => {
-      console.error('开发模式启动失败：', error)
-      process.exit(1)
-    })
+    console.error('开发模式启动失败：', error)
+    process.exit(1)
+  })
   : bootstrap()

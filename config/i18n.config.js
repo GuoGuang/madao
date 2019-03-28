@@ -85,6 +85,12 @@ module.exports = {
         en: 'Sign Up'
       }
     },
+    user:{
+      profile:{
+        zh: '技术',
+        en: 'it'
+      },
+    },
     text: {
       it:{
         zh: '技术',

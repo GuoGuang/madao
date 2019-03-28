@@ -136,7 +136,7 @@ export default {
   name: 'Profile',
   head() {
     return {
-      title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}Project`
+      title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
     }
   },
   fetch({ store }) {
