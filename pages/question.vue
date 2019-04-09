@@ -22,18 +22,21 @@
             </el-col>
             <el-col :span="22" class="summary">
               <el-row class="title">
-                <h2 class="title">
+                <h3 class="title">
                   <a href="/666">Timeout waiting to lock artifact cache</a>
-                </h2>
+                </h3>
               </el-row>
               <el-row>
                 I am a new user of android Studio. How to solve this error? ERROR: Timeout waiting to lock artifact cache (C:\Users\Sumon.gradle\caches\modules-2). It is currently in use by another Gradle instance. ...
               </el-row>
               <el-row style="padding:7px">
 
-                <el-tag size="small">java</el-tag>
-                <el-tag size="small">python</el-tag>
-
+                <a href="#">
+                  <el-tag size="small">java</el-tag>
+                </a>
+                <a href="#">
+                  <el-tag size="small">python</el-tag>
+                </a>
                 <el-row class="user">
                   <div class="started fr">
                     <div class="user-info ">
@@ -161,32 +164,19 @@ export default {
         display: inline-block;
 
         .title {
+          margin:0;
           display: inline-block;
-          font-size: 16px;
-        }
-
-        ul {
-          list-style: none;
-        }
-
-        .taglist--inline {
-          display: inline-block;
-          a:focus,
+        a:focus,
           a:hover {
             color: #409eff;
           }
           a {
+            font-size: 16px;
             display: inline-block;
             padding: 0 6px;
-            color: #017e66;
-            background-color: rgba(1, 126, 102, 0.08);
             height: 22px;
             line-height: 22px;
-            font-weight: normal;
-            font-size: 13px;
             text-align: center;
-            color: #009a61;
-            text-decoration: none;
           }
         }
 
