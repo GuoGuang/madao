@@ -6,8 +6,7 @@ import qs from 'qs'
  * @param {String} username : 用户名
  * @param {String} password : 密码
  */
-
-export function loginByUsername(username, password) {
+export function loginByUserName(username, password) {
   return request({
     url: '/user/login',
     method: 'post',

@@ -210,7 +210,6 @@
 import music from '~/expansions/music'
 import { isBrowser } from '~/environment/esm'
 import NavView from '~/components/layout/pc/nav'
-import { setToken } from '@/utils/auth' // 从cookie中获取token getToken
 
 export default {
   name: 'LayoutHeader',
@@ -263,22 +262,21 @@ export default {
   },
   methods: {
     login() {
-      console.error('this.password')
-      console.error(this.loginForm.password)
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
-          setToken('5555')
-          location.reload()
-          // const postData = Object.assign({}, this.temp)
-          /* updateData(postData).then(data => {
-              // this.$nextTick(() => {
-              //   this.$refs['loginForm'].resetFields()
-              // })
-              this.$message({
-                message: '更新成功',
-                type: 'success'
-              })
-            }) */
+          this.loading = true
+          // 登录
+          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+          }).catch((response) => {
+            // 登录失败
+            this.$message({
+              message: response.message,
+              type: 'error'
+            })
+            this.loading = false
+          })
         }
       })
     },
