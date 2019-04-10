@@ -5,7 +5,7 @@
  */
 import { logout } from '@/api/login'
 import { getToken, removeToken } from '@/utils/auth' // 从cookie中获取token getToken
-import { loginByUserName } from '~/api/user'
+import { loginByUserName } from '~/api/login'
 import { setToken } from '@/utils/auth'
 
 export const state = () => {

@@ -53,6 +53,8 @@ export const actions = {
 
   // 获取问题详情
   fetchDetail({ commit }, params = {}) {
+    console.log('params')
+    console.log(params)
     commit('updateQuestionFetching', true)
     commit('updateQuestionDetail', {})
     return this.$axios.$get(`/question/${params.question_id}`).then(response => {

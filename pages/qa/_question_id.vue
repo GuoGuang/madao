@@ -16,7 +16,7 @@
           <span>赞成</span>
           <i class="el-icon-caret-bottom" style="line-height: 1.5;"/>
         </el-col>
-        <el-col :span="22">{{ question.comment }}</el-col>
+        <el-col :span="22">{{ question.content }}</el-col>
       </el-row>
 
       <!-- 扩展操作 -->
@@ -169,7 +169,7 @@
 // import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 export default {
-  name: 'QuestionDetail',
+  name: 'Qa',
   components: {
     ShareBox
   },

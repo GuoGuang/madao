@@ -6,7 +6,7 @@
       <el-tabs v-model="activeName" class="nav-link" @tab-click="handleClick">
         <el-tab-pane label="最新" name="first" class="">
 
-          <el-row v-for="item in aaa" :key="item" class="stream-list__item" >
+          <el-row v-for="item in aaa" :key="item.id" class="stream-list__item" >
             <el-col :span="2" >
               <div class="qa-rank">
                 <div class="votes ">
@@ -23,7 +23,7 @@
             <el-col :span="22" class="summary">
               <el-row class="title">
                 <h3 class="title">
-                  <a href="/666">Timeout waiting to lock artifact cache</a>
+                  <nuxt-link :to="`/qa/${qa.id}`" :title="qa.title" v-text="qa.title" />
                 </h3>
               </el-row>
               <el-row>
@@ -90,9 +90,20 @@ export default {
   components: {
     AsideView
   },
+
   data() {
     return {
-      aaa: [{}, {}],
+      qa: {
+        id: 1,
+        title: '如何百度'
+      },
+      aaa: [{
+        id: 555,
+        title: '如何百度'
+      }, {
+        id: 555,
+        title: '如何百度'
+      }],
       activeName: 'first'
     }
   },
