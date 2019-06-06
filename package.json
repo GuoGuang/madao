@@ -38,7 +38,7 @@
     "howler": "^2.0.14",
     "js-cookie": "^2.2.0",
     "lozad": "^1.8.0",
-    "marked": "^0.5.1",
+    "marked": "^0.6.1",
     "node-uuid": "^1.4.8",
     "nuxt": "^2.4.0",
     "particles.js": "^2.0.0",
