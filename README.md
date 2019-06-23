@@ -5,26 +5,15 @@
 [![](https://badge.juejin.im/entry/58ff969861ff4b00667ca82e/likes.svg?style=flat-square)](https://juejin.im/post/58ff960ba22b9d0065b722cd)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/surmon-china/surmon.me.svg?style=flat-square)](https://twitter.com/intent/tweet?url=https://github.com/surmon-china/surmon.me)
 
-## 参考segmentfault.com
+
 ## logo参考http://emblemmatic.org
 
 My blog by [Nuxt.js](https://github.com/nuxt)
 
-[Online Site - https://surmon.me](https://surmon.me/)
-
-If you want to run the application, you need install the [nodepress](https://github.com/surmon-china/nodepress) service and [sre](https://github.com/surmon-china/sre.surmon.me) service.
-
-### CHANGELOG
-
-[CHANGELOG](https://github.com/surmon-china/surmon.me/blob/master/CHANGELOG.md)
 
 ## PC
 
 ![](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/pc.jpg)
-
-## Mobile
-
-![](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/mobile-full.jpg)
 
 ## Analyze
 
