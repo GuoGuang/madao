@@ -18,7 +18,7 @@ My blog by [Nuxt.js](https://github.com/nuxt)
 
 ![](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/analyze-2019-zip.png)
 
-## Build Setup
+## 快速开始
 
 ```bash
 # 使用 nodemon 在开发环境下工作
@@ -27,15 +27,8 @@ sudo npm i nodemon -g
 # install dependencies 依赖 python2.7
 $ npm install [--python=python2.7] # Or yarn install
 
-# serve with hot reload at localhost:3000
+# 启动后访问 localhost:3000
 $ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# lint test.
-$ npm run lint
 ```
 
 
