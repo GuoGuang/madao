@@ -7,9 +7,12 @@
 My blog by [Nuxt.js](https://github.com/nuxt)
 
 
-## PC
+## 预览
 
-![](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/pc.jpg)
+![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/index.png)
+![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/%E7%8C%BF%E5%9C%88.png)
+![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85.png)
+![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/profile.png)
 
 ## Analyze
 
