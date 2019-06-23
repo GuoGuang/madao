@@ -2,9 +2,7 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/surmon-china/surmon.me.svg?style=flat-square)](https://twitter.com/intent/tweet?url=https://github.com/surmon-china/surmon.me)
 
 
-## logo参考http://emblemmatic.org
-
-My blog by [Nuxt.js](https://github.com/nuxt)
+SSR框架采用 [Nuxt.js](https://github.com/nuxt)
 
 
 ## 预览
@@ -82,4 +80,6 @@ nuxt.js-blog/
    │
    └──.editorconfig              * 编码风格配置
 ```
+
+## logo参考http://emblemmatic.org
  
