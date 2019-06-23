@@ -56,7 +56,7 @@
           <el-col :span="3" class="account-image">
             <img
               class="user-profile"
-              src="https://user-gold-cdn.xitu.io/2019/2/26/169268d0793ad9be?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1">
+              src="https://user-gold-cdn.xitu.io/2019/3/27/169bf874107c170f?imageView2/1/w/64/h/64/q/85/interlace/1">
           </el-col>
           <el-col :span="7">
             <div class="">
@@ -87,7 +87,7 @@
             <div class="content">
               <img
                 style="width: 40%;"
-                src="https://user-gold-cdn.xitu.io/2019/3/1/169387db4349d2eb?imageView2/1/w/460/h/316/q/85/format/jpg/interlace/1">
+                src="https://user-gold-cdn.xitu.io/2019/6/23/16b849c3a56cb4e2?imageView2/2/w/800/q/100">
             </div>
           </el-col>
         </el-row>
