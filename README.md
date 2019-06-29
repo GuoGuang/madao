@@ -14,7 +14,7 @@ SSR框架采用 [Nuxt.js](https://github.com/nuxt)
 
 ## Analyze
 
-![](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/analyze-2019-zip.png)
+![框架](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/analyze-2019-zip.png)
 
 ## 快速开始
 
