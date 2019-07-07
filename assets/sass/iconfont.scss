@@ -7,14 +7,14 @@
   url('//at.alicdn.com/t/font_64825_768nzgyjxa.svg?t=1548009745544#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-.iconfont {
+/* .iconfont {
   font-family: "iconfont" !important;
   font-size: 1em;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+ */
 .icon-twitter:before {
   content: "\e607";
 }
@@ -38,17 +38,8 @@
 .icon-sitemap:before {
   content: "\e606";
 }
-
-.icon-douban:before {
-  content: "\e609";
-}
-
 .icon-internet:before {
   content: "\e60a";
-}
-
-.icon-home:before {
-  content: "\e63e";
 }
 
 .icon-android:before {
@@ -95,9 +86,6 @@
   content: "\e61b";
 }
 
-.icon-comment-discussion:before {
-  content: "\e61e";
-}
 
 .icon-facebook:before {
   content: "\e6b0";
@@ -227,10 +215,6 @@
   content: "\e620";
 }
 
-.icon-music-next:before {
-  content: "\e624";
-}
-
 .icon-tubiaohu:before {
   content: "\e6ad";
 }
@@ -315,9 +299,6 @@
   content: "\e65a";
 }
 
-.icon-douban1:before {
-  content: "\e65b";
-}
 
 .icon-upvote:before {
   content: "\e65c";

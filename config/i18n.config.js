@@ -24,41 +24,33 @@ module.exports = {
         zh: '首页',
         en: 'home'
       },
-      question: {
-        zh: '问答',
-        en: 'question'
+      technology: {
+        zh: '技术',
+        en: 'technology'
       },
-      book: {
-        zh: '书栈',
-        en: 'book'
+      welfare: {
+        zh: '福利',
+        en: 'welfare'
       },
       tweets: {
         zh: '猿圈',
         en: 'tweets'
       },
-      events: {
-        zh: '活动',
-        en: 'events'
+      software: {
+        zh: '软件',
+        en: 'software'
       },
-      vlog: {
-        zh: '发现',
-        en: 'find'
+      other: {
+        zh: '其他',
+        en: 'other'
       },
-      music: {
-        zh: '乐斋',
-        en: 'music'
+      course: {
+        zh: '教程',
+        en: 'course'
       },
       about: {
         zh: '关于',
         en: 'about'
-      },
-      service: {
-        zh: '德道',
-        en: 'service'
-      },
-      guestbook: {
-        zh: '百鸣',
-        en: 'Guestbook'
       },
       taobao: {
         zh: '淘抢',
@@ -77,11 +69,11 @@ module.exports = {
         en: 'SiteMap.XML'
       },
       login: {
-        zh: '立即登录',
+        zh: '登录',
         en: 'Log In'
       },
       register: {
-        zh: '免费注册',
+        zh: '注册',
         en: 'Sign Up'
       }
     },
