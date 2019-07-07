@@ -195,7 +195,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $aside-width: 19em;
+  $aside-width: 20em;
 
   aside {
     float: right;
@@ -363,7 +363,7 @@ export default {
       }
 
       >.aside-tag {
-        width: 19em;
+        width: $aside-width;
         padding-left: 1rem;
         border-top: 1rem solid transparent;
         border-bottom: 1rem solid transparent;

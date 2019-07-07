@@ -18,41 +18,9 @@
     </div>
   </div> -->
 
-  <el-row :gutter="20">
-    <el-col :span="4">
-      <div class="main-left">
-        <div id="nav" class="aside-nav">
-          <nav is="nav" class="nav-list">
+  <el-row>
 
-            <nuxt-link to="/music" class="item">
-              <!-- https://blog.csdn.net/jiaqingge/article/details/81513422 -->
-              <svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-javascript-map"/></svg>
-              <span style="padding-left: 8px;" v-text="$i18n.nav.music"/>
-            </nuxt-link>
-            <nuxt-link to="/vlog" class="item">
-              <svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-ERPxitonghouduanshujuku"/></svg>
-              <span style="padding-left: 8px;" v-text="$i18n.nav.vlog"/>
-            </nuxt-link>
-            <nuxt-link to="/about" class="item">
-              <svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-anquanguizeyong"/></svg>
-              <span style="padding-left: 8px;" v-text="$i18n.nav.about"/>
-            </nuxt-link>
-            <nuxt-link to="/service" class="item">
-              <svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-houduan"/></svg>
-              <span style="padding-left: 8px;" v-text="$i18n.nav.service"/>
-              <span class="superscript"/>
-            </nuxt-link>
-            <nuxt-link to="/guestbook" class="item guestbook">
-              <svg class="icon" aria-hidden="true"><use xlink:href="#youyd-icon-rengongzhineng"/></svg>
-              <span style="padding-left: 8px;" v-text="$i18n.nav.guestbook"/>
-            </nuxt-link>
-
-          </nav>
-        </div>
-      </div>
-    </el-col>
-
-    <el-col :span="14">
+    <el-col :span="17">
       <div class="main">
         <!-- 轮播图 -->
         <carrousel :article="article" />
@@ -63,7 +31,7 @@
       </div>
     </el-col>
 
-    <el-col :span="6">
+    <el-col :span="6" class="right-list">
       <div class="main-right">
         <aside-view key="aside"/>
       </div>
@@ -129,7 +97,7 @@ export default {
     }
   } */
   .el-col{
-    padding-right: 5px !important;
+
   }
 
 .icon {

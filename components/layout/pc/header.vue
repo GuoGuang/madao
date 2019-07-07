@@ -61,6 +61,31 @@
       </el-form>
     </el-dialog>
 
+    <el-dialog :visible.sync="searchDialog" :fullscreen="true" >
+      <div class="search-form">
+        <div class="search-form-inner">
+          <div class="search-form-box"><input class="form-search" type="text" name="s" placeholder="键入搜索关键词">
+            <button id="btn-search" type="submit">
+              <i class="iconfont icon-search"/>
+            </button>
+          </div>
+          <div class="search-commend"><h4>大家都在搜</h4>
+            <ul>
+              <li><a href="#">考试资料网</a></li>
+              <li><a href="#">白帽子</a></li>
+              <li><a href="#">Java</a></li>
+              <li><a href="#">面试</a></li>
+              <li><a href="#">万维题库</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="close-search" @click="toggleSearch">
+        <span class="close-top"/>
+        <span class="close-bottom"/>
+      </div>
+    </el-dialog>
+
     <nav class="navbar">
       <div class="navbar-container container">
         <div class="navbar-header">
@@ -74,52 +99,67 @@
             <nav-view />
           </transition>
         </div>
+        <div style="display: flex;">
+          <div class="navbar-right">
 
-        <div class="navbar-search">
-          <el-input v-model="input" size="small" placeholder="请输入内容" suffix-icon="el-icon-search"/>
+            <div class="message">
+              <button id="sitemessage" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="iconfont youyd-icon-megaphone"/>
+              </button>
+              <!-- <div class="dropdown-menu" role="menu" aria-labelledby="sitemessage">
+            <ul>
+              <li class="first"><span class="time">19.06.24</span><a target="_blank" href="#">免 root 卸载预置应用</a></li>
+            </ul>
+            <div class="more-messages"><a target="_blank" href="https://iboy.tech/technology">更多</a></div>
+          </div> -->
+            </div>
+            <span class="line"/>
+            <button class="search" @click="toggleSearch">
+              <i class="iconfont icon-search"/>
+            </button>
 
-        </div>
+          </div>
 
-        <!-- 已登录 -->
-        <div v-if="loginStatus" class="user-profile">
+          <!-- 已登录 -->
+          <div v-if="loginStatus" class="user-profile">
 
-          <ul style="">
-            <li >
-              <el-dropdown :hide-on-click="false">
-                <span class="el-dropdown-link">
-                  新文章<i class="el-icon-arrow-down el-icon--right"/>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>提问题</el-dropdown-item>
-                  <el-dropdown-item>发布猿点</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-              <a class="dropdown-toggle-letter" href="/user/messages">
-                <span class="sr-only">
-                  消息
-                </span>
-              </a>
-            </li>
-            <li >
+            <ul style="">
+              <li >
+                <el-dropdown :hide-on-click="false">
+                  <span class="el-dropdown-link">
+                    新文章<i class="el-icon-arrow-down el-icon--right"/>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>提问题</el-dropdown-item>
+                    <el-dropdown-item>发布猿点</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+                <a class="dropdown-toggle-letter" href="/user/messages">
+                  <span class="sr-only">
+                    消息
+                  </span>
+                </a>
+              </li>
+              <li >
 
-              <el-dropdown>
-                <span class="el-dropdown-link">
-                  <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item >
-                    <router-link to="/profile">
-                      GuoGuang
-                    </router-link>
-                  </el-dropdown-item>
-                  <el-dropdown-item>我的档案</el-dropdown-item>
-                  <el-dropdown-item>个人设置</el-dropdown-item>
-                  <el-dropdown-item>
-                    <a @click="logout">退出</a>
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-          </li></ul>
+                <el-dropdown>
+                  <span class="el-dropdown-link">
+                    <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item >
+                      <router-link to="/profile">
+                        GuoGuang
+                      </router-link>
+                    </el-dropdown-item>
+                    <el-dropdown-item>我的档案</el-dropdown-item>
+                    <el-dropdown-item>个人设置</el-dropdown-item>
+                    <el-dropdown-item>
+                      <a @click="logout">退出</a>
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+            </li></ul>
           <!-- <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
             <el-menu-item index="1">私信</el-menu-item>
             <el-submenu index="2">
@@ -148,16 +188,17 @@
               <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
             </el-submenu>
           </el-menu> -->
-        </div>
+          </div>
 
-        <!-- 未登录 -->
-        <div v-else class="navbar-login">
-          <a style="color: #009a61;font-size: 14px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
-          <div class="item" style="margin-left: 10px !important;">
-            <el-button size="small" type="success" @click="registDialogVisible = true">{{ $i18n.nav.register }}</el-button>
+          <!-- 未登录 -->
+          <div v-else class="navbar-login">
+            <a href="#" class="tougao">投稿</a>
+            <a class="login" style="font-size: 15px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
+            <span class="line"/>
+            <a class="register" style="font-size: 15px;" href="#" @click="registDialogVisible = true">{{ $i18n.nav.register }}</a>
+
           </div>
         </div>
-
         <!-- 音乐 -->
         <!-- <div class="navbar-player">
           <div class="panel">
@@ -203,6 +244,7 @@
         <img v-if="preload" src="/images/about-background-star-2.png" alt="background">
       </div>
     </nav>
+
   </header>
 </template>
 
@@ -218,6 +260,7 @@ export default {
   },
   data() {
     return {
+      searchDialog: false,
       input: '',
       preload: false,
       loginDialogVisible: false,
@@ -281,6 +324,9 @@ export default {
       })
     },
 
+    toggleSearch() {
+      this.searchDialog = !this.searchDialog
+    },
     loginDialog() {
       this.loginDialogVisible = true
     },
@@ -304,6 +350,10 @@ export default {
   }
 }
 </script>
+
+<style>
+@import '//at.alicdn.com/t/font_761917_pm5yzv4dl1.css';
+</style>
 
 <style lang="scss" scoped>
 
@@ -349,15 +399,25 @@ export default {
           overflow: hidden;
         }
 
-        .navbar-search {
+        .navbar-right{
           height: $header-height;
           display: flex;
+          padding: 0 23px;
           position: relative;
           align-items: center;
           padding-left: .5em;
           //width: 43em;
           position: relative;
           overflow: hidden;
+          button{
+            padding: 0 10px;
+          }
+          .message{
+            padding-right: 10px
+          }
+          .search{
+
+          }
         }
 
         .navbar-login {
@@ -366,11 +426,20 @@ export default {
           justify-content: flex-end;
           align-items: center;
           padding-left: .5em;
-          width: 15em;
           position: relative;
           overflow: hidden;
           padding: 0;
           margin: 0;
+          .login,.register{
+             color: #48494d;
+          }
+
+          .login:hover{
+              color:#19B5FE
+            }
+          .register:hover{
+              color:#19B5FE
+            }
           >.item {
             font-size: 12px;
             border: none;
@@ -703,4 +772,92 @@ export default {
       }
     }
    }
+  .line{
+    height: 12px;display: inline-block;margin: 0 5px;border-right: 1px solid #E5E5E5;
+  }
+/* 搜索页 */
+.search-form{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;-webkit-animation:fade-zoom-in .3s forwards;-o-animation:fade-zoom-in .3s forwards;animation:fade-zoom-in .3s forwards;;-webkit-backface-visibility:hidden;overflow:hidden;}
+.search-form .search-form-inner{max-width:640px;padding:0 20px;margin:auto;position:absolute;width:100%;left:0;right:0;height:285px;top:-100px;bottom:0}
+.search-form-inner p{margin-top:10px;color:#a0a0a0;text-align:center;font-size:20px}
+.search-form.is-visible{display:block}
+.search-form .search-form-box{position:relative;margin-bottom:40px}
+.search-form input{background:#fff;display:inline-block;line-height:58px;height:58px;color:#949494;font-size:15px;border-radius:3px;padding:0 20px;width:100%;border:1px solid #e2e2e2;text-align:left;-webkit-appearance:none}
+.search-form button{background:#000;display:inline-block;line-height:58px;height:58px;width:100px;color:#fff;font-size:15px;padding:0 25px;margin:0;border-radius:0 3px 3px 0;position:absolute;right:0;top:0}
+.search-form input::-webkit-input-placeholder{color:#949494}
+.search-form input:-moz-placeholder{color:#949494}
+.search-form input::-moz-placeholder{color:#949494}
+.search-form input:-ms-input-placeholder{color:#949494}
+.search-commend{position:relative}
+.search-commend h4{position:relative;font-size:16px;margin:0 0 20px}
+.search-commend ul li{display:inline-block;margin-bottom:10px;margin-right:10px}
+.search-commend ul li a{display:inline-block;line-height:1;padding:10px 20px;border:1px solid #e2e2e2;border-radius:2px;color:#949494}
+.search-commend ul li a:hover{color:#273746;border-color:#273746}
+
+.close-search{display:block;position:absolute;top:10%;right:10%;width:80px;height:80px;cursor:pointer;background:#fff}
+.close-search .close-top{top:34px}
+.close-search .close-bottom{bottom:34px}
+
+.close-search:hover .close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(45deg)}
+.close-search:hover .close-bottom{-webkit-transform:translate(0,-5px) rotate(135deg);transform:translate(0,-5px) rotate(315deg)}
+.close-bottom{-webkit-transform:translate(0,-5px) rotate(135deg);transform:translate(0,-5px) rotate(135deg);}
+.close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(225deg)}
+.close-top{
+  top: 34px;
+  width: 45px;
+  left: 16px;
+  }
+.close-bottom{
+  bottom: 34px;
+  width: 45px;
+  left: 16px;
+  }
+.close-bottom,.close-top{
+  position:absolute;
+  background:#333;
+  height:2px;
+  transition:.3s;
+}
+/* 搜索页end */
+
+.tougao{background:transparent;font-size:15px;border:1px solid #337ab7;border-radius:40px;padding:5px 16px;line-height:1;color:#337ab7;margin-right:10px;}
+.tougao:hover{background:#282828;border-color:#282828;color:#FFF;}
+
+// 弹框效果
+.el-dialog__wrapper {
+	transition-duration: 0.3s;
+}
+.dialog-fade-enter-active{
+	animation: none !important;
+}
+.dialog-fade-leave-active {
+	transition-duration: 0.15s !important;
+	animation: none !important;
+  }
+
+.dialog-fade-enter-active .el-dialog,
+.dialog-fade-leave-active .el-dialog{
+	animation-fill-mode: forwards;
+}
+
+.dialog-fade-enter-active .el-dialog{
+	animation-duration: 0.3s;
+	animation-name: anim-open;
+	animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+}
+
+.dialog-fade-leave-active .el-dialog{
+	animation-duration: 0.3s;
+	animation-name: anim-close;
+}
+
+@keyframes anim-open {
+	0% { opacity: 0;  transform: scale3d(0, 0, 1); }
+	100% { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+@keyframes anim-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; transform: scale3d(0.5, 0.5, 1); }
+}
+
 </style>

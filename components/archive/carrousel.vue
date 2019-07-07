@@ -113,7 +113,7 @@ export default {
     > .swiper {
 
       .slide-item {
-
+        //width: 795px!important;
         > .content {
           width: 100%;
           height: $pc-carrousel-height;
@@ -168,7 +168,6 @@ export default {
       > .swiper {
 
         .slide-item {
-
           > .content {
             height: $mobile-carrousel-height;
 

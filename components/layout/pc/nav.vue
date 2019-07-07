@@ -3,24 +3,31 @@
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
       <nuxt-link :to="'/'" class="item" exact>
-        <span v-text="$i18n.nav.home"/>
+        <i class="iconfont youyd-icon-home"/>
+        <span >首页</span>
       </nuxt-link>
-      <nuxt-link to="/question" class="item">
-        <span v-text="$i18n.nav.question"/>
+      <nuxt-link to="/technology" class="item">
+        <i class="iconfont youyd-icon-shandian"/>
+        <span v-text="$i18n.nav.technology"/>
       </nuxt-link>
-      <nuxt-link to="/tweets" class="item">
-        <span v-text="$i18n.nav.tweets"/>
+      <nuxt-link to="/software" class="item">
+        <i class="iconfont youyd-icon-thlarge"/>
+        <span v-text="$i18n.nav.software "/>
       </nuxt-link>
-      <nuxt-link to="/book" class="item">
-        <span v-text="$i18n.nav.book "/>
+      <nuxt-link to="/welfare" class="item">
+        <i class="iconfont youyd-icon-dribbble"/>
+        <span v-text="$i18n.nav.welfare"/>
       </nuxt-link>
-      <nuxt-link to="/events" class="item">
-        <span v-text="$i18n.nav.events"/>
+      <nuxt-link to="/course" class="item">
+        <i class="iconfont youyd-icon-xuexi"/>
+        <span v-text="$i18n.nav.course"/>
       </nuxt-link>
-      <!-- <nuxt-link to="/vlog" class="item">
-        <span v-text="$i18n.nav.vlog"></span>
-      </nuxt-link> -->
+      <nuxt-link to="/other" class="item">
+        <i class="iconfont youyd-icon-pen"/>
+        <span v-text="$i18n.nav.other"/>
+      </nuxt-link>
       <nuxt-link to="/about" class="item">
+        <i class="iconfont youyd-icon-info"/>
         <span v-text="$i18n.nav.about"/>
       </nuxt-link>
 
@@ -30,6 +37,7 @@
 
 <script>
 import adConfig from '~/config/ad.config'
+
 export default {
   name: 'LayoutNav',
   computed: {
@@ -39,6 +47,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.iconfont{
+	font-family:"iconfont";
+	font-size:16px;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+        padding-left:20px
+}
+
   .header-nav {
 
     .nav-list {
@@ -47,7 +65,7 @@ export default {
 
       > .item {
         line-height: 3em;
-        margin: 0 30px 0 0;
+
         font-size: 16px;
 
         &:hover {
@@ -115,7 +133,6 @@ export default {
         &.link-active {
           font-weight: bold;
           color: $primary;
-          background-color: $module-bg;
 
           &.guestbook {
             background: linear-gradient(to bottom, $module-bg, transparent);

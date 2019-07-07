@@ -1,8 +1,8 @@
 /* eslint-disable vue/order-in-components */
 <template>
   <!-- 文章详情页 -->
-  <el-row :gutter="20">
-    <el-col :span="18">
+  <el-row >
+    <el-col :span="17">
       <article id="article" :class="{ mobile: isMobile }" class="article">
 
         <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
@@ -191,7 +191,7 @@
 
       </article>
     </el-col>
-    <el-col :span="6">
+    <el-col :span="6" class="right-list">
       <div class="main-right">
         <aside-view key="aside"/>
       </div>

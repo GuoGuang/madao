@@ -188,7 +188,7 @@ export default {
 
       > .item-body {
         float: right;
-        width: 28.5em;
+        width: 35.5em;
         height: 8.5em;
 
         > .item-title {
@@ -226,7 +226,9 @@ export default {
         > .item-meta {
           height: 2em;
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
+          float: right;
+          width: 70%;
           align-items: baseline;
           overflow: hidden;
           font-size: .9em;

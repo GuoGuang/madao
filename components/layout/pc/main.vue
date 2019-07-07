@@ -15,7 +15,8 @@
       <tool-box v-if="isNotFullColPage" />
     </no-ssr>
 
-    <main id="main" :class="{ 'full-view': isFullViewWidth }">
+    <!-- 页面最小宽度 style="min-height: calc(75vh - 70px);" 使fotter置于 -->
+    <main id="main" :class="{ 'full-view': isFullViewWidth }" style="min-height: calc(75vh - 70px);">
 
       <!-- body页面中间 --> <!-- full-column:62.5em 删除   class="main-content" 这个样式删了也没什么改变，此处应该去除div这一层-->
       <div
