@@ -27,6 +27,11 @@ $ npm install [--python=python2.7] # Or yarn install
 
 # 启动后访问 localhost:3000
 $ npm run dev
+
+# 生产环境构建
+$ npm run build
+$ npm start
+
 ```
 
 
