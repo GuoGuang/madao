@@ -90,7 +90,7 @@
       <div class="navbar-container container">
         <div class="navbar-header">
           <span class="navbar-blank"/>
-          <img src="images/logo.png" class="navbar-logo">
+          <img src="/images/logo.png" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
@@ -115,7 +115,7 @@
             </div>
             <span class="line"/>
             <button class="search" @click="toggleSearch">
-              <i class="iconfont icon-search"/>
+              <i class="iconfont youyd-icon-search"/>
             </button>
 
           </div>

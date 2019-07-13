@@ -18,7 +18,38 @@
 
         </div>
 
+        <!-- 文章 -->
         <div ref="detail" class="detail">
+
+          <!-- 导航，头部 -->
+          <div class="post-title">
+            <div class="breadcrumbs"><span itemprop="itemListElement"><a href="https://iboy.tech/" itemprop="item" class="home"><span itemprop="name"><i class="icon-location-2"/>首页</span></a></span> <span class="sep">›</span> <span itemprop="itemListElement"><a href="https://iboy.tech/technology" itemprop="item"><span itemprop="name">技术</span></a></span> <span class="sep">›</span> <span class="current">正文</span></div>
+
+            <div class="categories"><a href="https://iboy.tech/tag/hui-ji-jin-rong-zhi-cheng-kao-shi" rel="tag">会计金融职称考试</a><a href="https://iboy.tech/tag/yi-xue-wei-sheng-zi-ge-kao-shi-zhong-xin" rel="tag">医学卫生资格考试中心</a><a href="https://iboy.tech/tag/guo-dian-kao-shi" rel="tag">国电考试</a><a href="https://iboy.tech/tag/kao-shi-zi-liao-wang" rel="tag">考试资料网</a><a href="https://iboy.tech/tag/kao-shi-zi-liao-wang-po-jie" rel="tag">考试资料网破解</a><a href="https://iboy.tech/tag/ji-suan-ji-kao-shi" rel="tag">计算机考试</a></div>
+
+            <h1 class="title">{{ article.title }}</h1>
+
+            <div class="post_icon">
+              <span class="postauthor">
+                <img class="avatar" alt="" src="https://iboy.tech/wp-content/uploads/2019/01/iboy_avatar_2-96x96.png" height="96" width="96" style="">
+                <a href="https://iboy.tech/author/iboy">iboy</a>
+              </span>
+              <span class="postcat">
+                <i class="iconfont youyd-icon-menu"/>
+                <a href="https://iboy.tech/technology">技术</a>
+              </span>
+              <span class="postclock">
+                <i class="iconfont youyd-icon-time"/>
+                2019-01-03
+              </span>
+              <span class="posteye">
+                <i class="iconfont youyd-icon-view"/> 6,487
+              </span>
+
+            </div>
+
+          </div>
+
           <transition name="module">
             <div
               v-if="!isFetching"
@@ -41,7 +72,7 @@
               </no-ssr>
             </div>
             <div v-else key="knowledge" class="knowledge">
-              <h2 class="title">{{ article.title }}</h2>
+
               <div id="article-content" class="content" v-html="articleContent"/>
               <transition name="module" mode="out-in" @after-leave="readmoreAnimatieDone">
                 <div v-if="isCanReadMore" class="readmore">
@@ -185,9 +216,10 @@
         </ul>
       </div> -->
         </transition>
-        <!-- <div class="comment">
-      <comment-box :fetching="isFetching" :post-id="routeArticleId" :likes="article.meta && article.meta.likes" />
-    </div> -->
+        <div class="comment">
+          <comment />
+
+        </div>
 
       </article>
     </el-col>
@@ -208,18 +240,46 @@ import marked from '~/plugins/marked'
 import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 import AsideView from '~/components/layout/pc/aside/article_main'
+
+import * as CommentData from './mockdata'
+import comment from './comment'
+
 export default {
   name: 'ArticleDetail',
   components: {
     ShareBox,
-    AsideView
+    AsideView,
+    comment
   },
-
+  data() {
+    return {
+      commentData: CommentData,
+      swiperOption: {
+        setWrapperSize: true,
+        simulateTouch: false,
+        mousewheel: {
+          sensitivity: 1
+        },
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false
+        },
+        observeParents: true,
+        grabCursor: true,
+        slidesPerView: 'auto'
+      },
+      lozadObserver: null,
+      isReadMoreLoading: false,
+      renderAd: true
+    }
+  },
   validate({ params, store }) {
     return params.article_id && !isNaN(Number(params.article_id))
   },
 
   fetch({ store, params, error }) {
+    console.log('CommentData')
+    console.log(CommentData)
     return Promise.all([
       store.dispatch('article/fetchDetail', params), // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
@@ -241,27 +301,6 @@ export default {
         },
         { hid: 'description', name: 'description', content: article.description }
       ]
-    }
-  },
-  data() {
-    return {
-      swiperOption: {
-        setWrapperSize: true,
-        simulateTouch: false,
-        mousewheel: {
-          sensitivity: 1
-        },
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false
-        },
-        observeParents: true,
-        grabCursor: true,
-        slidesPerView: 'auto'
-      },
-      lozadObserver: null,
-      isReadMoreLoading: false,
-      renderAd: true
     }
   },
   computed: {
@@ -493,11 +532,72 @@ export default {
     }
 
     >.detail {
-      padding: 1em 2em;
+      padding: 2em 2em;
       position: relative;
       overflow: hidden;
       height: auto;
       transition: height .25s;
+
+      .post-title{
+        .iconfont{
+          font-size: 14px;
+        }
+        position: relative;
+        margin: 0 0 35px;
+        padding: 0 0 35px;
+        border-bottom: 1px solid #e7e7e7;
+        .breadcrumbs{
+          padding: 0;
+          border-top: 0;
+          margin-bottom: 25px;
+          box-shadow: none;
+        }
+        .categories{
+          margin-bottom: 10px;
+          a{
+            padding: 4px 8px;
+            background-color: #19B5FE;
+            color: #fff;
+            font-size: 12px;
+            line-height: 1;
+            font-weight: 400;
+            margin: 3px 5px 3px 0;
+            border-radius: 2px;
+            display: inline-block;
+          }
+        }
+        .title{
+          position: relative;
+          font-size: 26px;
+          display: block;
+          letter-spacing: 2px;
+          font-weight: 600;
+          margin: 0 0 25px;
+        }
+
+        .post_icon{
+          color: #748594;
+          font-size: 13px;
+          display: block;
+          span{
+            margin-right: 10px;
+            display: inline-block;
+            position: relative;
+          }
+          .postauthor{
+            img{
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              -moz-border-radius: 50%;
+              -webkit-border-radius: 50%;
+              border: 1px solid rgba(216,216,216,0.81);
+              display: inline-block;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
 
       >.skeleton {
 

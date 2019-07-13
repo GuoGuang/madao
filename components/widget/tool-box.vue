@@ -20,10 +20,10 @@
           @click="toggleBarrage"
 
         >
-          <i class="iconfont icon-barrage"/>
+          <i class="iconfont youyd-icon-barrage"/>
         </button>
         <a :title="$i18n.text.feedback" class="feedback" href="mailto:guoguang0536@gmail.com">
-          <i class="iconfont icon-mail"/>
+          <i class="iconfont youyd-icon-email"/>
         </a>
         <button
           :title="$i18n.text.totop"
@@ -32,7 +32,7 @@
           @mouseover="setButtonState('top', true, true)"
           @mouseleave="setButtonState('top', false)"
         >
-          <i class="iconfont icon-totop"/>
+          <i class="iconfont youyd-icon-up"/>
         </button>
         <button
           :title="$i18n.text.tobottom"
@@ -41,7 +41,7 @@
           @mouseover="setButtonState('bottom', true, true)"
           @mouseleave="setButtonState('bottom', false)"
         >
-          <i class="iconfont icon-tobottom"/>
+          <i class="iconfont youyd-icon-down"/>
         </button>
       </div>
     </div>
@@ -119,6 +119,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.iconfont{
+      font-size: 18px;
+}
   #tools {
     position: fixed;
     z-index: 9;
