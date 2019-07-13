@@ -241,7 +241,6 @@ import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 import AsideView from '~/components/layout/pc/aside/article_main'
 
-import * as CommentData from './mockdata'
 import comment from './comment'
 
 export default {
@@ -253,7 +252,6 @@ export default {
   },
   data() {
     return {
-      commentData: CommentData,
       swiperOption: {
         setWrapperSize: true,
         simulateTouch: false,
@@ -278,8 +276,6 @@ export default {
   },
 
   fetch({ store, params, error }) {
-    console.log('CommentData')
-    console.log(CommentData)
     return Promise.all([
       store.dispatch('article/fetchDetail', params), // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
