@@ -90,7 +90,7 @@
       <div class="navbar-container container">
         <div class="navbar-header">
           <span class="navbar-blank"/>
-          <img src="/images/logo.svg" class="navbar-logo">
+          <img src="images/logo.png" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
@@ -389,11 +389,11 @@ export default {
         justify-content: space-between;
 
         .navbar-menu {
+          margin-left: -3em;
           height: $header-height;
           display: flex;
           position: relative;
           align-items: center;
-          padding-left: .5em;
           //width: 43em;
           position: relative;
           overflow: hidden;
@@ -405,7 +405,6 @@ export default {
           padding: 0 23px;
           position: relative;
           align-items: center;
-          padding-left: .5em;
           //width: 43em;
           position: relative;
           overflow: hidden;
@@ -464,7 +463,6 @@ export default {
            height: 4.5em;
             position: relative;
             align-items: center;
-            padding-left: .5em;
             position: relative;
             overflow: hidden;
             ul{
@@ -505,7 +503,6 @@ export default {
           display: flex;
           position: relative;
           align-items: center;
-          padding-left: .5em;
           // width: 12em;
           position: relative;
           overflow: hidden;
@@ -580,7 +577,8 @@ export default {
           }
 
           .navbar-logo {
-            width: 11rem;
+            //background-image: url(http://localhost:3000/images/icode.png);
+            width: 20rem;
             margin-right: 0;
             filter: $theme-logo-rotate;
 
