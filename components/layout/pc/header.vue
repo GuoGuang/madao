@@ -66,7 +66,7 @@
         <div class="search-form-inner">
           <div class="search-form-box"><input class="form-search" type="text" name="s" placeholder="键入搜索关键词">
             <button id="btn-search" type="submit">
-              <i class="iconfont icon-search"/>
+              <i class="iconfont youyd-icon-search"/>
             </button>
           </div>
           <div class="search-commend"><h4>大家都在搜</h4>

@@ -6,6 +6,7 @@
       <small><a class="report" href="https://segmentfault.com/ls/1650000011318558">精品课推荐：PHP 进阶之路</a></small>
     </div>
 
+    <!-- 今日热议 -->
     <div class="aside-article">
       <p class="title">
         <i class="iconfont icon-hotfill"/>
@@ -26,15 +27,21 @@
         </li>
       </ul>
     </div>
+
+    <!-- GooGle广告 -->
     <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
+
+    <!-- 日历 -->
     <div class="aside-calendar">
       <calendar />
     </div>
+
     <transition name="module">
       <div v-if="renderAd" key="ad" class="aside-ad">
         <adsense-aside />
       </div>
     </transition>
+
     <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
       <no-ssr>
         <transition name="fade">
@@ -70,6 +77,7 @@
         </div>
       </div>
     </div>
+
   </aside>
 </template>
 

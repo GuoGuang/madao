@@ -40,7 +40,7 @@
       </div>
     </transition>
 
-    <!--  <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
+    <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
       <no-ssr>
         <transition name="fade">
           <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
@@ -53,8 +53,8 @@
         <ul v-else class="aside-tag-list">
           <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.slug}`" tag="li" class="item">
             <a :title="tag.description" class="title">
-              <-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
-                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> --
+              <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
+                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
               <i :class="tag.icon" class="iconfont"/>
               <span>{{ isEnLang ? tag.slug : tag.name }}</span>
               <span>({{ tag.tagsCount || 0 }})</span>
@@ -74,7 +74,7 @@
           <i class="iconfont icon-fullscreen"/>
         </div>
       </div>
-    </div> -->
+    </div>
 
   </aside>
 </template>

@@ -198,6 +198,8 @@
             </div>
           </div>
         </transition>
+
+        <!-- 推荐阅读 -->
         <transition name="module" mode="out-in">
           <div v-if="isFetching" key="skeleton" class="related">
             <skeleton-paragraph v-if="isMobile" :lines="4" class="skeleton" line-height="1em" />
@@ -205,41 +207,50 @@
               <skeleton-base v-for="item in 4" :key="item" class="article" />
             </ul>
           </div>
-          <!-- <div class="related" key="related" v-else-if="article.related && article.related.length">
-        <div class="article-list swiper" v-if="!isMobile" v-swiper:swiper="swiperOption">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide item" :key="index" v-for="(article, index) in relatedArticles">
-              <a v-if="article.ad" class="item-box" :href="article.link" rel="external nofollow noopener"
-                target="_blank">
-                <img :src="article.img" class="thumb" :alt="article.title">
-                <span class="title">{{ article.title }}</span>
-              </a>
-              <nuxt-link v-else :to="`/article/${article.id}`" :title="article.title" class="item-box">
-                <img :src="buildThumb(article.thumb)" class="thumb" :alt="article.title">
-                <span class="title">{{ article.title }}</span>
-              </nuxt-link>
+          <div v-else-if="article.related && article.related.length" key="related" class="related">
+            <div v-swiper:swiper="swiperOption" v-if="!isMobile" class="article-list swiper">
+              <div class="swiper-wrapper">
+                <div v-for="(article, index) in relatedArticles" :key="index" class="swiper-slide item">
+                  <a
+                    v-if="article.ad"
+                    :href="article.link"
+                    class="item-box"
+                    rel="external nofollow noopener"
+                    target="_blank">
+                    <img :src="article.img" :alt="article.title" class="thumb">
+                    <span class="title">{{ article.title }}</span>
+                  </a>
+                  <nuxt-link v-else :to="`/article/${article.id}`" :title="article.title" class="item-box">
+                    <img :src="buildThumb(article.thumb)" :alt="article.title" class="thumb">
+                    <span class="title">{{ article.title }}</span>
+                  </nuxt-link>
+                </div>
+              </div>
             </div>
+            <ul v-else class="article-list">
+              <li v-for="(article, index) in relatedArticles" :key="index" class="item">
+                <a
+                  v-if="article.ad"
+                  :href="article.link"
+                  class="item-link"
+                  rel="external nofollow noopener"
+                  target="_blank">
+                  <span class="sign">《</span>
+                  <span class="title">{{ article.title }}</span>
+                  <span class="sign">》</span>
+                  <small class="tip">- 狠狠地阅读</small>
+                </a>
+                <nuxt-link v-else :to="`/article/${article.id}`" :title="`「 ${article.title} 」- 继续阅读`" class="item-link">
+                  <span class="sign">《</span>
+                  <span class="title">{{ article.title }}</span>
+                  <span class="sign">》</span>
+                  <small class="tip">- 继续阅读</small>
+                </nuxt-link>
+              </li>
+            </ul>
           </div>
-        </div>
-        <ul class="article-list" v-else>
-          <li class="item" v-for="(article, index) in relatedArticles" :key="index">
-            <a v-if="article.ad" class="item-link" :href="article.link" rel="external nofollow noopener"
-              target="_blank">
-              <span class="sign">《</span>
-              <span class="title">{{ article.title }}</span>
-              <span class="sign">》</span>
-              <small class="tip">- 狠狠地阅读</small>
-            </a>
-            <nuxt-link v-else class="item-link" :to="`/article/${article.id}`" :title="`「 ${article.title} 」- 继续阅读`">
-              <span class="sign">《</span>
-              <span class="title">{{ article.title }}</span>
-              <span class="sign">》</span>
-              <small class="tip">- 继续阅读</small>
-            </nuxt-link>
-          </li>
-        </ul>
-      </div> -->
         </transition>
+
         <div class="comment">
           <comment :comments="commentData" :commit-comment="commitComment"/>
         </div>
