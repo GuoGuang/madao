@@ -26,9 +26,14 @@
 
     </div>
     <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
-    <!-- <div class="aside-calendar">
-      <calendar />
-    </div> -->
+
+    <!-- 相关推荐 -->
+    <div class="aside-related">
+      <!--  -->
+      <related />
+    </div>
+
+    <!-- GooGle广告 -->
     <transition name="module">
       <div v-if="renderAd" key="ad" class="aside-ad">
         <adsense-aside />
@@ -76,7 +81,8 @@
 
 <script>
 import AsideAd from './ad'
-import Calendar from './calendar'
+import Related from './related'
+
 import { mapState } from 'vuex'
 import { Route } from '~/constants/system'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
@@ -84,7 +90,7 @@ export default {
   name: 'ArticleMain',
   components: {
     AsideAd,
-    Calendar
+    Related // 相关推荐
   },
 
   directives: {
@@ -216,7 +222,7 @@ export default {
       }
 
     .aside-article,
-    .aside-calendar,
+    .aside-related,
     .aside-ad,
     .aside-tag {
       background-color: $module-bg;
@@ -308,7 +314,7 @@ export default {
       }
     }
 
-    .aside-calendar {
+    .aside-related {
       padding: 0.8em;
       margin-bottom: 1em;
     }

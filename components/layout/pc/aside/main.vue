@@ -1,7 +1,7 @@
 <template>
   <!-- 页面body区-右侧边栏 -->
   <aside id="aside" class="aside">
-    <!-- 广告 -->
+    <!-- 公告 -->
     <div class="recommend" role="alert">
       <small><a class="report" href="https://segmentfault.com/ls/1650000011318558">精品课推荐：PHP 进阶之路</a></small>
     </div>

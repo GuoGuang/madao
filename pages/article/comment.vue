@@ -6,7 +6,7 @@
     <div class="comment-form">
       <div class="input-comment">
         <img src="http://ww4.sinaimg.cn/bmiddle/006DLFVFgy1ft0j2pddjuj30v90uvagf.jpg" width="36" height="36" data-v-524b37dd="">
-        <el-input v-model="input" placeholder="说点什么"/>
+        <el-input v-model="comment" placeholder="说点什么"/>
       </div>
       <div class="action-box">
         <div class="emoji emoji-btn">
@@ -98,6 +98,7 @@ export default {
   },
   data() {
     return {
+      comment: '',
       inputComment: '',
       showItemId: ''
     }
