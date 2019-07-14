@@ -13,7 +13,7 @@
       <!-- 作者信息 -->
       <div class="block-body">
         <a href="/user/5aa23691518825556d0db27e" target="_blank" rel="" class="user-item item" style="padding: 1.3rem;display: flex">
-          <img style="flex: 0 0 auto;margin-right: 1rem;width: 4.167rem;height: 4.167rem;border-radius: 50%;" src="https://user-gold-cdn.xitu.io/2018/9/5/165a8c8fdf1afcde?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1">
+          <img style="flex: 0 0 auto;margin-right: 1rem;width: 4.167rem;height: 4.167rem;border-radius: 50%;" src="https://avatars0.githubusercontent.com/u/23237686?v=4">
           <div class="info-box">
             <div class="username">小美娜娜</div><div data-v-f95bea30="" title="前端小可爱 @ emmmm" class="position">前端小可爱 @ emmmm</div>
           </div>
