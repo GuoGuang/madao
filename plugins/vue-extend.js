@@ -12,7 +12,6 @@ import apiConfig, { cdnUrl, proxyUrl } from '~/config/api.config.esm'
 
 import EmptyBox from '~/components/global/empty'
 import LoadingBox from '~/components/global/loading'
-import CommentBox from '~/components/global/comment'
 import ColorBlockBox from '~/components/global/color-block'
 import SkeletonBox from '~/components/global/skeleton'
 
@@ -31,7 +30,6 @@ Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
 // components
 Vue.use(EmptyBox)
-Vue.use(CommentBox)
 Vue.use(LoadingBox)
 Vue.use(ColorBlockBox)
 Vue.use(SkeletonBox)

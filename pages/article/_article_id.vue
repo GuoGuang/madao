@@ -23,23 +23,47 @@
 
           <!-- 导航，头部 -->
           <div class="post-title">
-            <div class="breadcrumbs"><span itemprop="itemListElement"><a href="https://iboy.tech/" itemprop="item" class="home"><span itemprop="name"><i class="icon-location-2"/>首页</span></a></span> <span class="sep">›</span> <span itemprop="itemListElement"><a href="https://iboy.tech/technology" itemprop="item"><span itemprop="name">技术</span></a></span> <span class="sep">›</span> <span class="current">正文</span></div>
+            <div class="breadcrumbs">
+              <span itemprop="itemListElement">
+                <a href="#" itemprop="item" class="home">
+                  <span itemprop="name">
+                    <i class="icon-location-2"/>首页
+                  </span>
+                </a>
+              </span>
 
-            <div class="categories"><a href="https://iboy.tech/tag/hui-ji-jin-rong-zhi-cheng-kao-shi" rel="tag">会计金融职称考试</a><a href="https://iboy.tech/tag/yi-xue-wei-sheng-zi-ge-kao-shi-zhong-xin" rel="tag">医学卫生资格考试中心</a><a href="https://iboy.tech/tag/guo-dian-kao-shi" rel="tag">国电考试</a><a href="https://iboy.tech/tag/kao-shi-zi-liao-wang" rel="tag">考试资料网</a><a href="https://iboy.tech/tag/kao-shi-zi-liao-wang-po-jie" rel="tag">考试资料网破解</a><a href="https://iboy.tech/tag/ji-suan-ji-kao-shi" rel="tag">计算机考试</a></div>
+              <span class="sep">›</span>
+
+              <span itemprop="itemListElement">
+                <a href="#" itemprop="item">
+                  <span itemprop="name">技术</span>
+                </a>
+              </span>
+
+              <span class="sep">›</span>
+
+              <span class="current">正文</span>
+            </div>
+
+            <!-- 标签 -->
+            <div class="tags">
+              <a href="#" rel="tag">考试资料网破解</a>
+              <a href="#" rel="tag">计算机考试</a>
+            </div>
 
             <h1 class="title">{{ article.title }}</h1>
 
             <div class="post_icon">
               <span class="postauthor">
-                <img class="avatar" alt="" src="https://iboy.tech/wp-content/uploads/2019/01/iboy_avatar_2-96x96.png" height="96" width="96" style="">
-                <a href="https://iboy.tech/author/iboy">iboy</a>
+                <img class="avatar" alt="" src="https://avatars0.githubusercontent.com/u/23237686?v=4" height="96" width="96" style="">
+                <a href="#">GuoGuang0536</a>
               </span>
               <span class="postcat">
                 <i class="iconfont youyd-icon-menu"/>
-                <a href="https://iboy.tech/technology">技术</a>
+                <a href="#">技术</a>
               </span>
               <span class="postclock">
-                <i class="iconfont youyd-icon-time"/>
+                <i class="#"/>
                 2019-01-03
               </span>
               <span class="posteye">
@@ -217,8 +241,7 @@
       </div> -->
         </transition>
         <div class="comment">
-          <comment />
-
+          <comment :comments="commentData" :commit-comment="commitComment"/>
         </div>
 
       </article>
@@ -241,6 +264,7 @@ import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 import AsideView from '~/components/layout/pc/aside/article_main'
 
+import * as CommentData from './mockdata'
 import comment from './comment'
 
 export default {
@@ -252,6 +276,7 @@ export default {
   },
   data() {
     return {
+      commentData: CommentData.comment.data,
       swiperOption: {
         setWrapperSize: true,
         simulateTouch: false,
@@ -365,6 +390,13 @@ export default {
     this.lozadObserver = null
   },
   methods: {
+    /**
+     * 监听comment组件提交评论事件
+     */
+    commitComment(comment) {
+      console.log('提交评论:' + comment)
+    },
+
     readMore() {
       this.isReadMoreLoading = true
       this.$nextTick(() => {
@@ -548,7 +580,7 @@ export default {
           margin-bottom: 25px;
           box-shadow: none;
         }
-        .categories{
+        .tags{
           margin-bottom: 10px;
           a{
             padding: 4px 8px;
