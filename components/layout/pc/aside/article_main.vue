@@ -27,18 +27,11 @@
     </div>
     <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
 
-    <!-- 相关推荐 -->
+    <!-- 相关推荐 替换为文章底部动态列表
     <div class="aside-related">
-      <!--  -->
-      <related />
-    </div>
 
-    <!-- GooGle广告 -->
-    <transition name="module">
-      <div v-if="renderAd" key="ad" class="aside-ad">
-        <adsense-aside />
-      </div>
-    </transition>
+      <related />
+    </div>-->
 
     <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
       <no-ssr>
@@ -370,7 +363,6 @@ export default {
       }
 
       >.aside-tag {
-        width: 19em;
         padding-left: 1rem;
         border-top: 1rem solid transparent;
         border-bottom: 1rem solid transparent;
