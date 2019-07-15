@@ -124,7 +124,7 @@ module.exports = {
     { src: '~/plugins/highlight' },
     { src: '~/plugins/lozad', mode: 'client' },
     { src: '~/plugins/favico', mode: 'client' },
-    { src: '~/plugins/adsense', mode: 'client' },
+    { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
     { src: '~/plugins/analytics', mode: 'client' },
     { src: '~/plugins/emoji-233333', mode: 'client' },
@@ -132,7 +132,8 @@ module.exports = {
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
     { src: '~/plugins/element-ui' },
-    { src: '~/static/icon/iconfont.js', ssr: false }/* 阿里icon */
+    { src: '~/static/icon/iconfont.js', ssr: false }
+    /* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],
   modules: [
@@ -179,13 +180,24 @@ module.exports = {
       { rel: 'dns-prefetch', href: '//googleads.g.doubleclick.net' },
       { rel: 'dns-prefetch', href: '//www.google-analytics.com' },
       { rel: 'dns-prefetch', href: '//tpc.googlesyndication.com' },
-      { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com' },
+      { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'author', type: 'text/plain', href: '/humans.txt' }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
-    ]
+    ],
+    script: [
+      /* GooGle Ads */
+      { type: 'text/javascript', innerHTML:
+            `(adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-2993169397147402",
+              enable_page_level_ads: true
+            });`
+      }
+    ],
+    // 禁止innerHTML的内容转义
+    __dangerouslyDisableSanitizers: ['script']
   },
   workbox: {
     // runtimeCaching: [
