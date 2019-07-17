@@ -6,7 +6,7 @@
     "socketHost": "http://localhost:3000"
   },
   "production": {
-    "cdnUrl": "http://39.108.191.56:3000",
+    "cdnUrl": "https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com", 
     "proxyUrl": "https://surmon.me/proxy/",
     "baseUrl": "https://easy-mock.com/mock/5c5849e5627c6a683562d4fc/youyd_platform",
     "socketHost": "https://surmon.me"
