@@ -577,7 +577,6 @@ export default {
           }
 
           .navbar-logo {
-            //background-image: url(http://localhost:3000/images/icode.png);
             width: 20rem;
             margin-right: 0;
             filter: $theme-logo-rotate;
