@@ -796,8 +796,8 @@ export default {
 
 .close-search:hover .close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(45deg)}
 .close-search:hover .close-bottom{-webkit-transform:translate(0,-5px) rotate(135deg);transform:translate(0,-5px) rotate(315deg)}
-.close-bottom{-webkit-transform:translate(0,-5px) rotate(135deg);transform:translate(0,-5px) rotate(135deg);}
-.close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(225deg)}
+.close-bottom{transform:translate(0,-5px) rotate(135deg);}
+.close-top{transform:translate(0,5px) rotate(225deg)}
 .close-top{
   top: 34px;
   width: 45px;
