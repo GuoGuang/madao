@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server.js --watch server.js",
     "dev:tool": "devtool ./server.js --watch",
-    "build": "nuxt build",
+    "build": "nuxt build && node upload.js",
     "analyz": "nuxt build --analyzer",
     "generate": "nuxt generate",
     "start": "cross-env NODE_ENV=production node server.js",
@@ -25,6 +25,7 @@
     "@nuxtjs/axios": "^5.3.3",
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/style-resources": "^0.1.1",
+    "ali-oss": "^6.1.1",
     "bezier-easing": "^2.1.0",
     "cookie": "^0.3.1",
     "cross-env": "^5.2.0",
