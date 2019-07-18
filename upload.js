@@ -73,7 +73,7 @@ async function putOSS(src, dist) {
  */
 async function upFile(dirName) {
   try {
-    await deleteDir(dirName)
+    await deleteDir('/icode/_nuxt')
     await addFileToOSSSync(PUBLIC_PATH + '.nuxt', dirName)
     console.log(dirName + '上传oss成功')
   } catch (err) {
