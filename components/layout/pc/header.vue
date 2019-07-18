@@ -90,7 +90,7 @@
       <div class="navbar-container container">
         <div class="navbar-header">
           <span class="navbar-blank"/>
-          <img src="/images/logo.png" class="navbar-logo">
+          <img :src="`${cdnUrl}/images/logo.png`" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
@@ -234,14 +234,13 @@
       </div>
       <div class="pre-load">
         <img v-if="preload" :src="currentSongPicUrl" alt="song-thumb">
-        <img v-if="preload" src="/images/shang.jpg" alt="shang">
-        <img v-if="preload" src="/images/app-hot.png" alt="app-download">
-        <img v-if="preload" src="/images/app-logo.png" alt="app-logo">
-        <img v-if="preload" src="/images/service.jpg" alt="service">
-        <img v-if="preload" src="/images/about-background-be-1.jpg" alt="background">
-        <img v-if="preload" src="/images/about-background-be-2.jpg" alt="background">
-        <img v-if="preload" src="/images/about-background-star-1.png" alt="background">
-        <img v-if="preload" src="/images/about-background-star-2.png" alt="background">
+        <img v-if="preload" :src="`${cdnUrl}/images/shang.jpg`" alt="shang">
+        <img v-if="preload" :src="`${cdnUrl}/images/app-hot.png`" alt="app-download">
+        <img v-if="preload" :src="`${cdnUrl}/images/service.jpg`" alt="service">
+        <img v-if="preload" :src="`${cdnUrl}/images/about-background-be-1.jpg`" alt="background">
+        <img v-if="preload" :src="`${cdnUrl}/images/about-background-be-2.jpg`" alt="background">
+        <img v-if="preload" :src="`${cdnUrl}/images/about-background-star-1.png`" alt="background">
+        <img v-if="preload" :src="`${cdnUrl}/images/about-background-star-2.png`" alt="background">
       </div>
     </nav>
 
@@ -260,6 +259,7 @@ export default {
   },
   data() {
     return {
+      cdnUrl: this.cdnUrl,
       searchDialog: false,
       input: '',
       preload: false,
@@ -795,9 +795,10 @@ export default {
 .close-search .close-bottom{bottom:34px}
 
 .close-search:hover .close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(45deg)}
-.close-search:hover .close-bottom{-webkit-transform:translate(0,-5px) rotate(135deg);transform:translate(0,-5px) rotate(315deg)}
+.close-search:hover .close-bottom{transform:translate(0,-5px) rotate(315deg)}
 .close-bottom{transform:translate(0,-5px) rotate(135deg);}
-.close-top{transform:translate(0,5px) rotate(225deg)}
+.close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(225deg)}
+
 .close-top{
   top: 34px;
   width: 45px;
