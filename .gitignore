@@ -103,3 +103,4 @@ data/barrages.json
 # analytics
 static/scripts/analytics.js
 /static/scripts/analytics.js
+.vscode/settings.json
