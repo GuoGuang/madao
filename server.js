@@ -24,8 +24,8 @@ global.console = Object.assign(console, {
 
 const config = require('./nuxt.config')
 const port = environment.PORT || 3000
-const host = isProdMode ? (environment.HOST || '0.0.0.0') : '0.0.0.0' // 生产必须是0.0.0.0？
-// const host = isProdMode ? (environment.HOST || '127.0.0.1') : '0.0.0.0'
+// const host = isProdMode ? (environment.HOST || '0.0.0.0') : '0.0.0.0' // 生产必须是0.0.0.0？
+const host = isProdMode ? (environment.HOST || '127.0.0.1') : '0.0.0.0'
 
 // extends
 const webrtcService = require('./services/webrtc.service')

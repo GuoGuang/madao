@@ -46,7 +46,11 @@ function addFileToOSSSync(src, dist) {
   docs.forEach(function(doc) {
     const _src = src + '/' + doc
     // const _dist = dist + '/' + doc
-    const _dist = '/' + doc // 所有文件上传到一个目录下
+    console.log('前：' + dist)
+
+    const _dist = src.indexOf('images') !== -1 ? dist + '/' + doc : '/' + doc // 所有文件上传到一个目录下
+    console.log('后：' + _dist)
+
     const st = fs.statSync(_src)
     // 判断是否为文件
     if (st.isFile() && doc !== '.DS_Store') {
@@ -75,6 +79,7 @@ async function upFile(dirName) {
   try {
     await deleteDir('/icode/_nuxt')
     await addFileToOSSSync(PUBLIC_PATH + '.nuxt', dirName)
+    await addFileToOSSSync(PUBLIC_PATH + 'static', dirName) // static 目录下资源上传到CDN
     console.log(dirName + '上传oss成功')
   } catch (err) {
     console.log(dirName + '上传oss成功失败', err)
