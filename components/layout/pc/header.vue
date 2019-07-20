@@ -28,17 +28,17 @@
       <div class="widget-login">
         <a href="/user/oauth/google" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-google"/>
+            <use xlink:href="#icon-google"/>
           </svg>
         </a>
         <a href="/user/oauth/qq" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-qq"/>
+            <use xlink:href="#icon-qq"/>
           </svg>
         </a>
         <a href="/user/oauth/weixin" class="">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#youyd-icon-weixin"/>
+            <use xlink:href="#icon-weixin"/>
           </svg>
         </a>
       </div>
@@ -66,7 +66,7 @@
         <div class="search-form-inner">
           <div class="search-form-box"><input class="form-search" type="text" name="s" placeholder="键入搜索关键词">
             <button id="btn-search" type="submit">
-              <i class="iconfont youyd-icon-search"/>
+              <i class="iconfont icon-search"/>
             </button>
           </div>
           <div class="search-commend"><h4>大家都在搜</h4>
@@ -104,7 +104,7 @@
 
             <div class="message">
               <button id="sitemessage" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <i class="iconfont youyd-icon-megaphone"/>
+                <i class="iconfont icon-megaphone"/>
               </button>
               <!-- <div class="dropdown-menu" role="menu" aria-labelledby="sitemessage">
             <ul>
@@ -115,7 +115,7 @@
             </div>
             <span class="line"/>
             <button class="search" @click="toggleSearch">
-              <i class="iconfont youyd-icon-search"/>
+              <i class="iconfont icon-search"/>
             </button>
 
           </div>

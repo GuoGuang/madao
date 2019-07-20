@@ -1,7 +1,7 @@
 <template>
   <div :class="{ mobile: isMobile }" class="page">
     <div class="service">
-      <div class="banner">
+      <div :style="{'background': url(`${cdnUrl}/images/background.png`) }" class="banner" >
         <div class="banner-content container">
           <h2
             class="title"

@@ -1,7 +1,7 @@
 <template>
   <!-- 背景 -->
   <div class="global-background">
-    <div class="background-image"/>
+    <div :style="{backgroundImage: `url(${cdnUrl}/images/background.png)`}" class="background-image"/>
     <div v-if="!onPowerSavingMode" id="particles-background" class="background-canvas"/>
   </div>
 </template>
@@ -10,7 +10,6 @@
 import { mapState } from 'vuex'
 export default {
   name: 'Background',
-
   computed: {
     ...mapState('global', ['onPowerSavingMode'])
   },
@@ -159,7 +158,7 @@ export default {
       width: 100%;
       height: 100%;
       opacity: .3;
-      background: url(/images/background.png);
+
     }
 
     > .background-canvas {

@@ -49,20 +49,20 @@
         <el-row class="action-box">
           <el-col :span="8">
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#youyd-icon-caozuo-dianzan"/>
+              <use xlink:href="#icon-caozuo-dianzan"/>
             </svg>
             <a>0</a>
           </el-col>
           <el-col :span="8" class="action-box-center">
             <nuxt-link to="/tweet/1" text>
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#youyd-icon-pinglun"/>
+                <use xlink:href="#icon-pinglun"/>
               </svg>
             </nuxt-link>0
           </el-col>
           <el-col :span="8">
             <svg class="icon" aria-hidden="true" style="padding-bottom: 8px;">
-              <use xlink:href="#youyd-icon-fenxiang"/>
+              <use xlink:href="#icon-fenxiang"/>
             </svg>
             分享
           </el-col>

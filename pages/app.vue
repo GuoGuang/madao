@@ -3,7 +3,7 @@
   <div :style="{ height: height }" :class="{ mobile: isMobile }" class="page">
     <div class="app">
       <div class="logo">
-        <img src="/images/app-logo.png" alt="app-logo">
+        <img src="" alt="app-logo">
       </div>
       <h2 class="title">Surmon.me</h2>
       <p class="desc" v-text="$i18n.text.slogan">Talk is cheap. Show me the code</p>

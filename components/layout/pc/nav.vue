@@ -3,31 +3,31 @@
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
       <nuxt-link :to="'/'" class="item" exact>
-        <i class="iconfont youyd-icon-home"/>
+        <i class="iconfont icon-home"/>
         <span >首页</span>
       </nuxt-link>
       <nuxt-link to="/technology" class="item">
-        <i class="iconfont youyd-icon-shandian"/>
+        <i class="iconfont icon-shandian"/>
         <span v-text="$i18n.nav.technology"/>
       </nuxt-link>
       <nuxt-link to="/software" class="item">
-        <i class="iconfont youyd-icon-thlarge"/>
+        <i class="iconfont icon-thlarge"/>
         <span v-text="$i18n.nav.software "/>
       </nuxt-link>
       <nuxt-link to="/welfare" class="item">
-        <i class="iconfont youyd-icon-dribbble"/>
+        <i class="iconfont icon-dribbble"/>
         <span v-text="$i18n.nav.welfare"/>
       </nuxt-link>
       <nuxt-link to="/course" class="item">
-        <i class="iconfont youyd-icon-xuexi"/>
+        <i class="iconfont icon-xuexi"/>
         <span v-text="$i18n.nav.course"/>
       </nuxt-link>
       <nuxt-link to="/other" class="item">
-        <i class="iconfont youyd-icon-pen"/>
+        <i class="iconfont icon-pen"/>
         <span v-text="$i18n.nav.other"/>
       </nuxt-link>
       <nuxt-link to="/about" class="item">
-        <i class="iconfont youyd-icon-info"/>
+        <i class="iconfont icon-info"/>
         <span v-text="$i18n.nav.about"/>
       </nuxt-link>
 

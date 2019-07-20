@@ -59,7 +59,7 @@
                 <a href="#">GuoGuang0536</a>
               </span>
               <span class="postcat">
-                <i class="iconfont youyd-icon-menu"/>
+                <i class="iconfont icon-menu"/>
                 <a href="#">技术</a>
               </span>
               <span class="postclock">
@@ -67,7 +67,7 @@
                 2019-01-03
               </span>
               <span class="posteye">
-                <i class="iconfont youyd-icon-view"/> 6,487
+                <i class="iconfont icon-view"/> 6,487
               </span>
 
             </div>

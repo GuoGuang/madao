@@ -17,7 +17,7 @@
                   </span>
                 </p>
                 <p class="item">
-                  <i class="iconfont icon-comment-discussion"/>
+                  <i class="iconfont icon-comment"/>
                   <span v-if="isEnLang">Taolu committee:</span>
                   <span v-else>WeChat：</span>
                   <!-- href="https://shang.qq.com/wpa/qunwpa?idkey=837dc31ccbcd49feeba19430562be7bdc06f4428880f78a391fd61c8af714ce4">288325802</a> -->
@@ -242,7 +242,8 @@ export default {
     gravatar() {
       const gravatar = this.$store.state.global.adminInfo.gravatar
       return gravatar
-        ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim`
+        // ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim`
+        ? `https://avatars0.githubusercontent.com/u/23237686?s=40&v=4`
         : `${this.cdnUrl}/images/gravatar.jpg`
     }
   },

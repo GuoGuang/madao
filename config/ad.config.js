@@ -4,7 +4,11 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-const imagePath = '/images/mammon/'
+ // const apiConfig = require('./api.config.js')
+// const imagePath = apiConfig.cdnUrl+`/images/mammon/` 
+const imagePath = `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt/images/mammon/` 
+
+
 const links = {
   common: {
     aliyun: 'https://s.click.taobao.com/FQVZFKw'

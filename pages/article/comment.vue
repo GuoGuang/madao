@@ -11,7 +11,7 @@
       <div class="action-box">
         <div class="emoji emoji-btn">
           <div class="emoji-box">
-            <i class="iconfont youyd-icon-biaoqing"/>
+            <i class="iconfont icon-biaoqing"/>
             <span data-v-1a162112="">表情</span>
           </div>
         </div>

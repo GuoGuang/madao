@@ -32,7 +32,7 @@
               <li>
                 <a class="entypo-wechart" href="" >
                   <svg class="icon" aria-hidden="true" style="width: 25px;height: 25px;">
-                    <use xlink:href="#youyd-icon-weixin"/>
+                    <use xlink:href="#icon-weixin"/>
                   </svg>
                 </a>
               </li>
@@ -40,13 +40,13 @@
 
                 <a href="" target="_blank" class="entypo-weibo icon-sn-weibo">
                   <svg class="icon" aria-hidden="true" style="width: 25px;height: 25px;">
-                    <use xlink:href="#youyd-icon-qq"/>
+                    <use xlink:href="#icon-qq"/>
                   </svg>
                 </a>
               </li>
               <li>
                 <svg class="icon" aria-hidden="true" style="width: 25px;height: 25px;">
-                  <use xlink:href="#youyd-icon-github"/>
+                  <use xlink:href="#icon-github"/>
                 </svg>
                 <a href="" target="_blank" class="entypo-facebook icon-sn-github"/>
               </li>

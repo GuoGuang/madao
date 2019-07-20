@@ -50,7 +50,7 @@
             <span>{{ article.upvote || 0 }}</span>
           </span>
           <span class="categories">
-            <i class="iconfont icon-list"/>
+            <i class="iconfont icon-menu"/>
             <template v-if="article.category.name">
               <!-- :key="index" v-for="(category, index) in article.category" -->
               <nuxt-link
@@ -236,11 +236,12 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           word-wrap: normal;
-
+          .iconfont{
+            font-size: 14px;
+          }
           > .date {
             text-transform: uppercase;
           }
-
           > .views {
             min-width: 4rem;
           }
