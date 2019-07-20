@@ -61,10 +61,11 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog :visible.sync="searchDialog" :fullscreen="true" >
+    <el-dialog :visible.sync="searchDialog" :fullscreen="true" @open="show()">
       <div class="search-form">
         <div class="search-form-inner">
-          <div class="search-form-box"><input class="form-search" type="text" name="s" placeholder="键入搜索关键词">
+          <div class="search-form-box">
+            <input ref="input" v-model="searchValue" class="form-search" placeholder="键入搜索关键词">
             <button id="btn-search" type="submit">
               <i class="iconfont icon-search"/>
             </button>
@@ -99,20 +100,8 @@
             <nav-view />
           </transition>
         </div>
-        <div style="display: flex;">
+        <div style="display:flex;padding-right: 2em;">
           <div class="navbar-right">
-
-            <div class="message">
-              <button id="sitemessage" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <i class="iconfont icon-megaphone"/>
-              </button>
-              <!-- <div class="dropdown-menu" role="menu" aria-labelledby="sitemessage">
-            <ul>
-              <li class="first"><span class="time">19.06.24</span><a target="_blank" href="#">免 root 卸载预置应用</a></li>
-            </ul>
-            <div class="more-messages"><a target="_blank" href="https://iboy.tech/technology">更多</a></div>
-          </div> -->
-            </div>
             <span class="line"/>
             <button class="search" @click="toggleSearch">
               <i class="iconfont icon-search"/>
@@ -262,6 +251,7 @@ export default {
       cdnUrl: this.cdnUrl,
       searchDialog: false,
       input: '',
+      searchValue: '',
       preload: false,
       loginDialogVisible: false,
       registDialogVisible: false,
@@ -327,6 +317,17 @@ export default {
     toggleSearch() {
       this.searchDialog = !this.searchDialog
     },
+
+    /**
+     * resolve el-dialog can not use “this.$refs” problem
+     */
+    show() {
+      this.searchValue = ''
+      setTimeout(() => {
+        this.$refs.input.focus()
+      }, 0)
+    },
+
     loginDialog() {
       this.loginDialogVisible = true
     },
@@ -798,6 +799,9 @@ export default {
 .close-search:hover .close-bottom{transform:translate(0,-5px) rotate(315deg)}
 .close-bottom{transform:translate(0,-5px) rotate(135deg);}
 .close-top{-webkit-transform:translate(0,5px) rotate(225deg);transform:translate(0,5px) rotate(225deg)}
+.form-search{
+  --primary-color: #323435;
+}
 
 .close-top{
   top: 34px;
@@ -817,7 +821,7 @@ export default {
 }
 /* 搜索页end */
 
-.tougao{background:transparent;font-size:15px;border:1px solid #337ab7;border-radius:40px;padding:5px 16px;line-height:1;color:#337ab7;margin-right:10px;}
+.tougao{background:transparent;font-size:15px;border:1px solid #337ab7;border-radius:40px;padding:5px 16px;line-height:1;color:#337ab7;margin-right:15px;}
 .tougao:hover{background:#282828;border-color:#282828;color:#FFF;}
 
 // 弹框效果

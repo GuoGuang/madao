@@ -1,9 +1,10 @@
 <template>
   <div class="error">
     <div class="error-content">
-      <h1 class="error-code">{{ error.statusCode }}</h1>
+      <!-- <h1 class="error-code">{{ error.statusCode }}</h1> -->
+      <img :src="statusImage" class="error-img">
       <div class="error-wrapper-message">
-        <h2 class="error-message">众里寻他 我已不再</h2>
+        <h2 class="error-message">{{ statusInfo }}</h2>
       </div>
       <p class="error-link">
         <nuxt-link class="link" to="/">Back to the home page</nuxt-link>
@@ -17,8 +18,29 @@ export default {
   layout: 'empty',
   props: {
     'error': {
-      type: Number,
+      type: Object,
       default: 400
+    }
+  },
+  data() {
+    return {
+      statusImage: '',
+      statusInfo: ''
+    }
+  },
+  watch: {
+    error: {
+      immediate: true,
+      handler(newVal, oldVal) {
+        console.log(newVal.statusCode)
+        if (newVal.statusCode === 404) {
+          this.statusImage = '/images/svg/404.svg'
+          this.statusInfo = 'Page Not Found'
+        } else {
+          this.statusImage = '/images/svg/500.svg'
+          this.statusInfo = 'Server Internal Error'
+        }
+      }
     }
   },
   mounted() {
@@ -77,12 +99,16 @@ export default {
         font-size: 12rem;
         margin: 0;
       }
+      > .error-img {
+        width: 50%;
+      }
 
       > .error-wrapper-message {
 
         > .error-message {
+          margin-bottom: 1em;
           font-family: webfont-bolder, DINRegular;
-          margin-top: 0;
+          margin-top: 1em;
         }
       }
     }
