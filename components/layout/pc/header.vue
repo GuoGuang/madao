@@ -662,7 +662,6 @@ export default {
   /* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
   .loginDialog {
     .el-dialog {
-      margin-top: 5vh !important;
       width: 33%;
     }
     .el-dialog__header {
@@ -671,7 +670,7 @@ export default {
       background-color: #f3f3f3;
     }
     .el-dialog__body {
-      padding: 30px 130px;
+      padding: 20px 50px;
       .el-form {
         .el-form-item {
           margin-bottom: 10px;
@@ -734,7 +733,6 @@ export default {
 
    .registDialog {
     .el-dialog {
-      margin-top: 5vh !important;
       width: 33%;
     }
     .el-dialog__header {
@@ -743,7 +741,7 @@ export default {
       background-color: #f3f3f3;
     }
     .el-dialog__body {
-      padding: 30px 130px;
+      padding: 20px 50px;
       .el-form {
         .el-form-item {
           margin-bottom: 10px;
