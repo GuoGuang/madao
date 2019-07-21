@@ -1,4 +1,5 @@
 <template>
+  <!-- search page header -->
   <div :class="{ mobile: isMobile }" class="header-box">
     <div
       :style="{
@@ -197,6 +198,7 @@ export default {
     }
 
     > .title-box {
+      text-align: center;
       height: 4rem;
       line-height: 2.5rem;
 

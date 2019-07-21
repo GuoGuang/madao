@@ -1,26 +1,48 @@
 <template>
-  <!-- 轮播 -->
   <div :class="{ mobile: isMobile }" class="carrousel">
     <transition name="module" mode="out-in">
-      <empty-box v-if="!article.data.records.length" key="empty" class="article-empty-box">
+      <empty-box v-if="!articleList.length" key="empty" class="article-empty-box">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
-      <div v-swiper:swiper="swiperOption" v-else-if="renderSwiper" key="swiper" class="swiper index">
+      <div
+        v-swiper:swiper="swiperOption"
+        v-else-if="renderSwiper"
+        key="swiper"
+        class="swiper index"
+        @transitionStart="handleSwiperTransitionStart"
+        @transitionEnd="handleSwiperTransitionEnd"
+      >
         <div class="swiper-wrapper">
           <div
-            v-for="(article, index) in article.data.records.slice(0, 9)"
+            v-for="(article, index) in articleList.slice(0, 9)"
             :key="index"
             class="swiper-slide slide-item"
           >
-            <div class="content">
-              <img :src="buildThumb(article.thumb)" :alt="article.title">
-              <nuxt-link :to="`/article/${article.id}`" class="title">
-                <span>{{ article.title }}</span>
-              </nuxt-link>
+            <div
+              :class="{ 'motion-blur-horizontal': transitioning }"
+              class="content filter"
+            >
+              <template v-if="article.ad">
+                <a
+                  :href="article.url"
+                  target="_blank"
+                  rel="external nofollow noopener"
+                  class="link"
+                >
+                  <img :src="article.src" :alt="article.title">
+                  <span class="title">{{ article.title }}</span>
+                </a>
+              </template>
+              <template v-else>
+                <nuxt-link :to="`/article/${article.id}`" class="link">
+                  <img :src="humanizeThumb(article.thumb)" :alt="article.title">
+                  <span class="title">{{ article.title }}</span>
+                </nuxt-link>
+              </template>
             </div>
           </div>
         </div>
-        <div class="swiper-pagination"/>
+        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"/>
       </div>
     </transition>
   </div>
@@ -28,6 +50,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import adConfig from '~/config/ad.config'
 export default {
   name: 'IndexCarrousel',
   props: {
@@ -39,6 +62,7 @@ export default {
   data() {
     return {
       renderSwiper: true,
+      transitioning: false,
       swiperOption: {
         autoplay: {
           delay: 3500,
@@ -49,26 +73,37 @@ export default {
           el: '.swiper-pagination'
         },
         setWrapperSize: true,
-        // autoHeight: true,
         mousewheel: true,
         observeParents: true,
-        grabCursor: true,
+        // 禁用 PC 拖动手指样式
+        grabCursor: false,
+        // 警用 PC 拖动
+        simulateTouch: false,
         preloadImages: false,
         lazy: true
       }
     }
   },
   computed: {
-    ...mapState('global', ['imageExt', 'isMobile'])
+    ...mapState('global', ['imageExt', 'isMobile']),
+    articleList() {
+      const articles = [...this.article.data.records].slice(0, 9)
+      articles.length && articles.splice(2, 0, {
+        ad: true,
+        ...adConfig.pc.carrousel
+      })
+      return articles
+    }
   },
   activated() {
     this.renderSwiper = true
+    this.handleSwiperTransitionEnd()
   },
   deactivated() {
     this.renderSwiper = false
   },
   methods: {
-    buildThumb(thumb) {
+    humanizeThumb(thumb) {
       if (thumb) {
         if (this.isMobile) {
           return `${thumb}?imageView2/1/w/768/h/271/format/${this.imageExt}/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/560/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim`
@@ -78,6 +113,12 @@ export default {
       } else {
         return `${this.cdnUrl}/images/${this.isMobile ? 'mobile-' : ''}thumb-carrousel.jpg`
       }
+    },
+    handleSwiperTransitionStart() {
+      this.transitioning = true
+    },
+    handleSwiperTransitionEnd() {
+      this.transitioning = false
     }
   }
 }
@@ -85,11 +126,8 @@ export default {
 
 <style lang="scss">
   .index.swiper {
-
     .swiper-pagination {
-
       .swiper-pagination-bullet {
-
         &.swiper-pagination-bullet-active {
           width: 2rem;
           border-radius: 10px;
@@ -102,35 +140,33 @@ export default {
 <style lang="scss" scoped>
   $pc-carrousel-height: 15em;
   $mobile-carrousel-height: calc((100vw - 2rem) * .35);
-
   .carrousel {
     height: $pc-carrousel-height;
     margin-bottom: 1em;
     position: relative;
     overflow: hidden;
     background-color: $module-bg;
-
     > .swiper {
-
       .slide-item {
-        //width: 795px!important;
         > .content {
           width: 100%;
           height: $pc-carrousel-height;
           position: relative;
           overflow: hidden;
-
-          > img {
+          > .link {
+            display: block;
             width: 100%;
-            @include css3-prefix(transform, rotate(0deg) scale(1));
-            @include css3-prefix(transition, transform 1s);
-
+            height: 100%;
+          }
+          img {
+            width: 100%;
+            @include css3-prefix(transform, scale(1));
+            @include css3-prefix(transition, transform .88s);
             &:hover {
-              @include css3-prefix(transform, rotate(2deg) scale(1.1));
+              @include css3-prefix(transform, scale(1.06));
             }
           }
-
-          > .title {
+          .title {
             position: absolute;
             margin: 0;
             top: 1.5rem;
@@ -146,11 +182,9 @@ export default {
             letter-spacing: .3px;
             max-width: 75%;
             @include text-overflow;
-
             -webkit-background-clip: text;
             // background-color: $module-hover-bg-opacity-9;
-            background: linear-gradient(90deg, transparent 0%, $module-bg 4em, $module-bg-opacity-9, $white);
-
+            background: linear-gradient(90deg, transparent 0%, $module-bg 2em, $module-bg-opacity-9, $white);
             &:hover {
               color: $text-darken;
               // background: none;
@@ -161,16 +195,12 @@ export default {
         }
       }
     }
-
     &.mobile {
       height: $mobile-carrousel-height;
-
       > .swiper {
-
         .slide-item {
           > .content {
             height: $mobile-carrousel-height;
-
             > .title {
               right: 1.7rem;
               max-width: 70%;

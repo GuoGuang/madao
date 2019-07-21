@@ -64,12 +64,7 @@ export default {
   height: 100%;
   text-align: center
 }
-.img4 .iblock {
-	display:inline-block;
-	height:100%;
-	width:0;
-	vertical-align:middle
-}
+
 .error-img {
   width: 50%;
 }

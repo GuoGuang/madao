@@ -85,7 +85,6 @@
 import AsideAd from './ad'
 import Calendar from './calendar'
 import { mapState } from 'vuex'
-import { Route } from '~/constants/system'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
 export default {
   name: 'PcAside',
@@ -153,14 +152,6 @@ export default {
       this.$nextTick(() => {
         this.renderAd = true
       })
-    },
-    handleSearch() {
-      const keyword = this.keyword
-      const paramsKeyword = this.$route.params.keyword
-      const isSearchPage = isSearchArchiveRoute(this.$route.name)
-      if (keyword && (isSearchPage ? paramsKeyword !== keyword : true)) {
-        this.$router.push({ name: Route.SearchArchive, params: { keyword }})
-      }
     },
     handleSlideChange(index) {
       this.adIndex = index

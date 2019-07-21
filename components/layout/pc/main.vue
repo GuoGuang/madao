@@ -19,7 +19,7 @@
     <main id="main" :class="{ 'full-view': isFullViewWidth }" style="min-height: calc(75vh - 70px);">
 
       <!-- body页面中间 --> <!-- full-column:62.5em 删除   class="main-content" 这个样式删了也没什么改变，此处应该去除div这一层-->
-      <div id="main-content" :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }" style="height: calc(75vh - 70px);">
+      <div id="main-content" :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }" >
         <nuxt :nuxt-child-key="$route.name" keep-alive />
       </div>
 

@@ -2,11 +2,6 @@
   <!-- 页面中间 -->
   <div class="articles">
 
-    <!-- 非首页列表头 -->
-    <div v-if="!isIndexRoute" class="article-list-header">
-      <list-header />
-    </div>
-
     <!-- 广告啦 -->
     <transition name="module">
       <component v-if="renderAd" :is="isMobile ? 'adsense-archive-mobile' : 'adsense-archive'" />
@@ -106,13 +101,6 @@ export default {
 
 <style lang="scss" scoped>
   .articles {
-
-    > .article-list-header {
-      margin-bottom: 1em;
-      position: relative;
-      overflow: hidden;
-      background-color: $module-bg-opacity-5;
-    }
 
     > .article-list {
       margin-bottom: 1em;

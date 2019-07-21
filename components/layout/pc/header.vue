@@ -65,18 +65,18 @@
       <div class="search-form">
         <div class="search-form-inner">
           <div class="search-form-box">
-            <input ref="input" v-model="searchValue" class="form-search" placeholder="键入搜索关键词">
-            <button id="btn-search" type="submit">
+            <input ref="input" v-model.trim="keyword" class="form-search" placeholder="键入搜索关键词" @keyup.enter="handleSearch">
+            <button id="btn-search" @click="handleSearch">
               <i class="iconfont icon-search"/>
             </button>
           </div>
           <div class="search-commend"><h4>大家都在搜</h4>
             <ul>
-              <li><a href="#">考试资料网</a></li>
-              <li><a href="#">白帽子</a></li>
-              <li><a href="#">Java</a></li>
-              <li><a href="#">面试</a></li>
-              <li><a href="#">万维题库</a></li>
+              <li><a href="/search/考试资料网">考试资料网</a></li>
+              <li><a href="/search/白帽子">白帽子</a></li>
+              <li><a href="/search/Java">Java</a></li>
+              <li><a href="/search/面试">面试</a></li>
+              <li><a href="/search/万维题库">万维题库</a></li>
             </ul>
           </div>
         </div>
@@ -240,6 +240,8 @@
 import music from '~/expansions/music'
 import { isBrowser } from '~/environment/esm'
 import NavView from '~/components/layout/pc/nav'
+import { isSearchArchiveRoute } from '~/utils/route'
+import { Route } from '~/constants/system'
 
 export default {
   name: 'LayoutHeader',
@@ -251,7 +253,7 @@ export default {
       cdnUrl: this.cdnUrl,
       searchDialog: false,
       input: '',
-      searchValue: '',
+      keyword: '',
       preload: false,
       loginDialogVisible: false,
       registDialogVisible: false,
@@ -294,6 +296,15 @@ export default {
     }
   },
   methods: {
+    handleSearch() {
+      const keyword = this.keyword
+      const paramsKeyword = this.$route.params.keyword
+      const isSearchPage = isSearchArchiveRoute(this.$route.name)
+      if (keyword && (isSearchPage ? paramsKeyword !== keyword : true)) {
+        this.$router.push({ name: Route.SearchArchive, params: { keyword }})
+      }
+      this.searchDialog = false
+    },
     login() {
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
@@ -322,7 +333,7 @@ export default {
      * resolve el-dialog can not use “this.$refs” problem
      */
     show() {
-      this.searchValue = ''
+      this.keyword = ''
       setTimeout(() => {
         this.$refs.input.focus()
       }, 0)

@@ -187,8 +187,7 @@ export default {
       }
 
       > .item-body {
-        float: right;
-        width: 35.5em;
+        padding-left: 13em;
         height: 8.5em;
 
         > .item-title {
