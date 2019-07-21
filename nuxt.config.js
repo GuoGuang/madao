@@ -34,7 +34,7 @@ module.exports = {
     analyze: process.argv.join('').includes('analyze'), // 分析
     maxChunkSize: 360000, // 单个包最大尺寸
     extractCSS: true, // 单独提取 css
-    publicPath: apiConfig.cdnUrl + '/', // 需要以 / 结尾
+    publicPath: apiConfig.cdnUrl,
     postcss: {
       plugins: { 'postcss-custom-properties': { warnings: false }}
     },
