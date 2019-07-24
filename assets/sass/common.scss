@@ -3,7 +3,10 @@
   src: local('PingFang SC'), local("Microsoft Yahei");
   unicode-range: U+02C2, U+02C3, U+003C, U+003E, U+3009;
 }
-
+/* 删除 el-dialog 默认的padding-right */
+body{
+  padding-right:0px !important;
+}
 // 为我一挥手，如听万壑松
 @font-face {
   font-family: 'webfont-bold';
