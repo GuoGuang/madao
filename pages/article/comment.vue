@@ -5,13 +5,13 @@
     <!-- 评论输入框 -->
     <div class="comment-form">
       <div class="input-comment">
-        <img src="http://ww4.sinaimg.cn/bmiddle/006DLFVFgy1ft0j2pddjuj30v90uvagf.jpg" width="36" height="36" data-v-524b37dd="">
-        <el-input v-model="comment" placeholder="说点什么"/>
+        <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+        <el-input v-model="comment" placeholder="说点什么" @focus="commentMouseOpt" @blur="commentMouseOpt"/>
       </div>
-      <div class="action-box">
+      <div v-show="commentAction" class="action-box">
         <div class="emoji emoji-btn">
           <div class="emoji-box">
-            <i class="iconfont icon-biaoqing"/>
+            <i class="iconfont icon-emoji"/>
             <span data-v-1a162112="">表情</span>
           </div>
         </div>
@@ -98,6 +98,7 @@ export default {
   },
   data() {
     return {
+      commentAction: false, // 评论操作状态
       comment: '',
       inputComment: '',
       showItemId: ''
@@ -128,6 +129,12 @@ export default {
       }
     },
 
+    /**
+     * 聚焦/失焦事件
+     */
+    commentMouseOpt() {
+      this.commentAction = !this.commentAction
+    },
     /**
        * 点击取消按钮
        */
@@ -188,7 +195,9 @@ $content-bg-color: #fff;
       background-color: #eeeeee;
       .input-comment{
         display: flex;
-        img{
+        .avatar{
+          width:"36";
+          height:"36";
           margin-right: 10px;
           border-radius: 50%;
         }

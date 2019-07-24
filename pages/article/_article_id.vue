@@ -8,7 +8,7 @@
         <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
 
           <!-- 文章左侧点赞区 -->
-          <div badge="186" class="like-btn panel-btn with-badge"/>
+          <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
           <div badge="186" class="comment-btn panel-btn with-badge"/>
           <div badge="186" class="collect-btn panel-btn"/>
           <div badge="186" class="share-title">分享</div>
@@ -63,7 +63,7 @@
                 <a href="#">技术</a>
               </span>
               <span class="postclock">
-                <i class="#"/>
+                <i class="iconfont icon-time"/>
                 2019-01-03
               </span>
               <span class="posteye">
@@ -157,7 +157,7 @@
               <nuxt-link :title="buildDateTitle(article.createAt)" :to="buildDateLink(article.createAt)">
                 <span>{{ buildDateTitle(article.createAt) }}</span>
               </nuxt-link>
-              <span>&nbsp;发布在&nbsp;</span>
+              <span>&nbsp;发布&nbsp;</span>
               <!-- <span :key="index" v-for="(category, index) in article.category">
             <nuxt-link :to="`/category/${category.slug}`" :title="category.description || category.name">
               <span>{{ isEnLang ? category.slug : category.name }}</span>
@@ -254,7 +254,6 @@
         <div class="comment">
           <comment :comments="commentData" :commit-comment="commitComment"/>
         </div>
-
       </article>
     </el-col>
     <el-col :span="6" class="right-list">
@@ -287,6 +286,17 @@ export default {
   },
   data() {
     return {
+      likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
+      isLikeStatus: false,
+      likeBackgroundColor: '',
+      likeBadge: 0,
+      asideImage: {
+        disLikeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
+        disLikeBackgroundColor: '',
+        likeImage: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/image/zan.b4bb964.svg',
+        likeBackgroundColor: '#f9eac8'
+      },
+
       commentData: CommentData.comment.data,
       swiperOption: {
         setWrapperSize: true,
@@ -393,6 +403,11 @@ export default {
     if (isBrowser) {
       this.observeLozad()
     }
+    // this.$store.state.user.token &&
+    if (this.isLikeStatus) {
+      this.likeImage = this.asideImage.likeImage
+      this.likeBackgroundColor = this.asideImage.likeBackgroundColor
+    }
   },
   activated() {
     this.updateAd()
@@ -401,6 +416,22 @@ export default {
     this.lozadObserver = null
   },
   methods: {
+    /**
+     * 喜欢/取消喜欢
+     */
+    isLike() {
+      if (this.isLikeStatus) {
+        // 取消喜欢
+        this.likeImage = this.asideImage.disLikeImage
+        this.likeBackgroundColor = this.asideImage.disLikeBackgroundColor
+        this.likeBadge = this.likeBadge - 1
+      } else {
+        this.likeImage = this.asideImage.likeImage
+        this.likeBackgroundColor = this.asideImage.likeBackgroundColor
+        this.likeBadge = this.likeBadge + 1
+      }
+      this.isLikeStatus = !this.isLikeStatus
+    },
     /**
      * 监听comment组件提交评论事件
      */
@@ -1075,23 +1106,41 @@ export default {
   }
 
   .like-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg);
+
   }
+  .like-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/zan-hover.91657d6.svg)
+}
   .comment-btn{
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/comment.7fc22c2.svg);
   }
+  .comment-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/comment-hover.1074e67.svg)
+}
   .collect-btn{
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/collect.1db122b.svg)
   }
+  .collect-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/collect-hover.5d446a7.svg)
+}
   .weibo-btn{
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/weibo.2076a57.svg)
   }
+  .weibo-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/weibo-hover.9abf502.svg)
+}
   .qq-btn{
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/qq.0834411.svg)
   }
+  .qq-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/qq-hover.d11dd84.svg)
+}
   .wechat-btn{
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/wechat.63e1ce0.svg)
   }
+  .wechat-btn:hover {
+    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/wechat-hover.c8ce019.svg)
+}
 
   .with-badge:after {
     content: attr(badge);
@@ -1121,6 +1170,9 @@ export default {
     border-radius: 50%;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.04);
     cursor: pointer
+}
+.panel-btn:hover {
+
 }
 .share-title{
     margin: 2.5rem 0 1rem;

@@ -11,9 +11,9 @@
       </empty-box>
 
       <!-- 作者信息 -->
-      <div class="block-body">
+      <div class="author-info">
         <a href="/user/5aa23691518825556d0db27e" target="_blank" rel="" class="user-item item" style="padding: 1.3rem;display: flex">
-          <img style="flex: 0 0 auto;margin-right: 1rem;width: 4.167rem;height: 4.167rem;border-radius: 50%;" src="https://avatars0.githubusercontent.com/u/23237686?v=4">
+          <el-avatar style="margin-right: 5px;" class="avatar" size="large" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
           <div class="info-box">
             <div class="username">小美娜娜</div><div data-v-f95bea30="" title="前端小可爱 @ emmmm" class="position">前端小可爱 @ emmmm</div>
           </div>
