@@ -3,11 +3,9 @@
  * @module store/tag
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
-import { logout } from '@/api/login'
-import { getToken, removeToken } from '@/utils/auth' // 从cookie中获取token getToken
-import { loginByUserName } from '~/api/login'
-import { setToken } from '@/utils/auth'
-
+// import { logout } from '@/api/login'
+import { getToken, removeToken, setToken } from '@/utils/auth' // 从cookie中获取token getToken
+// import { loginByUserName } from '~/api/login'
 export const state = () => {
   return {
     token: '',
@@ -57,9 +55,12 @@ export const actions = {
 
   // 用户名登录
   LoginByUsername({ commit }, userInfo) {
-    const username = userInfo.username.trim()
+    // const acoount = userInfo.acoount.trim()
     return new Promise((resolve, reject) => {
-      loginByUserName(username, userInfo.password).then(response => {
+      commit('SET_TOKEN', '11111')
+      setToken('11111')
+      resolve()
+      /* loginByUserName(acoount, userInfo.password).then(response => {
         console.error('55')
 
         if (response.code === 20000) {
@@ -72,7 +73,7 @@ export const actions = {
         }
       }).catch(error => {
         reject(error)
-      })
+      }) */
     })
   },
 
@@ -82,14 +83,16 @@ export const actions = {
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        alert('55')
+      commit('SET_TOKEN', '')
+      removeToken()
+      resolve()
+      /* logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         removeToken()
         resolve()
       }).catch(error => {
         reject(error)
-      })
+      }) */
     })
   }
 }

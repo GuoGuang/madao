@@ -18,7 +18,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button size="medium " @click="login('ruleForm')">登录</el-button>
+          <el-button :loading="loadingStatus" size="medium" @click="login('ruleForm')">登录</el-button>
         </el-form-item>
 
         <div class="more-login-area">
@@ -48,6 +48,7 @@
     </el-dialog>
 
     <el-dialog :visible.sync="registDialogVisible" class="registDialog" title="注册" width="30%">
+      <h3>登录过程中会用到短信，请准备好您的手机</h3>
       <el-form label-position="top" label-width="80px" size="mini">
         <el-form-item label="手机号">
           <el-input placeholder="请输入手机号" size="small"/>
@@ -110,11 +111,11 @@
           </div>
 
           <!-- 已登录 -->
-          <div v-if="loginStatus" class="user-profile">
+          <div v-if="loginStatus" v-cloak class="user-profile">
 
             <ul style="">
               <li >
-                <el-dropdown :hide-on-click="false">
+                <!-- <el-dropdown :hide-on-click="false">
                   <span class="el-dropdown-link">
                     新文章<i class="el-icon-arrow-down el-icon--right"/>
                   </span>
@@ -122,20 +123,23 @@
                     <el-dropdown-item>提问题</el-dropdown-item>
                     <el-dropdown-item>发布猿点</el-dropdown-item>
                   </el-dropdown-menu>
-                </el-dropdown>
+                </el-dropdown> -->
+                <a href="#" class="tougao">投稿</a>
+
                 <a class="dropdown-toggle-letter" href="/user/messages">
-                  <span class="sr-only">
-                    消息
-                  </span>
+                  <el-badge :value="12" class="item">
+                    <i class="iconfont icon-bell"/>
+                  </el-badge>
+
                 </a>
               </li>
               <li >
 
                 <el-dropdown>
                   <span class="el-dropdown-link">
-                    <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
+                    <el-avatar size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
                   </span>
-                  <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-menu slot="dropdown" class="user-dropdown-menu">
                     <el-dropdown-item >
                       <router-link to="/profile">
                         GuoGuang
@@ -148,7 +152,8 @@
                     </el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
-            </li></ul>
+              </li>
+            </ul>
           <!-- <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
             <el-menu-item index="1">私信</el-menu-item>
             <el-submenu index="2">
@@ -180,7 +185,7 @@
           </div>
 
           <!-- 未登录 -->
-          <div v-else class="navbar-login">
+          <div v-else v-cloak class="navbar-login">
             <a href="#" class="tougao">投稿</a>
             <a class="login" style="font-size: 15px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
             <span class="line"/>
@@ -242,7 +247,7 @@ import { isBrowser } from '~/environment/esm'
 import NavView from '~/components/layout/pc/nav'
 import { isSearchArchiveRoute } from '~/utils/route'
 import { Route } from '~/constants/system'
-
+import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
 export default {
   name: 'LayoutHeader',
   components: {
@@ -250,6 +255,7 @@ export default {
   },
   data() {
     return {
+      loadingStatus: false,
       cdnUrl: this.cdnUrl,
       searchDialog: false,
       input: '',
@@ -257,7 +263,7 @@ export default {
       preload: false,
       loginDialogVisible: false,
       registDialogVisible: false,
-      loginStatus: this.$store.state.user.token,
+      loginStatus: getToken(),
       loginForm: {
         id: '',
         acoount: '',
@@ -308,18 +314,18 @@ export default {
     login() {
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
-          this.loading = true
+          this.loadingStatus = true
           // 登录
-          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-            this.loading = false
-            this.$router.push({ path: this.redirect || '/' })
+          this.$store.dispatch('user/LoginByUsername', this.loginForm).then(() => {
+            this.loadingStatus = false
+            this.$router.go(0)
           }).catch((response) => {
             // 登录失败
             this.$message({
               message: response.message,
               type: 'error'
             })
-            this.loading = false
+            this.loadingStatus = false
           })
         }
       })
@@ -356,7 +362,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('user/logout').then(() => {
-        location.reload()
+        this.$router.go(0)
       })
     }
   }
@@ -488,27 +494,23 @@ export default {
                 line-height: 34px;
 
               }
-              li:hover{
-                  background-color: #f3f3f3
-              }
+
             }
             .dropdown-toggle-letter{
               display: inline-block;
-              padding: 0 12px;
+              padding: 0 25px 0 0;
               height: 34px;color: #757575;
               font-weight: 500;
               -moz-border-radius: 4px;
               -webkit-border-radius: 4px;
               border-radius: 4px;
+              .icon-bell{
+                font-size: 19px;
+              }
+              .icon-bell:hover{
+                color: var(--primary-color)
+              }
             }
-
-          .image{
-            width: 36px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-          }
         }
         .navbar-header {
           height: $header-height;
@@ -656,10 +658,21 @@ export default {
       }
     }
   }
+
+  [v-cloak] {
+  display: none;
+}
 </style>
 
 <style lang="scss">
   /* 新启style写入要重写的样式，这个style不要加scoped,解决设置Dialog样式失效问题 */
+
+  .user-dropdown-menu{
+    padding:0px;
+    li+li{
+      border-top:1px solid #e6e6e6;
+    }
+   }
   .loginDialog {
     .el-dialog {
       width: 33%;
@@ -675,19 +688,19 @@ export default {
         .el-form-item {
           margin-bottom: 10px;
           .phoneLogin {
-            color: #009a61;
+            color: #007fff;
             text-decoration: none;
           }
           .forget {
-            color: #009a61;
+            color: #007fff;
             text-decoration: none;
             float: right;
           }
           .el-button {
             width: 100%;
             color: #fff;
-            background-color: #009a61;
-            border-color: #008151;
+            background-color: #007fff;
+            border-color: #007fff;
           }
         }
         .el-form-item__label {
@@ -732,6 +745,10 @@ export default {
   }
 
    .registDialog {
+      h3{
+        margin: 0 0 1.2em;
+      }
+
     .el-dialog {
       width: 33%;
     }
@@ -787,7 +804,11 @@ export default {
 .search-form .search-form-inner{max-width:640px;padding:0 20px;margin:auto;position:absolute;width:100%;left:0;right:0;height:285px;top:-100px;bottom:0}
 .search-form-inner p{margin-top:10px;color:#a0a0a0;text-align:center;font-size:20px}
 .search-form.is-visible{display:block}
-.search-form .search-form-box{position:relative;margin-bottom:40px}
+.search-form .search-form-box{
+  position:relative;
+  margin-bottom:40px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.35);
+  }
 .search-form input{background:#fff;display:inline-block;line-height:58px;height:58px;color:#949494;font-size:15px;border-radius:3px;padding:0 20px;width:100%;border:1px solid #e2e2e2;text-align:left;-webkit-appearance:none}
 .search-form button{background:#000;display:inline-block;line-height:58px;height:58px;width:100px;color:#fff;font-size:15px;padding:0 25px;margin:0;border-radius:0 3px 3px 0;position:absolute;right:0;top:0}
 .search-form input::-webkit-input-placeholder{color:#949494}
