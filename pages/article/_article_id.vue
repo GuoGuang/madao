@@ -9,7 +9,7 @@
 
           <!-- 文章左侧点赞区 -->
           <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
-          <div badge="186" class="comment-btn panel-btn with-badge"/>
+          <div badge="186" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
           <div badge="186" class="collect-btn panel-btn"/>
           <div badge="186" class="share-title">分享</div>
           <div class="weibo-btn share-btn panel-btn"/>
@@ -431,6 +431,34 @@ export default {
         this.likeBadge = this.likeBadge + 1
       }
       this.isLikeStatus = !this.isLikeStatus
+    },
+
+    /**
+     * 跳转至评论锚点。
+     * 平滑滚动，时长500ms，每10ms一跳，共50跳
+     *
+     */
+    scrollIntoView() {
+      const anchor = this.$el.querySelector('.comment')
+      const total = anchor.offsetTop
+      // 获取当前滚动条与窗体顶部的距离
+      let distance = document.documentElement.scrollTop || document.body.scrollTop
+      // 计算每一小段的距离
+      const step = total / 50;
+      (function smoothDown() {
+        if (distance < total) {
+          distance += step
+          // 移动一小段
+          document.body.scrollTop = distance
+          document.documentElement.scrollTop = distance
+          // 设定每一次跳动的时间间隔为10ms
+          setTimeout(smoothDown, 10)
+        } else {
+          // 限制滚动停止时的距离
+          document.body.scrollTop = total
+          document.documentElement.scrollTop = total
+        }
+      })()
     },
     /**
      * 监听comment组件提交评论事件
