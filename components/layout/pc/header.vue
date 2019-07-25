@@ -18,7 +18,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button :loading="loadingStatus" size="medium" @click="login('ruleForm')">登录</el-button>
+          <el-button :loading="loadingStatus" type="primary" size="medium" @click="login('ruleForm')">登录</el-button>
         </el-form-item>
 
         <div class="more-login-area">
@@ -48,18 +48,52 @@
     </el-dialog>
 
     <el-dialog :visible.sync="registDialogVisible" class="registDialog" title="注册" width="30%">
-      <h3>登录过程中会用到短信，请准备好您的手机</h3>
-      <el-form label-position="top" label-width="80px" size="mini">
-        <el-form-item label="手机号">
-          <el-input placeholder="请输入手机号" size="small"/>
-        </el-form-item>
-        <p class="terms">
-          同意<a href="/tos" target="_blank">《用户协议》《隐私政策》</a>
-        </p>
-        <el-form-item>
-          <el-button size="medium " @click="submitForm('ruleForm')">注册</el-button>
-        </el-form-item>
-      </el-form>
+      <div v-if="registStatus === 1">
+        <h3>登录过程中会用到短信，请准备好您的手机</h3>
+        <el-form label-position="top" label-width="80px" size="mini">
+          <MDinput v-model="rigistPhone" :maxlength="11">
+            请输入手机号
+          </MDinput>
+          <p class="terms">
+            同意<a href="/tos" target="_blank">《用户协议》《隐私政策》</a>
+          </p>
+          <el-form-item>
+            <el-button size="medium" type="primary" @click="nextRegist">下一步</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div v-else-if="registStatus === 2">
+        <div class="modify-info-country">
+          <h3 class="modify-country" >中国大陆</h3>
+          <span class="modify-phonenum">18904356443</span>
+          <!-- a class="btn-modify-info" >修改</a> -->
+        </div>
+
+        <el-form label-position="top" label-width="80px" size="mini">
+          <MDinput v-model="rigistPhoneCode" :maxlength="6">
+            请输入收到的验证码
+          </MDinput>
+          <el-form-item>
+            <el-button size="medium " type="primary" @click="validateRegist">注册</el-button>
+          </el-form-item>
+        </el-form>
+
+      </div>
+      <div v-else-if="registStatus === 3">
+
+        <el-alert
+          :closable="false"
+          style="background-color:''"
+          title="恭喜您注册成功"
+          type="success"
+          center
+          show-icon/>
+        <div class="righstSuccess">
+          <p class="success-info">下面是您在本网站的头像和昵称</p>
+          <el-avatar size="large" style="margin:1em 1em 0 1em;" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
+          <p>useraaa</p>
+        </div>
+      </div>
     </el-dialog>
 
     <el-dialog :visible.sync="searchDialog" :fullscreen="true" @open="show()">
@@ -248,13 +282,20 @@ import NavView from '~/components/layout/pc/nav'
 import { isSearchArchiveRoute } from '~/utils/route'
 import { Route } from '~/constants/system'
 import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
+import MDinput from '~/components/global/MDinput'
 export default {
   name: 'LayoutHeader',
   components: {
+    MDinput,
     NavView // 布局
   },
   data() {
     return {
+      /* 注册状态 */
+      registStatus: 1,
+      rigistPhone: '',
+      rigistPhoneCode: '',
+
       loadingStatus: false,
       cdnUrl: this.cdnUrl,
       searchDialog: false,
@@ -336,6 +377,28 @@ export default {
     },
 
     /**
+     * 切换注册状态
+     */
+    nextRegist() {
+      this.registStatus = 2
+    },
+    validateRegist() {
+      this.registStatus = 3
+      this.$store.dispatch('user/LoginByUsername', this.loginForm).then(() => {
+        setTimeout(() => {
+          this.$router.go(0)
+        }, 2000)
+      }).catch((response) => {
+        // 登录失败
+        this.$message({
+          message: response.message,
+          type: 'error'
+        })
+        this.loadingStatus = false
+      })
+    },
+
+    /**
      * resolve el-dialog can not use “this.$refs” problem
      */
     show() {
@@ -378,13 +441,6 @@ export default {
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
-  }
-
-  .el-button--success {
-    color: #fff;
-    background-color: #009a61;
-    border-color: #008151;
-    font-size: 14px;
   }
 
   .nav-login-btn {
@@ -687,10 +743,7 @@ export default {
       .el-form {
         .el-form-item {
           margin-bottom: 10px;
-          .phoneLogin {
-            color: #007fff;
-            text-decoration: none;
-          }
+
           .forget {
             color: #007fff;
             text-decoration: none;
@@ -699,8 +752,6 @@ export default {
           .el-button {
             width: 100%;
             color: #fff;
-            background-color: #007fff;
-            border-color: #007fff;
           }
         }
         .el-form-item__label {
@@ -737,18 +788,17 @@ export default {
       color: #777;
       text-align: center;
       margin-bottom: 0;
-      a {
-        color: #009a61;
-        text-decoration: none;
-      }
+
     }
   }
 
    .registDialog {
       h3{
-        margin: 0 0 1.2em;
+        margin: 0;
       }
-
+    .el-alert--success{
+      background-color:inherit
+    }
     .el-dialog {
       width: 33%;
     }
@@ -765,9 +815,7 @@ export default {
           .el-button {
             margin-top: 10px;
             width: 100%;
-            color: #fff;
-            background-color: #009a61;
-            border-color: #008151;
+
           }
         }
         .el-form-item__label {
@@ -791,9 +839,27 @@ export default {
       margin-bottom: 0;
       margin-top:3em;
       a {
-        color: #009a61;
+        color: #007fff;
         text-decoration: none;
       }
+    }
+    .modify-info-country{
+      display: flex;
+      .modify-country{
+        width: 30%;
+      }
+      .modify-phonenum{
+        width: 50%;
+      }
+    }
+    .righstSuccess{
+      .success-info{
+        color: #888888;
+        margin-top: 2em;
+        margin-bottom: 0
+      }
+      text-align: center;
+
     }
    }
   .line{
