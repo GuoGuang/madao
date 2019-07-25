@@ -116,4 +116,4 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2019 [GuoGuang](https://github.com/GuoGuang0536).<br />
-This project is [MIT](https://github.com/GuoGuang0536/youyd/LICENSE) licensed.
+This project is [MIT](https://github.com/GuoGuang0536/youyd/blob/master/LICENSE) licensed.
