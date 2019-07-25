@@ -7,6 +7,20 @@
     "email": "GuoGuang0536@gmail.com",
     "url": "https://youyd.com"
   },
+  "license": "MIT",
+  "homepage": "http://youyd.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuoGuang0536/youyd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GuoGuang0536/youyd/issues"
+  },
+  "engines": {
+    "npm": ">=5.5.0",
+    "node": ">=9.3.0"
+  },
+  
   "private": false,
   "resolutions": {
     "terser": "3.14.1"

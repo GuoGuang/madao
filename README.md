@@ -1,11 +1,24 @@
+<h1 align="center">Welcome to youyd.com 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.1.4-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
+  <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
+  <a href="https://github.com/GuoGuang0536/youyd#readme">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/GuoGuang0536/youyd/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/GuoGuang0536/youyd/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+</p>
 
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/surmon-china/surmon.me.svg?style=flat-square)](https://twitter.com/intent/tweet?url=https://github.com/surmon-china/surmon.me)
+> youyd.com blog
 
+### 🏠 [Homepage](http://youyd.com)
 
-SSR框架采用 [Nuxt.js](https://github.com/nuxt)
-
-
-## 预览
+## PC
 
 ![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/index.png)
 ![](https://github.com/GuoGuang0536/youyd/blob/master/assets/images/%E7%8C%BF%E5%9C%88.png)
@@ -14,28 +27,9 @@ SSR框架采用 [Nuxt.js](https://github.com/nuxt)
 
 ## Analyze
 
-![框架](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/analyze-2019-zip.png)
+![framework](https://raw.githubusercontent.com/surmon-china/surmon.me/master/screenshots/analyze-2019-zip.png)
 
-## 快速开始
-
-```bash
-# 使用 nodemon 在开发环境下工作
-sudo npm i nodemon -g
-
-# install dependencies 依赖 python2.7
-$ npm install [--python=python2.7] # Or yarn install
-
-# 启动后访问 localhost:3000
-$ npm run dev
-
-# 生产环境构建
-$ npm run build
-$ npm start
-
-```
-
-
-## 目录结构
+## Directory
 ```
 nuxt.js-blog/
    |
@@ -86,5 +80,46 @@ nuxt.js-blog/
    └──.editorconfig              * 编码风格配置
 ```
 
-## logo参考http://emblemmatic.org
- 
+
+## Prerequisites
+
+- npm >=5.5.0
+- node >=9.3.0
+
+## Usage
+
+```bash
+
+# install dependencies python2.7
+$ npm install [--python=python2.7]
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# lint test
+$ npm run lint
+
+```
+
+## Author
+
+👤 **GuoGuang**
+
+* Github: [@GuoGuang0536](https://github.com/GuoGuang0536)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/GuoGuang0536/youyd/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2019 [GuoGuang](https://github.com/GuoGuang0536).<br />
+This project is [MIT](https://github.com/GuoGuang0536/youyd/LICENSE) licensed.
