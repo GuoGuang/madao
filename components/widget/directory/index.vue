@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Catalog from 'progress-catalog'
+import Catalog from './progress-catalog'
 export default {
   name: 'Directory',
   data() {
