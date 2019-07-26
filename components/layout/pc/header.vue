@@ -304,7 +304,7 @@ export default {
       preload: false,
       loginDialogVisible: false,
       registDialogVisible: false,
-      loginStatus: getToken(),
+      loginStatus: getToken() !== '',
       loginForm: {
         id: '',
         acoount: '',
