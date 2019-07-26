@@ -67,6 +67,10 @@
           <i class="iconfont icon-fullscreen"/>
         </div>
       </div>
+      <!-- 文章目录 -->
+      <div v-if="isArticlePage" class="aside-dic">
+        <directory/>
+      </div>
     </div>
 
   </aside>
@@ -79,10 +83,13 @@ import Related from './related'
 import { mapState } from 'vuex'
 import { Route } from '~/constants/system'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
+import Directory from '~/components/widget/directory'
+
 export default {
   name: 'ArticleMain',
   components: {
     AsideAd,
+    Directory,
     Related // 相关推荐
   },
 
@@ -360,6 +367,9 @@ export default {
             background-color: $module-hover-bg;
           }
         }
+      }
+      >.aside-dic {
+          margin-top: 1em
       }
 
       >.aside-tag {
