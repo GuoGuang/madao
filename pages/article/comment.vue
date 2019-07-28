@@ -6,7 +6,7 @@
     <div class="comment-form">
       <div class="input-comment">
         <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
-        <el-input v-model="comment" placeholder="说点什么" @focus="commentMouseOpt" @blur="commentMouseOpt"/>
+        <el-input v-model="comment" placeholder="说点什么" @focus="commentFocus"/>
       </div>
       <div v-show="commentAction" class="action-box">
         <div class="emoji emoji-btn">
@@ -19,7 +19,8 @@
           <span >图片</span>
         </div> -->
         <div class="submit">
-          <span >Ctrl or ⌘ + Enter</span><el-button type="primary" size="small">评论</el-button>
+          <span >Ctrl or ⌘ + Enter</span>
+          <el-button type="primary" size="small" round>评论</el-button>
         </div>
       </div>
 
@@ -75,7 +76,7 @@
               placeholder="写下你的评论"/>
             <div class="btn-control">
               <span class="cancel" @click="cancel">取消</span>
-              <el-button class="btn" type="success" round @click="commitComment">确定</el-button>
+              <el-button class="btn" type="primary" size="small" round @click="commitComment">评论</el-button>
             </div>
           </div>
         </transition>
@@ -108,6 +109,14 @@ export default {
   created() {
 
   },
+  mounted() {
+    // 实现 commentAction div以外的元素隐藏自身
+    document.addEventListener('click', e => {
+      if (!this.$el.contains(e.target)) {
+        this.commentAction = false
+      }
+    })
+  },
   methods: {
     /**
        * 点赞
@@ -130,9 +139,9 @@ export default {
     },
 
     /**
-     * 聚焦/失焦事件
+     * 聚焦事件
      */
-    commentMouseOpt() {
+    commentFocus() {
       this.commentAction = !this.commentAction
     },
     /**
@@ -357,7 +366,6 @@ $content-bg-color: #fff;
             align-items: center;
             padding-top: 10px;
             .cancel {
-              font-size: 16px;
               color: $text-normal;
               margin-right: 20px;
               cursor: pointer;

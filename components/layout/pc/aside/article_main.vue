@@ -6,9 +6,9 @@
       <p class="title">
         <span v-text="$i18n.text.article.aside"/>
       </p>
-      <empty-box v-if="!articles.length">
+      <!-- <empty-box v-if="!articles.length">
         <slot>{{ $i18n.text.article.empty }}</slot>
-      </empty-box>
+      </empty-box> -->
 
       <!-- 作者信息 -->
       <div class="author-info">

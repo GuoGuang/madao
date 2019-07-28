@@ -1,7 +1,7 @@
 <template>
   <!-- 用户页面 -->
   <div class="profile">
-    <el-row>
+    <el-row class="profile-user-info">
       <el-col :span="4">
         <div class="profile__heading--avatar-warp">
           <a href="/u/guoguang0536">
@@ -11,10 +11,12 @@
               alt="GuoGuang0536"
             >
           </a>
-          <div class="profile__avatar-uploader" style="display: block">
-            <span>上传头像</span>
+          <div class="profile__avatar-uploader">
+            <span @click="uploadAvatar">上传头像</span>
           </div>
+
         </div>
+        <input id="avatarFile" ref="avatarFile" type="file" name="avatar" class="hide" @change="changeAvatar">
         <div class="profile__heading--social">
           <ul class="profile__heading--social-inline">
             <li>
@@ -42,7 +44,7 @@
           </ul>
         </div>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="9" class="profile-info">
         <h2 class="profile__heading--name">
           GuoGuang0536
           <small class="ml15">
@@ -51,7 +53,7 @@
         </h2>
         <div style="margin: 7px;" class="profile__heading--award">
           <a class="profile__rank-btn" href="/u/guoguang0536/rank">
-            <img src="https://cdn.segmentfault.com/v-5c8b4d77/global/img/rp.svg">
+            <img src="/images/svg/rp.svg">
             <span class="h4">0</span>
             <span class="profile__rank-btn-text">声望</span>
           </a>
@@ -105,7 +107,7 @@
         </div>
       </el-col>
 
-      <el-col :span="13">
+      <el-col :span="11">
         <div class="profile__heading--desc">
           <div class="profile__heading--desc-heading">
             <span class="profile__heading--desc-heading-dot-warp">
@@ -136,7 +138,8 @@ export default {
   name: 'Profile',
   head() {
     return {
-      title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
+      // title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
+      title: `${this.isEnLang ? '' : ' GuoGuang| '}的个人主页`
     }
   },
   fetch({ store }) {
@@ -153,19 +156,40 @@ export default {
       return this.$store.state.project.repositories.data
     }
   },
-  methods: {}
+  methods: {
+    uploadAvatar() {
+      this.$refs['avatarFile'].click()
+    },
+    changeAvatar() {
+      this.$message({
+        dangerouslyUseHTMLString: true,
+        message: '<strong>上传成功</strong>',
+        type: 'success'
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .profile {
-  margin-top: 2em;
-  width: 1140px;
+  .profile-user-info{
+    padding-top: 2em;
+  }
+  .hide{
+    display: none
+  }
+  .profile-info{
+    padding-left: 2em;
+  }
   .line-height {
     line-height: 32px;
   }
 
   .profile__heading--avatar-warp {
+        position: relative;
+    border-radius: 50%;
+    overflow: hidden;
     .image {
       width: 180px;
       border-radius: 50%;
@@ -173,7 +197,23 @@ export default {
       justify-content: center;
       overflow: hidden;
     }
+    .profile__avatar-uploader{
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    width: 174px;
+    text-align: center;
+    background: rgba(0,0,0,0.75);
+    height: 38px;
+    color: #fff;
+    line-height: 41px;
+    }
   }
+
+.profile__heading--avatar-warp:hover .profile__avatar-uploader {
+    display: block
+}
   .profile__heading--social {
     .profile__heading--social-inline {
       list-style: none;

@@ -84,6 +84,7 @@ export default {
 
 <style lang="scss" scoped>
   footer {
+    height: 180px;
         .footer-row{
           margin: 0 auto;
           width: 81em;

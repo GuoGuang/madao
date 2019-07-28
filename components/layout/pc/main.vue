@@ -16,11 +16,11 @@
     </no-ssr>
 
     <!-- 页面最小宽度 style="min-height: calc(75vh - 70px);" 使fotter置于 -->
-    <main id="main" :class="{ 'full-view': isFullViewWidth }" style="min-height: calc(75vh - 70px);">
+    <main id="main" :class="{ 'full-view': isFullViewWidth }" >
 
       <!-- body页面中间 --> <!-- full-column:62.5em 删除   class="main-content" 这个样式删了也没什么改变，此处应该去除div这一层-->
       <div id="main-content" :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }" >
-        <nuxt :nuxt-child-key="$route.name" keep-alive />
+        <nuxt :nuxt-child-key="$route.name" keep-alive style="min-height: calc(100vh - 276px)!important;"/>
       </div>
 
       <!-- 页面右侧  v-if="false" 点击进入文章时隐藏右侧标签栏或者左侧标签栏-->

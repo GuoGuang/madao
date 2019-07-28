@@ -2,16 +2,21 @@
   <!-- 页面头部 -->
   <header v-cloak id="header" class="header" >
 
-    <el-dialog :visible.sync="loginDialogVisible" class="loginDialog" title="登录" width="30%">
+    <el-dialog :visible.sync="loginDialogVisible" :before-close="loginDialogClose" class="loginDialog" title="登录" width="30%">
       <!-- :model="formLabelAlign" -->
       <el-form ref="loginForm" :rules="rules" :model="loginForm" label-position="top" label-width="80px" size="mini">
-        <MDinput v-model="loginForm.account" :maxlength="11">
-          请输入手机号或邮箱
-        </MDinput>
-        <MDinput v-model="loginForm.password" :maxlength="11">
-          请输入密码
-        </MDinput>
-        <el-form-item>
+        <el-form-item prop="account">
+          <MDinput v-model="loginForm.account" :maxlength="11" >
+            请输入手机号或邮箱
+          </MDinput>
+        </el-form-item>
+        <el-form-item prop="password">
+          <MDinput v-model="loginForm.password" :maxlength="11" type="password">
+            请输入密码
+          </MDinput>
+        </el-form-item>
+
+        <el-form-item class="other-opt">
           <a href="#" class="phoneLogin">手机验证码登录</a>
           <a href="#" class="forget">忘记密码</a>
         </el-form-item>
@@ -220,7 +225,7 @@
           <!-- 未登录 -->
           <div v-else class="navbar-login">
             <a href="#" class="tougao">投稿</a>
-            <a class="login" style="font-size: 15px;" href="#" @click="loginDialogVisible = true">{{ $i18n.nav.login }}</a>
+            <a class="login" style="font-size: 15px;" href="#" @click="loginDialog">{{ $i18n.nav.login }}</a>
             <span class="line"/>
             <a class="register" style="font-size: 15px;" href="#" @click="registDialogVisible = true">{{ $i18n.nav.register }}</a>
 
@@ -410,6 +415,14 @@ export default {
     loginDialog() {
       this.loginDialogVisible = true
     },
+
+    loginDialogClose() {
+      this.loginDialogVisible = false
+      this.$nextTick(() => {
+        this.$refs['loginForm'].clearValidate()
+      })
+    },
+
     togglePlay() {
       music.humanizeOperation(music.player.togglePlay)
     },
@@ -727,6 +740,7 @@ display: none!important;
   }
 }
 .loginDialog {
+
   .el-dialog {
     width: 33%;
   }
@@ -738,10 +752,12 @@ display: none!important;
   .el-dialog__body {
     padding: 20px 50px;
     .el-form {
-      .el-form-item {
+      .other-opt {
         margin: 0.5em 0 2em;
+      }
+      .el-form-item {
+        color: #007fff;
         .forget {
-          color: #007fff;
           text-decoration: none;
           float: right;
         }
