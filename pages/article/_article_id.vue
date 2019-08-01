@@ -24,25 +24,14 @@
           <!-- 导航，头部 -->
           <div class="post-title">
             <div class="breadcrumbs">
-              <span itemprop="itemListElement">
-                <a href="#" itemprop="item" class="home">
-                  <span itemprop="name">
-                    <i class="icon-location-2"/>首页
-                  </span>
-                </a>
-              </span>
+              <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="(item, index) in $route.meta" :key="index">
+                  {{ item }}
+                </el-breadcrumb-item>
+                <el-breadcrumb-item>正文</el-breadcrumb-item>
+              </el-breadcrumb>
 
-              <span class="sep">›</span>
-
-              <span itemprop="itemListElement">
-                <a href="#" itemprop="item">
-                  <span itemprop="name">技术</span>
-                </a>
-              </span>
-
-              <span class="sep">›</span>
-
-              <span class="current">正文</span>
             </div>
 
             <!-- 标签 -->
@@ -648,7 +637,7 @@ export default {
         padding: 0 0 35px;
         border-bottom: 1px solid #e7e7e7;
         .breadcrumbs{
-          padding: 0;
+          padding-left: 1em;
           border-top: 0;
           margin-bottom: 25px;
           box-shadow: none;

@@ -222,14 +222,14 @@
           </el-menu> -->
           </div>
 
-          <!-- 未登录
-          <div v-else class="navbar-login">
+          <!-- 未登录-->
+          <div v-else class="navbar-login" style="visibility:hidden;">
             <a href="#" class="tougao">投稿</a>
             <a class="login" style="font-size: 15px;" href="#" @click="loginDialog">{{ $i18n.nav.login }}</a>
             <span class="line"/>
             <a class="register" style="font-size: 15px;" href="#" @click="registDialogVisible = true">{{ $i18n.nav.register }}</a>
 
-          </div>-->
+          </div>
         </div>
         <!-- 音乐 -->
         <!-- <div class="navbar-player">
