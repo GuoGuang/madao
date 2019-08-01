@@ -252,7 +252,8 @@
         </transition>
 
         <div class="comment">
-          <comment :comments="commentData" :commit-comment="commitComment"/>
+          <!-- <comment :comments="commentData" :commit-comment="commitComment"/> -->
+          <gitalk/>
         </div>
       </article>
     </el-col>
@@ -276,13 +277,15 @@ import AsideView from '~/components/layout/pc/aside/article_main'
 
 import * as CommentData from './mockdata'
 import comment from './comment'
+import gitalk from './gitalk' // gitalk 评论插件
 
 export default {
   name: 'ArticleDetail',
   components: {
     ShareBox,
     AsideView,
-    comment
+    comment,
+    gitalk
   },
   data() {
     return {
