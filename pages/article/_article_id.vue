@@ -36,8 +36,7 @@
 
             <!-- 标签 -->
             <div class="tags">
-              <a href="#" rel="tag">考试资料网破解</a>
-              <a href="#" rel="tag">计算机考试</a>
+              <a v-for="(tag, index) of tags" :key="index" :style="{'background-color': `${BackgroundColor[index]}`}" href="#" rel="tag">{{ tag.name }}</a>
             </div>
 
             <h1 class="title">{{ article.title }}</h1>
@@ -278,6 +277,15 @@ export default {
   },
   data() {
     return {
+      BackgroundColor: [
+        '#ff5e5c',
+        '#ffbb50',
+        '#1ac756',
+        '#19B5FE',
+        '#4A4A4A',
+        '#ff9800',
+        '#9c27b0'
+      ],
       likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
       isLikeStatus: false,
       likeBackgroundColor: '',
