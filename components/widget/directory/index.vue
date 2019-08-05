@@ -1,7 +1,7 @@
 <template>
   <!-- 文章右侧目录区 Ref:https://github.com/SHERlocked93/progress-catalog-->
   <div
-    v-scroll-top
+
     id="scroll-aside"
     class="aside-fixed-box dic-catalog"
   />
