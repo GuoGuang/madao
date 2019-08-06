@@ -243,7 +243,7 @@ export default {
       const gravatar = this.$store.state.global.adminInfo.gravatar
       return gravatar
         // ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim`
-        ? `https://avatars0.githubusercontent.com/u/23237686?s=40&v=4`
+        ? `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/IMG_0610.JPG`
         : `${this.cdnUrl}/images/gravatar.jpg`
     }
   },

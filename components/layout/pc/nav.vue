@@ -2,34 +2,45 @@
   <!-- 导航 图标参考D:\vueWorkspace\youyd_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
-      <nuxt-link :to="'/'" class="item" exact>
-        <i class="iconfont icon-home"/>
-        <span >首页</span>
-      </nuxt-link>
-      <nuxt-link to="/technology" class="item">
-        <i class="iconfont icon-shandian"/>
-        <span v-text="$i18n.nav.technology"/>
-      </nuxt-link>
-      <nuxt-link to="/software" class="item">
-        <i class="iconfont icon-thlarge"/>
-        <span v-text="$i18n.nav.software "/>
-      </nuxt-link>
-      <nuxt-link to="/welfare" class="item">
-        <i class="iconfont icon-dribbble"/>
-        <span v-text="$i18n.nav.welfare"/>
-      </nuxt-link>
-      <nuxt-link to="/course" class="item">
-        <i class="iconfont icon-xuexi"/>
-        <span v-text="$i18n.nav.course"/>
-      </nuxt-link>
-      <nuxt-link to="/other" class="item">
-        <i class="iconfont icon-pen"/>
-        <span v-text="$i18n.nav.other"/>
-      </nuxt-link>
-      <nuxt-link to="/about" class="item">
-        <i class="iconfont icon-info"/>
-        <span v-text="$i18n.nav.about"/>
-      </nuxt-link>
+
+      <el-menu :router="true" :default-active="$route.path" active-text-color="rgb(64, 158, 255)" class="demo" mode="horizontal" >
+        <el-menu-item index="/" >
+          <i class="iconfont icon-home"/>
+          <span >首页</span>
+        </el-menu-item>
+        <el-submenu index="/technology">
+          <template slot="title" >
+            <i class="iconfont icon-shandian" style="color:inherit"/>
+            <span style="color:inherit" @click="defaultTechnologyHandle" v-text="$i18n.nav.technology"/>
+          </template>
+          <el-menu-item index="/music">
+            <span v-text="$i18n.nav.music"/>
+          </el-menu-item>
+          <el-menu-item ref="defaultTechnology" index="/technology" style="display:none">
+            <span v-text="$i18n.nav.technology"/>
+          </el-menu-item>
+        </el-submenu>
+        <el-menu-item index="/software">
+          <i class="iconfont icon-thlarge"/>
+          <span v-text="$i18n.nav.software "/>
+        </el-menu-item>
+        <el-menu-item index="/welfare">
+          <i class="iconfont icon-dribbble"/>
+          <span v-text="$i18n.nav.welfare"/>
+        </el-menu-item>
+        <el-menu-item index="/course">
+          <i class="iconfont icon-xuexi"/>
+          <span v-text="$i18n.nav.course"/>
+        </el-menu-item>
+        <el-menu-item index="/other">
+          <i class="iconfont icon-pen"/>
+          <span v-text="$i18n.nav.other"/>
+        </el-menu-item>
+        <el-menu-item index="/about" class="item">
+          <i class="iconfont icon-info"/>
+          <span v-text="$i18n.nav.about"/>
+        </el-menu-item>
+      </el-menu>
 
     </nav>
   </div>
@@ -42,7 +53,13 @@ export default {
   name: 'LayoutNav',
   computed: {
     adsForPcNav: () => adConfig.pc.nav
+  },
+  methods: {
+    defaultTechnologyHandle(key, keyPath) {
+      this.$refs.defaultTechnology.$el.click()
+    }
   }
+
 }
 </script>
 
@@ -147,4 +164,59 @@ export default {
       }
     }
   }
+  .demo{
+    background-color: inherit;
+     border-bottom:inherit;
+    li{
+    padding: 0;
+        margin-right: 20px;
+    .iconfont{
+      padding-left: 0px;
+    }
+    a{
+      display: inline-block;
+      span{
+            font-size: 16px;
+      }
+    }
+
+    }
+
+}
+</style>
+<style lang="scss" >
+  .el-submenu__title{
+      padding :0px
+    }
+      .demo{
+    .el-submenu__title:hover{
+  background-color: #f7f7f7 !important;
+}
+.el-menu-item:hover{
+  background-color: #f7f7f7 !important;
+}
+.el-menu-item:focus{
+  background-color: #f7f7f7 !important;
+}
+      }
+
+.el-menu--horizontal>.el-submenu .el-submenu__icon-arrow {
+     margin-left: 3px;
+}
+.el-menu--horizontal>.el-menu-item.is-active{
+  border-bottom:inherit
+}
+.el-menu--collapse .el-menu .el-submenu,.el-menu--popup {
+    min-width: 150px
+}
+.el-menu-item{
+   border-bottom-color: #f7f7f7 !important;
+}
+.el-submenu__title{
+   border-bottom-color: #f7f7f7 !important;
+}
+.el-submenu{
+
+   color: rgb(64, 158, 255)!important;
+}
 </style>
