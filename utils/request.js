@@ -20,7 +20,7 @@ Axios.interceptors.request.use(
     console.log(apis.baseUrl)
     console.log('apis.baseUrl,')
     const { token } = cookie.parse(document.cookie)
-    config.url = apis.baseUrl
+    // config.url = apis.baseUrl
     if (token) {
       config.headers = {
         'X-TOKEN': token

@@ -6,7 +6,8 @@
 
 import Vue from 'vue'
 import playerBuilder from './player'
-import appConfig from '~/config/app.config'
+// import appConfig from '~/config/app.config'
+import { getMusicList } from '~/api/music'
 
 export default new Vue({
   data() {
@@ -106,25 +107,30 @@ export default new Vue({
     // 构建播放器
     buildPlayer() {
       playerBuilder(this)
-      if (this.state.ready && this.player.play) {
+      // 页面打开自动播放 不起作用 浏览器不支持这种效果必须用户点击之后才可以
+      /* if (this.state.ready && this.player.play) {
         // window.addLoadedTask(this.player.play)
         window.addLoadedTask(() => {
           // this.player.play()
           window.onmousemove = () => {
-            this.player.play()
+            // 添加 鼠标事件 防止浏览器提示"仅当用户同意、网站由用户激活或媒体无声时允许自动播放。"警告
+            this.$nextTick(() => {
+              this.player.play()
+            })
             window.onmousemove = null
           }
         })
-      }
+      } */
     },
     // 获取歌曲列表
     fetchSongList() {
       this.list.fetching = true
-      return window.$nuxt.$axios.$get(`/music/list/${appConfig.music.id}`)
-        .then(response => {
-          this.list.fetching = false
-          this.list.data = response.result
-        })
+      // return window.$nuxt.$axios.$get(`/music`).then(response => {
+      return getMusicList().then(response => {
+      // return getMusicList().then(response => {
+        this.list.fetching = false
+        this.list.data = response.data.result
+      })
         .catch(error => {
           console.log(error)
           this.list.fetching = false

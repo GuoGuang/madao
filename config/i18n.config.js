@@ -60,6 +60,10 @@ module.exports = {
         zh: '弹性',
         en: 'aliyun'
       },
+      music: {
+        zh: '音乐',
+        en: 'music'
+      },
       app: {
         zh: '客户',
         en: 'app'

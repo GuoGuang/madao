@@ -53,7 +53,7 @@ import EmojiRain from '~/components/widget/emoji-rain'
 import LanguagePsm from '~/components/widget/language-psm'
 import ToolBox from '~/components/widget/tool-box'
 import ShareBox from '~/components/widget/share'
-// import music from '~/expansions/music'
+import music from '~/expansions/music'
 import { startTitleEgg, resetTitle } from '~/utils/title-egg' // 彩蛋
 import { isServiceRoute } from '~/utils/route'
 import systemConstants from '~/constants/system'
@@ -97,8 +97,8 @@ export default {
     /** 获取壁纸，小故事 */
     this.$store.dispatch('wallpaper/fetchPapers')
     this.$store.dispatch('wallpaper/fetchStory')
-    // this.$root.$music = music
-    // this.$root.$music.state.ready || this.$root.$music.initPlayer()
+    this.$root.$music = music
+    this.$root.$music.state.ready || this.$root.$music.initPlayer()
   },
   methods: {
     /**

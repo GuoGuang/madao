@@ -4,11 +4,11 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-import { proxyUrl } from '~/config/api.config.esm'
+// import { proxyUrl } from '~/config/api.config.esm'
 import { Howler, Howl } from 'howler'
 
 export default music => {
-  const proxyPath = proxyUrl + 'music/'
+  // const proxyPath = proxyUrl + 'music/'
   const playList = music.list.data.tracks
 
   if (music.player) {
@@ -112,8 +112,10 @@ export default music => {
           html5: true,
           autoplay: false,
           volume: music.state.volume,
-          src: [(song.src || ' ').replace(/(http:\/\/|https:\/\/)/ig, proxyPath)],
+          // src: [(song.src || ' ').replace(/(http:\/\/|https:\/\/)/ig, proxyPath)],
+          src: [(song.src)],
           onplay() {
+            console.log('onplay')
             music.state.ready = true
             music.state.wave = true
             music.state.loading = false

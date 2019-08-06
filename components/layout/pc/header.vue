@@ -127,19 +127,19 @@
     </el-dialog>
 
     <nav class="navbar">
-      <div class="navbar-container container">
-        <div class="navbar-header">
+      <div class="navbar-container container" >
+        <div class="navbar-header" style="float:left;">
           <span class="navbar-blank"/>
           <img :src="`${cdnUrl}/images/logo.png`" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
-        <div class="navbar-menu">
+        <div class="navbar-menu" style="float:left;    padding-left: 3em;">
           <transition name="module">
             <nav-view />
           </transition>
         </div>
-        <div style="display:flex;padding-right: 2em;">
+        <div style="float:right;padding-right: 2em;">
           <div class="navbar-right">
             <span class="line"/>
             <button class="search" @click="toggleSearch">
@@ -472,8 +472,8 @@ display: none!important;
 
     .navbar-container {
       height: $header-height;
-      display: flex;
-      justify-content: space-between;
+      //display: flex;
+      //justify-content: space-between;
 
       .navbar-menu {
         margin-left: -3em;
