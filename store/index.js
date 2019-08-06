@@ -47,10 +47,13 @@ export const actions = {
       initFetchAppData.push(store.dispatch('article/fetchHotList'))
     }
 
+    // cookie-universal-nuxt
+    // const token = this.$cookies.get('_gid')
     // 判断用户是否登录
-    const { token } = cookie.parse(req.headers.cookie)
-    store.commit('user/SET_TOKEN', token)
-    /*  console.error('完成') */
+    if (req.headers.cookie) {
+      const { token } = cookie.parse(req.headers.cookie)
+      store.commit('user/SET_TOKEN', token)
+    }
 
     return Promise.all(initFetchAppData)
   }

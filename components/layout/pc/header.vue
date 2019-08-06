@@ -140,7 +140,7 @@
           </transition>
         </div>
         <div style="float:right;padding-right: 2em;">
-          <div class="navbar-right">
+          <div class="navbar-search" style="float: left;">
             <span class="line"/>
             <button class="search" @click="toggleSearch">
               <i class="iconfont icon-search"/>
@@ -486,7 +486,7 @@ display: none!important;
         overflow: hidden;
       }
 
-      .navbar-right {
+      .navbar-search {
         height: $header-height;
         display: flex;
         padding: 0 23px;
