@@ -79,6 +79,11 @@ export default {
   methods: {
     loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
+    },
+    toDetail(article) {
+      if (this.isMobile) {
+        this.$router.push(`/article/${article.id}`)
+      }
     }
   }
 }

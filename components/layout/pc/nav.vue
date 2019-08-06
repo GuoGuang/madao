@@ -3,7 +3,7 @@
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
 
-      <el-menu :router="true" :default-active="$route.path" active-text-color="rgb(64, 158, 255)" class="demo" mode="horizontal" >
+      <el-menu :router="true" :default-active="$route.path" active-text-color="rgb(64, 158, 255)" class="nav-item" mode="horizontal" >
         <el-menu-item index="/" >
           <i class="iconfont icon-home"/>
           <span >首页</span>
@@ -64,159 +64,173 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.iconfont{
-	font-family:"iconfont";
-	font-size:16px;
-	font-style:normal;
-	-webkit-font-smoothing: antialiased;
-        -webkit-text-stroke-width: 0.2px;
-        -moz-osx-font-smoothing: grayscale;
-        padding-left:20px
+.iconfont {
+  font-family: 'iconfont';
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+  padding-left: 20px;
 }
 
-  .header-nav {
+.header-nav {
+  .nav-list {
+    padding: 0;
+    margin: 0;
 
-    .nav-list {
-      padding: 0;
-      margin: 0;
+    > .item {
+      line-height: 3em;
 
-      > .item {
-        line-height: 3em;
+      font-size: 16px;
 
-        font-size: 16px;
+      &:hover {
+        color: $primary;
+      }
 
-        &:hover {
-          color: $primary;
-        }
+      > .superscript {
+        margin-left: 1rem;
 
-        > .superscript {
-          margin-left: 1rem;
-
-          @keyframes superscript-icon-color {
-            0%   { color: chartreuse }
-            15%  { color: green }
-            30%  { color: red }
-            45%  { color: darkviolet }
-            60% { color: pink }
-            86% { color: blue }
-            100% { color: black }
+        @keyframes superscript-icon-color {
+          0% {
+            color: chartreuse;
           }
-
-          > .iconfont {
-            color: $red;
-            transition: color 0s;
-            animation: superscript-icon-color 1s infinite;
+          15% {
+            color: green;
           }
-        }
-
-        &.ad {
-          height: 5rem;
-          line-height: 5rem;
-          margin: 0;
-          border-bottom: 1px dashed $module-hover-bg;
-        }
-
-        &.taobao {
-          color: #ff5000;
-          border-top: 1px dashed $module-hover-bg;
-
-          > .iconfont {
-            color: #ff5000;
+          30% {
+            color: red;
           }
-        }
-
-        &.aliyun {
-          color: black;
-          border-top: 1px dashed $module-hover-bg;
-
-          > .iconfont {
+          45% {
+            color: darkviolet;
+          }
+          60% {
+            color: pink;
+          }
+          86% {
+            color: blue;
+          }
+          100% {
             color: black;
           }
         }
 
-         &.app {
+        > .iconfont {
+          color: $red;
+          transition: color 0s;
+          animation: superscript-icon-color 1s infinite;
+        }
+      }
+
+      &.ad {
+        height: 5rem;
+        line-height: 5rem;
+        margin: 0;
+        border-bottom: 1px dashed $module-hover-bg;
+      }
+
+      &.taobao {
+        color: #ff5000;
+        border-top: 1px dashed $module-hover-bg;
+
+        > .iconfont {
+          color: #ff5000;
+        }
+      }
+
+      &.aliyun {
+        color: black;
+        border-top: 1px dashed $module-hover-bg;
+
+        > .iconfont {
+          color: black;
+        }
+      }
+
+      &.app {
+        color: $primary;
+
+        > .iconfont {
           color: $primary;
-
-          > .iconfont {
-            color: $primary;
-          }
         }
+      }
 
-        &:last-child {
-          margin-top: 1rem;
-          margin-bottom: 0;
+      &:last-child {
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      &.link-active {
+        font-weight: bold;
+        color: $primary;
+
+        &.guestbook {
+          background: linear-gradient(to bottom, $module-bg, transparent);
         }
+      }
 
-        &.link-active {
-          font-weight: bold;
-          color: $primary;
-
-          &.guestbook {
-            background: linear-gradient(to bottom, $module-bg, transparent);
-          }
-        }
-
+      .iconfont {
+        width: 1em;
+        margin-right: 1em;
+        display: inline-block;
+      }
+    }
+    .nav-item {
+      background-color: inherit;
+      border-bottom: inherit;
+      li {
+        padding: 0;
+        margin-right: 20px;
         .iconfont {
-          width: 1em;
-          margin-right: 1em;
+          padding-left: 0px;
+        }
+        a {
           display: inline-block;
+          span {
+            font-size: 16px;
+          }
         }
       }
     }
   }
-  .demo{
-    background-color: inherit;
-     border-bottom:inherit;
-    li{
-    padding: 0;
-        margin-right: 20px;
-    .iconfont{
-      padding-left: 0px;
-    }
-    a{
-      display: inline-block;
-      span{
-            font-size: 16px;
-      }
-    }
-
-    }
-
 }
 </style>
 <style lang="scss" >
-  .el-submenu__title{
-      padding :0px
+.header-nav {
+  .nav-list {
+    .el-submenu__title {
+      padding: 0px;
     }
-      .demo{
-    .el-submenu__title:hover{
-  background-color: #f7f7f7 !important;
-}
-.el-menu-item:hover{
-  background-color: #f7f7f7 !important;
-}
-.el-menu-item:focus{
-  background-color: #f7f7f7 !important;
-}
+    .demo {
+      .el-submenu__title:hover {
+        background-color: #f7f7f7 !important;
       }
-
-.el-menu--horizontal>.el-submenu .el-submenu__icon-arrow {
-     margin-left: 3px;
-}
-.el-menu--horizontal>.el-menu-item.is-active{
-  border-bottom:inherit
-}
-.el-menu--collapse .el-menu .el-submenu,.el-menu--popup {
-    min-width: 150px
-}
-.el-menu-item{
-   border-bottom-color: #f7f7f7 !important;
-}
-.el-submenu__title{
-   border-bottom-color: #f7f7f7 !important;
-}
-.el-submenu{
-
-   color: rgb(64, 158, 255)!important;
+      .el-menu-item:hover {
+        background-color: #f7f7f7 !important;
+      }
+      .el-menu-item:focus {
+        background-color: #f7f7f7 !important;
+      }
+    }
+    .el-menu--horizontal > .el-submenu .el-submenu__icon-arrow {
+      margin-left: 3px;
+    }
+    .el-menu--horizontal > .el-menu-item.is-active {
+      border-bottom: inherit;
+    }
+    .el-menu--collapse .el-menu .el-submenu,
+    .el-menu--popup {
+      min-width: 150px;
+    }
+    .el-menu-item {
+      border-bottom-color: #f7f7f7 !important;
+    }
+    .el-submenu__title {
+      border-bottom-color: #f7f7f7 !important;
+    }
+    .el-submenu {
+      color: rgb(64, 158, 255) !important;
+    }
+  }
 }
 </style>
