@@ -201,7 +201,7 @@ export default {
     .el-submenu__title {
       padding: 0px;
     }
-    .demo {
+    .nav-item {
       .el-submenu__title:hover {
         background-color: #f7f7f7 !important;
       }
