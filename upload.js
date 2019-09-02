@@ -5,8 +5,8 @@ const path = require('path')
 const PUBLIC_PATH = path.join(__dirname, '/')
 
 const client = new OSS({
-  accessKeyId: 'LTAIXUm3VkCq4j9d',
-  accessKeySecret: 'i0GjQZtQiYTsWr4loWpf0Eg0Jli1qw',
+  accessKeyId: '<yourAccessKeyId>',
+  accessKeySecret: '<yourAccessKeySecret>',
   bucket: 'vue-admin-guoguang',
   region: 'oss-cn-shanghai'
 })
