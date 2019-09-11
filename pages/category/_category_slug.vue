@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import Carrousel from '~/components/archive/carrousel'
+
 import ArticleList from '~/components/archive/list'
+import Carrousel from '~/components/archive/carrousel'
 
 export default {
   name: 'CategoryArticleList',
