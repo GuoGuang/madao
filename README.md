@@ -90,6 +90,9 @@ $ npm install [--python=python2.7]
 $ npm run dev
 
 # build for production and launch server
+# If you don't want to upload Alibaba Cloud, mark the following code as a comment
+# upFile('')
+
 $ npm run build
 $ npm start
 
