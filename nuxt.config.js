@@ -109,8 +109,9 @@ module.exports = {
       presets({ isServer }) {
         return [
           [
-            '@nuxtjs/babel-preset-app',
-            { targets: isServer ? { node: '10.4.0' } : { chrome: 69 }}
+            require.resolve('@nuxt/babel-preset-app'),
+            { targets: isServer ? { node: '10.4.0' } : { chrome: 69 },
+              corejs: { version: 3 }}
           ]
         ]
       }
