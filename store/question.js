@@ -25,8 +25,6 @@ export const mutations = {
     state.question.data = action.records
   },
   updateQuestionDetail(state, action) {
-    console.log('1')
-    console.error(action)
     state.detail.data = action
   }
 }
@@ -53,14 +51,10 @@ export const actions = {
 
   // 获取问题详情
   fetchDetail({ commit }, params = {}) {
-    console.log('params')
-    console.log(params)
     commit('updateQuestionFetching', true)
     commit('updateQuestionDetail', {})
     return this.$axios.$get(`/question/${params.question_id}`).then(response => {
-      console.log('2')
       commit('updateQuestionDetail', response.data)
-      console.log('3')
       commit('updateQuestionFetching', false)
     })
       .catch(error => {

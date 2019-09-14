@@ -39,16 +39,12 @@ export const mutations = {
 
   // 文章列表
   updateListFetchig(state, action) {
-    console.log('文章列表')
     state.list.fetching = action
   },
   updateListData(state, action) {
-    console.log('updateListData')
     state.list.data = action
   },
   updateExistingListData(state, action) {
-    console.log('updateExistingListData')
-    console.log(action)
     state.list.data.data.push(...action.data)
     state.list.data.pagination = action.pagination
   },
@@ -100,9 +96,6 @@ export const actions = {
 
     return this.$axios.$get(`/article`, { params })
       .then(response => {
-        // 直接在此处调用结果打印即可
-        console.log('666')
-
         commit('updateListFetchig', false)
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {
