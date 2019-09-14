@@ -4,8 +4,6 @@
  * @author GuoGuang <https://github.com/GuoGuang0536>
  */
 
-// const path = require('path')
-// const webpack = require('webpack')
 const appConfig = require('./config/app.config')
 const apiConfig = require('./config/api.config')
 const i18nConfig = require('./config/i18n.config')
@@ -105,16 +103,7 @@ module.exports = {
       plugins: [
         '@babel/plugin-transform-runtime',
         '@babel/plugin-transform-async-to-generator'
-      ],
-      presets({ isServer }) {
-        return [
-          [
-            require.resolve('@nuxt/babel-preset-app'),
-            { targets: isServer ? { node: '10.4.0' } : { chrome: 69 },
-              corejs: { version: 3 }}
-          ]
-        ]
-      }
+      ]
     }
   },
   plugins: [
