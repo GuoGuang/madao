@@ -94,9 +94,9 @@ export default {
     // this.startAllEgg(isHidden)
     // this.watchFullScreen()
     // this.watchTabActive() 彩蛋
-    /** 获取壁纸，小故事 */
+    /** 获取壁纸，小故事
     this.$store.dispatch('wallpaper/fetchPapers')
-    this.$store.dispatch('wallpaper/fetchStory')
+    this.$store.dispatch('wallpaper/fetchStory')*/
     this.$root.$music = music
     this.$root.$music.state.ready || this.$root.$music.initPlayer()
   },

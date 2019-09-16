@@ -7,7 +7,7 @@
 import Vue from 'vue'
 import playerBuilder from './player'
 // import appConfig from '~/config/app.config'
-import { getMusicList } from '~/api/music'
+import { getMusicList, getMusicURL } from '~/api/music'
 
 export default new Vue({
   data() {
@@ -125,49 +125,44 @@ export default new Vue({
     // 获取歌曲列表
     fetchSongList() {
       this.list.fetching = true
-      // return window.$nuxt.$axios.$get(`/music`).then(response => {
       return getMusicList().then(response => {
-      // return getMusicList().then(response => {
         this.list.fetching = false
-        this.list.data = response.data.result
+        this.list.data = response.data.data
+      }).catch(error => {
+        console.log(error)
+        this.list.fetching = false
+        this.list.data = null
       })
-        .catch(error => {
-          console.log(error)
-          this.list.fetching = false
-          this.list.data = null
-        })
     },
     // 获取歌曲详情
     fetchSongDetail(song_id) {
-      this.song.fetching = true
-      return window.$nuxt.$axios.$get(`/music/song/${song_id}`)
-        .then(response => {
-          this.song.fetching = false
-          this.song.data = response.result
-        })
-        .catch(error => {
-          console.log(error)
-          this.song.data = null
-          this.song.fetching = false
-        })
+      /*  this.song.fetching = true
+      return getMusicDetail(song_id).then(response => {
+        this.song.fetching = false
+        this.song.data = response.result
+      }).catch(error => {
+        console.log(error)
+        this.song.data = null
+        this.song.fetching = false
+      }) */
     },
     // 获取歌曲歌词
     fetchSongLrc(song_id) {
-      this.lrc.fetching = true
-      return window.$nuxt.$axios.$get(`/music/lrc/${song_id}`)
-        .then(response => {
-          this.lrc.fetching = false
-          this.lrc.data = response.result
-        })
+      /* this.lrc.fetching = true
+      return getMusicLyric(song_id).then(response => {
+        this.lrc.fetching = false
+        this.lrc.data = response.result
+      })
         .catch(error => {
           console.log(error)
           this.lrc.fetching = false
           this.lrc.data = null
-        })
+        }) */
     },
     // 获取歌曲地址
     fetchSongUrl(song_id) {
-      return window.$nuxt.$axios.$get(`/music/url/${song_id}`)
+      return getMusicURL(song_id)
+      // return window.$nuxt.$axios.$get(`/music/url/${song_id}`)
     }
   }
 })

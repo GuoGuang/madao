@@ -173,8 +173,8 @@ export default music => {
       } else {
         music.state.ready = false
         music.fetchSongUrl(song.id).then(response => {
-          if (response.result.data && response.result.data.length) {
-            song.src = response.result.data[0].url
+          if (response.data.data && response.data.data.length) {
+            song.src = response.data.data[0].url
             // console.log('得到异步数据', '要播放这一首：', music.state.targetIndex, '异步数据的id是：', song.id, '目标歌曲的id是', playerList[music.state.targetIndex].id)
             // 用户可能是在频繁切换，这里判断如果当前歌曲下标不是请求的歌曲，则仅仅赋值 src，不做播放器构建
             if (song.id === playerList[music.state.targetIndex].id) {

@@ -4,14 +4,14 @@ const SERVICE_BASE = '/api/base'// base服务
 
 export function getMusicList() {
   return request({
-    url: '/music',
+    url: SERVICE_BASE + '/music',
     method: 'get'
   })
 }
 
 export function getMusicURL(id) {
   return request({
-    url: `/music/url/${id}`,
+    url: SERVICE_BASE + `/music/${id}/url`,
     method: 'get'
   })
 }
