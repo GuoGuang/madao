@@ -17,8 +17,6 @@ Axios.defaults.baseURL = apis.baseUrl
 // http request请求拦截器(所有请求发送都要执行的操作)
 Axios.interceptors.request.use(
   config => {
-    console.log(apis.baseUrl)
-    console.log('apis.baseUrl,')
     const { token } = cookie.parse(document.cookie)
     // config.url = apis.baseUrl
     if (token) {
