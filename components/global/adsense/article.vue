@@ -1,12 +1,12 @@
 <template>
   <div class="adsense adsense-article">
-    <no-ssr>
+    <client-only>
       <InArticleAdsense
         root-class="adsense-wrapper"
         data-ad-client="ca-pub-2993169397147402"
         data-ad-slot="7405264495"
       />
-    </no-ssr>
+    </client-only>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div id="app-main">
     <header-view />
 
-    <no-ssr>
+    <client-only>
       <!-- 背景 -->
       <background/>
       <!-- 墙花 点击桌面特效-->
@@ -13,7 +13,7 @@
       <share-box v-if="isNotServicePage" class="sidebar" />
       <!-- 工具栏 -->
       <tool-box v-if="isNotFullColPage" />
-    </no-ssr>
+    </client-only>
 
     <!-- 页面最小宽度 style="min-height: calc(75vh - 70px);" 使fotter置于 -->
     <main id="main" :class="{ 'full-view': isFullViewWidth }" >
@@ -29,12 +29,12 @@
       </transition>  -->
 
     </main>
-    <no-ssr>
+    <client-only>
       <!-- 弹幕 -->
       <barrage v-if="isMountedBarrage" v-cloak/>
       <!--  Canvas 动态背景 -->
       <emoji-rain v-if="!onPowerSavingMode"/>
-    </no-ssr>
+    </client-only>
     <footer-view/>
 
   </div>

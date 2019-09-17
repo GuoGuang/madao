@@ -78,10 +78,10 @@
           </transition>
           <transition name="module" mode="out-in" @after-enter="contentAnimatieDone">
             <div v-if="isFetching" key="skeleton" class="skeleton">
-              <no-ssr>
+              <client-only>
                 <skeleton-line class="title" />
                 <skeleton-paragraph :lines="9" class="content" line-height="1.2em" />
-              </no-ssr>
+              </client-only>
             </div>
             <div v-else key="knowledge" class="knowledge">
 
@@ -97,14 +97,14 @@
             </div>
           </transition>
         </div>
-        <!--   <no-ssr>
+        <!--   <client-only>
           <div class="ad">
             <transition name="module" mode="out-in">
               <skeleton-paragraph v-if="isFetching" key="skeleton" :lines="4" class="ad-skeleton" line-height="1em" />
               <adsense-article v-else-if="renderAd" key="adsense" />
             </transition>
           </div>
-        </no-ssr>
+        </client-only>
         <div class="share">
           <transition name="module" mode="out-in">
             <div v-if="isFetching" key="skeleton" class="skeleton">

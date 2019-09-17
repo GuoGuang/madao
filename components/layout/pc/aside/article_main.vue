@@ -34,11 +34,11 @@
     </div>-->
 
     <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
-      <no-ssr>
+      <client-only>
         <transition name="fade">
           <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
         </transition>
-      </no-ssr>
+      </client-only>
       <div class="aside-tag">
         <empty-box v-if="!tags.length">
           <slot>{{ $i18n.text.tag.empty }}</slot>

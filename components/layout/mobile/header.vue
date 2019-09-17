@@ -14,11 +14,11 @@
       <span class="close" @click.stop.prevent="search = false">
         <i class="iconfont icon-cancel"/>
       </span>
-      <no-ssr>
+      <client-only>
         <datalist v-if="tags.length" id="keywords" class="search-keywords">
           <option v-for="tag in tags" :value="tag.name" :label="tag.description" :key="tag.slug" class="iiem" />
         </datalist>
-      </no-ssr>
+      </client-only>
     </form>
     <transition name="module">
       <div v-if="search" class="search-mask"/>
