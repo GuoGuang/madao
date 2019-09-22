@@ -122,6 +122,7 @@ module.exports = {
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
     { src: '~/plugins/element-ui' },
+    { src: '~/plugins/axios' },
     { src: '~/static/icon/iconfont.js', ssr: false }
     /* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
@@ -129,7 +130,8 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }]
+    ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }],
+    'cookie-universal-nuxt'
   ],
   head: {
     // title: `${appConfig.meta.title} - ${htmlSlogan}`,
