@@ -7,7 +7,8 @@
 import Vue from 'vue'
 import playerBuilder from './player'
 // import appConfig from '~/config/app.config'
-import { getMusicList, getMusicURL } from '~/api/music'
+
+const SERVICE_BASE = '/api/base'// base服务
 
 export default new Vue({
   data() {
@@ -125,9 +126,9 @@ export default new Vue({
     // 获取歌曲列表
     fetchSongList() {
       this.list.fetching = true
-      return getMusicList().then(response => {
+      return window.$nuxt.$axios.$get(`${SERVICE_BASE}/music`).then(response => {
         this.list.fetching = false
-        this.list.data = response.data.data
+        this.list.data = response.data
       }).catch(error => {
         console.log(error)
         this.list.fetching = false
@@ -161,8 +162,7 @@ export default new Vue({
     },
     // 获取歌曲地址
     fetchSongUrl(song_id) {
-      return getMusicURL(song_id)
-      // return window.$nuxt.$axios.$get(`/music/url/${song_id}`)
+      return window.$nuxt.$axios.$get(`${SERVICE_BASE}/music/${song_id}/url`)
     }
   }
 })
