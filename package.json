@@ -41,6 +41,7 @@
     "ali-oss": "^6.1.1",
     "bezier-easing": "^2.1.0",
     "cookie": "^0.3.1",
+    "cookie-universal-nuxt": "^2.0.18",
     "cross-env": "^5.2.0",
     "element-ui": "^2.10.1",
     "emoji-233333": "^0.2.2",
