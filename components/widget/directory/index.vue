@@ -1,7 +1,6 @@
 <template>
   <!-- 文章右侧目录区 Ref:https://github.com/SHERlocked93/progress-catalog-->
   <div
-
     id="scroll-aside"
     class="aside-fixed-box dic-catalog"
   />
@@ -15,12 +14,14 @@ export default {
     return {}
   },
   mounted() {
-    new Catalog({
-      contentEl: 'article-content',
-      catalogEl: 'scroll-aside',
-      selector: ['h2', 'h3'],
-      bottomMargin: 100
-    })
+    setTimeout(() => {
+      new Catalog({
+        contentEl: 'article-content',
+        catalogEl: 'scroll-aside',
+        selector: ['h2', 'h3'],
+        bottomMargin: 100
+      })
+    }, 500)
   }
 }
 </script>
