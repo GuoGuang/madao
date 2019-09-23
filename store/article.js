@@ -94,7 +94,7 @@ export const actions = {
     isRestart && commit('updateListData', getDefaultListData())
     commit('updateListFetchig', true)
 
-    return this.$axios.$get(`/article`, { params })
+    return this.$axios.$get(`/api/article`, { params })
       .then(response => {
         commit('updateListFetchig', false)
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
@@ -120,7 +120,7 @@ export const actions = {
   fetchHotList({ commit, rootState }) {
     const { SortType } = rootState.global.constants
     commit('updateHotListFetchig', true)
-    return this.$axios.$get(`/article`, { params: { cache: 1, sort: SortType.Hot }})
+    return this.$axios.$get(`/api/article`, { params: { cache: 1, sort: SortType.Hot }})
       .then(response => {
         commit('updateHotListData', response)
         commit('updateHotListFetchig', false)
@@ -143,7 +143,7 @@ export const actions = {
     }
     commit('updateDetailFetchig', true)
     commit('updateDetailData', {})
-    return this.$axios.$get(`/article/${params.article_id}`)
+    return this.$axios.$get(`/api/article/${params.article_id}`)
       .then(response => {
         return new Promise(resolve => {
           delay(() => {
@@ -161,7 +161,7 @@ export const actions = {
 
   // 喜欢文章
   fetchLikeArticle({ commit }, article_id) {
-    return this.$axios.$patch(`/like/article`, { article_id })
+    return this.$axios.$put(`/api/article/like/${article_id}`)
       .then(response => {
         commit('updateLikesIncrement')
         return Promise.resolve(response)

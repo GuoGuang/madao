@@ -7,7 +7,7 @@
 import { isServer } from '~/environment/esm'
 import uaDevice from '~/utils/ua-device'
 import systemConstants from '~/constants/system'
-import cookie from 'cookie'
+// import cookie from 'cookie'
 // import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
 
 export const actions = {
@@ -50,8 +50,10 @@ export const actions = {
     // cookie-universal-nuxt
     // const token = this.$cookies.get('_gid')
     // 判断用户是否登录
-    if (req.headers.cookie) {
-      const { token } = cookie.parse(req.headers.cookie)
+
+    const token = this.$cookies.get('Authorization')
+    if (token) {
+      // const { token } = cookie.parse(req.headers.cookie)
       store.commit('user/SET_TOKEN', token)
     }
 

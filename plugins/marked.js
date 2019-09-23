@@ -54,7 +54,7 @@ const linkRender = (href, title, text) => {
 
 // 对图片进行弹窗处理
 const imageRender = (src, title, alt) => {
-  src = src.replace(/^http:\/\//ig, '/proxy/')
+  // src = src.replace(/^http:\/\//ig, '/proxy/')
   const imageHtml = `
     <img
       class="lozad"
