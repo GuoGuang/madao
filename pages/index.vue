@@ -20,7 +20,7 @@
 
   <el-row>
 
-    <el-col :span="17">
+    <el-col :xl="17" :md="17" :xs="24">
       <div class="main">
         <!-- 轮播图 -->
         <carrousel :article="article" />
@@ -31,11 +31,11 @@
       </div>
     </el-col>
 
-    <el-col :span="6" class="right-list">
-      <div class="main-right">
+    <div v-if="!isMobile" class="main-right" >
+      <el-col :span="6" class="right-list">
         <aside-view key="aside"/>
-      </div>
-    </el-col>
+      </el-col>
+    </div>
   </el-row>
 </template>
 
@@ -47,6 +47,9 @@ import AsideView from '~/components/layout/pc/aside/main'
 
 export default {
   name: 'Index',
+  head() {
+    return this.isMobile ? { bodyAttrs: { class: 'mobile' }} : {}
+  },
   fetch({ store }) {
     console.log('页面加载：/pages/index.vue')
     return Promise.all([
@@ -62,6 +65,9 @@ export default {
     ArticleList
   },
   computed: {
+    isMobile() {
+      return this.$store.state.global.isMobile
+    },
     article() {
       return this.$store.state.article.list
     },

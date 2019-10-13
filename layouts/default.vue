@@ -4,15 +4,14 @@
     <Clipboard />
 
     <PcMainView v-if="!isMobile" />
+    <MobileMainView v-else />
 
-    <!-- 暂时关闭手机端布局 -->
-    <!-- <MobileMainView v-else /> -->
   </div>
 </template>
 
 <script>
 import PcMainView from '~/components/layout/pc/main'
-// import MobileMainView from '~/components/layout/mobile/main'
+import MobileMainView from '~/components/layout/mobile/main'
 import Clipboard from '~/components/widget/clipboard'
 export default {
   name: 'App',
@@ -21,8 +20,8 @@ export default {
   },
   components: {
     Clipboard,
-    PcMainView
-    // MobileMainView
+    PcMainView,
+    MobileMainView
   },
   computed: {
     theme() {

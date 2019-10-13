@@ -2,7 +2,7 @@
 <template>
   <!-- 文章详情页 -->
   <el-row >
-    <el-col :span="17">
+    <el-col :xl="17" :md="17" :xs="24">
       <article id="article" :class="{ mobile: isMobile }" class="article">
 
         <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
@@ -245,11 +245,14 @@
         </div>
       </article>
     </el-col>
-    <el-col :span="6" class="right-list">
-      <div class="main-right">
+
+    <div v-if="!isMobile" class="main-right" >
+      <el-col :span="6" class="right-list">
+
         <aside-view key="aside"/>
-      </div>
-    </el-col>
+
+      </el-col>
+    </div>
   </el-row>
 
 </template>
@@ -332,7 +335,7 @@ export default {
 
   head() {
     const { article } = this
-    return {
+    return [{
       title: article.title || '...',
       meta: [
         {
@@ -343,7 +346,9 @@ export default {
         },
         { hid: 'description', name: 'description', content: article.description }
       ]
-    }
+    },
+    this.isMobile ? { bodyAttrs: { class: 'mobile' }} : {}
+    ]
   },
   computed: {
     ...mapState({
@@ -355,6 +360,9 @@ export default {
       isFetching: state => state.article.detail.fetching,
       isMobile: state => state.global.isMobile
     }),
+    isMobile() {
+      return this.$store.state.global.isMobile
+    },
     isEnLang() {
       return this.$store.getters['global/isEnLang']
     },

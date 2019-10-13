@@ -30,7 +30,7 @@
             <i class="iconfont icon-menu"/>
           </a>
           <nuxt-link to="/" class="navbar-logo">
-            <img src="/images/logo.svg">
+            <img src="/images/logo.png" style="    width: 200px;">
           </nuxt-link>
           <a href class="navbar-search" @click.stop.prevent="openSearch">
             <i class="iconfont icon-search"/>
@@ -140,7 +140,7 @@ export default {
 
         .navbar-header {
           height: $navbar-height;
-          display: flex;
+          // display: flex;
           position: relative;
           align-items: center;
           width: 100%;

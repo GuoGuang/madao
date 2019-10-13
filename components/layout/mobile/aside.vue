@@ -15,62 +15,31 @@
           <i class="iconfont icon-home"/>
           <span v-text="$i18n.nav.home"/>
         </nuxt-link>
+
         <nuxt-link to="/category/code" class="item">
-          <i class="iconfont icon-code"/>
-          <span v-text="$i18n.nav.code"/>
+          <i class="iconfont icon-shandian" style="color:inherit"/>
+          <span style="color:inherit" v-text="$i18n.nav.technology"/>
         </nuxt-link>
-        <nuxt-link to="/project" class="item">
-          <i class="iconfont icon-tool"/>
-          <span v-text="$i18n.nav.project"/>
-        </nuxt-link>
+
         <nuxt-link to="/category/think" class="item">
-          <i class="iconfont icon-think"/>
-          <span v-text="$i18n.nav.think"/>
+          <i class="iconfont icon-thlarge"/>
+          <span v-text="$i18n.nav.software "/>
         </nuxt-link>
         <nuxt-link to="/sitemap" class="item">
-          <i class="iconfont icon-peachblossom"/>
-          <span v-text="$i18n.nav.map"/>
+          <i class="iconfont icon-dribbble"/>
+          <span v-text="$i18n.nav.welfare"/>
         </nuxt-link>
         <nuxt-link to="/vlog" class="item">
-          <i class="iconfont icon-vlog"/>
-          <span v-text="$i18n.nav.vlog"/>
+          <i class="iconfont icon-xuexi"/>
+          <span v-text="$i18n.nav.course"/>
         </nuxt-link>
         <nuxt-link to="/about" class="item">
-          <i class="iconfont icon-user"/>
+          <i class="iconfont icon-pen"/>
+          <span v-text="$i18n.nav.other"/>
+        </nuxt-link>
+        <nuxt-link to="/about" class="item">
+          <i class="iconfont icon-info"/>
           <span v-text="$i18n.nav.about"/>
-        </nuxt-link>
-        <nuxt-link to="/service" class="item">
-          <i class="iconfont icon-zan"/>
-          <span v-text="$i18n.nav.service"/>
-        </nuxt-link>
-        <nuxt-link to="/guestbook" class="item guestbook">
-          <i class="iconfont icon-comment"/>
-          <span v-text="$i18n.nav.guestbook"/>
-        </nuxt-link>
-        <a
-          v-if="false"
-          :href="ads.taobao"
-          rel="external nofollow noopener"
-          class="item ad taobao"
-          target="_blank"
-        >
-          <i class="iconfont icon-taobao"/>
-          <span v-text="$i18n.nav.taobao"/>
-        </a>
-        <a
-          v-if="false"
-          :href="ads.aliyun"
-          rel="external nofollow noopener"
-          class="item ad aliyun"
-          target="_blank"
-        >
-          <i class="iconfont icon-aliyun"/>
-          <span v-text="$i18n.nav.aliyun"/>
-        </a>
-
-        <nuxt-link to="/app" class="item app">
-          <i class="iconfont icon-app"/>
-          <span v-text="$i18n.nav.app"/>
         </nuxt-link>
       </nav>
     </div>
@@ -86,7 +55,7 @@ export default {
     gravatar() {
       const gravatar = this.$store.state.global.adminInfo.gravatar
       return gravatar
-        ? `${gravatar}?imageView2/1/w/180/h/180/interlace/1/q/75|imageslim`
+        ? `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/IMG_0610.JPG`
         : `${this.cdnUrl}/images/gravatar.jpg`
     }
   },

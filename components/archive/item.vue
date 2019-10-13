@@ -187,8 +187,8 @@ export default {
       }
 
       > .item-body {
-        padding-left: 13em;
-        height: 8.5em;
+          float: right;
+          width: 39em;
 
         > .item-title {
           font-size: 1em;
@@ -226,8 +226,7 @@ export default {
           height: 2em;
           display: flex;
           justify-content: space-around;
-          float: right;
-          width: 70%;
+
           align-items: baseline;
           overflow: hidden;
           font-size: .9em;
