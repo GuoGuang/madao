@@ -20,7 +20,7 @@
 
   <el-row>
 
-    <el-col :xl="17" :md="17" :xs="24">
+    <el-col :span="17" :xs="24">
       <div class="main">
         <!-- 轮播图 -->
         <carrousel :article="article" />

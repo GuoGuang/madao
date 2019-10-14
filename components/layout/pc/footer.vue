@@ -87,7 +87,7 @@ export default {
     height: 180px;
         .footer-row{
           margin: 0 auto;
-          width: 81em;
+          width: 100%;
         }
     .site-link{
       text-align: left;

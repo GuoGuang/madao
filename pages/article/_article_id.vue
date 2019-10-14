@@ -2,7 +2,7 @@
 <template>
   <!-- 文章详情页 -->
   <el-row >
-    <el-col :xl="17" :md="17" :xs="24">
+    <el-col :span="17" :xs="24">
       <article id="article" :class="{ mobile: isMobile }" class="article">
 
         <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
@@ -335,7 +335,7 @@ export default {
 
   head() {
     const { article } = this
-    return [{
+    return {
       title: article.title || '...',
       meta: [
         {
@@ -346,9 +346,7 @@ export default {
         },
         { hid: 'description', name: 'description', content: article.description }
       ]
-    },
-    this.isMobile ? { bodyAttrs: { class: 'mobile' }} : {}
-    ]
+    }
   },
   computed: {
     ...mapState({
