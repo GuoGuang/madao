@@ -8,7 +8,7 @@
   "production": {
     "cdnUrl": "https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt", 
     "proxyUrl": "https://surmon.me/proxy/",
-    "baseUrl": "https://easy-mock.com/mock/5c5849e5627c6a683562d4fc/youyd_platform",
+    "baseUrl": "http://207.148.76.64:7300/mock/5da33e62138bda0016388178/youyd_platform",
     "socketHost": "https://surmon.me"
   }
 }
