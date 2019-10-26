@@ -1,5 +1,4 @@
 <template>
-
   <!-- <div class="home">
     <div class="left-side">
       <aside-view key="aside"/>
