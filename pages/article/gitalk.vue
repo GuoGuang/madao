@@ -13,15 +13,14 @@ export default {
   },
   mounted() {
     const gitalk = new Gitalk({
-      clientID: 'GitHub Application Client ID',
-      clientSecret: 'GitHub Application Client Secret',
-      repo: 'GitHub repo',
-      owner: 'GitHub repo owner',
-      admin: ['GitHub repo owner and collaborators, only these guys can initialize github issues'],
+      clientID: '{Your clientID}',
+      clientSecret: '{Your clientSecret}',
+      repo: 'ibole',
+      owner: 'GuoGuang',
+      admin: ['GuoGuang'],
       id: location.pathname, // Ensure uniqueness and length less than 50
       distractionFreeMode: false // Facebook-like distraction free mode
     })
-
     gitalk.render('gitalk-container')
   }
 }
