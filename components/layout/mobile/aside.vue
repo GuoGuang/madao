@@ -2,7 +2,7 @@
   <aside class="aside">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="Surmon">
+        <img :src="gravatar" alt="ibole">
       </div>
       <div class="profile">
         <h3 class="name">Youyd</h3>

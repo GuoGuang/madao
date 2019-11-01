@@ -160,11 +160,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//surmon.me` },
-      { rel: 'dns-prefetch', href: '//api.surmon.me' },
-      { rel: 'dns-prefetch', href: '//cdn.surmon.me' },
-      { rel: 'dns-prefetch', href: '//static.surmon.me' },
-      { rel: 'dns-prefetch', href: '//gravatar.surmon.me' },
+      { rel: 'dns-prefetch', href: `//ibole.me` },
+      { rel: 'dns-prefetch', href: '//api.ibole.me' },
+      { rel: 'dns-prefetch', href: '//cdn.ibole.me' },
+      { rel: 'dns-prefetch', href: '//static.ibole.me' },
+      { rel: 'dns-prefetch', href: '//gravatar.ibole.me' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },

@@ -1,5 +1,5 @@
 # robots.txt
 User-agent: *
 Disallow: /bin/
-# Sitemap: https://surmon.me/sitemap.xml
-# Sitemap: https://surmon.me/sitemap
+# Sitemap: https://ibole.me/sitemap.xml
+# Sitemap: https://ibole.me/sitemap
