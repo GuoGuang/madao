@@ -1,8 +1,8 @@
-/* eslint-disable vue/order-in-components */
+
 <template>
   <!-- 文章详情页 -->
   <el-row >
-    <el-col :span="17" :xs="24">
+    <el-col :span="isPageOneColumns" :xs="24" >
       <article id="article" :class="{ mobile: isMobile }" class="article">
 
         <div class="article-suspended-panel article-suspended-panel" style="position: fixed;margin-left: -85px;top: 200px">
@@ -246,10 +246,11 @@
       </article>
     </el-col>
 
-    <div v-if="!isMobile" class="main-right" >
+    <div v-if="!isOneColumns" class="main-right" >
       <el-col :span="6" class="right-list">
-
-        <aside-view key="aside"/>
+        <transition name="aside">
+          <aside-view key="aside" />
+        </transition>
 
       </el-col>
     </div>
@@ -278,6 +279,7 @@ export default {
     comment,
     gitalk
   },
+
   data() {
     return {
       BackgroundColor: [
@@ -349,6 +351,9 @@ export default {
     }
   },
   computed: {
+    ...mapState('global', [
+      'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
+    ]),
     ...mapState({
       constants: state => state.global.constants,
       language: state => state.global.language,
@@ -358,6 +363,10 @@ export default {
       isFetching: state => state.article.detail.fetching,
       isMobile: state => state.global.isMobile
     }),
+
+    isPageOneColumns() {
+      return !this.isOneColumns ? 17 : 24
+    },
     isMobile() {
       return this.$store.state.global.isMobile
     },

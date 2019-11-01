@@ -19,13 +19,13 @@
     <main id="main" :class="{ 'full-view': isFullViewWidth }" >
 
       <!-- body页面中间 --> <!-- full-column:62.5em 删除   class="main-content" 这个样式删了也没什么改变，此处应该去除div这一层-->
-      <div id="main-content" :class="{ 'full-column': isTwoColumns, 'error-column': isThreeColumns, 'full-view': isFullViewWidth }" >
+      <div id="main-content" :class="{ 'error-column': isOneColumns, 'full-view': isFullViewWidth }" >
         <nuxt :nuxt-child-key="$route.name" keep-alive style="min-height: calc(100vh - 276px)!important;"/>
       </div>
 
       <!-- 页面右侧  v-if="false" 点击进入文章时隐藏右侧标签栏或者左侧标签栏-->
       <!-- <transition name="aside">
-        <aside-view key="aside" v-if="!isTwoColumns && !isThreeColumns" />
+        <aside-view key="aside" v-if="!isTwoColumns && !isOneColumns" />
       </transition>  -->
 
     </main>
@@ -73,7 +73,7 @@ export default {
 
   computed: {
     ...mapState('global', [
-      'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isTwoColumns', 'isThreeColumns'
+      'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
     ]),
     isNotServicePage() {
       return !isServiceRoute(this.$route.name)
