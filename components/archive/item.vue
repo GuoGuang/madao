@@ -144,7 +144,7 @@ export default {
         height: 8.5em;
         overflow: hidden;
         position: relative;
-
+        margin-right: 2em;
         .item-oirigin {
           height: 2.1rem;
           line-height: 2.1rem;
@@ -187,8 +187,6 @@ export default {
       }
 
       > .item-body {
-          float: right;
-          width: 39em;
 
         > .item-title {
           font-size: 1em;
