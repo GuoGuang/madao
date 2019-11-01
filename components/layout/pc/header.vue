@@ -236,18 +236,20 @@
 
     <nav class="navbar">
       <div class="navbar-container container" >
-        <div class="navbar-header" style="float:left;">
+
+        <div class="navbar-header" >
           <span class="navbar-blank"/>
           <img :src="`${cdnUrl}/images/logo.png`" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
-        <div class="navbar-menu" style="float:left;    padding-left: 3em;">
+        <div class="navbar-menu" >
           <transition name="module">
             <nav-view />
           </transition>
         </div>
-        <div style="float:right;padding-right: 2em;">
+
+        <div style="">
           <div class="navbar-search" style="float: left;">
             <span class="line"/>
             <button class="search" @click="toggleSearch">
@@ -580,8 +582,8 @@ display: none!important;
 
     .navbar-container {
       height: $header-height;
-      //display: flex;
-      //justify-content: space-between;
+      display: flex;
+      justify-content: space-between;
 
       .navbar-menu {
         margin-left: -3em;
