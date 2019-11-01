@@ -246,7 +246,7 @@
       </article>
     </el-col>
 
-    <div v-if="!isOneColumns" class="main-right" >
+    <div v-if="!isMobile && !isOneColumns" class="main-right" >
       <el-col :span="6" class="right-list">
         <transition name="aside">
           <aside-view key="aside" />
