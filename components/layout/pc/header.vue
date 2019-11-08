@@ -584,14 +584,12 @@ display: none!important;
       height: $header-height;
       display: flex;
       justify-content: space-between;
-
       .navbar-menu {
         margin-left: -3em;
         height: $header-height;
         display: flex;
         position: relative;
         align-items: center;
-        //width: 43em;
         position: relative;
         overflow: hidden;
       }
