@@ -20,9 +20,9 @@
             <span v-text="$i18n.nav.technology"/>
           </el-menu-item>
         </el-submenu>
-        <el-menu-item index="/software">
+        <el-menu-item index="/security">
           <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.software "/>
+          <span v-text="$i18n.nav.security "/>
         </el-menu-item>
         <el-menu-item index="/welfare">
           <i class="iconfont icon-dribbble"/>

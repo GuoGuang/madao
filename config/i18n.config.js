@@ -36,9 +36,9 @@ module.exports = {
         zh: '猿圈',
         en: 'tweets'
       },
-      software: {
-        zh: '软件',
-        en: 'software'
+      security: {
+        zh: '安全',
+        en: 'security'
       },
       other: {
         zh: '其他',

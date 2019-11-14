@@ -24,7 +24,7 @@ import ArticleList from '~/components/archive/list'
 import AsideView from '~/components/layout/pc/aside/main'
 
 export default {
-  name: 'Software',
+  name: 'Security',
   fetch({ store }) {
     return Promise.all([
       // dispatch（“参数也可以是store里的方法层级调用”）

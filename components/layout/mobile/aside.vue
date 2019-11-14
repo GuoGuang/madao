@@ -23,7 +23,7 @@
 
         <nuxt-link to="/category/think" class="item">
           <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.software "/>
+          <span v-text="$i18n.nav.security "/>
         </nuxt-link>
         <nuxt-link to="/sitemap" class="item">
           <i class="iconfont icon-dribbble"/>
