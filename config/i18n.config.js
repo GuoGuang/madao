@@ -48,6 +48,10 @@ module.exports = {
         zh: '服务',
         en: 'service'
       },
+      project: {
+        zh: '开猿',
+        en: 'project'
+      },
       about: {
         zh: '关于',
         en: 'about'
