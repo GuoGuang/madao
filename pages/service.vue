@@ -134,6 +134,10 @@ export default {
             ? ''
             : `?subject=${subject}&body=${body}`)
       window.location.href = mailAddress
+    },
+
+    url() {
+      return `https://surmon.me${this.$route.fullPath}`
     }
   }
 }

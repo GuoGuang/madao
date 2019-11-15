@@ -28,9 +28,9 @@
           <i class="iconfont icon-dribbble"/>
           <span v-text="$i18n.nav.welfare"/>
         </el-menu-item>
-        <el-menu-item index="/course">
+        <el-menu-item index="/service">
           <i class="iconfont icon-xuexi"/>
-          <span v-text="$i18n.nav.course"/>
+          <span v-text="$i18n.nav.service"/>
         </el-menu-item>
         <el-menu-item index="/other">
           <i class="iconfont icon-pen"/>

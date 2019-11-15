@@ -31,7 +31,7 @@
         </nuxt-link>
         <nuxt-link to="/vlog" class="item">
           <i class="iconfont icon-xuexi"/>
-          <span v-text="$i18n.nav.course"/>
+          <span v-text="$i18n.nav.service"/>
         </nuxt-link>
         <nuxt-link to="/about" class="item">
           <i class="iconfont icon-pen"/>

@@ -44,9 +44,9 @@ module.exports = {
         zh: '其他',
         en: 'other'
       },
-      course: {
-        zh: '教程',
-        en: 'course'
+      service: {
+        zh: '服务',
+        en: 'service'
       },
       about: {
         zh: '关于',
