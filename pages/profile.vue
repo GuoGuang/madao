@@ -8,7 +8,7 @@
             <img
               class="image"
               src="https://avatar-static.segmentfault.com/971/470/97147086-59b9044e77b75_huge256"
-              alt="GuoGuang0536"
+              alt="GuoGuang"
             >
           </a>
           <div class="profile__avatar-uploader">
@@ -46,7 +46,7 @@
       </el-col>
       <el-col :span="9" class="profile-info">
         <h2 class="profile__heading--name">
-          GuoGuang0536
+          GuoGuang
           <small class="ml15">
             <a href="/u/GuoGuang/about">查看完整档案</a>
           </small>

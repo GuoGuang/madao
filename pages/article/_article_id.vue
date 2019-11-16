@@ -44,7 +44,7 @@
             <div class="post_icon">
               <span class="postauthor">
                 <img class="avatar" alt="" src="https://avatars0.githubusercontent.com/u/23237686?v=4" height="96" width="96" style="">
-                <a href="#">GuoGuang0536</a>
+                <a href="#">GuoGuang</a>
               </span>
               <span class="postcat">
                 <i class="iconfont icon-menu"/>

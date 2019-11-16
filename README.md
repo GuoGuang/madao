@@ -105,7 +105,7 @@ $ npm run lint
 
 👤 **GuoGuang**
 
-* Github: [@GuoGuang0536](https://github.com/GuoGuang)
+* Github: [@GuoGuang](https://github.com/GuoGuang)
 
 ## 🤝 Contributing
 
