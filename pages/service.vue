@@ -137,7 +137,7 @@ export default {
     },
 
     url() {
-      return `https://surmon.me${this.$route.fullPath}`
+      return `https://ibole.me${this.$route.fullPath}`
     }
   }
 }
