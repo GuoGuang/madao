@@ -5,18 +5,18 @@
  */
 
 exports.meta = {
-  title: 'Youyd',
-  keywords: 'youyd,有一点,后端开发者,java开发,有一点博客平台',
+  title: 'ibole',
+  keywords: 'ibole,爱伯乐,后端开发者,java开发,爱伯乐博客平台',
   description: '百学须先立志',
-  url: 'youyd.com',
-  author: 'Youyd',
+  url: 'ibole.com',
+  author: 'ibole',
   email: 'guoguang0536@gmail.com',
 }
 
 exports.webrtc = {
-  room: 'Youyd',
-  iceServerUsername: 'Youyd',
-  iceServerCredential: 'Youyd',
+  room: 'ibole',
+  iceServerUsername: 'ibole',
+  iceServerCredential: 'ibole',
 }
 
 exports.music = {

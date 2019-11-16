@@ -1,20 +1,20 @@
 {
-  "name": "youyd.com",
+  "name": "ibole.com",
   "version": "2.1.4",
-  "description": "youyd.com blog",
+  "description": "ibole.com blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://youyd.com"
+    "url": "https://ibole.com"
   },
   "license": "MIT",
-  "homepage": "http://youyd.com",
+  "homepage": "http://ibole.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang0536/youyd.git"
+    "url": "git+https://github.com/GuoGuang0536/ibole.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang0536/youyd/issues"
+    "url": "https://github.com/GuoGuang0536/ibole/issues"
   },
   "engines": {
     "npm": ">=5.5.0",

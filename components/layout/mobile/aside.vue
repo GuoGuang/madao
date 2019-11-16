@@ -5,7 +5,7 @@
         <img :src="gravatar" alt="ibole">
       </div>
       <div class="profile">
-        <h3 class="name">Youyd</h3>
+        <h3 class="name">ibole</h3>
         <p class="email" v-text="$i18n.text.slogan"/>
       </div>
     </div>

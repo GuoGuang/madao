@@ -95,7 +95,7 @@ export default {
         icon: 'linux',
         color: '#000000'
       }, {
-        name: 'youyd',
+        name: 'ibole',
         icon: 'think',
         color: '#0088f5'
       }, {
