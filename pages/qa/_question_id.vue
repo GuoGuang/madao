@@ -12,9 +12,15 @@
       <!-- 问题内容 -->
       <el-row class="top-info">
         <el-col :span="2">
-          <i class="el-icon-caret-top" style="line-height: 1.5;"/>
+          <i
+            class="el-icon-caret-top"
+            style="line-height: 1.5;"
+          />
           <span>赞成</span>
-          <i class="el-icon-caret-bottom" style="line-height: 1.5;"/>
+          <i
+            class="el-icon-caret-bottom"
+            style="line-height: 1.5;"
+          />
         </el-col>
         <el-col :span="22">{{ question.content }}</el-col>
       </el-row>
@@ -48,7 +54,7 @@
             </li>
             <li>
               <button href="javascript:void(0);">
-                <i/>
+                <i />
               </button>
             </li>
             <li>
@@ -68,7 +74,10 @@
           </a>
           <div class="profile-info">
             <div>
-              <a href="/u/huixu" class="mr5">
+              <a
+                href="/u/huixu"
+                class="mr5"
+              >
                 <strong>huixu</strong>
               </a>
               <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">
@@ -88,24 +97,30 @@
               class="default-check"
               href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=active#tab-top"
             >活跃</a>
-            <a
-              href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top"
-            >最新</a>
-            <a
-              href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top"
-            >票数</a>
+            <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=oldest#tab-top">最新</a>
+            <a href="/questions/54640544/java-servlet-translation-api-request-encoding-problem-german-characters?answertab=votes#tab-top">票数</a>
           </div>
         </el-col>
       </el-row>
 
-      <el-row v-for="(answers, index) in question.answers" :key="index" class="answers-list">
+      <el-row
+        v-for="(answers, index) in question.answers"
+        :key="index"
+        class="answers-list"
+      >
         <el-col :span="2">
-          <i class="el-icon-caret-top" style="line-height: 1.5;"/>
+          <i
+            class="el-icon-caret-top"
+            style="line-height: 1.5;"
+          />
           <span>赞成</span>
-          <i class="el-icon-caret-bottom" style="line-height: 1.5;"/>
+          <i
+            class="el-icon-caret-bottom"
+            style="line-height: 1.5;"
+          />
         </el-col>
         <el-col :span="22">
-          <el-row v-html="answers.content"/>
+          <el-row v-html="answers.content" />
 
           <!-- 回答者信息区 -->
           <el-row class="answerer-profile">
@@ -113,7 +128,7 @@
               <ul>
                 <li>
                   <button href="javascript:void(0);">
-                    <i/>评论
+                    <i />评论
                   </button>
                 </li>
                 <li>
@@ -124,7 +139,7 @@
                 </li>
                 <li>
                   <button href="javascript:void(0);">
-                    <i/>
+                    <i />
                   </button>
                 </li>
                 <li>
@@ -142,9 +157,15 @@
                   src="https://cdn.segmentfault.com/v-5c78d357/global/img/user-64.png"
                 >
               </a>
-              <div class style="display:flex; flex-direction:column">
+              <div
+                class
+                style="display:flex; flex-direction:column"
+              >
                 <div class="mb3">
-                  <a href="/u/huixu" class="mr5">
+                  <a
+                    href="/u/huixu"
+                    class="mr5"
+                  >
                     <strong>huixu</strong>
                   </a>
                   <img src="https://cdn.segmentfault.com/v-5c78d357/global/img/rp.svg">

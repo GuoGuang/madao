@@ -180,175 +180,173 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
-  .events{
-      .el-col{
-        padding-right: 20px;
-        width: 25%;
-        .widget-event{
-          margin-bottom: 20px;
-          border: 1px solid #eee;
-          background: #f3f3f3;
-          //height: 282px;
-          border-radius: 2px;
-          overflow: hidden;
+.events {
+  .el-col {
+    padding-right: 20px;
+    width: 25%;
+    .widget-event {
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+      background: #f3f3f3;
+      //height: 282px;
+      border-radius: 2px;
+      overflow: hidden;
 
-          .widget-event__meta{
-            list-style: none;
-            padding: 0;
-            margin: 8px 0 0;
-            font-size: 13px;
-            color: #999;
-          }
-          .btn{
-            position: sticky;
-            float: right;
-            right: 15px;
-            bottom: 15px;
-            color: #fff;
-            background-color: #009a61;
-            border-color: #008151;
-          }
-          .widget-event__banner{
-            height:150px;
-          }
-          .title{
-            margin: 0;
-            font-size: 16px;
-            max-height: 45px;
-            overflow: hidden;
-            }
-        }
+      .widget-event__meta {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+        font-size: 13px;
+        color: #999;
       }
-  }
-
-  .eveqqqqnts {
-    min-height: 40em;
-
-    &.mobile {
-      min-height: auto;
-
-      >.event-list {
-
-        >.item {
-          width: 100%;
-          height: auto;
-          float: none;
-          flex-grow: 1;
-          margin-right: 0;
-
-          &.last {
-            margin-bottom: 1rem;
-          }
-
-          &:last-child {
-            margin: 0;
-          }
-
-          >.item-content {
-            width: 100%;
-            height: auto;
-
-            >.title {
-              margin: 1em 0;
-            }
-
-            >.iconfont {
-              font-size: 3em;
-            }
-
-            >.description {
-              height: auto;
-            }
-          }
-        }
+      .btn {
+        position: sticky;
+        float: right;
+        right: 15px;
+        bottom: 15px;
+        color: #fff;
+        background-color: #009a61;
+        border-color: #008151;
+      }
+      .widget-event__banner {
+        height: 150px;
+      }
+      .title {
+        margin: 0;
+        font-size: 16px;
+        max-height: 45px;
+        overflow: hidden;
       }
     }
+  }
+}
 
-    >.event-list {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      list-style: none;
-      justify-content: flex-start;
+.eveqqqqnts {
+  min-height: 40em;
 
-      >.item {
-        margin-right: 1rem;
-        margin-bottom: 1rem;
-        width: 23.9%;
-        // height: 23.33rem;
+  &.mobile {
+    min-height: auto;
+
+    > .event-list {
+      > .item {
+        width: 100%;
+        height: auto;
+        float: none;
+        flex-grow: 1;
+        margin-right: 0;
 
         &.last {
-          margin-bottom: 0;
+          margin-bottom: 1rem;
         }
 
-        &:nth-child(4n + 0) {
-          margin-right: 0;
+        &:last-child {
+          margin: 0;
         }
 
-        >.item-content {
-          display: block;
+        > .item-content {
           width: 100%;
-          height: 100%;
-          padding: 1rem;
-          text-align: center;
-          background-color: $module-bg;
-          transition: transform 1s, background-color .5s;
+          height: auto;
 
-          &:hover {
-            background-color: $module-hover-bg;
-            transition: transform 1s, background-color .5s;
+          > .title {
+            margin: 1em 0;
           }
 
-          >.iconfont {
-            display: block;
-            height: 1.3em;
-            font-size: 6rem;
+          > .iconfont {
+            font-size: 3em;
           }
 
-          >.title {
-            @include text-overflow();
-            padding: 0 1em;
-            margin-bottom: 1.2em;
-            font-weight: bold;
-            text-transform: capitalize;
+          > .description {
+            height: auto;
           }
+        }
+      }
+    }
+  }
 
-          >.description {
-            margin-bottom: 1rem;
-            text-align: left;
-            line-height: 2em;
-            text-indent: 1.6em;
-            height: 4em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            @include clamp(2);
-          }
+  > .event-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: flex-start;
 
-          >.meta {
-            margin-bottom: .5rem;
-            display: flex;
-            justify-content: space-around;
+    > .item {
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      width: 23.9%;
+      // height: 23.33rem;
 
-            >.item {
-              font-weight: 400;
-              color: $secondary;
+      &.last {
+        margin-bottom: 0;
+      }
 
-              &.star {
-                color: $text-light;
-                font-weight: bold;
-              }
+      &:nth-child(4n + 0) {
+        margin-right: 0;
+      }
 
-              >.iconfont {
-                margin-right: .3rem;
-              }
+      > .item-content {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        text-align: center;
+        background-color: $module-bg;
+        transition: transform 1s, background-color 0.5s;
+
+        &:hover {
+          background-color: $module-hover-bg;
+          transition: transform 1s, background-color 0.5s;
+        }
+
+        > .iconfont {
+          display: block;
+          height: 1.3em;
+          font-size: 6rem;
+        }
+
+        > .title {
+          @include text-overflow();
+          padding: 0 1em;
+          margin-bottom: 1.2em;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+
+        > .description {
+          margin-bottom: 1rem;
+          text-align: left;
+          line-height: 2em;
+          text-indent: 1.6em;
+          height: 4em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @include clamp(2);
+        }
+
+        > .meta {
+          margin-bottom: 0.5rem;
+          display: flex;
+          justify-content: space-around;
+
+          > .item {
+            font-weight: 400;
+            color: $secondary;
+
+            &.star {
+              color: $text-light;
+              font-weight: bold;
+            }
+
+            > .iconfont {
+              margin-right: 0.3rem;
             }
           }
         }
       }
     }
   }
+}
 </style>

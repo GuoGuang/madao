@@ -76,119 +76,123 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .page {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    min-height: 62rem;
+.page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 62rem;
 
-    &.mobile {
-      min-height: 36rem;
-
-      > .app {
-        padding-top: 1em;
-
-        > .screen {
-          width: 100%;
-          margin-top: 3rem;
-          margin-bottom: 1rem;
-          text-align: center;
-
-          > .screen-img {
-            opacity: .4;
-            width: 90%;
-          }
-
-          > .download {
-            opacity: 1;
-            visibility: visible;
-          }
-        }
-      }
-    }
+  &.mobile {
+    min-height: 36rem;
 
     > .app {
-
-      > .logo {
-        text-align: center;
-
-        > img {
-          width: 6rem;
-          border-radius: 1em;
-        }
-      }
-
-      > .title {
-        color: $primary;
-        font-weight: bold;
-        text-align: center;
-        text-transform: uppercase;
-      }
-
-      > .desc {
-        text-align: center;
-      }
+      padding-top: 1em;
 
       > .screen {
-        margin-top: 5rem;
-        width: 36rem;
-        position: relative;
-
-        &:hover {
-
-          > .screen-img {
-            opacity: .4;
-          }
-
-          > .download {
-            opacity: 1;
-            visibility: visible;
-          }
-        }
+        width: 100%;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        text-align: center;
 
         > .screen-img {
-          width: 100%;
+          opacity: 0.4;
+          width: 90%;
         }
 
         > .download {
-          opacity: 0;
-          visibility: hidden;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          border-radius: 1rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
 
-          > .qrcode {
-            width: 12rem;
-            height: auto;
-          }
+  > .app {
+    > .logo {
+      text-align: center;
 
-          > .btn {
-            width: 12rem;
-            line-height: 2.68rem;
-            color: $primary;
-            margin-top: 2rem;
-            border:  1px solid;
-            border-color: $primary;
-            text-align: center;
-            text-transform: uppercase;
-            background: $module-bg;
+      > img {
+        width: 6rem;
+        border-radius: 1em;
+      }
+    }
 
-            &:hover {
-              color: $white;
-              border-color: $primary-opacity-5;
-              background: linear-gradient(to bottom right, $module-hover-bg-opacity-3, $primary-opacity-9, $white, rgba($accent, .7));
-            }
+    > .title {
+      color: $primary;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    > .desc {
+      text-align: center;
+    }
+
+    > .screen {
+      margin-top: 5rem;
+      width: 36rem;
+      position: relative;
+
+      &:hover {
+        > .screen-img {
+          opacity: 0.4;
+        }
+
+        > .download {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      > .screen-img {
+        width: 100%;
+      }
+
+      > .download {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        > .qrcode {
+          width: 12rem;
+          height: auto;
+        }
+
+        > .btn {
+          width: 12rem;
+          line-height: 2.68rem;
+          color: $primary;
+          margin-top: 2rem;
+          border: 1px solid;
+          border-color: $primary;
+          text-align: center;
+          text-transform: uppercase;
+          background: $module-bg;
+
+          &:hover {
+            color: $white;
+            border-color: $primary-opacity-5;
+            background: linear-gradient(
+              to bottom right,
+              $module-hover-bg-opacity-3,
+              $primary-opacity-9,
+              $white,
+              rgba($accent, 0.7)
+            );
           }
         }
       }
     }
   }
+}
 </style>

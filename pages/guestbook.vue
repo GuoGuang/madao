@@ -44,66 +44,68 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .page {
+.page {
+  &.mobile {
+    > .detail {
+      > .content {
+        height: 11em;
 
-    &.mobile {
-
-      > .detail {
-
-        > .content {
+        > .guestbook-banner {
           height: 11em;
-
-          > .guestbook-banner {
-            height: 11em;
-          }
-        }
-      }
-    }
-
-    .detail {
-      margin-bottom: 1em;
-      background-color: $module-bg;
-
-      .content {
-        width: 100%;
-        height: 17em;
-        overflow:  hidden;
-
-        .guestbook-banner {
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-          height: 17em;
-          border: 0;
-
-          img {
-            margin-top: -5em;
-            @include css3-prefix(transition, all 1s);
-
-            &:hover {
-              margin-top: -6em;
-              @include css3-prefix(transform, rotate(2deg) scale(1.1));
-              @include css3-prefix(transition, all 1s);
-            }
-          }
-
-          span {
-            position: absolute;
-            right: 2em;
-            bottom: 2em;
-            display: block;
-            font-weight: 700;
-            opacity: .5;
-            cursor: progress;
-            padding: 0 1em;
-            padding-left: 3rem;
-            height: 2em;
-            line-height: 2em;
-            color: $body-bg;
-            background: linear-gradient(to left, $module-bg, $module-hover-bg-opacity-3, transparent);
-          }
         }
       }
     }
   }
+
+  .detail {
+    margin-bottom: 1em;
+    background-color: $module-bg;
+
+    .content {
+      width: 100%;
+      height: 17em;
+      overflow: hidden;
+
+      .guestbook-banner {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 17em;
+        border: 0;
+
+        img {
+          margin-top: -5em;
+          @include css3-prefix(transition, all 1s);
+
+          &:hover {
+            margin-top: -6em;
+            @include css3-prefix(transform, rotate(2deg) scale(1.1));
+            @include css3-prefix(transition, all 1s);
+          }
+        }
+
+        span {
+          position: absolute;
+          right: 2em;
+          bottom: 2em;
+          display: block;
+          font-weight: 700;
+          opacity: 0.5;
+          cursor: progress;
+          padding: 0 1em;
+          padding-left: 3rem;
+          height: 2em;
+          line-height: 2em;
+          color: $body-bg;
+          background: linear-gradient(
+            to left,
+            $module-bg,
+            $module-hover-bg-opacity-3,
+            transparent
+          );
+        }
+      }
+    }
+  }
+}
 </style>

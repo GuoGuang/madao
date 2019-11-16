@@ -186,153 +186,158 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
-  .page {
+.page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  > .player {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    margin-bottom: 2em;
+    width: 100%;
 
-    > .player {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin-bottom: 2em;
-      width: 100%;
+    > .prev-song,
+    > .next-song {
+      width: 3rem;
 
-      > .prev-song,
-      > .next-song {
-        width: 3rem;
-
-        &:hover {
-
-          > .iconfont {
-            color: $text;
-          }
-        }
-
+      &:hover {
         > .iconfont {
-          font-size: 3em;
-          color: $dividers;
+          color: $text;
         }
       }
 
-      > .album-box {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 38rem;
-        height: 38rem;
-        opacity: .9;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        @keyframes rotation {
-          from { transform: rotate(0deg) }
-          to { transform: rotate(360deg) }
-        }
-
-        > .song-bg-box {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          padding: 1rem;
-          overflow: hidden;
-          border-radius: 100%;
-          animation: rotation 26s linear infinite;
-          animation-play-state: paused;
-
-          &.playing {
-            animation-play-state: running;
-          }
-
-          > img {
-            width: 100%;
-            height: 100%;
-            border-radius: 100%;
-            background-color: darkgray;
-            background-image: url('/images/music-bg.jpg');
-            background-size: cover;
-          }
-        }
-
-        > .toggle-box {
-          z-index: 9;
-
-          > .toggle-btn {
-            width: 6rem;
-            height: 6rem;
-            line-height: 6rem;
-            text-align: center;
-            background-color: $module-bg;
-            border-radius: 100%;
-            opacity: .5;
-
-            &:hover {
-              opacity: .8;
-              transform: scale(1.2);
-            }
-
-            > .iconfont {
-              color: $text-reversal;
-              font-size: 3em;
-            }
-          }
-        }
-
-        > .toggle-muted {
-          position: absolute;
-          bottom: 15%;
-
-          > .muted-btn {
-
-            > .iconfont {
-              font-size: 2em;
-              color: $module-hover-bg;
-            }
-
-            &:hover {
-
-              > .iconfont {
-                color: $module-bg;
-              }
-            }
-          }
-        }
-
-        > .circle-progress {
-          width: 100%;
-          height: 100%;
-          display: block;
-          position: absolute;
-        }
+      > .iconfont {
+        font-size: 3em;
+        color: $dividers;
       }
     }
 
-    > .song-info {
-      text-align: center;
+    > .album-box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38rem;
+      height: 38rem;
+      opacity: 0.9;
 
-      > .name {
-        margin-bottom: 1em;
+      &:hover {
+        opacity: 1;
       }
 
-      > .lrc {
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-        @keyframes lrc-text {
-          0% { color: $primary }
-          33% { color: $red }
-          66% { color: $accent }
+      > .song-bg-box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        overflow: hidden;
+        border-radius: 100%;
+        animation: rotation 26s linear infinite;
+        animation-play-state: paused;
+
+        &.playing {
+          animation-play-state: running;
         }
 
-        .lrc-text {
-          color: $primary;
-          // animation: lrc-text 5s linear infinite;
+        > img {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          background-color: darkgray;
+          background-image: url('/images/music-bg.jpg');
+          background-size: cover;
         }
+      }
+
+      > .toggle-box {
+        z-index: 9;
+
+        > .toggle-btn {
+          width: 6rem;
+          height: 6rem;
+          line-height: 6rem;
+          text-align: center;
+          background-color: $module-bg;
+          border-radius: 100%;
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 0.8;
+            transform: scale(1.2);
+          }
+
+          > .iconfont {
+            color: $text-reversal;
+            font-size: 3em;
+          }
+        }
+      }
+
+      > .toggle-muted {
+        position: absolute;
+        bottom: 15%;
+
+        > .muted-btn {
+          > .iconfont {
+            font-size: 2em;
+            color: $module-hover-bg;
+          }
+
+          &:hover {
+            > .iconfont {
+              color: $module-bg;
+            }
+          }
+        }
+      }
+
+      > .circle-progress {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
       }
     }
   }
+
+  > .song-info {
+    text-align: center;
+
+    > .name {
+      margin-bottom: 1em;
+    }
+
+    > .lrc {
+      @keyframes lrc-text {
+        0% {
+          color: $primary;
+        }
+        33% {
+          color: $red;
+        }
+        66% {
+          color: $accent;
+        }
+      }
+
+      .lrc-text {
+        color: $primary;
+        // animation: lrc-text 5s linear infinite;
+      }
+    }
+  }
+}
 </style>
