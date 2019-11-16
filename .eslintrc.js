@@ -10,9 +10,10 @@ module.exports = {
     es6: true,
   },
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
-
+  
   // 在这里添加你的自定义规则
   // 它基于https://github.com/vuejs/eslint-config-vue
+
   rules: {
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,

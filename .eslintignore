@@ -1,4 +1,4 @@
-# .eslintignore
+# .eslint ignore
 
 build/*.js
 config/*.js
