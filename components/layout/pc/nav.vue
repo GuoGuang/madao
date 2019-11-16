@@ -214,13 +214,13 @@ export default {
     }
     .nav-item {
       .el-submenu__title:hover {
-        background-color: #f7f7f7 !important;
+        background-color: transparent !important;
       }
       .el-menu-item:hover {
-        background-color: #f7f7f7 !important;
+        background-color: transparent !important;
       }
       .el-menu-item:focus {
-        background-color: #f7f7f7 !important;
+        background-color: transparent !important;
       }
     }
     .el-menu--horizontal > .el-submenu .el-submenu__icon-arrow {
@@ -234,11 +234,8 @@ export default {
     .el-menu--popup {
       min-width: 150px;
     }
-    .el-menu-item {
-      border-bottom-color: #f7f7f7 !important;
-    }
     .el-submenu__title {
-      border-bottom-color: #f7f7f7 !important;
+      border-bottom-color: transparent !important;
     }
     .el-submenu {
       color: rgb(64, 158, 255) !important;

@@ -56,4 +56,12 @@ export default {
       }
     }
   }
+
+</style>
+
+<style>
+html{height:100%;}
+body{min-height:100%;position:relative;}
+main{padding-bottom:100px;}/* main的padding-bottom值要等于或大于footer的height值 */
+footer{position:absolute;bottom:0;width:100%;height:100px;}
 </style>
