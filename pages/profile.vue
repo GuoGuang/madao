@@ -48,11 +48,11 @@
         <h2 class="profile__heading--name">
           GuoGuang0536
           <small class="ml15">
-            <a href="/u/guoguang0536/about">查看完整档案</a>
+            <a href="/u/GuoGuang/about">查看完整档案</a>
           </small>
         </h2>
         <div style="margin: 7px;" class="profile__heading--award">
-          <a class="profile__rank-btn" href="/u/guoguang0536/rank">
+          <a class="profile__rank-btn" href="/u/GuoGuang/rank">
             <img src="/images/svg/rp.svg">
             <span class="h4">0</span>
             <span class="profile__rank-btn-text">声望</span>

@@ -11,10 +11,10 @@
   "homepage": "http://ibole.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang0536/ibole.git"
+    "url": "git+https://github.com/GuoGuang/ibole.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang0536/ibole/issues"
+    "url": "https://github.com/GuoGuang/ibole/issues"
   },
   "engines": {
     "npm": ">=5.5.0",
