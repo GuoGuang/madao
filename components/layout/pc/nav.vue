@@ -1,3 +1,4 @@
+
 <template>
   <!-- 导航 图标参考D:\vueWorkspace\youyd_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="header-nav">
@@ -200,6 +201,12 @@ export default {
 }
 </style>
 <style lang="scss" >
+// 调整nav menu 宽度
+.el-menu--horizontal {
+  .el-menu--popup-bottom-start {
+    min-width: 130px !important;
+  }
+}
 .header-nav {
   .nav-list {
     .el-submenu__title {
@@ -222,6 +229,7 @@ export default {
     .el-menu--horizontal > .el-menu-item.is-active {
       border-bottom: inherit;
     }
+
     .el-menu--collapse .el-menu .el-submenu,
     .el-menu--popup {
       min-width: 150px;
