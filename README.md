@@ -105,7 +105,7 @@ $ npm run lint
 
 👤 **GuoGuang**
 
-* Github: [@GuoGuang0536](https://github.com/GuoGuang0536)
+* Github: [@GuoGuang0536](https://github.com/GuoGuang)
 
 ## 🤝 Contributing
 
@@ -117,5 +117,5 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2019 [GuoGuang](https://github.com/GuoGuang0536).<br />
+Copyright © 2019 [GuoGuang](https://github.com/GuoGuang).<br />
 This project is [MIT](https://github.com/GuoGuang/ibole/blob/master/LICENSE) licensed.

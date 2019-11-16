@@ -1,7 +1,7 @@
 /**
  * @file 用户数据状态 / ES module
  * @module store/tag
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 // import { logout } from '@/api/login'
 import { getToken, removeToken, setToken } from '@/utils/auth' // 从cookie中获取token getToken

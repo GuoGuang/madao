@@ -1,7 +1,7 @@
 /**
  * @file 骨架屏模块 / ES module
  * @module components/skeleton
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import SkeletonBase from './base'

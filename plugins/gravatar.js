@@ -1,7 +1,7 @@
 /**
  * @file gravatar / ES module
  * @module plugins/gravatar
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import gravatar from 'gravatar'

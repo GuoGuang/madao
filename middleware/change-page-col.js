@@ -1,7 +1,7 @@
 /**
  * @file 响应布局-中间件 / ES module
  * @module middleware/change-page-col
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import systemConstants from '~/constants/system'

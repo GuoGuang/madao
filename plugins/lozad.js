@@ -1,7 +1,7 @@
 /**
  * @file 懒加载 / ES module
  * @module plugins/lozad
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import lozad from 'lozad'

@@ -1,7 +1,7 @@
 /**
  * @file 文档解析服务 / ES module
  * @module plugins/marked
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import marked from 'marked'

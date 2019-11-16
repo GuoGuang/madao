@@ -4,7 +4,7 @@
     <el-row class="profile-user-info">
       <el-col :span="4">
         <div class="profile__heading--avatar-warp">
-          <a href="/u/guoguang0536">
+          <a href="/u/GuoGuang">
             <img
               class="image"
               src="https://avatar-static.segmentfault.com/971/470/97147086-59b9044e77b75_huge256"

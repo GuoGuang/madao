@@ -1,7 +1,7 @@
 /**
  * @file 彩蛋配置 Egg config / ES module
  * @module egg.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 export const titles = [

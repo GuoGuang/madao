@@ -1,7 +1,7 @@
 /**
  * @file I18n config / Commonjs module
  * @module i18n.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 module.exports = {

@@ -1,7 +1,7 @@
 /**
  * @file Api config / Commonjs module
  * @module api.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const apiJson = require('./api.json')

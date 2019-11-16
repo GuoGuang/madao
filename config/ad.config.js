@@ -1,7 +1,7 @@
 /**
  * @file Ads config / ES module
  * @module ad.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
  // const apiConfig = require('./api.config.js')

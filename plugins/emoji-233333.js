@@ -1,7 +1,7 @@
 /**
  * @file 留言表情雨 / ES module
  * @module plugins/emoji-233333
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isBrowser } from '~/environment/esm'

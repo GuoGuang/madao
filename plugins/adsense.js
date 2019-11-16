@@ -1,7 +1,7 @@
 /**
  * @file Google adsense / ES module GooGle 广告
  * @module plugins/adsense
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import Vue from 'vue'

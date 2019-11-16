@@ -1,7 +1,7 @@
 /**
  * @file SimpleWebRTC / ES module
  * @module plugins/wertc
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import SimpleWebRTC from 'simplewebrtc'

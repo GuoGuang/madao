@@ -1,7 +1,7 @@
 /**
  * @file highlight.js / Commonjs module
  * @module plugins/highlight
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const Hljs = require('highlight.js/lib/highlight')

@@ -1,7 +1,7 @@
 /**
  * @file Loading component / ES module
  * @module components/common/loading
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import LoadingComponent from './loading'

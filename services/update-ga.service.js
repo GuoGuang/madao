@@ -1,7 +1,7 @@
 /**
  * @file GA 更新器 / Commonjs module
  * @module expansions/analytics/update
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const fs = require('fs')

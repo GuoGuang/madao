@@ -1,7 +1,7 @@
 /**
  * @file 客户端百度 SEO 服务 / ES module
  * @module plugins/baidu-seo-push
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isBrowser, isProdMode } from '~/environment/esm'

@@ -1,7 +1,7 @@
 /**
  * @file 路径判定器 / ES module
  * @module utils/route
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import systemConstants from '~/constants/system'

@@ -1,7 +1,7 @@
 /**
  * @file Webpack CDN 解析器 / Commonjs module
  * @module extend/html-cdn-loader
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const { cdnUrl } = require('../config/api.config')

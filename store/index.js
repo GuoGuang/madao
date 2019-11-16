@@ -1,7 +1,7 @@
 /**
  * @file 根数据状态，仅用以调度初始化任务 / ES module
  * @module store/entry
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isServer } from '~/environment/esm'

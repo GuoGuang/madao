@@ -1,7 +1,7 @@
 /**
  * @file 模拟延时器 / ES module
  * @module utils/fetch-delay
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import appConfig from '~/config/app.config'

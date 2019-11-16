@@ -1,7 +1,7 @@
 /**
  * @file 分类数据状态 / ES module
  * @module store/category
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 export const state = () => {

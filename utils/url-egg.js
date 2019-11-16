@@ -1,7 +1,7 @@
 /**
  * @file Url 彩蛋 / ES module
  * @module utils/url-egg
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isBrowser } from '~/environment/esm'

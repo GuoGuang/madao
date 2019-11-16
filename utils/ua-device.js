@@ -1,7 +1,7 @@
 /**
  * @file UA 解析器 / ES module
  * @module utils/ua-device
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 export default userAgent => ({

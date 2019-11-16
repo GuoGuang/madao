@@ -1,7 +1,7 @@
 /**
  * @file Axios 扩展服务 / ES module
  * @module plugins/axios
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 // import cookie from 'cookie'
 

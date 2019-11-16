@@ -1,7 +1,7 @@
 /**
  * @file 文章 -> 标签内链关系构造器 / ES module
  * @module transforms/article-tag-releted-parse
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 export default (text, tags) => {

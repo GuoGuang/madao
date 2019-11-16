@@ -1,7 +1,7 @@
 /**
  * @file 评论模块 UA、OS 解析器 / ES module
  * @module utils/browser-os-parse
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 // eslint-disable-next-line no-eval

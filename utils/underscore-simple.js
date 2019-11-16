@@ -1,7 +1,7 @@
 /**
  * @file lodash 简洁版防抖节流 / Commonjs module
  * @module utils/underscore-simple
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const _ = {}

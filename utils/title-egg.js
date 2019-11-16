@@ -1,7 +1,7 @@
 /**
  * @file Title 彩蛋 / ES module
  * @module utils/title-egg
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import Favico from '~/plugins/favico'

@@ -1,7 +1,7 @@
 /**
  * @file GA 统计服务 / ES module
  * @module plugins/analytics
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import Vue from 'vue'

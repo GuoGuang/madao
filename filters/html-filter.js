@@ -1,7 +1,7 @@
 /**
  * @file Text Filters / ES module
  * @module filters/html-filter
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 // 文字溢出过滤器

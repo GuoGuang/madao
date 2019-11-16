@@ -1,7 +1,7 @@
 /**
  * @file console.solgan / ES module
  * @module utils/console-slogan
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isBrowser, isProdMode } from '~/environment/esm'

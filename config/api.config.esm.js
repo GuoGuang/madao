@@ -1,7 +1,7 @@
 /**
  * @file Api config / ES module
  * @module api.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import apiJson from './api.json'

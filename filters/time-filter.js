@@ -1,7 +1,7 @@
 /**
  * @file Time Filters / ES module
  * @module filters/time-filter
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import systemConstants from '~/constants/system'

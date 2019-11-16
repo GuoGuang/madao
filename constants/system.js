@@ -1,7 +1,7 @@
 /**
  * @file System constant / Commonjs module
  * @module system.constant
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 exports.Language = {

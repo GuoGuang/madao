@@ -1,7 +1,7 @@
 /**
  * @file Adsense box component / ES module
  * @module components/adsense
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import AdsenseAside from './aside'

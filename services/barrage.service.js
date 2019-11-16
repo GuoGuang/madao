@@ -1,7 +1,7 @@
 /**
  * @file 弹幕服务 / Commonjs module
  * @module server/barrage
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const path = require('path')

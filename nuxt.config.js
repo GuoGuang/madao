@@ -1,7 +1,7 @@
 /**
  * @file Nuxt config / Commonjs module
  * @module nuxt.config
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const appConfig = require('./config/app.config')

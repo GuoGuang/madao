@@ -1,7 +1,7 @@
 /**
  * @file Environment / Commonjs module
  * @module environment
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 const environment = process.env

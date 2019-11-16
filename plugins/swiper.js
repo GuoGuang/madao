@@ -1,7 +1,7 @@
 /**
  * @file vue-awesome-swiper / ES module
  * @module plugins/swiper
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import Vue from 'vue'

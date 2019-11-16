@@ -1,7 +1,7 @@
 /**
  * @file 客户端初始化任务管理器 / ES module
  * @module plugins/loaded-task
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 import { isBrowser } from '~/environment/esm'

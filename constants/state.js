@@ -1,7 +1,7 @@
 /**
  * @file State constant / Commonjs module
  * @module state.constant
- * @author GuoGuang <https://github.com/GuoGuang0536>
+ * @author GuoGuang <https://github.com/GuoGuang>
  */
 
 // 转载状态
