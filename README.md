@@ -6,7 +6,7 @@
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/ibole" target="blank">
-    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico?Expires=1573893541&OSSAccessKeyId=TMP.hfeSrg3dqNtshaCfqt2Gg5ZxzAE7LidhR4vWSBQ5BqTmNaz3CA1wpap5YiBQYp34sFQB1qnvhszbEUMfteFdGWoqyMKgmVgNh2FurrMw3FxDjLJM8Ngaa2JCBpdMBo.tmp&Signature=%2BsBn%2B8luUL2Mno18WGIbMJ26MxI%3D" height="90" alt="ibole.me logo" />
+    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="ibole.me logo" />
   </a>
 </p>
 
