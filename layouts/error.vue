@@ -56,8 +56,22 @@ export default {
 
 <style lang="scss" scoped>
 
-.btn.btn-header {
-  cursor: pointer;
+.error {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
+  z-index: 999;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $module-bg;
+
+  .btn.btn-header {
+    cursor: pointer;
     line-height: 20px;
     font-size: 14px;
     font-weight: bold;
@@ -67,73 +81,57 @@ export default {
     text-transform: uppercase;
     border-radius: 29px;
     background-color: #ff7979;
-    box-shadow: 0 20px 40px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.15);
     border: solid 2px #ffffff;
-    border-color: transparent
-}
-.btn.btn-header:hover {
+    border-color: transparent;
+  }
+
+  .btn.btn-header:hover {
     background: #fff;
-    color: #5F61F2
-}
+    color: #5f61f2;
+  }
 
-  .error {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    overflow: hidden;
-    z-index: 999;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $module-bg;
+  @keyframes error-item {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -30%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
 
-    @keyframes error-item {
-      0% {
-        opacity: 0;
-        transform: translate3d(0, -30%, 0);
-      }
-      100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
+  > .error-content {
+    > .error-code,
+    > .error-link,
+    > .error-wrapper-message {
+      color: $black-light;
+      animation: error-item ease-out both 0.5s 0.3s;
+    }
+
+    .link {
+      &:hover {
+        border-bottom: 1px solid;
       }
     }
 
-    > .error-content {
+    > .error-code {
+      text-transform: uppercase;
+      font-size: 12rem;
+      margin: 0;
+    }
+    > .error-img {
+      // width: 50%;
+    }
 
-      > .error-code,
-      > .error-link,
-      > .error-wrapper-message {
-        color: $black-light;
-        animation: error-item ease-out both .5s .3s;
-      }
-
-      .link {
-
-        &:hover {
-          border-bottom: 1px solid;
-        }
-      }
-
-      > .error-code {
-        text-transform: uppercase;
-        font-size: 12rem;
-        margin: 0;
-      }
-      > .error-img {
-        // width: 50%;
-      }
-
-      > .error-wrapper-message {
-
-        > .error-message {
-          margin-bottom: 1em;
-          font-family: webfont-bolder, DINRegular;
-          margin-top: 1em;
-        }
+    > .error-wrapper-message {
+      > .error-message {
+        margin-bottom: 1em;
+        font-family: webfont-bolder, DINRegular;
+        margin-top: 1em;
       }
     }
   }
+}
 </style>
