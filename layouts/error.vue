@@ -1,14 +1,16 @@
 <template>
   <div class="error">
     <div class="error-content">
+      <div class="error-wrapper-message">
+        <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">Oops! Why Youre Here ?</h1>
+        <h2 class="error-message">{{ statusInfo }}</h2>
+        <p style="margin: 4em;">
+          <nuxt-link class=" btn btn-default btn-header" to="/">Back to the home page</nuxt-link>
+        </p>
+      </div>
       <!-- <h1 class="error-code">{{ error.statusCode }}</h1> -->
       <img :src="statusImage" class="error-img">
-      <div class="error-wrapper-message">
-        <h2 class="error-message">{{ statusInfo }}</h2>
-      </div>
-      <p class="error-link">
-        <nuxt-link class="link" to="/">Back to the home page</nuxt-link>
-      </p>
+
     </div>
   </div>
 </template>
@@ -35,7 +37,7 @@ export default {
         console.log(newVal.statusCode)
         if (newVal.statusCode === 404) {
           this.statusImage = '/images/svg/404.svg'
-          this.statusInfo = 'Page Not Found'
+          this.statusInfo = '您似乎正在尝试访问已被删除或者根本不存在的页面。'
         } else {
           this.statusImage = '/images/svg/500.svg'
           this.statusInfo = 'Server Internal Error'
@@ -53,6 +55,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.btn.btn-header {
+  cursor: pointer;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.8px;
+    color: #fff;
+    padding: 18px 30px 14px;
+    text-transform: uppercase;
+    border-radius: 29px;
+    background-color: #ff7979;
+    box-shadow: 0 20px 40px 0 rgba(0,0,0,0.15);
+    border: solid 2px #ffffff;
+    border-color: transparent
+}
+.btn.btn-header:hover {
+    background: #fff;
+    color: #5F61F2
+}
+
   .error {
     top: 0;
     left: 0;
@@ -100,7 +123,7 @@ export default {
         margin: 0;
       }
       > .error-img {
-        width: 50%;
+        // width: 50%;
       }
 
       > .error-wrapper-message {
