@@ -7,7 +7,16 @@
 export const state = () => {
   return {
     fetching: false,
-    data: []
+    data: [],
+    backgroundColor: [
+      '#ff5e5c',
+      '#ffbb50',
+      '#1ac756',
+      '#19B5FE',
+      '#4A4A4A',
+      '#ff9800',
+      '#9c27b0'
+    ]
   }
 }
 

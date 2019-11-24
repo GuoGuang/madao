@@ -10,7 +10,7 @@
           <!-- 文章左侧点赞区 -->
           <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
           <div badge="186" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
-          <div badge="186" class="collect-btn panel-btn"/>
+          <div badge="186" class="collect-btn panel-btn share-btn"/>
           <div badge="186" class="share-title">分享</div>
           <div class="weibo-btn share-btn panel-btn"/>
           <div class="qq-btn share-btn panel-btn"/>
@@ -36,7 +36,7 @@
 
             <!-- 标签 -->
             <div class="tags">
-              <a v-for="(tag, index) of tags" :key="index" :style="{'background-color': `${BackgroundColor[index]}`}" href="#" rel="tag">{{ tag.name }}</a>
+              <a v-for="(tag, index) of tags" :key="index" :style="{'background-color': `${backgroundColor[index]}`}" href="#" rel="tag">{{ tag.name }}</a>
             </div>
 
             <h1 class="title">{{ article.title }}</h1>
@@ -282,15 +282,7 @@ export default {
 
   data() {
     return {
-      BackgroundColor: [
-        '#ff5e5c',
-        '#ffbb50',
-        '#1ac756',
-        '#19B5FE',
-        '#4A4A4A',
-        '#ff9800',
-        '#9c27b0'
-      ],
+      backgroundColor: this.$store.state.tag.backgroundColor,
       likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
       isLikeStatus: false,
       likeBackgroundColor: '',
@@ -627,6 +619,10 @@ export default {
           }
         }
       }
+    }
+
+    .share-btn{
+      cursor: no-drop;
     }
 
     >.detail,

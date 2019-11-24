@@ -5,11 +5,11 @@
         <h1 class="wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">Oops! Why Youre Here ?</h1>
         <h2 class="error-message">{{ statusInfo }}</h2>
         <p style="margin: 4em;">
-          <nuxt-link class=" btn btn-default btn-header" to="/">Back to the home page</nuxt-link>
+          <a class="btn btn-default btn-header" @click="toSearch()">Back to the home page</a>
         </p>
       </div>
       <!-- <h1 class="error-code">{{ error.statusCode }}</h1> -->
-      <img :src="statusImage" class="error-img">
+      <img :src="statusImage" :class="{ 'error-custom': statusCode!=404 }" class="error-img">
 
     </div>
   </div>
@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       statusImage: '',
-      statusInfo: ''
+      statusInfo: '',
+      statusCode: ''
     }
   },
   watch: {
@@ -35,12 +36,13 @@ export default {
       immediate: true,
       handler(newVal, oldVal) {
         console.log(newVal.statusCode)
+        this.statusCode = newVal.statusCode
         if (newVal.statusCode === 404) {
           this.statusImage = '/images/svg/404.svg'
           this.statusInfo = '您似乎正在尝试访问已被删除或者根本不存在的页面。'
         } else {
           this.statusImage = '/images/svg/500.svg'
-          this.statusInfo = 'Server Internal Error'
+          this.statusInfo = 'Sorry unexpected error'
         }
       }
     }
@@ -50,12 +52,21 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit('global/updateThreeColumnsState', false)
+  },
+  methods: {
+
+    toSearch() {
+      this.$router.push({ name: 'index' })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
+.error-custom{
+  width: 40%
+}
 .error {
   top: 0;
   left: 0;

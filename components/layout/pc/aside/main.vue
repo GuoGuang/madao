@@ -3,7 +3,7 @@
   <aside id="aside" class="aside">
     <!-- 公告 -->
     <div class="recommend" role="alert">
-      <small><a class="report" href="https://segmentfault.com/ls/1650000011318558">精品课推荐：PHP 进阶之路</a></small>
+      <small><a class="report" href="https://github.com/GuoGuang">精品库推荐：IBOLE </a></small>
     </div>
 
     <!-- 今日热议 -->
@@ -48,22 +48,7 @@
           <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
         </transition>
       </client-only>
-      <div class="aside-tag">
-        <empty-box v-if="!tags.length">
-          <slot>{{ $i18n.text.tag.empty }}</slot>
-        </empty-box>
-        <ul v-else class="aside-tag-list">
-          <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.slug}`" tag="li" class="item">
-            <a :title="tag.description" class="title">
-              <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
-                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
-              <i :class="tag.icon" class="iconfont"/>
-              <span>{{ isEnLang ? tag.slug : tag.name }}</span>
-              <span>({{ tag.tagsCount || 0 }})</span>
-            </a>
-          </nuxt-link>
-        </ul>
-      </div>
+      <tag/>
       <div v-if="isArticlePage" class="aside-tools">
         <div class="full-column" @click="handleSetFullColumn">
           <span v-text="$i18n.text.article.fullcolread"/>
@@ -86,11 +71,13 @@ import AsideAd from './ad'
 import Calendar from './calendar'
 import { mapState } from 'vuex'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
+import Tag from './tag'
 export default {
   name: 'PcAside',
   components: {
     AsideAd,
-    Calendar
+    Calendar,
+    Tag
   },
 
   directives: {
@@ -129,7 +116,6 @@ export default {
 
   computed: {
     ...mapState({
-      tags: state => state.tag.data,
       articles: state => state.article.hotList.data,
       language: state => state.global.language
     }),
@@ -334,11 +320,6 @@ export default {
       &.fixed {
         position: fixed;
         top: 5.5em;
-
-        >.aside-tag {
-          max-height: calc(100vh - 8em - 4.5em - 3em - 8em);
-          overflow-y: auto;
-        }
       }
 
       >.aside-tools {
@@ -357,50 +338,6 @@ export default {
 
           &:hover {
             background-color: $module-hover-bg;
-          }
-        }
-      }
-
-      >.aside-tag {
-        width: $aside-width;
-        padding-left: 1rem;
-        border-top: 1rem solid transparent;
-        border-bottom: 1rem solid transparent;
-        margin-bottom: 1em;
-
-        .empty-box {
-          padding-right: 0.8em;
-          padding-bottom: 0.8em;
-        }
-
-        .aside-tag-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          overflow: hidden;
-
-          .item {
-            display: inline-block;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
-            height: 2em;
-            line-height: 2em;
-            text-transform: capitalize;
-            background-color: $module-hover-bg;
-
-            &:hover {
-              background-color: $module-hover-bg-darken-40;
-            }
-
-            &:last-child {
-              margin: 0;
-            }
-
-            .title {
-              display: block;
-              padding: 0 0.5em;
-              font-family: $sans-serif;
-            }
           }
         }
       }

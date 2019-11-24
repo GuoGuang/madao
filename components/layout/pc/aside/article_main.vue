@@ -12,21 +12,33 @@
 
       <!-- 作者信息 -->
       <div class="author-info">
-        <a href="/user/5aa23691518825556d0db27e" target="_blank" rel="" class="user-item item" style="padding: 1.3rem;display: flex">
-          <el-avatar style="margin-right: 5px;" class="avatar" size="large" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+        <a href="#" class="user-item">
+          <el-avatar
+            style="margin-right: 5px;"
+            class="avatar"
+            size="large"
+            src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
           <div class="info-box">
-            <div class="username">小美娜娜</div><div data-v-f95bea30="" title="前端小可爱 @ emmmm" class="position">前端小可爱 @ emmmm</div>
+            <div class="username">GuoGuang</div>
+            <div title="后端Boy@emmmm" class="position">后端Boy@emmmm</div>
           </div>
         </a>
-        <div style="margin-bottom: .8rem;padding: 0 1.3rem;" class="stat-item item">
-        <svg data-v-f95bea30="" data-v-ffc386ce="" xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" class="zan"><g data-v-f95bea30="" data-v-ffc386ce="" fill="none" fill-rule="evenodd" transform="translate(0 .57)"><ellipse data-v-f95bea30="" data-v-ffc386ce="" cx="12.5" cy="12.57" fill="#E1EFFF" rx="12.5" ry="12.57"/> <path data-v-f95bea30="" data-v-ffc386ce="" fill="#7BB9FF" d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z"/></g></svg> <span data-v-f95bea30="" data-v-ffc386ce="" class="content">获得赞数<span data-v-f95bea30="" data-v-ffc386ce="" class="count">1,709</span></span></div>
-        <div style="margin-bottom: .8rem;padding: 0 1.3rem;" class="stat-item item">
-        <svg data-v-f95bea30="" data-v-ffc386ce="" width="25" height="25" viewBox="0 0 25 25" class="icon stat-view-icon"><g data-v-f95bea30="" data-v-ffc386ce="" fill="none" fill-rule="evenodd"><circle data-v-f95bea30="" data-v-ffc386ce="" cx="12.5" cy="12.5" r="12.5" fill="#E1EFFF"/> <path data-v-f95bea30="" data-v-ffc386ce="" fill="#7BB9FF" d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z"/></g></svg> <span data-v-f95bea30="" data-v-ffc386ce="" class="content">获得阅读数<span data-v-f95bea30="" data-v-ffc386ce="" class="count">32,269</span></span></div>
+        <div class="stat-item item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-caozuo-dianzan"/>
+          </svg>
+          <span class="content">获得赞数<span class="count">709</span></span>
+        </div>
+        <div class="stat-item item">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-view"/>
+          </svg>
+          <span class="content">获得阅读数<span class="count">3,226</span></span>
+        </div>
+
       </div>
-
+      <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
     </div>
-    <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
-
     <!-- 相关推荐 替换为文章底部动态列表
     <div class="aside-related">
 
@@ -39,22 +51,7 @@
           <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
         </transition>
       </client-only>
-      <div class="aside-tag">
-        <empty-box v-if="!tags.length">
-          <slot>{{ $i18n.text.tag.empty }}</slot>
-        </empty-box>
-        <ul v-else class="aside-tag-list">
-          <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.slug}`" tag="li" class="item">
-            <a :title="tag.description" class="title">
-              <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
-                v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
-              <i :class="tag.icon" class="iconfont"/>
-              <span>{{ isEnLang ? tag.slug : tag.name }}</span>
-              <span>({{ tag.tagsCount || 0 }})</span>
-            </a>
-          </nuxt-link>
-        </ul>
-      </div>
+      <tag/>
       <div v-if="isArticlePage" class="aside-tools">
         <div class="full-column" @click="handleSetFullColumn">
           <span v-text="$i18n.text.article.fullcolread"/>
@@ -72,7 +69,6 @@
         <directory/>
       </div>
     </div>
-
   </aside>
 </template>
 
@@ -84,12 +80,14 @@ import { mapState } from 'vuex'
 import { Route } from '~/constants/system'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
 import Directory from '~/components/widget/directory'
+import Tag from './tag'
 
 export default {
   name: 'ArticleMain',
   components: {
     AsideAd,
     Directory,
+    Tag,
     Related // 相关推荐
   },
 
@@ -129,7 +127,6 @@ export default {
 
   computed: {
     ...mapState({
-      tags: state => state.tag.data,
       articles: state => state.article.hotList.data,
       language: state => state.global.language
     }),
@@ -210,6 +207,10 @@ export default {
     width: $aside-width;
     margin: 0;
 
+    .icon{
+      width: 1.5em;
+      height: 1.5em;
+    }
     .recommend{
       padding: 15px;
       margin-bottom: 20px;
@@ -231,7 +232,16 @@ export default {
     >.aside-article {
       overflow: hidden;
       margin-bottom: 1em;
-
+      .author-info{
+        .user-item{
+          padding: 1.3rem;
+          display: flex
+        }
+        .stat-item{
+          margin-bottom: .8rem;
+          padding: 0 1.3rem;
+        }
+      }
       >.title {
         height: 3em;
         line-height: 3em;
@@ -343,10 +353,6 @@ export default {
         position: fixed;
         top: 5.5em;
 
-        >.aside-tag {
-          max-height: calc(100vh - 8em - 4.5em - 3em - 8em);
-          overflow-y: auto;
-        }
       }
 
       >.aside-tools {
@@ -372,48 +378,6 @@ export default {
           margin-top: 1em
       }
 
-      >.aside-tag {
-        padding-left: 1rem;
-        border-top: 1rem solid transparent;
-        border-bottom: 1rem solid transparent;
-        margin-bottom: 1em;
-
-        .empty-box {
-          padding-right: 0.8em;
-          padding-bottom: 0.8em;
-        }
-
-        .aside-tag-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          overflow: hidden;
-
-          .item {
-            display: inline-block;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
-            height: 2em;
-            line-height: 2em;
-            text-transform: capitalize;
-            background-color: $module-hover-bg;
-
-            &:hover {
-              background-color: $module-hover-bg-darken-40;
-            }
-
-            &:last-child {
-              margin: 0;
-            }
-
-            .title {
-              display: block;
-              padding: 0 0.5em;
-              font-family: $sans-serif;
-            }
-          }
-        }
-      }
     }
   }
 </style>

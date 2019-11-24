@@ -45,7 +45,7 @@
                   <span class="accounts">
                     <span>
                       <a
-                        href="https://github.com/GuoGuang0536"
+                        href="https://github.com/GuoGuang"
                         target="_blank"
                         class="github"
                         rel="external nofollow noopenter">
