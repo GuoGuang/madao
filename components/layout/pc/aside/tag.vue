@@ -30,6 +30,9 @@ export default {
     }
   },
   computed: {
+    isEnLang() {
+      return this.$store.getters['global/isEnLang']
+    },
     ...mapState({
       tags: state => state.tag.data
     })
