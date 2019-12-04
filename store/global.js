@@ -141,6 +141,7 @@ export const mutations = {
   }
 }
 
+const URL_PREFIX = '/api'
 export const actions = {
 
   // 获取同构常量
@@ -153,7 +154,7 @@ export const actions = {
   // 获取博主资料
   fetchAdminInfo({ commit }) {
     return this.$axios
-      .$get('/auth/admin')
+      .$get(URL_PREFIX + '/admin')
       .then(response => commit('updateAdminInfo', response))
   },
 

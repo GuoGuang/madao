@@ -23,7 +23,7 @@ export const mutations = {
 export const actions = {
   fetchList({ commit }, params) {
     commit('updateFetching', true)
-    return this.$axios.$get(`/announcement`, { params })
+    return this.$axios.$get(`/api/base/announcement`, { params })
       .then(response => {
         commit('updateListData', response)
         commit('updateFetching', false)

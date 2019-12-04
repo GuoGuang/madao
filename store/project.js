@@ -35,7 +35,7 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateRepositoriesFetching', true)
-    return this.$axios.$get('/expansion/github')
+    return this.$axios.$get('/api/base/github')
       .then(response => {
         commit('updateRepositoriesData', response.result)
         commit('updateRepositoriesFetching', false)
