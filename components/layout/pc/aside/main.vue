@@ -3,7 +3,7 @@
   <aside id="aside" class="aside">
     <!-- 公告 -->
     <div class="recommend" role="alert">
-      <small><a class="report" href="https://github.com/GuoGuang">精品库推荐：IBOLE </a></small>
+      <small><a class="report" @click="randomSoul()">{{ soul }}</a></small>
     </div>
 
     <!-- 今日热议 -->
@@ -72,6 +72,8 @@ import Calendar from './calendar'
 import { mapState } from 'vuex'
 import { isArticleDetailRoute, isSearchArchiveRoute } from '~/utils/route'
 import Tag from './tag'
+import soul from '~/data/soul'
+
 export default {
   name: 'PcAside',
   components: {
@@ -103,6 +105,7 @@ export default {
   },
   data() {
     return {
+      soul: soul[Math.floor(Math.random() * soul.length)].content, // 毒鸡汤
       adIndex: 0,
       renderAd: true,
       keyword: '',
@@ -113,7 +116,6 @@ export default {
       }
     }
   },
-
   computed: {
     ...mapState({
       articles: state => state.article.hotList.data,
@@ -132,12 +134,16 @@ export default {
       this.keyword = this.$route.params.keyword
     }
   },
+
   methods: {
     updateAd() {
       this.renderAd = false
       this.$nextTick(() => {
         this.renderAd = true
       })
+    },
+    randomSoul() {
+      this.soul = soul[Math.floor(Math.random() * soul.length)].content
     },
     handleSlideChange(index) {
       this.adIndex = index

@@ -154,7 +154,7 @@ export const actions = {
   // 获取博主资料
   fetchAdminInfo({ commit }) {
     return this.$axios
-      .$get(URL_PREFIX + '/admin')
+      .$get(URL_PREFIX + '/user/admin')
       .then(response => commit('updateAdminInfo', response))
   },
 

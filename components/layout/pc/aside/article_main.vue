@@ -210,6 +210,7 @@ export default {
     .icon{
       width: 1.5em;
       height: 1.5em;
+      margin-right: 0.5em;
     }
     .recommend{
       padding: 15px;
