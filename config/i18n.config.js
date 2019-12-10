@@ -73,7 +73,7 @@ module.exports = {
         en: 'app'
       },
       map: {
-        zh: '怀柔',
+        zh: '怀桑',
         en: 'SiteMap.XML'
       },
       login: {
