@@ -418,6 +418,12 @@ export default {
   },
   activated() {
     this.updateAd()
+    // 页面初始化时是否勾选喜欢
+    if (localStorage.getItem('article_' + this.article.id)) {
+      this.likeImage = this.asideImage.disLikeImage
+      this.likeBackgroundColor = this.asideImage.disLikeBackgroundColor
+      this.likeBadge = this.likeBadge + 1
+    }
   },
   deactivated() {
     this.lozadObserver = null
@@ -432,10 +438,12 @@ export default {
         this.likeImage = this.asideImage.disLikeImage
         this.likeBackgroundColor = this.asideImage.disLikeBackgroundColor
         this.likeBadge = this.likeBadge - 1
+        this.$store.dispatch('article/unLikeArticle', this.article.id)
       } else {
         this.likeImage = this.asideImage.likeImage
         this.likeBackgroundColor = this.asideImage.likeBackgroundColor
         this.likeBadge = this.likeBadge + 1
+        this.$store.dispatch('article/likeArticle', this.article.id)
       }
       this.isLikeStatus = !this.isLikeStatus
     },

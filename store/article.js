@@ -160,9 +160,18 @@ export const actions = {
   },
 
   // 喜欢文章
-  fetchLikeArticle({ commit }, article_id) {
+  likeArticle({ commit }, article_id) {
     return this.$axios.$put(`/api/article/like/${article_id}`)
       .then(response => {
+        commit('updateLikesIncrement')
+        localStorage.setItem('article_' + article_id, '1')
+        return Promise.resolve(response)
+      })
+  },
+  unLikeArticle({ commit }, article_id) {
+    return this.$axios.$delete(`/api/article/like/${article_id}`)
+      .then(response => {
+        localStorage.removeItem('article_' + article_id)
         commit('updateLikesIncrement')
         return Promise.resolve(response)
       })
