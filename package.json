@@ -27,7 +27,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server.js --watch server.js",
     "dev:tool": "devtool ./server.js --watch",
-    "build": "nuxt build && node upload.js",
+    "buildAndUpload": "nuxt build && node upload.js",
+    "build": "nuxt build",
     "analyz": "nuxt build --analyzer",
     "generate": "nuxt generate",
     "start": "cross-env NODE_ENV=production node server.js",

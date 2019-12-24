@@ -6,7 +6,7 @@
     "socketHost": "http://localhost:3000"
   },
   "production": {
-    "cdnUrl": "https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt", 
+    "cdnUrl": "", 
     "proxyUrl": "https://ibole.me/proxy/",
     "baseUrl": "http://207.148.76.64:7300/mock/5da33e62138bda0016388178/youyd_platform",
     "socketHost": "https://ibole.me"
