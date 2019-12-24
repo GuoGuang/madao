@@ -1,3 +1,8 @@
+/**
+ * 将css js等静态文件上传到阿里云oss
+ * 暂且不使用
+ */
+
 const OSS = require('ali-oss')
 const fs = require('fs')
 const path = require('path')
@@ -46,11 +51,7 @@ function addFileToOSSSync(src, dist) {
   docs.forEach(function(doc) {
     const _src = src + '/' + doc
     // const _dist = dist + '/' + doc
-    console.log('前：' + dist)
-
     const _dist = src.indexOf('images') !== -1 ? dist + '/' + doc : '/' + doc // 所有文件上传到一个目录下
-    console.log('后：' + _dist)
-
     const st = fs.statSync(_src)
     // 判断是否为文件
     if (st.isFile() && doc !== '.DS_Store') {
