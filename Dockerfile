@@ -11,4 +11,5 @@ RUN npm install
 RUN npm install sass-loader
 RUN npm install node-sass
 RUN npm run build
-CMD ["npm", "start"]
+RUN npm start
+# CMD ["npm", "start"]
