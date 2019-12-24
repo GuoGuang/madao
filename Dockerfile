@@ -2,9 +2,9 @@ FROM node
 MAINTAINER GuoGuang
 ENV NODE_ENV=production
 ENV HOST 0.0.0.0
-RUN mkdir -p /app
-COPY . /app
-WORKDIR /app
+RUN mkdir -p /asdfasdf
+COPY . /asdfasdf
+WORKDIR /asdfasdf
 RUN pwd
 EXPOSE 3000
 RUN npm install
