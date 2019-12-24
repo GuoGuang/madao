@@ -44,6 +44,8 @@ pipeline {
                     }
                 }
                 // 构建镜像
+              
+                sh "pwd"
                 sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
                 // 运行容器
                 sh "docker run -p 3000:3000 --name ${DOCKER_CONTAINER} -d ${DOCKER_IMAGE}:${env.BUILD_ID}"
