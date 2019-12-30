@@ -1,7 +1,13 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">©{{ year }}&nbsp;&nbsp;ibole.com</div>
+      <div class="footer-content">
+        <div class="copyright">
+          Copyright © 2018-2020 <br>ibole.me博客<br>
+          <a href="" rel="nofollow"/> &nbsp;
+          <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -10,8 +16,11 @@
 export default {
   name: 'MobileFooter',
   computed: {
-    year() {
-      return new Date().getFullYear()
+    days() {
+      var old = new Date('2019-12-01')
+      var n = new Date()
+      var s = n - old
+      return Math.floor(s / (24 * 3600 * 1000))
     }
   }
 }
