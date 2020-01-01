@@ -30,10 +30,10 @@ module.exports = {
   },
   build: {
     // 解决页面重复加载问题 https://github.com/nuxt/nuxt.js/issues/3828#issuecomment-508428611
-    filenames: {
-      app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
-      chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
-    },
+    // filenames: {
+    //   app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
+    //   chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
+    // },
 
     analyze: process.argv.join('').includes('analyze'), // 分析
     maxChunkSize: 360000, // 单个包最大尺寸
