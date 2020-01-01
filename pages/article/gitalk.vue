@@ -18,7 +18,7 @@ export default {
       repo: 'comments',
       owner: 'jackonli-Eils',
       admin: ['jackonli-Eils'],
-      id: location.pathname, // Ensure uniqueness and length less than 50
+      id: location.pathname.match('[^/]+(?!.*/)')[0], // /后面的id
       distractionFreeMode: false // Facebook-like distraction free mode
     })
     gitalk.render('gitalk-container')
