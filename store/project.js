@@ -26,7 +26,6 @@ export const mutations = {
 
 export const actions = {
 
-  // 获取开源项目列表
   fetchRepositories({ commit, state }) {
     // 如果数据已存在，则直接返回
     if (state.repositories.data.length) {
@@ -35,9 +34,36 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateRepositoriesFetching', true)
-    return this.$axios.$get('/api/base/github')
+    return this.$axios.$get('https://api.github.com/users/GuoGuang/repos')
       .then(response => {
-        commit('updateRepositoriesData', response.result)
+        const newResult = []
+        response.forEach((element, index) => {
+          const {
+            html_url,
+            name,
+            fork,
+            forks,
+            forks_count,
+            description,
+            open_issues_count,
+            stargazers_count,
+            created_at,
+            language
+          } = element
+          newResult.push({
+            html_url,
+            name,
+            fork,
+            forks,
+            forks_count,
+            description,
+            open_issues_count,
+            stargazers_count,
+            created_at,
+            language
+          })
+        })
+        commit('updateRepositoriesData', newResult)
         commit('updateRepositoriesFetching', false)
       }).catch(() => commit('updateRepositoriesFetching', false))
   }

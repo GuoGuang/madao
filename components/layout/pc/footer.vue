@@ -25,7 +25,7 @@
       <div class="copyright">
         Copyright © 2019-2019 ibole.me博客<br>
         <a href="" rel="nofollow"/> &nbsp;
-        <span class="ml5">网站在各种灾难中运行了 1 天</span>
+        <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
       </div>
     </div>
   </footer>
@@ -37,6 +37,12 @@ export default {
   computed: {
     isEnLang() {
       return this.$store.state.global.isEnLang
+    },
+    days() {
+      var old = new Date('2019-12-01')
+      var n = new Date()
+      var s = n - old
+      return Math.floor(s / (24 * 3600 * 1000))
     }
   }
 }
