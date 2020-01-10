@@ -8,7 +8,7 @@ import Vue from 'vue'
 import playerBuilder from './player'
 // import appConfig from '~/config/app.config'
 
-const SERVICE_BASE = '/api/base'// base服务
+const SERVICE_BASE = '/api/ba'// base服务
 
 export default new Vue({
   data() {

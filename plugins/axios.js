@@ -7,7 +7,8 @@
 
 // const SUCCESS_STATUS_TEXT = 'success'
 const apiJson = require('~/config/api.json')
-const apis = apiJson['production']
+const { NODE_ENV } = require('~/environment/esm')
+const apis = apiJson[NODE_ENV]
 
 export default function({ $axios, app }) {
   $axios.onRequest(config => {
