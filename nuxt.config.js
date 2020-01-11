@@ -113,6 +113,8 @@ module.exports = {
     }
   },
   plugins: [
+    // 使用antd的锚点组件
+    { src: '~/plugins/antd.js', ssr: true },
     { src: '~/plugins/vue-extend' },
     { src: '~/plugins/loaded-task' },
     { src: '~/plugins/marked' },
