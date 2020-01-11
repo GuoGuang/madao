@@ -40,6 +40,7 @@
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/style-resources": "^0.1.1",
     "ali-oss": "^6.1.1",
+    "ant-design-vue": "^1.4.10",
     "bezier-easing": "^2.1.0",
     "cookie": "^0.3.1",
     "cookie-universal-nuxt": "^2.0.18",
