@@ -2,14 +2,14 @@
   "development": {
     "cdnUrl": "",
     "proxyUrl": "/proxy/",
-    "baseUrl": "http://139.180.196.135:7300/mock/5e10a05ec3735d0016e2c7b4/ibole_api/api",
+    "baseUrl": "http://localhost:8080/api",
     "socketHost": "http://localhost:3000"
   },
   
   "production": {
     "cdnUrl": "", 
     "proxyUrl": "https://ibole.me/proxy/",
-    "baseUrl": "172.17.37.209:8080/api",
+    "baseUrl": "http://192.168.31.232:8080/api",
     "socketHost": "https://ibole.me"
   }
 }
