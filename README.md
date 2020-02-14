@@ -96,10 +96,13 @@ nuxt.js-blog/
 
 ```bash
 
-# install dependencies python2.7
-$ npm install [--python=python2.7]
+# 安装依赖
+$ npm install --save-dev  --unsafe-perm node-sass
+  或者用cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install --save-dev  --unsafe-perm node-sass
 
-# serve with hot reload at localhost:3000
+# 运行在 localhost:3000
 $ npm run dev
 
 # build for production and launch server
