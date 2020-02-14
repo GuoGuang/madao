@@ -93,7 +93,7 @@
     "prettier": "1.14.3",
     "prettier-eslint-cli": "^4.7.1",
     "request": "^2.88.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.3.1"
   },
   "__npminstall_done": false
