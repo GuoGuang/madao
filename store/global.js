@@ -141,7 +141,7 @@ export const mutations = {
   }
 }
 
-const URL_PREFIX = '/api'
+const URL_PREFIX = '/su'
 export const actions = {
 
   // 获取同构常量
@@ -154,8 +154,8 @@ export const actions = {
   // 获取博主资料
   fetchAdminInfo({ commit }) {
     return this.$axios
-      .$get(URL_PREFIX + '/user/admin')
-      .then(response => commit('updateAdminInfo', response))
+      .$get(URL_PREFIX + '/admin')
+      .then(response => commit('updateAdminInfo', response.data))
   },
 
   // 获取全局配置
@@ -165,9 +165,8 @@ export const actions = {
       .then(response => {
         commit('updateAppOptionData', response)
         commit('updateAppOptionFetching', false)
-      })
-      .catch(error => {
-        console.error(error)
+      }).catch((error) => {
+        console.error('获取全局配置失败：' + error.message)
         commit('updateAppOptionFetching', false)
       })
   },

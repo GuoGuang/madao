@@ -42,11 +42,10 @@ export const actions = {
     return this.$axios.$get('/question').then(response => {
       commit('updateQuestionData', response.data)
       commit('updateQuestionFetching', false)
+    }).catch((error) => {
+      console.error('获取question失败：' + error.message)
+      commit('updateQuestionFetching', false)
     })
-      .catch(error => {
-        console.error(error)
-        commit('updateQuestionFetching', false)
-      })
   },
 
   // 获取问题详情

@@ -7,11 +7,12 @@
 
 // const SUCCESS_STATUS_TEXT = 'success'
 const apiJson = require('~/config/api.json')
-const apis = apiJson['production']
+const { NODE_ENV } = require('~/environment/esm')
+const apis = apiJson[NODE_ENV]
 
 export default function({ $axios, app }) {
   $axios.onRequest(config => {
-    $axios.defaults.timeout = 5000
+    $axios.defaults.timeout = 10000
     $axios.defaults.baseURL = apis.baseUrl
     $axios.setHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
     const token = app.$cookies.get('Authorization')
@@ -21,14 +22,13 @@ export default function({ $axios, app }) {
     return config
   })
   $axios.onError(error => {
-    console.log('error')
-    console.log(error)
-    if (error.response.status === 500) {
+    console.log('$axios请求发生异常：', error)
+    if (!error.response) {
       return Promise.reject(error)
     }
   })
   $axios.onResponse(response => {
-    console.log('onResponse')
-    console.log(response)
+    console.log('请求成功：', response.request.path)
+    console.log('请求成功响应体：', response.data)
   })
 }

@@ -9,13 +9,15 @@
         </p>
       </div>
       <!-- <h1 class="error-code">{{ error.statusCode }}</h1> -->
-      <img :src="statusImage" :class="{ 'error-custom': statusCode!=404 }" class="error-img">
+      <img :src="statusImage" :class="{ 'error-custom': statusCode!=404 ,'mobile' : isMobile}" class="error-img">
 
     </div>
   </div>
 </template>
 
 <script>
+
+import { mapState } from 'vuex'
 export default {
   layout: 'empty',
   props: {
@@ -30,6 +32,9 @@ export default {
       statusInfo: '',
       statusCode: ''
     }
+  },
+  computed: {
+    ...mapState('global', ['isMobile'])
   },
   watch: {
     error: {
@@ -64,6 +69,9 @@ export default {
 
 <style lang="scss" scoped>
 
+.mobile{
+  width: 80% !important
+}
 .error-custom{
   width: 40%
 }

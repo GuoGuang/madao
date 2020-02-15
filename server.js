@@ -39,8 +39,6 @@ const io = socketio(server, { transports: ['websocket'] })
 
 if (config.dev) {
   const handleProxy = path => (req, res) => {
-    console.error(req.url)
-    console.error('req.url')
     const targetUrl = 'http://' + req.url.replace('/proxy/' + (path ? path + '/' : ''), '')
     require('request').get(targetUrl).pipe(res)
   }

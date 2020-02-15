@@ -11,6 +11,7 @@ import { isArticleDetailRoute } from '~/utils/route'
 // import onResponse from '~/plugins/axios'
 import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
 
+const api = '/ar/article'
 const getDefaultListData = () => {
   return {
     records: [],
@@ -42,10 +43,10 @@ export const mutations = {
     state.list.fetching = action
   },
   updateListData(state, action) {
-    state.list.data = action
+    state.list.data = action.results
   },
   updateExistingListData(state, action) {
-    state.list.data.data.push(...action.data)
+    state.list.data.data.push(...action.results)
     state.list.data.pagination = action.pagination
   },
 
@@ -55,7 +56,7 @@ export const mutations = {
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
-    state.hotList.data = action.data.records
+    state.hotList.data = action.results
   },
 
   // 文章详情
@@ -87,16 +88,12 @@ export const actions = {
   // 获取文章列表
   fetchList({ commit }, params = {}) {
     console.error('文章')
-    const isRestart = !params.page || params.page === 1
     const isLoadMore = params.page && params.page > 1
 
-    // 清空已有数据
-    isRestart && commit('updateListData', getDefaultListData())
-    commit('updateListFetchig', true)
-
-    return this.$axios.$get(`/api/article`, { params })
+    return this.$axios.$get(`${api}`, { params })
       .then(response => {
         commit('updateListFetchig', false)
+
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {
           Vue.nextTick(() => {
@@ -109,7 +106,7 @@ export const actions = {
         }
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取文章列表失败：' + error.message)
         commit('updateListFetchig', false)
       }
 
@@ -120,13 +117,13 @@ export const actions = {
   fetchHotList({ commit, rootState }) {
     const { SortType } = rootState.global.constants
     commit('updateHotListFetchig', true)
-    return this.$axios.$get(`/api/article`, { params: { cache: 1, sort: SortType.Hot }})
+    return this.$axios.$get(`${api}`, { params: { cache: 1, sort: SortType.Hot }})
       .then(response => {
-        commit('updateHotListData', response)
+        commit('updateHotListData', response.data)
         commit('updateHotListFetchig', false)
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取最热文章列表失败：' + error.message)
         commit('updateHotListFetchig', false)
       })
   },
@@ -143,7 +140,7 @@ export const actions = {
     }
     commit('updateDetailFetchig', true)
     commit('updateDetailData', {})
-    return this.$axios.$get(`/api/article/${params.article_id}`)
+    return this.$axios.$get(`${api}/${params.article_id}`)
       .then(response => {
         return new Promise(resolve => {
           delay(() => {
@@ -161,7 +158,7 @@ export const actions = {
 
   // 喜欢文章
   likeArticle({ commit }, article_id) {
-    return this.$axios.$put(`/api/article/like/${article_id}`)
+    return this.$axios.$put(`${api}/like/${article_id}`)
       .then(response => {
         commit('updateLikesIncrement')
         localStorage.setItem('article_' + article_id, '1')
@@ -169,7 +166,7 @@ export const actions = {
       })
   },
   unLikeArticle({ commit }, article_id) {
-    return this.$axios.$delete(`/api/article/like/${article_id}`)
+    return this.$axios.$delete(`${api}/like/${article_id}`)
       .then(response => {
         localStorage.removeItem('article_' + article_id)
         commit('updateLikesIncrement')

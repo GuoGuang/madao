@@ -1,36 +1,122 @@
 <template>
-  <!-- 文章右侧目录区 Ref:https://github.com/SHERlocked93/progress-catalog-->
-  <div
-    id="scroll-aside"
-    class="aside-fixed-box dic-catalog"
-  />
+  <div>
+    <a-anchor :offset-top="55">
+      <a-anchor-link
+        v-for="(item, index) in tree"
+        :key="index"
+        :href="'#'+item.id"
+        :title="item.name"
+      />
+    </a-anchor>
+  </div>
 </template>
 
 <script>
-import Catalog from './progress-catalog'
 export default {
   name: 'Directory',
   data() {
-    return {}
+    return {
+      tree: []
+    }
   },
   mounted() {
+    // 使用演示5ms解决异步获取数据后document.getElementById(Opt.contentEl)为null的问题
     setTimeout(() => {
-      new Catalog({
+      const defaultOpts = {
+        selector: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] // 按优先级排序
+      }
+      const Opt = Object.assign({}, defaultOpts, {
         contentEl: 'article-content',
         catalogEl: 'scroll-aside',
-        selector: ['h2', 'h3'],
-        bottomMargin: 100
+        selector: ['h1', 'h2', 'h3']
       })
+      const $content = document.getElementById(Opt.contentEl) // 内容获取区
+      const allCatalogs = $content.querySelectorAll(Opt.selector.join())
+      const tree = this.getCatalogsTree(allCatalogs)
+      this.tree = tree
     }, 500)
+  },
+  methods: {
+
+    /**
+     * 获取目录树，生成类似于Vnode的树
+     * @param catalogs
+     */
+    getCatalogsTree(catalogs) {
+      let title
+      let tagName
+      const tree = []
+      let treeItem = {}
+      const parentItem = { id: -1 }
+      let lastTreeItem = null
+      let id
+      for (let i = 0; i < catalogs.length; i++) {
+        title = catalogs[i].innerText || catalogs[i].textContent
+        tagName = catalogs[i].tagName
+        id = 'heading-' + i
+        catalogs[i].id = id
+        treeItem = {
+          name: title,
+          tagName: tagName,
+          id: id,
+          level: +this.getLevel(tagName),
+          parent: parentItem
+        }
+        if (lastTreeItem) {
+          if (
+            this.getLevel(treeItem.tagName) >
+            this.getLevel(lastTreeItem.tagName)
+          ) {
+            treeItem.parent = lastTreeItem
+          } else {
+            treeItem.parent = this.findParent(treeItem, lastTreeItem)
+          }
+        }
+        lastTreeItem = treeItem
+        tree.push(treeItem)
+      }
+      return tree
+    },
+
+    /**
+     *  获取等级
+     * @param tagName
+     * @returns {*}
+     */
+    getLevel(tagName) {
+      return tagName ? tagName.slice(1) : 0
+    },
+
+    /**
+     * 找到当前节点的父级
+     * @param currTreeItem
+     * @param lastTreeItem
+     * @returns {*|Window}
+     */
+    findParent(currTreeItem, lastTreeItem) {
+      let lastTreeParent = lastTreeItem.parent
+      while (
+        lastTreeParent &&
+        this.getLevel(currTreeItem.tagName) <=
+          this.getLevel(lastTreeParent.tagName)
+      ) {
+        lastTreeParent = lastTreeParent.parent
+      }
+      return lastTreeParent || { id: -1 }
+    }
+
   }
 }
 </script>
 
 <style lang="scss">
-.dic-catalog {
-  .cl-link{
-  line-height: 2em;
+.ant-anchor-wrapper {
+  background-color: inherit;
 }
+.dic-catalog {
+  .cl-link {
+    line-height: 2em;
+  }
   .cl-wrapper {
     position: relative;
   }

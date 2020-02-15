@@ -16,24 +16,29 @@
           <span v-text="$i18n.nav.home"/>
         </nuxt-link>
 
-        <nuxt-link to="/category/code" class="item">
+        <nuxt-link to="/music" class="item">
           <i class="iconfont icon-shandian" style="color:inherit"/>
-          <span style="color:inherit" v-text="$i18n.nav.technology"/>
+          <span style="color:inherit" v-text="$i18n.nav.music"/>
+        </nuxt-link>
+        <nuxt-link to="/security" class="item">
+          <i class="iconfont icon-anquanguizeyong" style="color:inherit"/>
+          <span style="color:inherit" v-text="$i18n.nav.security"/>
         </nuxt-link>
 
-        <nuxt-link to="/category/think" class="item">
-          <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.security "/>
-        </nuxt-link>
-        <nuxt-link to="/sitemap" class="item">
+        <nuxt-link to="/welfare" class="item">
           <i class="iconfont icon-dribbble"/>
-          <span v-text="$i18n.nav.welfare"/>
+          <span v-text="$i18n.nav.welfare "/>
         </nuxt-link>
-        <nuxt-link to="/vlog" class="item">
+
+        <nuxt-link to="/service" class="item">
           <i class="iconfont icon-xuexi"/>
-          <span v-text="$i18n.nav.service"/>
+          <span v-text="$i18n.nav.service "/>
         </nuxt-link>
-        <nuxt-link to="/about" class="item">
+        <nuxt-link to="/project" class="item">
+          <i class="iconfont icon-xuexi"/>
+          <span v-text="$i18n.nav.project"/>
+        </nuxt-link>
+        <nuxt-link to="/other" class="item">
           <i class="iconfont icon-pen"/>
           <span v-text="$i18n.nav.other"/>
         </nuxt-link>

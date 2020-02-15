@@ -24,13 +24,13 @@ export const actions = {
   fetchList({ commit }, params) {
     console.error('/categor')
     commit('updateFetching', true)
-    return this.$axios.$get(`/api/article/category`, { params })
+    return this.$axios.$get(`/ar/article/category`, { params })
       .then(response => {
         commit('updateListData', response)
         commit('updateFetching', false)
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取分类失败：' + error.message)
         commit('updateFetching', false)
       })
   }

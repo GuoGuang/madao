@@ -87,7 +87,7 @@ export default {
   computed: {
     ...mapState('global', ['imageExt', 'isMobile']),
     articleList() {
-      const articles = [...this.article.data.records].slice(0, 9)
+      const articles = [...this.article.data].slice(0, 9)
       articles.length && articles.splice(2, 0, {
         ad: true,
         ...adConfig.pc.carrousel
