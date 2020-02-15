@@ -83,8 +83,8 @@ export const actions = {
           commit('updateListFetchig', false)
         })
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取评论失败：' + error.message)
         commit('updateListFetchig', false)
       })
   },

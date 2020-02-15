@@ -42,8 +42,8 @@ export const actions = {
         commit('updateVideoData', response)
         commit('updateVideoFetching', false)
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取视频列表失败：' + error.message)
         commit('updateVideoFetching', false)
       })
   }

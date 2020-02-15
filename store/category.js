@@ -29,8 +29,8 @@ export const actions = {
         commit('updateListData', response)
         commit('updateFetching', false)
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取分类失败：' + error.message)
         commit('updateFetching', false)
       })
   }

@@ -40,8 +40,8 @@ export const actions = {
         commit('updateEventsData', response.result)
         commit('updateEventsFetching', false)
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取开源项目列表失败：' + error.message)
         commit('updateEventsFetching', false)
       })
   }

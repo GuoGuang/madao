@@ -106,7 +106,7 @@ export const actions = {
         }
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取文章列表失败：' + error.message)
         commit('updateListFetchig', false)
       }
 
@@ -123,7 +123,7 @@ export const actions = {
         commit('updateHotListFetchig', false)
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取最热文章列表失败：' + error.message)
         commit('updateHotListFetchig', false)
       })
   },

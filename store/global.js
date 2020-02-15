@@ -165,9 +165,8 @@ export const actions = {
       .then(response => {
         commit('updateAppOptionData', response)
         commit('updateAppOptionFetching', false)
-      })
-      .catch(error => {
-        console.error(error)
+      }).catch((error) => {
+        console.error('获取全局配置失败：' + error.message)
         commit('updateAppOptionFetching', false)
       })
   },
