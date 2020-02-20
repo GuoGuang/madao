@@ -38,10 +38,6 @@
           <i class="iconfont icon-xuexi"/>
           <span v-text="$i18n.nav.project"/>
         </nuxt-link>
-        <nuxt-link to="/other" class="item">
-          <i class="iconfont icon-pen"/>
-          <span v-text="$i18n.nav.other"/>
-        </nuxt-link>
         <nuxt-link to="/about" class="item">
           <i class="iconfont icon-info"/>
           <span v-text="$i18n.nav.about"/>
