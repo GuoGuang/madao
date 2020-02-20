@@ -208,9 +208,8 @@ export default {
     margin: 0;
 
     .icon{
-      width: 1.5em;
+      width: 3em;
       height: 1.5em;
-      margin-right: 0.5em;
     }
     .recommend{
       padding: 15px;

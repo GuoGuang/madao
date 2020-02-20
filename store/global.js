@@ -126,7 +126,7 @@ export const mutations = {
 
   // 获取服务端配置的管理员信息
   updateAdminInfo(state, action) {
-    state.adminInfo = action.result
+    state.adminInfo = action
   },
 
   // 获取服务端配置

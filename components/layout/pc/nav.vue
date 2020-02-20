@@ -37,10 +37,6 @@
           <i class="iconfont icon-xuexi"/>
           <span v-text="$i18n.nav.project"/>
         </el-menu-item>
-        <el-menu-item index="/other">
-          <i class="iconfont icon-pen"/>
-          <span v-text="$i18n.nav.other"/>
-        </el-menu-item>
         <el-menu-item index="/about" class="item">
           <i class="iconfont icon-info"/>
           <span v-text="$i18n.nav.about"/>

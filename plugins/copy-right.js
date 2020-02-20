@@ -2,7 +2,7 @@
  * @file 复制拦截器 / ES module
  * @module plugins/copy-right
  * @author GuoGuang <https://github.com/GuoGuang>
- */
+
 
 import { isBrowser } from '~/environment/esm'
 
@@ -40,3 +40,4 @@ if (isBrowser) {
     }
   })
 }
+ */
