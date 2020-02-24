@@ -46,7 +46,6 @@
     "cookie-universal-nuxt": "^2.0.18",
     "cross-env": "^5.2.0",
     "element-ui": "^2.10.1",
-    "emoji-233333": "^0.2.2",
     "express": "^4.16.4",
     "favico.js": "^0.3.10",
     "fs-extra": "^7.0.0",

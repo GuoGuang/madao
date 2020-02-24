@@ -48,7 +48,7 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|233333|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
+              return /swiper|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
             },
             chunks: 'initial',
             priority: 10
@@ -125,7 +125,6 @@ module.exports = {
     { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
     { src: '~/plugins/analytics', mode: 'client' },
-    { src: '~/plugins/emoji-233333', mode: 'client' },
     { src: '~/plugins/image-popup', mode: 'client' },
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
