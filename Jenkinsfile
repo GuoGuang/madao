@@ -25,7 +25,7 @@ pipeline {
            sh "git config --global --add core.compression -1"
             echo "开始从 ${params.repoUrl} 获取代码......"
             // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
-            sh "git clone -b dev https://github.com/GuoGuang/codeif.git"
+            sh "git clone --depth 1 -b dev https://github.com/GuoGuang/codeif.git"
             
         }
      }
