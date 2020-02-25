@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  ibole_vue_ssr_platform:
-    image: ibole_vue_ssr_platform
+  codeif_vue_ssr_platform:
+    image: codeif_vue_ssr_platform
     build: .
     environment:
       NODE_ENV: production

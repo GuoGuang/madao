@@ -48,7 +48,7 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|233333|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
+              return /swiper|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
             },
             chunks: 'initial',
             priority: 10
@@ -125,7 +125,6 @@ module.exports = {
     { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
     { src: '~/plugins/analytics', mode: 'client' },
-    { src: '~/plugins/emoji-233333', mode: 'client' },
     { src: '~/plugins/image-popup', mode: 'client' },
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
@@ -168,11 +167,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//ibole.me` },
-      { rel: 'dns-prefetch', href: '//api.ibole.me' },
-      { rel: 'dns-prefetch', href: '//cdn.ibole.me' },
-      { rel: 'dns-prefetch', href: '//static.ibole.me' },
-      { rel: 'dns-prefetch', href: '//gravatar.ibole.me' },
+      { rel: 'dns-prefetch', href: `//codeif.me` },
+      { rel: 'dns-prefetch', href: '//api.codeif.me' },
+      { rel: 'dns-prefetch', href: '//cdn.codeif.me' },
+      { rel: 'dns-prefetch', href: '//static.codeif.me' },
+      { rel: 'dns-prefetch', href: '//gravatar.codeif.me' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },
