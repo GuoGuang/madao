@@ -60,6 +60,16 @@ pipeline {
                 echo '-->> 3#构建成功-->>'
             }
         }
-     
+
+        sh 'pwd'
+        sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+        sh "docker run -p 3000:3000 --name ${DOCKER_CONTAINER} -d ${DOCKER_IMAGE}:${env.BUILD_ID}"
+        echo '-->> 3#构建成功-->>'
+      }
+    }
+
+  }
+  tools {
+    nodejs 'nodejs'
   }
 }
