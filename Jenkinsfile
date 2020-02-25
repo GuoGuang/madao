@@ -22,8 +22,6 @@ pipeline {
   stages {
      stage('获取代码') {
        steps {
-           sh "git config --global --add core.compression -1"
-            echo "开始从 ${params.repoUrl} 获取代码......"
             // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
             sh "git clone --depth 1 -b dev https://github.com/GuoGuang/codeif.git"
             
@@ -31,6 +29,9 @@ pipeline {
      }
     stage('Docker构建') {
             steps {
+
+                        sh "apt-get update"
+                        sh "apt-get install sshpass"
                 sh "sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP} free total -g "
                 sh "${REMOTE_SCRIPT} free total -g "
                 script {
