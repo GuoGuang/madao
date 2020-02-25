@@ -23,7 +23,6 @@ pipeline {
      stage('获取代码') {
        steps {
             sh "rm -rf ./*"
-            sh "git config --global core.compression 0"
             // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
             sh "git clone --depth 1 -b dev https://github.com/GuoGuang/codeif.git"
             
