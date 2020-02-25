@@ -7,7 +7,9 @@ pipeline {
         // BUILD_NUMBER = credentials('aliyun-docker')
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
+        REMOTE_IP = "139.9.155.54"
         DOCKER_IMAGE = 'ibole-blog'
+        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP}'
         DOCKER_CONTAINER = 'ibole-blog'
         //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
@@ -28,6 +30,8 @@ pipeline {
      }
     stage('Docker构建') {
             steps {
+                sh "sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP} free total -g "
+                sh "${REMOTE_SCRIPT} free total -g "
                 script {
                     // 停止并删除列表中有 ${DOCKER_CONTAINER} 的容器
                     def container = sh(returnStdout: true, script: "docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}'").trim()
