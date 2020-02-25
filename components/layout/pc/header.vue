@@ -231,7 +231,7 @@
           </div>
 
           <!-- 未登录-->
-          <div v-else class="navbar-login" >
+          <div v-else class="navbar-login" style="visibility:hidden;">>
             <a href="#" class="tougao">投稿</a>
             <a class="login" style="font-size: 15px;" href="#" @click="loginDialog">{{ $i18n.nav.login }}</a>
             <span class="line"/>
