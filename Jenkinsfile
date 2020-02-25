@@ -26,6 +26,7 @@ pipeline {
             sh "rm -rf ./*"
             // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
             sh "git clone -b dev https://github.com/GuoGuang/codeif.git"
+            sh "git clone -b dev git@github.com:GuoGuang/codeif.git"
         }
      }
     stage('Docker构建') {
