@@ -9,7 +9,6 @@ pipeline {
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
         REMOTE_IP = "139.9.155.54"
         DOCKER_IMAGE = 'codeif-blog'
-        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP}'
         DOCKER_CONTAINER = 'codeif-blog'
         //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
