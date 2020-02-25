@@ -8,9 +8,9 @@ pipeline {
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
         REMOTE_IP = "139.9.155.54"
-        DOCKER_IMAGE = 'ibole-blog'
+        DOCKER_IMAGE = 'codeif-blog'
         REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP}'
-        DOCKER_CONTAINER = 'ibole-blog'
+        DOCKER_CONTAINER = 'codeif-blog'
         //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
         BUILD_USER_EMAIL = '1831682775@qq.com'
@@ -24,8 +24,8 @@ pipeline {
      stage('获取代码') {
        steps {
             sh "rm -rf ./*"
-            git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/ibole.git', branch: 'dev'
-            //sh "git clone -b dev https://github.com/GuoGuang/ibole_admin_manage.git"
+            git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
+            //sh "git clone -b dev https://github.com/GuoGuang/codeif_admin_manage.git"
         }
      }
     stage('Docker构建') {

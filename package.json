@@ -1,20 +1,20 @@
 {
-  "name": "ibole.com",
+  "name": "codeif.com",
   "version": "2.1.4",
-  "description": "ibole.com blog",
+  "description": "codeif.com blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://ibole.com"
+    "url": "https://codeif.com"
   },
   "license": "MIT",
-  "homepage": "http://ibole.com",
+  "homepage": "http://codeif.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang/ibole.git"
+    "url": "git+https://github.com/GuoGuang/codeif.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang/ibole/issues"
+    "url": "https://github.com/GuoGuang/codeif/issues"
   },
   "engines": {
     "npm": ">=5.5.0",

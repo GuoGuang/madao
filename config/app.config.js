@@ -5,18 +5,18 @@
  */
 
 exports.meta = {
-  title: 'ibole',
-  keywords: 'ibole,爱伯乐,后端开发者,java开发,爱伯乐博客平台',
+  title: 'codeif',
+  keywords: 'codeif,爱伯乐,后端开发者,java开发,爱伯乐博客平台',
   description: '百学须先立志',
-  url: 'ibole.com',
-  author: 'ibole',
+  url: 'codeif.com',
+  author: 'codeif',
   email: 'guoguang0536@gmail.com',
 }
 
 exports.webrtc = {
-  room: 'ibole',
-  iceServerUsername: 'ibole',
-  iceServerCredential: 'ibole',
+  room: 'codeif',
+  iceServerUsername: 'codeif',
+  iceServerCredential: 'codeif',
 }
 
 exports.music = {

@@ -1,7 +1,7 @@
 /**
  * @file Github 项目数据状态 / ES module
  * @module store/project
- * @author Ibole <https://github.com/ibole-china>
+ * @author codeif <https://github.com/codeif-china>
  */
 
 export const state = () => {

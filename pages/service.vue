@@ -137,7 +137,7 @@ export default {
     },
 
     url() {
-      return `https://ibole.me${this.$route.fullPath}`
+      return `https://codeif.me${this.$route.fullPath}`
     }
   }
 }
