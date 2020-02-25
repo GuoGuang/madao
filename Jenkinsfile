@@ -24,8 +24,8 @@ pipeline {
      stage('获取代码') {
        steps {
             sh "rm -rf ./*"
-            git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
-            //sh "git clone -b dev https://github.com/GuoGuang/codeif_admin_manage.git"
+            // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
+            sh "git clone -b dev https://github.com/GuoGuang/codeif.git"
         }
      }
     stage('Docker构建') {
