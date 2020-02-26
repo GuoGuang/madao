@@ -31,16 +31,17 @@ pipeline {
      }
     stage('Docker打包推送') {
             steps {
-                sh "pwd"
-                sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
-                echo '-->> 3#构建成功-->>'
-                sh "docker login --username=guoguang0536 --password ${DOCKER_HUB_PASSWORD}"
-                sh "docker tag ${DOCKER_IMAGE}:${env.BUILD_ID} guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
-                script {
-                    sh "docker push guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
-                    echo "构建并推送到远程服务器成功--->"
+                dir(path: "/${WORKSPACE}") {
+                    sh "pwd"
+                    sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                    echo '-->> 3#构建成功-->>'
+                    sh "docker login --username=guoguang0536 --password ${DOCKER_HUB_PASSWORD}"
+                    sh "docker tag ${DOCKER_IMAGE}:${env.BUILD_ID} guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    script {
+                        sh "docker push guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                        echo "构建并推送到远程服务器成功--->"
+                    }
                 }
-                
             }
         } 
         stage('远程Docker拉取并构建') {
