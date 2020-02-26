@@ -10,7 +10,7 @@ pipeline {
         REMOTE_IP = "139.9.155.54"
         DOCKER_IMAGE = 'codeif-blog'
         DOCKER_CONTAINER = 'codeif-blog'
-        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@$139.9.155.54'
+        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@139.9.155.54'
         //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
         BUILD_USER_EMAIL = '1831682775@qq.com'
