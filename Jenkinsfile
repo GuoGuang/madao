@@ -25,7 +25,7 @@ pipeline {
        steps {
             sh "rm -rf ./*"
             // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
-            sh "git clone --depth 1 -b dev https://github.com/GuoGuang/codeif.git"
+            sh "git clone --depth 1 -b dev https://gitee.com/guoguang0536/codeif.git"
             
         }
      }
