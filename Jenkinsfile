@@ -8,7 +8,7 @@ pipeline {
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
         REMOTE_IP = "139.9.155.54"
-        DOCKER_IMAGE = 'codeif'
+        DOCKER_IMAGE = 'code_blog'
         DOCKER_CONTAINER = 'codeif-blog'
         REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@139.9.155.54'
         //测试人员邮箱地址【参数值对外隐藏】
@@ -33,12 +33,12 @@ pipeline {
             steps {
                 dir(path: "/${WORKSPACE}/codeif") {
                     sh "pwd"
-                    sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                    sh "docker build -t codeif:${env.BUILD_ID} ."
                     echo '-->> 3#构建成功-->>'
-                    sh "docker login --username=guoguang0536 --password ${DOCKER_HUB_PASSWORD}"
-                    sh "docker tag ${DOCKER_IMAGE}:${env.BUILD_ID} guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    sh "docker login --username=1831682775@qq.com --password ${DOCKER_HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com"
+                    sh "docker tag ${DOCKER_IMAGE}:${env.BUILD_ID} registry.cn-hangzhou.aliyuncs.com/codeif/${DOCKER_IMAGE}:${env.BUILD_ID}"
                     script {
-                        sh "docker push guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                        sh "docker push registry.cn-hangzhou.aliyuncs.com/codeif/${DOCKER_IMAGE}:${env.BUILD_ID}"
                         echo "构建并推送到远程服务器成功--->"
                     }
                 }
@@ -67,8 +67,8 @@ pipeline {
 
                 sh "${REMOTE_SCRIPT} pwd "
                 sh "${REMOTE_SCRIPT} docker -v "
-                sh "${REMOTE_SCRIPT} docker pull guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID} "
-                sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name ${DOCKER_IMAGE} -d guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                sh "${REMOTE_SCRIPT} docker pull registry.cn-hangzhou.aliyuncs.com/codeif/code_blog:${env.BUILD_ID}"
+                sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name ${DOCKER_IMAGE} -d registry.cn-hangzhou.aliyuncs.com/codeif/code_blog:${env.BUILD_ID}"
                 echo '-->> #远程主机构建成功-->>'
                 
             }
