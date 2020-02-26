@@ -31,7 +31,7 @@ pipeline {
      }
     stage('Docker构建') {
             steps {
-
+                sh "pwd"
                         sh "apt-get update"
                         sh "apt-get install sshpass"
                 sh "sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP} free total -g "
