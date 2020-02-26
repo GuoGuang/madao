@@ -31,8 +31,6 @@ pipeline {
      }
     stage('Docker打包推送') {
             steps {
-
-                sh "pwd"
                 dir(path: "/${WORKSPACE}/codeif") {
                     sh "pwd"
                     sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
