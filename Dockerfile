@@ -6,9 +6,7 @@ RUN mkdir -p /codeif-blog
 COPY . /codeif-blog
 WORKDIR /codeif-blog
 RUN pwd
-RUN npm install
-RUN npm install sass-loader
-RUN npm install node-sass
+RUN npm install --save-dev  --unsafe-perm node-sass
 RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
