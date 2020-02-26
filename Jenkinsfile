@@ -8,7 +8,7 @@ pipeline {
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
         REMOTE_IP = "139.9.155.54"
-        DOCKER_IMAGE = 'codeif-blog'
+        DOCKER_IMAGE = 'codeif'
         DOCKER_CONTAINER = 'codeif-blog'
         REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@139.9.155.54'
         //测试人员邮箱地址【参数值对外隐藏】
@@ -29,35 +29,47 @@ pipeline {
             
         }
      }
-    stage('Docker构建') {
+    stage('Docker打包推送') {
             steps {
                 sh "pwd"
-                        sh "apt-get update"
-                        sh "apt-get install sshpass"
-                sh "sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${REMOTE_IP} free total -g "
-                sh "${REMOTE_SCRIPT} free total -g "
+                sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                echo '-->> 3#构建成功-->>'
+                sh "docker login --username=guoguang0536 --password ${DOCKER_HUB_PASSWORD}"
+                sh "docker tag ${DOCKER_IMAGE}:${env.BUILD_ID} guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                script {
+                    sh "docker push guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    echo "构建并推送到远程服务器成功--->"
+                }
+                
+            }
+        } 
+        stage('远程Docker拉取并构建') {
+            steps {
+                sh "pwd"
+                sh "apt-get update"
+                sh "apt-get install sshpass"
                 script {
                     // 停止并删除列表中有 ${DOCKER_CONTAINER} 的容器
-                    def container = sh(returnStdout: true, script: "docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}'").trim()
+                    def container = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}'").trim()
                     if (container.size() > 0) {
-                        sh "docker ps -a | grep $DOCKER_CONTAINER | awk  '{print \$1}' | xargs docker stop"
-                        sh "docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}' | xargs docker rm"
+                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk  '{print \$1}' | xargs docker stop"
+                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}' | xargs docker rm"
                         echo '-->> 1#停止并删除容器 -->>'
                     }
                     // 删除列表中有 ${DOCKER_IMAGE} 的镜像
-                    def image = sh(returnStdout: true, script: "docker images | grep $DOCKER_IMAGE | awk '{print \$3}'").trim()
+                    def image = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}'").trim()
                     if (image.size() > 0) {
-                        sh "docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs docker rmi"
+                        sh "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs docker rmi"
                         echo '-->> 2#停止并删除镜像 -->>'
                     }
                 }
-                // 构建镜像
-              
-                sh "pwd"
-                sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
-                // 运行容器
-                sh "docker run -p 3000:3000 --name ${DOCKER_CONTAINER} -d ${DOCKER_IMAGE}:${env.BUILD_ID}"
-                echo '-->> 3#构建成功-->>'
+
+                sh "${REMOTE_SCRIPT} pwd "
+                sh "${REMOTE_SCRIPT} docker -v "
+                sh "${REMOTE_SCRIPT} docker pull guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID} "
+                sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name ${DOCKER_IMAGE} -d guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                echo '-->> #远程主机构建成功-->>'
+                
             }
         }
 
