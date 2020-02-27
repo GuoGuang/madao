@@ -53,14 +53,14 @@ pipeline {
                     // 停止并删除列表中有 ${DOCKER_CONTAINER} 的容器
                     def container = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}'").trim()
                     if (container.size() > 0) {
-                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk  '{print \$1}' | xargs docker stop"
-                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}' | xargs docker rm"
+                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk  '{print \$1}' | xargs ${REMOTE_SCRIPT} docker stop"
+                        sh "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}' | xargs ${REMOTE_SCRIPT} docker rm"
                         echo '-->> 1#停止并删除容器 -->>'
                     }
                     // 删除列表中有 ${DOCKER_IMAGE} 的镜像
                     def image = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}'").trim()
                     if (image.size() > 0) {
-                        sh "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs docker rmi -f"
+                        sh "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs ${REMOTE_SCRIPT} docker rmi -f"
                         echo '-->> 2#停止并删除镜像 -->>'
                     }
                 }
