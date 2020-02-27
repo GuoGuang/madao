@@ -25,8 +25,8 @@ pipeline {
        steps {
             sh "pwd"
             sh "rm -rf ./*"
-            git credentialsId: '*****-****-****-****-*********', url: 'https://gitee.com/jackso_n/codeif.git', branch: 'dev'
-            // sh "git clone --depth 1 -b dev https://gitee.com/jackso_n/codeif.git"
+            //git credentialsId: '*****-****-****-****-*********', url: 'https://gitee.com/jackso_n/codeif.git', branch: 'dev'
+            sh "git clone --depth 1 -b dev https://gitee.com/jackso_n/codeif.git"
             
         }
      }
