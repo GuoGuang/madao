@@ -8,8 +8,8 @@ pipeline {
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
         REMOTE_IP = "139.9.155.54"
-        DOCKER_IMAGE = 'code_blog'
-        DOCKER_CONTAINER = 'codeif-blog'
+        DOCKER_IMAGE = 'codeif_blog'
+        DOCKER_CONTAINER = 'codeif_blog'
         REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@139.9.155.54'
         //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
