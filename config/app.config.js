@@ -5,8 +5,8 @@
  */
 
 exports.meta = {
-  title: 'codeif',
-  keywords: 'codeif,爱伯乐,后端开发者,java开发,爱伯乐博客平台',
+  title: 'CODEIF',
+  keywords: 'codeif,后端开发者,java开发,博客平台',
   description: '百学须先立志',
   url: 'codeif.com',
   author: 'codeif',
