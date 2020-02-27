@@ -67,6 +67,7 @@ pipeline {
 
                 sh "${REMOTE_SCRIPT} pwd "
                 sh "${REMOTE_SCRIPT} docker -v "
+                sh "${REMOTE_SCRIPT} docker login --username=1831682775@qq.com --password ${DOCKER_HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com"
                 sh "${REMOTE_SCRIPT} docker pull registry.cn-hangzhou.aliyuncs.com/codeif/code_blog:${env.BUILD_ID}"
                 sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name ${DOCKER_IMAGE} -d registry.cn-hangzhou.aliyuncs.com/codeif/code_blog:${env.BUILD_ID}"
                 echo '-->> #远程主机构建成功-->>'
