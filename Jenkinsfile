@@ -23,9 +23,10 @@ pipeline {
   stages {
      stage('获取代码') {
        steps {
+            sh "pwd"
             sh "rm -rf ./*"
-            // git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
-            sh "git clone --depth 1 -b dev https://gitee.com/guoguang0536/codeif.git"
+            git credentialsId: '*****-****-****-****-*********', url: 'https://github.com/GuoGuang/codeif.git', branch: 'dev'
+            // sh "git clone --depth 1 -b dev https://gitee.com/guoguang0536/codeif.git"
             
         }
      }
