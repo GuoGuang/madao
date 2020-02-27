@@ -6,7 +6,7 @@
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeif" target="blank">
-    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.me logo" />
+    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.tech logo" />
   </a>
 </p>
 

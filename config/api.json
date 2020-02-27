@@ -8,8 +8,8 @@
   
   "production": {
     "cdnUrl": "", 
-    "proxyUrl": "https://codeif.me/proxy/",
+    "proxyUrl": "https://codeif.tech/proxy/",
     "baseUrl": "http://139.180.196.135:7300/mock/5e10a05ec3735d0016e2c7b4/codeif_api/api",
-    "socketHost": "https://codeif.me"
+    "socketHost": "https://codeif.tech"
   }
 }
