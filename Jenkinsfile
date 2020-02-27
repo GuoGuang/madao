@@ -60,7 +60,7 @@ pipeline {
                     // 删除列表中有 ${DOCKER_IMAGE} 的镜像
                     def image = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}'").trim()
                     if (image.size() > 0) {
-                        sh "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs docker rmi"
+                        sh "${REMOTE_SCRIPT} docker images | grep $DOCKER_IMAGE | awk '{print \$3}' | xargs docker rmi -f"
                         echo '-->> 2#停止并删除镜像 -->>'
                     }
                 }
