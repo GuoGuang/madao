@@ -6,6 +6,7 @@ RUN mkdir -p /codeif-blog
 COPY . /codeif-blog
 WORKDIR /codeif-blog
 RUN pwd
+RUN npm install
 RUN npm install --save-dev  --unsafe-perm node-sass
 RUN npm run build
 EXPOSE 3000
