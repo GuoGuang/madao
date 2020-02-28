@@ -23,7 +23,7 @@
         </span>
       </div>
       <div class="copyright">
-        Copyright © 2019-2019 codeif.me博客<br>
+        Copyright © 2019-2019 codeif.tech博客<br>
         <a href="" rel="nofollow"/> &nbsp;
         <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
       </div>

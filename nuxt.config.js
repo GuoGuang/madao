@@ -142,7 +142,7 @@ module.exports = {
   ],
   head: {
     // title: `${appConfig.meta.title} - ${htmlSlogan}`,
-    title: `${appConfig.meta.title} - 爱伯乐`,
+    title: `${appConfig.meta.title}`,
     // titleTemplate: `%s | ${appConfig.meta.title}`,
     htmlAttrs: {
       xmlns: 'http://www.w3.org/1999/xhtml',
@@ -167,11 +167,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//codeif.me` },
-      { rel: 'dns-prefetch', href: '//api.codeif.me' },
-      { rel: 'dns-prefetch', href: '//cdn.codeif.me' },
-      { rel: 'dns-prefetch', href: '//static.codeif.me' },
-      { rel: 'dns-prefetch', href: '//gravatar.codeif.me' },
+      { rel: 'dns-prefetch', href: `//codeif.tech` },
+      { rel: 'dns-prefetch', href: '//api.codeif.tech' },
+      { rel: 'dns-prefetch', href: '//cdn.codeif.tech' },
+      { rel: 'dns-prefetch', href: '//static.codeif.tech' },
+      { rel: 'dns-prefetch', href: '//gravatar.codeif.tech' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },

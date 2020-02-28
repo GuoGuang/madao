@@ -24,16 +24,25 @@
           </div>
         </a>
         <div class="stat-item item">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-caozuo-dianzan"/>
-          </svg>
-          <span class="content">获得赞数<span class="count">709</span></span>
-        </div>
-        <div class="stat-item item">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-view"/>
-          </svg>
-          <span class="content">获得阅读数<span class="count">3,226</span></span>
+          <el-tooltip content="博客文章总数" placement="top" effect="light">
+            <div>
+              <div>文章</div>
+              <div class="center">17</div>
+            </div>
+          </el-tooltip>
+          <el-tooltip content="收到了98个赞" placement="top" effect="light">
+            <div>
+              <div>点赞</div>
+              <div class="center">98</div>
+            </div>
+          </el-tooltip>
+          <el-tooltip content="博客总访问量" placement="top" effect="light">
+            <div>
+              <div>访问</div>
+              <div class="center">1907</div>
+            </div>
+          </el-tooltip>
+
         </div>
 
       </div>
@@ -198,9 +207,30 @@ export default {
 }
 </script>
 
+<style lang="scss">
+  .el-tooltip__popper.is-light {
+    background: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.el-tooltip__popper[x-placement^=top] .popper__arrow:after {
+
+    border-top-color: #eeeeee !important;
+
+}
+
+.el-tooltip__popper[x-placement^=top] .popper__arrow {
+
+    border-top-color: #eeeeee !important;
+
+}
+
+</style>
+
 <style lang="scss" scoped>
   $aside-width: 20em;
-
+ .center{
+    text-align: center;
+  }
   aside {
     float: right;
     display: block;
@@ -234,12 +264,21 @@ export default {
       margin-bottom: 1em;
       .author-info{
         .user-item{
+          justify-content: space-evenly;
           padding: 1.3rem;
           display: flex
         }
         .stat-item{
           margin-bottom: .8rem;
           padding: 0 1.3rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+          color: #888c8e;font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+          font-size: 1em;
+          font-weight: 700;
+          text-align: center;
+          padding: 1em;
+          display: flex;
+          justify-content: space-around;
         }
       }
       >.title {

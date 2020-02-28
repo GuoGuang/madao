@@ -1,12 +1,12 @@
-<h1 align="center">Welcome to codeif.com 👋</h1>
+<h1 align="center">Welcome to codeif.tech 👋</h1>
 
 <p align="center">
   <a href="https://github.com/nuxt/nuxt.js" target="blank">
-    <img src="https://nuxtjs.org/meta_400.png" height="90" alt="nuxt logo" />
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/nuxt.png" height="90" alt="nuxt logo" />
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeif" target="blank">
-    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.me logo" />
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/favicon.ico" height="90" alt="codeif.tech logo" />
   </a>
 </p>
 
@@ -30,12 +30,13 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](http://codeif.com)
+### 🏠 [Homepage](http://139.9.155.54:3000/)
+> 如果喜欢记得给个star哦🌟
 
 ## PC
 
-![](https://github.com/GuoGuang/codeif/blob/master/assets/images/index.png)
-
+![](https://yd-note.oss-cn-beijing.aliyuncs.com/blog/WX20200228-151947%402x.png
+)
 
 ## Directory
 ```
@@ -104,7 +105,7 @@ $ npm install --save-dev  --unsafe-perm node-sass
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install --save-dev  --unsafe-perm node-sass
 
-# 运行在 localhost:3000
+# 运行在 127.0.0.1:3000
 $ npm run dev
 
 # build for production and launch server
