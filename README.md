@@ -33,8 +33,7 @@
 
 ## PC
 
-![](https://yd-note.oss-cn-beijing.aliyuncs.com/blog/WX20200228-151947%402x.png
-)
+![](https://github.com/GuoGuang/codeif/blob/master/static/codeif.png)
 
 ## Directory
 ```
