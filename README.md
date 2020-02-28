@@ -11,8 +11,7 @@
   </a>
 </p>
 
-[<img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico
-" height="90" alt="codeif.tech logo" />]()
+[<img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.tech logo" />]()
 
 
 <p>
