@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to codeif.com 👋</h1>
+<h1 align="center">Welcome to codeif.tech 👋</h1>
 
 <p align="center">
   <a href="https://github.com/nuxt/nuxt.js" target="blank">
@@ -28,7 +28,7 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](http://codeif.com)
+### 🏠 [Homepage](http://codeif.tech)
 
 ## PC
 
@@ -102,7 +102,7 @@ $ npm install --save-dev  --unsafe-perm node-sass
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install --save-dev  --unsafe-perm node-sass
 
-# 运行在 localhost:3000
+# 运行在 127.0.0.1:3000
 $ npm run dev
 
 # build for production and launch server

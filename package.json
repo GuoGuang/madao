@@ -1,14 +1,14 @@
 {
-  "name": "codeif.com",
+  "name": "codeif.tech",
   "version": "2.1.4",
-  "description": "codeif.com blog",
+  "description": "codeif.tech blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://codeif.com"
+    "url": "https://codeif.tech"
   },
   "license": "MIT",
-  "homepage": "http://codeif.com",
+  "homepage": "http://codeif.tech",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GuoGuang/codeif.git"

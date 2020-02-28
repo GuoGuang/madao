@@ -8,7 +8,7 @@ exports.meta = {
   title: 'CODEIF',
   keywords: 'codeif,后端开发者,java开发,博客平台',
   description: '百学须先立志',
-  url: 'codeif.com',
+  url: 'codeif.tech',
   author: 'codeif',
   email: 'guoguang0536@gmail.com',
 }
