@@ -11,6 +11,10 @@
   </a>
 </p>
 
+[<img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico
+" height="90" alt="codeif.tech logo" />]()
+
+
 <p>
   <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
