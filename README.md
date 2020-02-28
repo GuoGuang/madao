@@ -6,7 +6,8 @@
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeif" target="blank">
-    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.tech logo" />
+    <img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico
+" height="90" alt="codeif.tech logo" />
   </a>
 </p>
 
@@ -29,11 +30,12 @@
 
 
 ### 🏠 [Homepage](http://codeif.tech)
+> 如果喜欢记得给个star哦🌟
 
 ## PC
 
-![](https://github.com/GuoGuang/codeif/blob/master/assets/images/index.png)
-
+![](https://yd-note.oss-cn-beijing.aliyuncs.com/blog/WX20200228-151947%402x.png
+)
 
 ## Directory
 ```
