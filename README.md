@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/nuxt/nuxt.js" target="blank">
-    <img src="https://nuxtjs.org/meta_400.png" height="90" alt="nuxt logo" />
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/nuxt.png" height="90" alt="nuxt logo" />
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeif" target="blank">
