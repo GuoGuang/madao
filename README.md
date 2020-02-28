@@ -6,13 +6,9 @@
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeif" target="blank">
-    <img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico
-" height="90" alt="codeif.tech logo" />
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/favicon.ico" height="90" alt="codeif.tech logo" />
   </a>
 </p>
-
-[<img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="codeif.tech logo" />]()
-
 
 <p>
   <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
@@ -32,7 +28,7 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](http://codeif.tech)
+### 🏠 [Homepage](http://139.9.155.54:3000/)
 > 如果喜欢记得给个star哦🌟
 
 ## PC
