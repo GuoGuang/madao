@@ -76,10 +76,10 @@ body{
 }
 
 body {
-  cursor: url('#{$cdn-url}/images/cursor/black-simple.svg'),
-          url('#{$cdn-url}/images/cursor/black.svg'),
-          url('#{$cdn-url}/images/cursor/blue.svg') 5 5,
-          default;
+  // cursor: url('#{$cdn-url}/images/cursor/black-simple.svg'),
+  //         url('#{$cdn-url}/images/cursor/black.svg'),
+  //         url('#{$cdn-url}/images/cursor/blue.svg') 5 5,
+  //         default;
 }
 
 [v-cloak] {
