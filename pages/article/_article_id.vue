@@ -36,7 +36,7 @@
 
             <!-- 标签 -->
             <div class="tags">
-              <a v-for="(tag, index) of tags" :key="index" :style="{'background-color': `${backgroundColor[index]}`}" href="#" rel="tag">{{ tag.name }}</a>
+              <a v-for="(tag, index) of articleTags" :key="index" :style="{'background-color': tag.color}" href="#" rel="tag">{{ tag.name }}</a>
             </div>
 
             <h1 class="title">{{ article.title }}</h1>
@@ -282,7 +282,6 @@ export default {
 
   data() {
     return {
-      backgroundColor: this.$store.state.tag.backgroundColor,
       likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
       isLikeStatus: false,
       likeBackgroundColor: '',
@@ -374,6 +373,10 @@ export default {
     },
     isCanReadMore() {
       return this.isContentTooMore && !this.article.isRenderedFullContent
+    },
+    articleTags() {
+      const { tags } = this.article
+      return tags
     },
     articleContent() {
       const { content, isRenderedFullContent } = this.article
