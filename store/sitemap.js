@@ -40,8 +40,8 @@ export const actions = {
         commit(`updateArticleListData`, response.result)
         commit('updateArticleListFetching', false)
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取地图文章列表失败：' + error.message)
         commit('updateArticleListFetching', false)
       })
   }

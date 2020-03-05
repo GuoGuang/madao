@@ -1,5 +1,5 @@
 # robots.txt
 User-agent: *
 Disallow: /bin/
-# Sitemap: https://ibole.me/sitemap.xml
-# Sitemap: https://ibole.me/sitemap
+# Sitemap: https://codeif.tech/sitemap.xml
+# Sitemap: https://codeif.tech/sitemap

@@ -43,10 +43,10 @@ export const mutations = {
     state.list.fetching = action
   },
   updateListData(state, action) {
-    state.list.data = action
+    state.list.data = action.results
   },
   updateExistingListData(state, action) {
-    state.list.data.data.push(...action.data)
+    state.list.data.data.push(...action.results)
     state.list.data.pagination = action.pagination
   },
 
@@ -56,7 +56,7 @@ export const mutations = {
     state.hotList.fetching = action
   },
   updateHotListData(state, action) {
-    state.hotList.data = action.data.records
+    state.hotList.data = action.results
   },
 
   // 文章详情
@@ -88,16 +88,12 @@ export const actions = {
   // 获取文章列表
   fetchList({ commit }, params = {}) {
     console.error('文章')
-    const isRestart = !params.page || params.page === 1
     const isLoadMore = params.page && params.page > 1
-
-    // 清空已有数据
-    isRestart && commit('updateListData', getDefaultListData())
-    commit('updateListFetchig', true)
 
     return this.$axios.$get(`${api}`, { params })
       .then(response => {
         commit('updateListFetchig', false)
+
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
         if (isLoadMore && isBrowser) {
           Vue.nextTick(() => {
@@ -110,7 +106,7 @@ export const actions = {
         }
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取文章列表失败：' + error.message)
         commit('updateListFetchig', false)
       }
 
@@ -123,11 +119,11 @@ export const actions = {
     commit('updateHotListFetchig', true)
     return this.$axios.$get(`${api}`, { params: { cache: 1, sort: SortType.Hot }})
       .then(response => {
-        commit('updateHotListData', response)
+        commit('updateHotListData', response.data)
         commit('updateHotListFetchig', false)
       })
       .catch(error => {
-        console.error(error)
+        console.error('获取最热文章列表失败：' + error.message)
         commit('updateHotListFetchig', false)
       })
   },

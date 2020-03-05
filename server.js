@@ -17,9 +17,9 @@ process.noDeprecation = true
 const color = c => isDevMode ? c : ''
 global.console = Object.assign(console, {
   log: (...args) => log('[log]', ...args),
-  warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[ibole.me]', ...args),
-  info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[ibole.me]', ...args),
-  error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[ibole.me]', ...args),
+  warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[codeif.tech]', ...args),
+  info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[codeif.tech]', ...args),
+  error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[codeif.tech]', ...args),
 }) */
 
 const config = require('./nuxt.config')
@@ -39,8 +39,6 @@ const io = socketio(server, { transports: ['websocket'] })
 
 if (config.dev) {
   const handleProxy = path => (req, res) => {
-    console.error(req.url)
-    console.error('req.url')
     const targetUrl = 'http://' + req.url.replace('/proxy/' + (path ? path + '/' : ''), '')
     require('request').get(targetUrl).pipe(res)
   }

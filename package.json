@@ -1,20 +1,20 @@
 {
-  "name": "ibole.com",
+  "name": "codeif.tech",
   "version": "2.1.4",
-  "description": "ibole.com blog",
+  "description": "codeif.tech blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://ibole.com"
+    "url": "https://codeif.tech"
   },
   "license": "MIT",
-  "homepage": "http://ibole.com",
+  "homepage": "http://codeif.tech",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang/ibole.git"
+    "url": "git+https://github.com/GuoGuang/codeif.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang/ibole/issues"
+    "url": "https://github.com/GuoGuang/codeif/issues"
   },
   "engines": {
     "npm": ">=5.5.0",
@@ -40,12 +40,12 @@
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/style-resources": "^0.1.1",
     "ali-oss": "^6.1.1",
+    "ant-design-vue": "^1.4.10",
     "bezier-easing": "^2.1.0",
     "cookie": "^0.3.1",
     "cookie-universal-nuxt": "^2.0.18",
     "cross-env": "^5.2.0",
     "element-ui": "^2.10.1",
-    "emoji-233333": "^0.2.2",
     "express": "^4.16.4",
     "favico.js": "^0.3.10",
     "fs-extra": "^7.0.0",
@@ -57,7 +57,7 @@
     "lozad": "^1.8.0",
     "marked": "^0.7.0",
     "node-uuid": "^1.4.8",
-    "nuxt": "^2.9.2",
+    "nuxt": "^2.11.0",
     "particles.js": "^2.0.0",
     "simplewebrtc": "^3.0.2",
     "socket.io": "^2.1.1",
@@ -88,11 +88,11 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.18.10",
     "prettier": "1.14.3",
     "prettier-eslint-cli": "^4.7.1",
     "request": "^2.88.0",
-    "node-sass": "^4.13.0",
     "sass-loader": "^7.3.1"
   },
   "__npminstall_done": false

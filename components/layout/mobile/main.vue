@@ -5,7 +5,6 @@
     </div>
     <div id="app-main" ref="appMain" :class="onMobileSidebarOpenClass">
       <header-view />
-      <emoji-rain v-if="!onPowerSavingMode" />
       <main id="main">
         <div id="main-content" class="main-content">
           <nuxt :nuxt-child-key="$route.name" keep-alive />
@@ -21,14 +20,12 @@ import { mapState } from 'vuex'
 import HeaderView from './header'
 import FooterView from './footer'
 import AsideView from './aside'
-import EmojiRain from '~/components/widget/emoji-rain'
 export default {
   name: 'MobileApp',
   components: {
     HeaderView,
     FooterView,
-    AsideView,
-    EmojiRain
+    AsideView
   },
   computed: {
     ...mapState('global', ['onMobileSidebar', 'onPowerSavingMode']),

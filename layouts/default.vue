@@ -1,7 +1,7 @@
 <template>
   <div v-cloak id="app" :class="theme">
     <!-- 复制内容时 添加来源 -->
-    <Clipboard />
+    <!-- <Clipboard /> -->
 
     <PcMainView v-if="!isMobile" />
     <MobileMainView v-else />

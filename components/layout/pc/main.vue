@@ -32,8 +32,6 @@
     <client-only>
       <!-- 弹幕 -->
       <barrage v-if="isMountedBarrage" v-cloak/>
-      <!--  Canvas 动态背景 -->
-      <emoji-rain v-if="!onPowerSavingMode"/>
     </client-only>
     <footer-view/>
 
@@ -49,7 +47,6 @@ import Barrage from '~/components/widget/barrage/main'
 import WallFlower from '~/components/widget/wall-flower/garden'
 import Webrtc from '~/components/widget/webrtc/main'
 import Background from '~/components/widget/background'
-import EmojiRain from '~/components/widget/emoji-rain'
 import LanguagePsm from '~/components/widget/language-psm'
 import ToolBox from '~/components/widget/tool-box'
 import ShareBox from '~/components/widget/share'
@@ -62,7 +59,7 @@ export default {
   name: 'PcMain',
   components: {
     ToolBox, ShareBox, LanguagePsm,
-    Webrtc, EmojiRain, WallFlower, Background, Barrage, // 实体
+    Webrtc, WallFlower, Background, Barrage, // 实体
     HeaderView, FooterView, AsideView // 布局
   },
   data() {

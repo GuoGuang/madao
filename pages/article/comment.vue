@@ -112,7 +112,7 @@ export default {
   mounted() {
     // 实现 commentAction div以外的元素隐藏自身
     document.addEventListener('click', e => {
-      if (!this.$el.contains(e.target)) {
+      if (!this.$el.firstChild.contains(e.target)) {
         this.commentAction = false
       }
     })

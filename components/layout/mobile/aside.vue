@@ -2,10 +2,10 @@
   <aside class="aside">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="ibole">
+        <img :src="gravatar" alt="codeif">
       </div>
       <div class="profile">
-        <h3 class="name">ibole</h3>
+        <h3 class="name">codeif</h3>
         <p class="email" v-text="$i18n.text.slogan"/>
       </div>
     </div>
@@ -37,10 +37,6 @@
         <nuxt-link to="/project" class="item">
           <i class="iconfont icon-xuexi"/>
           <span v-text="$i18n.nav.project"/>
-        </nuxt-link>
-        <nuxt-link to="/other" class="item">
-          <i class="iconfont icon-pen"/>
-          <span v-text="$i18n.nav.other"/>
         </nuxt-link>
         <nuxt-link to="/about" class="item">
           <i class="iconfont icon-info"/>

@@ -75,7 +75,7 @@ export const actions = {
 
     const delay = fetchDelay()
 
-    return this.$axios.$get(`/comment`, { params })
+    return this.$axios.$get(`/ar/comment`, { params })
       .then(response => {
         isDescSort && response.result.data.reverse()
         delay(() => {
@@ -83,8 +83,8 @@ export const actions = {
           commit('updateListFetchig', false)
         })
       })
-      .catch(error => {
-        console.error(error)
+      .catch((error) => {
+        console.error('获取评论失败：' + error.message)
         commit('updateListFetchig', false)
       })
   },
@@ -92,7 +92,7 @@ export const actions = {
   // 发布评论
   fetchPostComment({ commit }, comment) {
     commit('updatePostFetchig', true)
-    return this.$axios.$post(`/comment`, comment)
+    return this.$axios.$post(`/ar/comment`, comment)
       .then(response => {
         commit('updateListNewItemData', response)
         commit('updatePostFetchig', false)
@@ -106,7 +106,7 @@ export const actions = {
 
   // 喜欢评论
   fetchLikeComment({ commit }, comment) {
-    return this.$axios.$patch(`/like/comment`, { comment_id: comment.id })
+    return this.$axios.$patch(`/ar/like/comment`, { comment_id: comment.id })
       .then(response => {
         commit('updateLikesIncrement', comment)
         return Promise.resolve(response)

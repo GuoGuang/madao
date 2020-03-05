@@ -2,7 +2,7 @@
  * @file 复制拦截器 / ES module
  * @module plugins/copy-right
  * @author GuoGuang <https://github.com/GuoGuang>
- */
+
 
 import { isBrowser } from '~/environment/esm'
 
@@ -15,7 +15,7 @@ if (isBrowser) {
       '商业转载请联系作者获得授权，非商业转载请注明出处。',
       '作者：GuoGuang',
       '链接：' + location.href,
-      '来源：ibole',
+      '来源：codeif',
       ''
     ].join('\n')
   }
@@ -40,3 +40,4 @@ if (isBrowser) {
     }
   })
 }
+ */

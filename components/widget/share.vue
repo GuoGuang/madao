@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     url() {
-      return `https://ibole.me${this.$route.fullPath}`
+      return `https://codeif.tech${this.$route.fullPath}`
     },
     isMobile() {
       return this.$store.state.global.isMobile
@@ -103,12 +103,12 @@ export default {
       try {
         if (document) return document.title
       } catch (err) {
-        return 'ibole.me'
+        return 'codeif.tech'
       }
     },
     shareWindow(social, url) {
       const targetUrl = url().includes('mailto')
-        ? url().replace(/\s|\||ibole.me/g, '')
+        ? url().replace(/\s|\||codeif.tech/g, '')
         : encodeURI(url())
       this.$ga.social(social, '分享', targetUrl)
       /*
@@ -120,7 +120,7 @@ export default {
         *
         */
       // 给打开的窗口命名
-      const windowName = '分享 ibole.me'
+      const windowName = '分享 codeif.tech'
       // 窗口宽度,需要设置
       const awidth = screen.availWidth / 6 * 2
       // 窗口高度,需要设置

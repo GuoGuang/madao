@@ -1,134 +1,58 @@
 <template>
   <!-- 用户页面 -->
   <div class="profile">
-    <el-row class="profile-user-info">
-      <el-col :span="4">
-        <div class="profile__heading--avatar-warp">
-          <a href="/u/GuoGuang">
-            <img
-              class="image"
-              src="https://avatar-static.segmentfault.com/971/470/97147086-59b9044e77b75_huge256"
-              alt="GuoGuang"
-            >
-          </a>
-          <div class="profile__avatar-uploader">
-            <span @click="uploadAvatar">上传头像</span>
-          </div>
-
-        </div>
-        <input id="avatarFile" ref="avatarFile" type="file" name="avatar" class="hide" @change="changeAvatar">
-        <div class="profile__heading--social">
-          <ul class="profile__heading--social-inline">
-            <li>
-              <a class="opacity25 icon-sn-google" target="_blank" href="/user/oauth/google">google</a>
-            </li>
-            <li>
-              <a href="https://github.com/Lin-GG" class="icon-sn-github" target="_blank">qq</a>
-            </li>
-            <li>
-              <a href="http://weibo.com/3303257711" class="icon-sn-weibo" target="_blank">github</a>
-            </li>
-            <li>
-              <a
-                class="opacity25 icon-sn-linkedin"
-                target="_blank"
-                href="/user/oauth/linkedin"
-              >twitter</a>
-            </li>
-            <li>
-              <a class="opacity25 icon-sn-twitter" target="_blank" href="/user/oauth/twitter">weibo</a>
-            </li>
-            <li>
-              <a class="opacity25 icon-sn-facebook" target="_blank" href="/user/oauth/facebook"/>
-            </li>
-          </ul>
-        </div>
-      </el-col>
-      <el-col :span="9" class="profile-info">
-        <h2 class="profile__heading--name">
-          GuoGuang
-          <small class="ml15">
-            <a href="/u/GuoGuang/about">查看完整档案</a>
-          </small>
-        </h2>
-        <div style="margin: 7px;" class="profile__heading--award">
-          <a class="profile__rank-btn" href="/u/GuoGuang/rank">
-            <img src="/images/svg/rp.svg">
-            <span class="h4">0</span>
-            <span class="profile__rank-btn-text">声望</span>
-          </a>
-        </div>
-        <div class="profile__heading--other" style="display:flex;flex-direction: column;">
-          <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-map-marker"/>
-            <span class="profile__city">
-              潍坊
-              <span class="profile__heading-edit btn btn-xs" data-type="city">
-                <i class="fa fa-pencil" aria-hidden="true"/>编辑
-              </span>
-            </span>
-          </span>
-          <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-graduation-cap" aria-hidden="true"/>
-            <span class="profile__school">
-              山东大学
-              <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>计算机
-              <span class="profile__heading-edit btn btn-xs" data-type="school">
-                <i class="fa fa-pencil" aria-hidden="true"/>编辑
-              </span>
-            </span>
-          </span>
-          <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-briefcase" aria-hidden="true"/>
-            <span class="profile__company">
-              山东
-              <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>java工程师
-              <span
-                style="margin: 7px;"
-                class="profile__heading-edit btn btn-xs"
-                data-type="company"
-              >
-                <i class="fa fa-pencil" aria-hidden="true"/>编辑
-              </span>
-            </span>
-          </span>
-          <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-link"/>
-            <span class="profile__site">
-              <a class="profile__heading--other-item-link" target="_blank" href="http://"/>
-              <span
-                class="profile__heading-edit btn btn-xs profile__heading-edit--init"
-                data-type="site"
-              >
-                <i class="fa fa-pencil hide" aria-hidden="true"/>填写个人主网站
-              </span>
-            </span>
-          </span>
-        </div>
-      </el-col>
-
-      <el-col :span="11">
-        <div class="profile__heading--desc">
-          <div class="profile__heading--desc-heading">
-            <span class="profile__heading--desc-heading-dot-warp">
-              <span class="profile__heading-dot profile__heading-dot--red"/>
-              <span class="profile__heading-dot profile__heading-dot--yellow"/>
-              <span class="profile__heading-dot profile__heading-dot--green"/>
-            </span>
-            <div class="pull-right line-height">
-              <span class="profile__heading-edit">
-                <i class="fa fa-pencil" aria-hidden="true"/>编辑
-              </span>
+    <el-row class="profile-mult" style="padding-top: 2em;">
+      <el-tabs v-model="activeName" type="card" tab-position="left" @tab-click="handleTabClick">
+        <el-tab-pane :disabled="true" label="我的互动" name="0"/>
+        <el-tab-pane name="1">
+          <span slot="label"><i class="el-icon-coordinate"/> 个人信息</span>
+          <div class="padding-main my-info">
+            <h1 class="h1"> <i class="el-icon-edit-outline"/> 修改资料</h1>
+            <h3>个人账号</h3>
+            <div class="info-edit">
+              <span>名字</span>
+              Jackson
+              <el-link icon="el-icon-edit">编辑</el-link>
+            </div>
+            <div class="info-edit">
+              <span>Email</span>
+              xxx@qq.com
+              <el-link icon="el-icon-edit">编辑</el-link>
+            </div>
+            <div class="info-edit">
+              <span>手机号</span>
+              1766711111
+              <el-link icon="el-icon-edit">编辑</el-link>
+            </div>
+            <div class="info-edit">
+              <span>居住地</span>
+              山东济南
+              <el-link icon="el-icon-edit">编辑</el-link>
             </div>
           </div>
-
-          <div class="profile__heading--desc-body">
-            <div class="profile__desc">
-              <p>不积跬步无以至千里,不积小流无以成江海;</p>
-            </div>
+        </el-tab-pane>
+        <el-tab-pane name="2">
+          <span slot="label"><i class="el-icon-mobile-phone"/> 绑定手机</span>
+          <div class="padding-main phone">
+            <h1 class="h1"> <i class="el-icon-mobile-phone"/> 手机绑定</h1>
+            <el-form ref="form" :model="form" label-position="top" label-width="80px">
+              <el-form-item label="手机号">
+                <el-input
+                  v-model="form.name"/>
+              </el-form-item>
+              <el-form-item label="验证码">
+                <el-input v-model="form.name">
+                  <template slot="append">获取验证码</template>
+                </el-input>
+              </el-form-item>
+              <el-button style="background-color: #eeeeee;" round>绑定手机</el-button>
+            </el-form>
           </div>
-        </div>
-      </el-col>
+        </el-tab-pane>
+        <el-tab-pane name="3">
+          <span slot="label"><i class="el-icon-lock"/> 修改密码</span>
+        </el-tab-pane>
+      </el-tabs>
     </el-row>
   </div>
 </template>
@@ -140,6 +64,21 @@ export default {
     return {
       // title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
       title: `${this.isEnLang ? '' : ' GuoGuang| '}的个人主页`
+    }
+  },
+  data() {
+    return {
+      activeName: '1',
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      }
     }
   },
   fetch({ store }) {
@@ -157,15 +96,8 @@ export default {
     }
   },
   methods: {
-    uploadAvatar() {
-      this.$refs['avatarFile'].click()
-    },
-    changeAvatar() {
-      this.$message({
-        dangerouslyUseHTMLString: true,
-        message: '<strong>上传成功</strong>',
-        type: 'success'
-      })
+    handleTabClick(tab, event) {
+      console.log(tab, event)
     }
   }
 }
@@ -173,99 +105,68 @@ export default {
 
 <style lang="scss" scoped>
 .profile {
-  .profile-user-info{
-    padding-top: 2em;
-  }
-  .hide{
-    display: none
-  }
-  .profile-info{
-    padding-left: 2em;
-  }
-  .line-height {
-    line-height: 32px;
-  }
-
-  .profile__heading--avatar-warp {
-        position: relative;
-    border-radius: 50%;
-    overflow: hidden;
-    .image {
-      width: 180px;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+  margin-bottom: 2em;
+  .profile-mult {
+    .padding-main {
+      background: #f8f8f8;
+      padding: 2em;
+      // border: 1px solid rgba(34,36,38,.15);
     }
-    .profile__avatar-uploader{
-    display: none;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    width: 174px;
-    text-align: center;
-    background: rgba(0,0,0,0.75);
-    height: 38px;
-    color: #fff;
-    line-height: 41px;
-    }
-  }
-
-.profile__heading--avatar-warp:hover .profile__avatar-uploader {
-    display: block
-}
-  .profile__heading--social {
-    .profile__heading--social-inline {
-      list-style: none;
-
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  .profile__heading--desc {
-    .profile__heading--desc-heading {
-      height: 32px;
-      background-color: #e3e3e3;
-      padding: 0 12px;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-      .profile__heading-edit {
-        color: #999;
-      }
-      .profile__heading--desc-heading-dot-warp {
-        line-height: 32px;
-      }
-      .profile__heading-dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
+    .my-info {
+      // border: 1px solid rgba(34,36,38,.15);
+      input {
         background-color: #eee;
-        margin-right: 8px;
-      }
-      .profile__heading-dot--red {
-        background-color: #ff5f57;
-      }
-
-      .profile__heading-dot--yellow {
-        background-color: #ffbd2e;
-      }
-
-      .profile__heading-dot--green {
-        background-color: #28ca42;
       }
     }
-    .profile__heading--desc-body {
-      background-color: #cecece;
-      width: 100%;
-      font-size: 13px;
-      color: #666666;
-      overflow: auto;
-      height: 196px;
-      padding: 20px;
-      font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New',
-        monospace;
+    .h1 {
+      padding-bottom: 0.5em;
+      border-bottom: #ddd 1px solid;
+      margin-top: 0;
     }
+    .info-edit {
+      display: flex;
+      border-top: #ddd 1px dashed;
+      justify-content: space-between;
+      padding: 1em;
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.profile {
+  .phone {
+    .el-input {
+      width: 60%;
+    }
+    input {
+      background-color: #eee;
+    }
+  }
+  .el-tabs--left {
+    .el-tabs__header {
+      margin-right: 3em !important;
+      background: #f8f8f8;
+    }
+    .el-tabs__nav {
+      border: 1px solid #d3e0e9 !important;
+      flex-direction: column;
+      display: flex;
+      width: 15em;
+      transform: translateY(0px);
+      .el-tabs__item {
+        text-align: center !important;
+      }
+      .el-tabs__item:hover {
+        color: #303133;
+      }
+    }
+  }
+
+  .el-tabs--left.el-tabs--card .el-tabs__item.is-left.is-active {
+    border-right-color: #d3e0e9 !important;
+    color: #303133 !important;
+    background: rgba(0, 0, 0, 0.05);
   }
 }
 </style>

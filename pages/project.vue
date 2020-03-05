@@ -95,7 +95,7 @@ export default {
         icon: 'linux',
         color: '#000000'
       }, {
-        name: 'ibole',
+        name: 'codeif',
         icon: 'think',
         color: '#0088f5'
       }, {

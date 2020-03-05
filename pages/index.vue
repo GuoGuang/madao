@@ -50,11 +50,10 @@ export default {
     return this.isMobile ? { bodyAttrs: { class: 'mobile' }} : {}
   },
   fetch({ store }) {
-    console.log('页面加载：/pages/index.vue')
     return Promise.all([
       // dispatch（“参数也可以是store里的方法层级调用”）
-      store.dispatch('article/fetchList'),
-      store.dispatch('announcement/fetchList')
+      store.dispatch('article/fetchList')
+      // store.dispatch('announcement/fetchList')
     ])
   },
   components: {

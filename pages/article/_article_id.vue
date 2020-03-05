@@ -170,7 +170,7 @@
             <p class="item">
               <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
               <span class="site-url" @click="copyArticleUrl">
-                <span>https://ibole.com/article/{{ article.id }}</span>
+                <span>https://codeif.tech/article/{{ article.id }}</span>
               </span>
             </p>
             <div class="item">
@@ -319,10 +319,10 @@ export default {
 
   fetch({ store, params, error }) {
     return Promise.all([
-      store.dispatch('article/fetchDetail', params), // .catch(err => {
+      store.dispatch('article/fetchDetail', params) // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
       // }),
-      store.dispatch('comment/fetchList', { post_id: params.article_id })
+      // store.dispatch('comment/fetchList', { post_id: params.article_id })
     ])
   },
 
@@ -384,11 +384,10 @@ export default {
         return ''
       }
       const hasTags = this.tags && this.tags.length
-      const aa = false
       // 正常长度，正常渲染
       if (!this.isContentTooMore || isRenderedFullContent) {
         // return marked(content, hasTags ? this.tags : false, true)
-        return marked(content, aa ? this.tags : false, true)
+        return marked(content, hasTags ? this.tags : false, true)
       }
 
       // 内容过多，进行分段处理，避免渲染时间太长
@@ -521,7 +520,7 @@ export default {
     },
     copyArticleUrl() {
       if (this.article.title) {
-        this.$root.$copyToClipboard(`https://ibole.com/article/${this.article.id}`)
+        this.$root.$copyToClipboard(`https://codeif.tech/article/${this.article.id}`)
       }
     },
     buildThumb(thumb) {

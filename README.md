@@ -1,25 +1,25 @@
-<h1 align="center">Welcome to ibole.com 👋</h1>
+<h1 align="center">Welcome to codeif.tech 👋</h1>
 
 <p align="center">
   <a href="https://github.com/nuxt/nuxt.js" target="blank">
-    <img src="https://nuxtjs.org/meta_400.png" height="90" alt="nuxt logo" />
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/nuxt.png" height="90" alt="nuxt logo" />
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-  <a href="https://github.com/GuoGuang/ibole" target="blank">
-    <img src="https://you-dao-note.oss-cn-beijing.aliyuncs.com/favicon.ico" height="90" alt="ibole.me logo" />
+  <a href="https://github.com/GuoGuang/codeif" target="blank">
+    <img src="https://github.com/GuoGuang/codeif/blob/master/static/favicon.ico" height="90" alt="codeif.tech logo" />
   </a>
 </p>
 
 <p>
   <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
-  <a href="https://github.com/GuoGuang/ibole#readme">
+  <a href="https://github.com/GuoGuang/codeif#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
-  <a href="https://github.com/GuoGuang/ibole/graphs/commit-activity">
+  <a href="https://github.com/GuoGuang/codeif/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
   </a>
-  <a href="https://github.com/GuoGuang/ibole/blob/master/LICENSE">
+  <a href="https://github.com/GuoGuang/codeif/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
 </p>
@@ -28,12 +28,12 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](http://ibole.com)
+### 🏠 [Homepage](http://139.9.155.54:3000/)
+> 如果喜欢记得给个star哦🌟
 
 ## PC
 
-![](https://github.com/GuoGuang/ibole/blob/master/assets/images/index.png)
-
+![](https://github.com/GuoGuang/codeif/blob/master/static/codeif.png)
 
 ## Directory
 ```
@@ -96,10 +96,13 @@ nuxt.js-blog/
 
 ```bash
 
-# install dependencies python2.7
-$ npm install [--python=python2.7]
+# 安装依赖
+$ npm install --save-dev  --unsafe-perm node-sass
+  或者用cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install --save-dev  --unsafe-perm node-sass
 
-# serve with hot reload at localhost:3000
+# 运行在 127.0.0.1:3000
 $ npm run dev
 
 # build for production and launch server
@@ -122,7 +125,7 @@ $ npm run lint
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/GuoGuang/ibole/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/GuoGuang/codeif/issues).
 
 ## Show your support
 
@@ -131,4 +134,4 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2019 [GuoGuang](https://github.com/GuoGuang).<br />
-This project is [MIT](https://github.com/GuoGuang/ibole/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/GuoGuang/codeif/blob/master/LICENSE) licensed.

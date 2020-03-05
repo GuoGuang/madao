@@ -24,8 +24,8 @@ export default {
   },
   fetch({ store }) {
     return Promise.all([
-      store.dispatch('global/fetchAppOption'),
-      store.dispatch('comment/fetchList', { post_id: 0 })
+      store.dispatch('global/fetchAppOption')
+      // store.dispatch('comment/fetchList', { post_id: 0 })
     ])
   },
   computed: {

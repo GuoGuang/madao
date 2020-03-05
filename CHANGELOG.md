@@ -4,7 +4,7 @@
 - 增加文章详情页，根据 H2、H3、H4 的标题锚点索引功能
 - ~~拆分超过 600 行的组件~~
 - ~~为所有文件增加规范的 JSDOC 信息~~
-- ~~markd 解析内链有问题，https://ibole.me/article/121 git -> github~~
+- ~~markd 解析内链有问题，https://codeif.tech/article/121 git -> github~~
 
 ## CHANGELOG
 
@@ -105,7 +105,7 @@
 - 代码检查的优化
 - 一些代码细节的优化
 - 播放器的有优化
-- 分享的剪切板需重构去掉库 https://ibole.me/article/80
+- 分享的剪切板需重构去掉库 https://codeif.tech/article/80
 - 右侧广告的添加
 - PWA 的适配https://pwa.nuxtjs.org/modules/workbox.html
 - 增加多主题适配

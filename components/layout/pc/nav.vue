@@ -1,6 +1,6 @@
 
 <template>
-  <!-- 导航 图标参考D:\vueWorkspace\ibole_vue_ssr_platform\assets\sass\iconfont.scss -->
+  <!-- 导航 图标参考D:\vueWorkspace\codeif_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
 
@@ -36,10 +36,6 @@
         <el-menu-item index="/project">
           <i class="iconfont icon-xuexi"/>
           <span v-text="$i18n.nav.project"/>
-        </el-menu-item>
-        <el-menu-item index="/other">
-          <i class="iconfont icon-pen"/>
-          <span v-text="$i18n.nav.other"/>
         </el-menu-item>
         <el-menu-item index="/about" class="item">
           <i class="iconfont icon-info"/>
