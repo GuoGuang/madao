@@ -54,10 +54,8 @@ export default {
   computed: {
     ads: () => adConfig.mobile.aside,
     gravatar() {
-      const gravatar = this.$store.state.global.adminInfo.gravatar
+      const gravatar = this.$store.state.global.adminInfo.avatar
       return gravatar
-        ? `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/IMG_0610.JPG`
-        : `${this.cdnUrl}/images/gravatar.jpg`
     }
   },
   mounted() {

@@ -240,11 +240,8 @@ export default {
       return this.$store.state.global.isMobile
     },
     gravatar() {
-      const gravatar = this.$store.state.global.adminInfo.gravatar
+      const gravatar = this.$store.state.global.adminInfo.avatar
       return gravatar
-        // ? `${gravatar}?imageView2/1/w/360/h/360/interlace/1/q/75|imageslim`
-        ? `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/IMG_0610.JPG`
-        : `${this.cdnUrl}/images/gravatar.jpg`
     }
   },
   methods: {
