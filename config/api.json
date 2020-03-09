@@ -10,6 +10,6 @@
     "cdnUrl": "", 
     "proxyUrl": "https://codeif.tech/proxy/",
     "baseUrl": "http://139.180.196.135:7300/mock/5e10a05ec3735d0016e2c7b4/codeif_api/api",
-    "socketHost": "http://139.9.155.54:3000"
+    "socketHost": "http://121.36.158.84:3000"
   }
 }
