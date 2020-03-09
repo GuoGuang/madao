@@ -43,7 +43,7 @@
 
             <div class="post_icon">
               <span class="postauthor">
-                <img class="avatar" alt="" src="https://avatars0.githubusercontent.com/u/23237686?v=4" height="96" width="96" style="">
+                <img class="avatar" alt="" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x" height="96" width="96" style="">
                 <a href="#">GuoGuang</a>
               </span>
               <span class="postcat">

@@ -7,9 +7,9 @@
         <list-header />
       </div>
       <transition name="module" mode="out-in">
-        <transition-group v-if="article.data.records && article.data.records.length" key="list" name="fade" tag="div">
+        <transition-group v-if="article.data && article.data.length" key="list" name="fade" tag="div">
           <list-item
-            v-for="articleItem in article.data.records"
+            v-for="articleItem in article.data"
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
@@ -44,7 +44,6 @@ export default {
   },
   data() {
     return {
-      total: this.$store.state.article.list.data.total
     }
   },
   validate({ params }) {
@@ -59,10 +58,16 @@ export default {
     }
   },
   computed: {
+
+    total() {
+      return this.$store.state.article.list.data.length
+    },
     isIndexRoute() {
       return isIndexRoute(this.$route.name)
     },
     article() {
+      console.log('this.$store.state.article.list.data', this.$store.state.article.list.data)
+
       return this.$store.state.article.list
     },
     defaultParams() {

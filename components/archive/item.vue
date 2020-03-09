@@ -49,17 +49,17 @@
             <i :class="{ liked: isLiked }" class="iconfont icon-upvote"/>
             <span>{{ article.upvote || 0 }}</span>
           </span>
-          <span class="categories">
+          <!-- <span class="categories">
             <i class="iconfont icon-menu"/>
             <template v-if="article.category.name">
-              <!-- :key="index" v-for="(category, index) in article.category" -->
+            -- :key="index" v-for="(category, index) in article.category" --
               <nuxt-link
                 :to="`/category/${article.category.id}`"
                 v-text="isEnLang ? article.category.name : article.category.name"
               />
             </template>
             <span v-else v-text="$i18n.text.category.empty"/>
-          </span>
+          </span> -->
 
         </div>
       </div>
