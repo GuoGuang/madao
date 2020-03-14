@@ -35,7 +35,7 @@
               </template>
               <template v-else>
                 <nuxt-link :to="`/article/${article.id}`" class="link">
-                  <img :src="humanizeThumb(article.thumb)" :alt="article.title">
+                  <img :src="humanizeThumb(article.image)" :alt="article.title">
                   <span class="title">{{ article.title }}</span>
                 </nuxt-link>
               </template>
