@@ -16,7 +16,7 @@
             <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
           </span>
           <img
-            :src="article.image"
+            :src="article.thumb"
             :alt="article.title"
             :title="article.title"
             class="item-thumb-img"
