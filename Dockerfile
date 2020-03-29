@@ -6,8 +6,9 @@ RUN mkdir -p /codeif-blog
 COPY . /codeif-blog
 WORKDIR /codeif-blog
 RUN pwd
-RUN npm install
+RUN npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 RUN npm install --save-dev  --unsafe-perm node-sass
+RUN npm install
 RUN npm run build
 EXPOSE 3000
 CMD ["npm", "start"]
