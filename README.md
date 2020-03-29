@@ -11,8 +11,6 @@
 </p>
 
 <p>
- <img src="https://yd-note.oss-cn-beijing.aliyuncs.com/favicon.ico
-" height="90" alt="codeif.tech logo" />
   <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
   <a href="https://github.com/GuoGuang/codeway#readme">
@@ -30,7 +28,7 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](http://121.36.158.84:3000/)
+### 🏠 [Homepage](http://45.76.215.59:3000/)
 > 如果喜欢记得给个star哦🌟
 
 ## PC
