@@ -1,22 +1,22 @@
 /**
  * @desc 全局配置
  * @module app.config
- * @author guoguang 
+ * @author guoguang
  */
 
 exports.meta = {
-  title: 'CODEIF',
-  keywords: 'codeif,后端开发者,java开发,博客平台',
+  title: 'CODEWAY',
+  keywords: 'codeway,后端开发者,java开发,博客平台',
   description: '百学须先立志',
-  url: 'codeif.tech',
-  author: 'codeif',
+  url: 'codeway.me',
+  author: 'codeway',
   email: 'guoguang0536@gmail.com',
 }
 
 exports.webrtc = {
-  room: 'codeif',
-  iceServerUsername: 'codeif',
-  iceServerCredential: 'codeif',
+  room: 'codeway',
+  iceServerUsername: 'codeway',
+  iceServerCredential: 'codeway',
 }
 
 exports.music = {

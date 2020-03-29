@@ -137,7 +137,7 @@ export default {
     },
 
     url() {
-      return `https://codeif.tech${this.$route.fullPath}`
+      return `https://codeway.me${this.$route.fullPath}`
     }
   }
 }

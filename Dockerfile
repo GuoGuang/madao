@@ -2,9 +2,9 @@ FROM node:10.15.3
 MAINTAINER GuoGuang
 # ENV NODE_ENV=production
 ENV HOST 0.0.0.0
-RUN mkdir -p /codeif-blog
-COPY . /codeif-blog
-WORKDIR /codeif-blog
+RUN mkdir -p /codeway-blog
+COPY . /codeway-blog
+WORKDIR /codeway-blog
 RUN pwd
 RUN npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 RUN npm install --save-dev  --unsafe-perm node-sass

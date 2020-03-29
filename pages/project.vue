@@ -95,7 +95,7 @@ export default {
         icon: 'linux',
         color: '#000000'
       }, {
-        name: 'codeif',
+        name: 'codeway',
         icon: 'think',
         color: '#0088f5'
       }, {

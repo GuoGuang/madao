@@ -170,7 +170,7 @@
             <p class="item">
               <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
               <span class="site-url" @click="copyArticleUrl">
-                <span>https://codeif.tech/article/{{ article.id }}</span>
+                <span>https://codeway.me/article/{{ article.id }}</span>
               </span>
             </p>
             <div class="item">
@@ -520,7 +520,7 @@ export default {
     },
     copyArticleUrl() {
       if (this.article.title) {
-        this.$root.$copyToClipboard(`https://codeif.tech/article/${this.article.id}`)
+        this.$root.$copyToClipboard(`https://codeway.me/article/${this.article.id}`)
       }
     },
     buildThumb(thumb) {
