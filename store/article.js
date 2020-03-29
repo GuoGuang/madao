@@ -86,7 +86,7 @@ export const mutations = {
 export const actions = {
 
   // 获取文章列表
-  fetchList({ commit }, params = {}) {
+  fetchList({ commit }, params = { categoryId: '1' }) {
     console.error('文章')
     const isLoadMore = params.page && params.page > 1
 

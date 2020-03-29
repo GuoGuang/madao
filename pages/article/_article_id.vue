@@ -36,14 +36,14 @@
 
             <!-- 标签 -->
             <div class="tags">
-              <a v-for="(tag, index) of tags" :key="index" :style="{'background-color': `${backgroundColor[index]}`}" href="#" rel="tag">{{ tag.name }}</a>
+              <a v-for="(tag, index) of articleTags" :key="index" :style="{'background-color': tag.color}" href="#" rel="tag">{{ tag.name }}</a>
             </div>
 
             <h1 class="title">{{ article.title }}</h1>
 
             <div class="post_icon">
               <span class="postauthor">
-                <img class="avatar" alt="" src="https://avatars0.githubusercontent.com/u/23237686?v=4" height="96" width="96" style="">
+                <img class="avatar" alt="" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x" height="96" width="96" style="">
                 <a href="#">GuoGuang</a>
               </span>
               <span class="postcat">
@@ -170,7 +170,7 @@
             <p class="item">
               <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
               <span class="site-url" @click="copyArticleUrl">
-                <span>https://codeif.tech/article/{{ article.id }}</span>
+                <span>https://codeway.me/article/{{ article.id }}</span>
               </span>
             </p>
             <div class="item">
@@ -282,7 +282,6 @@ export default {
 
   data() {
     return {
-      backgroundColor: this.$store.state.tag.backgroundColor,
       likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
       isLikeStatus: false,
       likeBackgroundColor: '',
@@ -374,6 +373,10 @@ export default {
     },
     isCanReadMore() {
       return this.isContentTooMore && !this.article.isRenderedFullContent
+    },
+    articleTags() {
+      const { tags } = this.article
+      return tags
     },
     articleContent() {
       const { content, isRenderedFullContent } = this.article
@@ -517,7 +520,7 @@ export default {
     },
     copyArticleUrl() {
       if (this.article.title) {
-        this.$root.$copyToClipboard(`https://codeif.tech/article/${this.article.id}`)
+        this.$root.$copyToClipboard(`https://codeway.me/article/${this.article.id}`)
       }
     },
     buildThumb(thumb) {

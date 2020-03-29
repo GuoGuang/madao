@@ -1,7 +1,7 @@
 /**
  * @file Github 项目数据状态 / ES module
  * @module store/project
- * @author codeif <https://github.com/codeif-china>
+ * @author codeway <https://github.com/codeway-china>
  */
 
 export const state = () => {
@@ -34,10 +34,10 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateRepositoriesFetching', true)
-    return this.$axios.$get('https://api.github.com/users/GuoGuang/repos')
+    return this.$axios.$get('/su/admin/repo')
       .then(response => {
         const newResult = []
-        response.forEach((element, index) => {
+        JSON.parse(response.data).forEach((element, index) => {
           const {
             html_url,
             name,

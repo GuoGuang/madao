@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="copyright">
-          Copyright © 2018-2020 <br>codeif.tech博客<br>
+          Copyright © 2018-2020 <br>codeway.me博客<br>
           <a href="" rel="nofollow"/> &nbsp;
           <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
         </div>

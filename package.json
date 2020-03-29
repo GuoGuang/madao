@@ -1,20 +1,20 @@
 {
-  "name": "codeif.tech",
+  "name": "codeway.me",
   "version": "2.1.4",
-  "description": "codeif.tech blog",
+  "description": "codeway.me blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://codeif.tech"
+    "url": "https://codeway.me"
   },
   "license": "MIT",
-  "homepage": "http://codeif.tech",
+  "homepage": "http://codeway.me",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang/codeif.git"
+    "url": "git+https://github.com/GuoGuang/codeway.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang/codeif/issues"
+    "url": "https://github.com/GuoGuang/codeway/issues"
   },
   "engines": {
     "npm": ">=5.5.0",

@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  codeif_vue_ssr_platform:
-    image: codeif_vue_ssr_platform
+  codeway_vue_ssr_platform:
+    image: codeway_vue_ssr_platform
     build: .
     environment:
       NODE_ENV: production
