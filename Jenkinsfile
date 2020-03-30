@@ -36,10 +36,10 @@ pipeline {
                     sh "pwd"
                     sh "docker build -t codeway:${env.BUILD_ID} ."
                     echo '-->> 3#构建成功-->>'
-                    sh "docker login --username=1831682775@qq.com --password ${DOCKER_HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com"
-                    sh "docker tag codeway:${env.BUILD_ID} registry.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    sh "docker login --username=1831682775@qq.com --password ${DOCKER_HUB_PASSWORD} registry-vpc.cn-hangzhou.aliyuncs.com"
+                    sh "docker tag codeway:${env.BUILD_ID} registry-vpc.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
                     script {
-                        sh "docker push registry.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
+                        sh "docker push registry-vpc.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
                         echo "构建并推送到远程服务器成功--->"
                     }
                 }
