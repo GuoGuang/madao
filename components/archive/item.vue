@@ -5,13 +5,13 @@
         <nuxt-link :to="`/article/${article.id}`">
           <span
             :class="{
-              self: !article.origin,
+              self: article.origin === constants.OriginState.Original,
               other: article.origin === constants.OriginState.Reprint,
               hybrid: article.origin === constants.OriginState.Hybrid
             }"
             class="item-oirigin"
           >
-            <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
+            <span v-if="article.origin === constants.OriginState.Original" v-text="$i18n.text.origin.original"/>
             <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
             <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
           </span>

@@ -6,9 +6,9 @@
 
 // 转载状态
 exports.OriginState = {
-  Original: 0, // 原创
-  Reprint: 1, // 转载
-  Hybrid: 2 // 混合
+  Original: 1, // 原创
+  Reprint: 2, // 转载
+  Hybrid: 3 // 混合
 }
 
 // 评论宿主页面的 POST_ID 类型
