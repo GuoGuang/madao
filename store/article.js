@@ -140,16 +140,15 @@ export const actions = {
     }
     commit('updateDetailFetchig', true)
     commit('updateDetailData', {})
-    return this.$axios.$get(`${api}/${params.article_id}`)
-      .then(response => {
-        return new Promise(resolve => {
-          delay(() => {
-            commit('updateDetailData', response.data)
-            commit('updateDetailFetchig', false)
-            resolve(response)
-          })
+    return this.$axios.$get(`${api}/${params.article_id}`).then(response => {
+      return new Promise(resolve => {
+        delay(() => {
+          commit('updateDetailData', response.data)
+          commit('updateDetailFetchig', false)
+          resolve(response)
         })
       })
+    })
       .catch(error => {
         commit('updateDetailFetchig', false)
         return Promise.reject(error)
@@ -160,7 +159,7 @@ export const actions = {
   likeArticle({ commit }, article_id) {
     return this.$axios.$put(`${api}/like/${article_id}`)
       .then(response => {
-        commit('updateLikesIncrement')
+        // commit('updateLikesIncrement')
         localStorage.setItem('article_' + article_id, '1')
         return Promise.resolve(response)
       })
@@ -169,7 +168,7 @@ export const actions = {
     return this.$axios.$delete(`${api}/like/${article_id}`)
       .then(response => {
         localStorage.removeItem('article_' + article_id)
-        commit('updateLikesIncrement')
+        // commit('updateLikesIncrement')
         return Promise.resolve(response)
       })
   }

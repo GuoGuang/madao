@@ -48,14 +48,14 @@
               </span>
               <span class="postcat">
                 <i class="iconfont icon-menu"/>
-                <a href="#">技术</a>
+                <a href="#">{{ article.categoryId }}</a>
               </span>
               <span class="postclock">
                 <i class="iconfont icon-time"/>
-                2019-01-03
+                {{ article.createAt | timestampToTime }}
               </span>
               <span class="posteye">
-                <i class="iconfont icon-view"/> 6,487
+                <i class="iconfont icon-view"/> {{ Math.round(Math.random()*100) }}
               </span>
 
             </div>
@@ -66,12 +66,12 @@
             <div
               v-if="!isFetching"
               :class="{
-                self: !article.origin,
+                self: article.origin === constants.OriginState.Original,
                 other: article.origin === constants.OriginState.Reprint,
                 hybrid: article.origin === constants.OriginState.Hybrid
               }"
               class="oirigin">
-              <span v-if="!article.origin" v-text="$i18n.text.origin.original"/>
+              <span v-if="article.origin === constants.OriginState.Original" v-text="$i18n.text.origin.original"/>
               <span v-else-if="article.origin === constants.OriginState.Reprint" v-text="$i18n.text.origin.reprint"/>
               <span v-else-if="article.origin === constants.OriginState.Hybrid" v-text="$i18n.text.origin.hybrid"/>
             </div>
@@ -267,6 +267,8 @@ import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
 import AsideView from '~/components/layout/pc/aside/article_main'
 
+import { timestampToTime } from '@/utils/date'
+
 import * as CommentData from './mockdata'
 import comment from './comment'
 import gitalk from './gitalk' // gitalk 评论插件
@@ -279,7 +281,11 @@ export default {
     comment,
     gitalk
   },
-
+  filters: {
+    timestampToTime(val) {
+      return timestampToTime(val)
+    }
+  },
   data() {
     return {
       likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
@@ -412,6 +418,8 @@ export default {
     if (isBrowser) {
       this.observeLozad()
     }
+
+    this.likeBadge = this.article.upvote
     // this.$store.state.user.token &&
     if (this.isLikeStatus) {
       this.likeImage = this.asideImage.likeImage
@@ -422,9 +430,9 @@ export default {
     this.updateAd()
     // 页面初始化时是否勾选喜欢
     if (localStorage.getItem('article_' + this.article.id)) {
-      this.likeImage = this.asideImage.disLikeImage
-      this.likeBackgroundColor = this.asideImage.disLikeBackgroundColor
-      this.likeBadge = this.likeBadge + 1
+      this.likeImage = this.asideImage.likeImage
+      this.likeBackgroundColor = this.asideImage.likeBackgroundColor
+      this.isLikeStatus = !this.isLikeStatus
     }
   },
   deactivated() {
@@ -441,6 +449,7 @@ export default {
         this.likeBackgroundColor = this.asideImage.disLikeBackgroundColor
         this.likeBadge = this.likeBadge - 1
         this.$store.dispatch('article/unLikeArticle', this.article.id)
+        localStorage.getItem('article_' + this.article.id)
       } else {
         this.likeImage = this.asideImage.likeImage
         this.likeBackgroundColor = this.asideImage.likeBackgroundColor
