@@ -7,11 +7,11 @@ pipeline {
         // BUILD_NUMBER = credentials('aliyun-docker')
         // 仓库docker 地址、镜像名、容器名称
         FRESH_HOST = 'registry.cn-hongkong.aliyuncs.com'
-        REMOTE_IP = "121.36.158.84"
+        // REMOTE_IP = "121.36.158.84"
         DOCKER_IMAGE = 'codeway_blog'
         DOCKER_CONTAINER = 'codeway_blog'
-        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${INSTANCE_IP}'
-        //测试人员邮箱地址【参数值对外隐藏】
+        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/other_password.txt ssh -t -t -o StrictHostKeyChecking=no root@${OTHER_INSTANCE_IP}'
+       //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
         BUILD_USER_EMAIL = '1831682775@qq.com'
         BUILD_USER  = '构建人'
