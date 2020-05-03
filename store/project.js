@@ -34,37 +34,36 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateRepositoriesFetching', true)
-    return this.$axios.$get('/su/admin/repo')
-      .then(response => {
-        const newResult = []
-        JSON.parse(response.data).forEach((element, index) => {
-          const {
-            html_url,
-            name,
-            fork,
-            forks,
-            forks_count,
-            description,
-            open_issues_count,
-            stargazers_count,
-            created_at,
-            language
-          } = element
-          newResult.push({
-            html_url,
-            name,
-            fork,
-            forks,
-            forks_count,
-            description,
-            open_issues_count,
-            stargazers_count,
-            created_at,
-            language
-          })
+    return this.$axios.$get('/su/admin/repo').then(response => {
+      const newResult = []
+      JSON.parse(response.data).forEach((element, index) => {
+        const {
+          html_url,
+          name,
+          fork,
+          forks,
+          forks_count,
+          description,
+          open_issues_count,
+          stargazers_count,
+          created_at,
+          language
+        } = element
+        newResult.push({
+          html_url,
+          name,
+          fork,
+          forks,
+          forks_count,
+          description,
+          open_issues_count,
+          stargazers_count,
+          created_at,
+          language
         })
-        commit('updateRepositoriesData', newResult)
-        commit('updateRepositoriesFetching', false)
-      }).catch(() => commit('updateRepositoriesFetching', false))
+      })
+      commit('updateRepositoriesData', newResult)
+      commit('updateRepositoriesFetching', false)
+    }).catch(() => commit('updateRepositoriesFetching', false))
   }
 }

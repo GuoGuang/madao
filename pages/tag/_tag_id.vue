@@ -10,16 +10,16 @@ import Carrousel from '~/components/archive/carrousel'
 
 export default {
   name: 'TagArticleList',
-  validate({ params, store }) {
-    return params.tag_slug && store.state.tag.data.some((tag, index, arr) => {
-      return Object.is(tag.slug, params.tag_slug)
-    })
-  },
+  // validate({ params, store }) {
+  //   return params.tag_id && store.state.tag.data.some((tag, index, arr) => {
+  //     return Object.is(tag.slug, params.tag_id)
+  //   })
+  // },
   fetch({ store, params }) {
-    return store.dispatch('article/fetchList', params)
+    return store.dispatch('article/fetchArticles', params)
   },
   head() {
-    const slug = this.defaultParams.tag_slug || ''
+    const slug = this.defaultParams.tag_id || ''
     const title = slug.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
     return { title: `${title} | Tag` }
   },
@@ -33,12 +33,13 @@ export default {
     },
     currentTag() {
       return this.$store.state.tag.data.find((tag, index, arr) => {
-        return Object.is(tag.slug, this.$route.params.tag_slug)
+        return Object.is(tag.slug, this.$route.params.tag_id)
       })
     },
     defaultParams() {
+      console.log('defaultParams', this.$route.params)
       return {
-        tag_slug: this.$route.params.tag_slug
+        tag_id: this.$route.params.tag_id
       }
     },
     nextPageParams() {

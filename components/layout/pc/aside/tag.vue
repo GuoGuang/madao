@@ -4,7 +4,7 @@
       <slot>{{ $i18n.text.tag.empty }}</slot>
     </empty-box>
     <ul v-else class="aside-tag-list">
-      <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.slug}`" tag="li" class="item">
+      <nuxt-link v-for="(tag, index) in tags" :key="index" :to="`/tag/${tag.id}`" tag="li" class="item">
         <a :title="tag.description" :style="{'background-color': tag.color}" class="title">
           <!-- <i class="iconfont" :class="tag.extends.find(t => Object.is(t.name, 'icon')).value"
                 v-if="tag.extends.find(t => Object.is(t.name, 'icon'))"></i> -->
