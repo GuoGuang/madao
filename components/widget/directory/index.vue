@@ -28,7 +28,7 @@ export default {
       const Opt = Object.assign({}, defaultOpts, {
         contentEl: 'article-content',
         catalogEl: 'scroll-aside',
-        selector: ['h1', 'h2', 'h3']
+        selector: ['h1', 'h2', 'h3', 'h4', 'h5']
       })
       const $content = document.getElementById(Opt.contentEl) // 内容获取区
       const allCatalogs = $content.querySelectorAll(Opt.selector.join())

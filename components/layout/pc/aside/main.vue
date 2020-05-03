@@ -12,7 +12,7 @@
         <i class="iconfont icon-hotfill"/>
         <span v-text="$i18n.text.article.hotlist"/>
       </p>
-      <empty-box v-if="!articles.length">
+      <empty-box v-if="!articles || articles.length == 0">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
       <ul v-else class="aside-article-list">

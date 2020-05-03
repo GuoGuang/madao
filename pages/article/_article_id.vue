@@ -324,6 +324,8 @@ export default {
   },
 
   fetch({ store, params, error }) {
+    console.log('fetch===========')
+
     return Promise.all([
       store.dispatch('article/fetchDetail', params) // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
@@ -415,19 +417,17 @@ export default {
     }
   },
   mounted() {
+    console.log('mounted===========')
     if (isBrowser) {
       this.observeLozad()
     }
-
-    this.likeBadge = this.article.upvote
-    // this.$store.state.user.token &&
-    if (this.isLikeStatus) {
-      this.likeImage = this.asideImage.likeImage
-      this.likeBackgroundColor = this.asideImage.likeBackgroundColor
-    }
   },
   activated() {
+    console.log('activated===========')
+    console.log(localStorage.getItem('article_' + this.article.id))
     this.updateAd()
+
+    this.likeBadge = this.article.upvote
     // 页面初始化时是否勾选喜欢
     if (localStorage.getItem('article_' + this.article.id)) {
       this.likeImage = this.asideImage.likeImage
@@ -437,6 +437,10 @@ export default {
   },
   deactivated() {
     this.lozadObserver = null
+    this.likeImage = 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg'
+    this.isLikeStatus = false
+    this.likeBackgroundColor = ''
+    this.likeBadge = 0
   },
   methods: {
     /**
