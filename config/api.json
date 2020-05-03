@@ -10,6 +10,6 @@
     "cdnUrl": "",
     "proxyUrl": "https://codeway.me/proxy/",
     "baseUrl": "http://121.36.158.84:8080/api",
-    "socketHost": "http://202.182.114.223:3000"
+    "socketHost": "http://202.182.114.223"
   }
 }
