@@ -78,7 +78,7 @@ pipeline {
 
                 sh "${REMOTE_SCRIPT} docker login --username=guoguang0536 --password ${OTH_DOCKER_HUB_PASSWORD}"
                 sh "${REMOTE_SCRIPT} docker pull guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID} "
-                sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name codeway_blog -d guoguang0536/codeway_blog:10"
+                sh "${REMOTE_SCRIPT} docker run -p 80:3000 --name codeway_blog -d guoguang0536/codeway_blog:10"
                 echo '-->> #远程主机构建成功-->>'
 
             }
