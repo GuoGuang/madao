@@ -10,6 +10,6 @@
     "cdnUrl": "",
     "proxyUrl": "https://codeway.me/proxy/",
     "baseUrl": "https://codeway.me/api",
-    "socketHost": "https://codeway.me"
+    "socketHost": "https://socket.codeway.me"
   }
 }
