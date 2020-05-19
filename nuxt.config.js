@@ -137,9 +137,14 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    '@nuxtjs/toast',
     ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }],
     'cookie-universal-nuxt'
   ],
+  toast: {// toast模块的配置
+    position: 'top-center',
+    duration: 2000
+  },
   head: {
     // title: `${appConfig.meta.title} - ${htmlSlogan}`,
     title: `${appConfig.meta.title}`,

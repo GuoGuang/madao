@@ -460,3 +460,21 @@ a {
 .right-list{
   margin-left: 3em;
 }
+
+// @nuxtjs/toast样式自定义
+.toasted-container{
+  .error {
+    border: 2px solid rgb(255, 65, 54) !important;
+  }
+  .success {
+    border: 2px solid rgb(46, 204, 64);
+  }
+  .default {
+    border: 2px solid rgb(255, 133, 27)
+  }
+  .toasted-primary {
+    color: black !important;
+    border-radius: 5px !important;
+    background-color: inherit !important;
+  }
+}

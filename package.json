@@ -39,6 +39,7 @@
     "@nuxtjs/axios": "^5.3.3",
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/style-resources": "^0.1.1",
+    "@nuxtjs/toast": "^3.3.0",
     "ali-oss": "^6.1.1",
     "ant-design-vue": "^1.4.10",
     "bezier-easing": "^2.1.0",
