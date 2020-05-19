@@ -41,17 +41,17 @@ body{
   float: right
 }
 ::selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
 ::-moz-selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
 ::-webkit-selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
@@ -113,10 +113,10 @@ input {
   }
 }
 
-input:-webkit-autofill, 
-textarea:-webkit-autofill, 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
 select:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px rgb(230, 230, 230) inset; 
+  box-shadow: 0 0 0px 1000px rgb(230, 230, 230) inset;
 }
 
 a {
@@ -193,10 +193,10 @@ a {
     }
 
     &.mobile {
-      
+
       > .adsense-wrapper {
         padding: 1rem;
-  
+
         > .adsbygoogle {
           height: 6rem;
         }
@@ -299,7 +299,7 @@ a {
     max-width: 90%;
     max-height: 90%;
   }
-  
+
   > iframe {
     width: 90%;
     height: 90%;
