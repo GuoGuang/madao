@@ -23,46 +23,19 @@
               <p class="icon">
                 <i class="iconfont icon-web"/>
               </p>
-              <p class="name">Web Client</p>
+              <p class="name">Web 开发</p>
               <p class="desc">Vue 应用开发</p>
-              <p class="desc">React 应用开发</p>
-              <p class="desc">Angular 应用开发</p>
-            </li>
-            <li class="item">
-              <p class="icon">
-                <i class="iconfont icon-nodejs"/>
-              </p>
-              <p class="name">Nodejs</p>
-              <p class="desc">Nodejs 整站建设</p>
-              <p class="desc">Nodejs Web 服务开发</p>
-              <p class="desc">Nodejs 命令行工具开发</p>
-            </li>
-            <li class="item">
-              <p class="icon">
-                <i class="iconfont icon-app"/>
-              </p>
-              <p class="name">Application</p>
-              <p class="desc">Weex 应用开发</p>
-              <p class="desc">ReactNative 应用开发</p>
-              <p class="desc">Electron 应用开发</p>
-            </li>
-            <li class="item">
-              <p class="icon">
-                <i class="iconfont icon-wechat"/>
-              </p>
-              <p class="name">Wechat</p>
-              <p class="desc">H5 开发</p>
-              <p class="desc">公众号开发</p>
-              <p class="desc">小程序开发</p>
+              <p class="desc">Python 爬虫</p>
+              <p class="desc">大数据 应用</p>
             </li>
             <li class="item">
               <p class="icon">
                 <i class="iconfont icon-consult"/>
               </p>
               <p class="name">技术咨询</p>
-              <p class="desc">Vue 疑难杂症</p>
+              <p class="desc">SpringCloud 疑难杂症</p>
               <p class="desc">业务与技术方案实施</p>
-              <p class="desc">Javascript 相关一切问题</p>
+              <p class="desc">Java 相关一切问题</p>
             </li>
           </ul>
         </div>
