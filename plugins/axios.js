@@ -12,7 +12,7 @@ const apis = apiJson[NODE_ENV]
 
 export default function({ $axios, app }) {
   $axios.onRequest(config => {
-    $axios.defaults.timeout = 10000
+    $axios.defaults.timeout = 20000
     $axios.defaults.baseURL = apis.baseUrl
     $axios.setHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
     const token = app.$cookies.get('Authorization')
