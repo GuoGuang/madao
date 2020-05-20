@@ -189,12 +189,14 @@ export const actions = {
 
   // 喜欢文章
   likeArticle({ commit }, article_id) {
-    return this.$axios.$put(`${api}/like/${article_id}`)
-      .then(response => {
-        // commit('updateLikesIncrement')
-        localStorage.setItem('article_' + article_id, '1')
-        return Promise.resolve(response)
-      })
+    return this.$axios.$put(`${api}/like/${article_id}`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.error('服务器开小差啦~~')
+      }
+      // commit('updateLikesIncrement')
+      localStorage.setItem('article_' + article_id, '1')
+      return Promise.resolve(response)
+    })
   },
   unLikeArticle({ commit }, article_id) {
     return this.$axios.$delete(`${api}/like/${article_id}`)

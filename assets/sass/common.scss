@@ -41,17 +41,17 @@ body{
   float: right
 }
 ::selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
 ::-moz-selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
 ::-webkit-selection {
-  background: $primary; 
+  background: $primary;
   color: $white;
 }
 
@@ -113,10 +113,10 @@ input {
   }
 }
 
-input:-webkit-autofill, 
-textarea:-webkit-autofill, 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
 select:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px rgb(230, 230, 230) inset; 
+  box-shadow: 0 0 0px 1000px rgb(230, 230, 230) inset;
 }
 
 a {
@@ -193,10 +193,10 @@ a {
     }
 
     &.mobile {
-      
+
       > .adsense-wrapper {
         padding: 1rem;
-  
+
         > .adsbygoogle {
           height: 6rem;
         }
@@ -299,7 +299,7 @@ a {
     max-width: 90%;
     max-height: 90%;
   }
-  
+
   > iframe {
     width: 90%;
     height: 90%;
@@ -459,4 +459,38 @@ a {
 }
 .right-list{
   margin-left: 3em;
+}
+
+// @nuxtjs/toast样式自定义
+.toasted-container{
+  .error {
+    border: 2px solid rgb(255, 65, 54) !important;
+  }
+  .success {
+    border: 2px solid rgb(46, 204, 64);
+  }
+  .default {
+    border: 2px solid rgb(255, 133, 27)
+  }
+  .toasted-primary {
+    color: black !important;
+    border-radius: 5px !important;
+    background-color: inherit !important;
+  }
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+h2 {
+  font-size: $font-size-h2;
+}
+h3 {
+  font-size: $font-size-h3;
+}
+h4 {
+  font-size: $font-size-h4;
+}
+h5 {
+  font-size: $font-size-h5;
 }

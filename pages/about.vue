@@ -545,7 +545,7 @@ export default {
               left: 0;
               width: 100%;
               height: 100%;
-              background-image: url('/images/wechat.jpg');
+              background-image: url('https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/wechat.jpg');
               background-size: contain;
               background-position: bottom;
               z-index: 9;
