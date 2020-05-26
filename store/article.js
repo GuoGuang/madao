@@ -150,7 +150,6 @@ export const actions = {
     commit('updateHotListFetchig', true)
     return this.$axios.$get(`${api}/hot`, { params: { cache: 1 }})
       .then(response => {
-        console.error('最热=====', JSON.stringify(response))
         commit('updateHotListData', response.data)
         commit('updateHotListFetchig', false)
       })
