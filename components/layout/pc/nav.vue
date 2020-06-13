@@ -17,8 +17,8 @@
           <el-menu-item index="/music">
             <span v-text="$i18n.nav.music"/>
           </el-menu-item>
-          <el-menu-item ref="defaultTechnology" index="/technology" style="display:none">
-            <span v-text="$i18n.nav.technology"/>
+          <el-menu-item ref="defaultTechnology" index="/timeLine">
+            <span v-text="$i18n.nav.timeLine"/>
           </el-menu-item>
         </el-submenu>
         <el-menu-item index="/security">

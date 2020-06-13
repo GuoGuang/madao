@@ -252,7 +252,7 @@ export default {
             padding: 0;
             list-style-type: none;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
 
             > .item {
               width: 19%;

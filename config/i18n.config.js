@@ -68,6 +68,10 @@ module.exports = {
         zh: '音乐',
         en: 'music'
       },
+      timeLine: {
+        zh: '时间线',
+        en: 'timeLine'
+      },
       app: {
         zh: '客户',
         en: 'app'
@@ -251,6 +255,10 @@ module.exports = {
         },
         hotlist: {
           zh: '今日热议',
+          en: 'hot'
+        },
+        hotWelfare: {
+          zh: '热门福利',
           en: 'hot'
         },
         aside: {

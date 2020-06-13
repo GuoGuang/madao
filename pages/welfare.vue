@@ -1,6 +1,6 @@
 <template>
-  <!--<el-row>
-   <el-col :span="17">
+  <el-row>
+    <el-col :span="17">
       <div class="main">
         <article-list :article="article" @loadmore="loadmoreArticle" />
       </div>
@@ -11,22 +11,18 @@
       </div>
     </el-col>
 
-  </el-row> -->
-  <div class="img-container">
-    <img class="error-img" src="/images/svg/building.svg">
-    <h2 style="color:908c8c;margin:1em">开发中...</h2>
-  </div>
-
+  </el-row>
 </template>
 
 <script>
 import ArticleList from '~/components/archive/list'
-import AsideView from '~/components/layout/pc/aside/main'
+import AsideView from '~/components/layout/pc/aside/welfare'
 
 export default {
   name: 'Welfare',
   fetch({ store }) {
     return Promise.all([
+      store.dispatch('article/fetchList', { 'categoryId': '3' })
       // dispatch（“参数也可以是store里的方法层级调用”）
       // store.dispatch('article/fetchList'),
       // store.dispatch('announcement/fetchList')
