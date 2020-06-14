@@ -54,6 +54,7 @@ pipeline {
                 sh "pwd"
                 sh "apt-get update"
                 sh "apt-get install sshpass"
+                sh "${REMOTE_SCRIPT} docker login --username=guoguang0536 --password ${OTH_DOCKER_HUB_PASSWORD}"
                 script {
                     // 停止并删除列表中有 ${DOCKER_CONTAINER} 的容器
                     def container = sh(returnStdout: true, script: "${REMOTE_SCRIPT} docker ps -a | grep $DOCKER_CONTAINER | awk '{print \$1}'").trim()
@@ -69,14 +70,10 @@ pipeline {
                         echo '-->> 2#停止并删除镜像 -->>'
                     }
                 }
-
-                sh "${REMOTE_SCRIPT} pwd "
-                sh "${REMOTE_SCRIPT} docker -v "
 //                 sh "${REMOTE_SCRIPT} docker login --username=1831682775@qq.com --password ${DOCKER_HUB_PASSWORD} registry.cn-hangzhou.aliyuncs.com"
 //                 sh "${REMOTE_SCRIPT} docker pull registry.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
 //                 sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name ${DOCKER_IMAGE} -d registry.cn-hangzhou.aliyuncs.com/codeway_me/${DOCKER_IMAGE}:${env.BUILD_ID}"
 
-                sh "${REMOTE_SCRIPT} docker login --username=guoguang0536 --password ${OTH_DOCKER_HUB_PASSWORD}"
                 sh "${REMOTE_SCRIPT} docker pull guoguang0536/${DOCKER_IMAGE}:${env.BUILD_ID} "
                 sh "${REMOTE_SCRIPT} docker run -p 3000:3000 --name codeway_blog -d guoguang0536/codeway_blog:${env.BUILD_ID}"
                 echo '-->> #远程主机构建成功-->>'
