@@ -32,6 +32,10 @@ module.exports = {
         zh: '福利',
         en: 'welfare'
       },
+      video: {
+        zh: '影视',
+        en: 'video'
+      },
       tweets: {
         zh: '猿圈',
         en: 'tweets'

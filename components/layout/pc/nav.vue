@@ -27,6 +27,9 @@
             <i class="iconfont icon-dribbble" style="color:inherit"/>
             <span style="color:inherit" @click="defaultWelfareHandle" v-text="$i18n.nav.welfare"/>
           </template>
+          <el-menu-item index="/video">
+            <span v-text="$i18n.nav.video"/>
+          </el-menu-item>
           <el-menu-item index="/music">
             <span v-text="$i18n.nav.music"/>
           </el-menu-item>
