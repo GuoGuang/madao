@@ -3,40 +3,23 @@
     <div class="container">
       <div class="row">
 
-        <div class="hy-layout clearfix" style="display: flex;">
+        <el-carousel :interval="4000" >
+          <el-carousel-item
+            v-for="item in [
+              'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+              'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+              'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+              'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+              'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+              'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+              'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
+            ]"
+            :key="item">
+            <img :src="item" width="100%" style="height: 100%">
+          </el-carousel-item>
+        </el-carousel>
 
-          <el-carousel height="100%" style="width: 60%;">
-            <el-carousel-item key="0">
-              <el-image
-                src="https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-            <el-carousel-item key="1">
-              <el-image
-                src="https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-            <el-carousel-item key="2">
-              <el-image
-                src="https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-            <el-carousel-item key="3">
-              <el-image
-                src="https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-            <el-carousel-item key="4">
-              <el-image
-                src="https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-            <el-carousel-item key="5">
-              <el-image
-                src="https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg"
-                fit="fill"/>
-            </el-carousel-item>
-          </el-carousel>
+        <div class="hy-layout clearfix">
           <div class="">
             <div class="hy-index-menu clearfix">
               <div class="item">
@@ -66,10 +49,9 @@
                 </ul>
               </div>
             </div>
-            <div class="hy-right-qrcode hidden-sm hidden-xs">
+            <div class="hy-right-qrcode hidden-sm hidden-xs" style="text-align: center;">
               <div class="item">
                 <dl class="clearfix" style="display:table;content:'';width: 100%;">
-                  <dt><img src=""></dt>
                   <dd><h4>扫描二维码“手机看大片”</h4>
                     <p class="text-muted"> 也可以分享到朋友圈哦！ </p>
                   <p class="margin-0 text-muted"> https://codeway.me/video/ </p></dd>

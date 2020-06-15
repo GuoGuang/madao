@@ -33,7 +33,24 @@
         <div class="hy-layout clearfix" style="margin-top: 10px;">
           <div style="position: absolute;right: 0;display: flex;line-height: 2;">如果您喜欢本站请动动小手分享给您的朋友！</div>
           <el-tabs value="first" class="custom-tabs" style="color: #204060" @tab-click="handleClick">
-            <el-tab-pane label="按最热" name="first">按最热</el-tab-pane>
+            <el-tab-pane label="按最热" name="first">
+
+              <el-row>
+                <el-col v-for="(o) in 10" :span="6" :key="o" >
+                  <el-card :body-style="{ padding: '0px' }" shadow="hover">
+                    <img src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" class="image" width="100%">
+                    <div style="padding: 14px;">
+                      <span>拯救大兵瑞恩</span>
+                      <div class="bottom clearfix">
+                        <time class="time">{{ currentDate }}</time>
+                        <el-button type="text" class="button" @click="toPlayer()">播放</el-button>
+                      </div>
+                    </div>
+                  </el-card>
+                </el-col>
+              </el-row>
+
+            </el-tab-pane>
             <el-tab-pane label="按最新" name="second">按最新</el-tab-pane>
             <el-tab-pane label="按好评" name="third">按好评</el-tab-pane>
           </el-tabs>
@@ -67,6 +84,9 @@ export default {
   methods: {
     loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
+    },
+    toPlayer() {
+      this.$router.push(`/video/play`)
     }
   }
 }
