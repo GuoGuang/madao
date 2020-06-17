@@ -38,12 +38,13 @@
               <el-row>
                 <el-col v-for="(o) in 10" :span="6" :key="o" >
                   <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                    <img src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" class="image" width="100%">
+                    <router-link to="/movie/1">
+                      <el-image src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" lazy style="width:100%"/>
+                    </router-link>
                     <div style="padding: 14px;">
                       <span>拯救大兵瑞恩</span>
                       <div class="bottom clearfix">
                         <time class="time">{{ currentDate }}</time>
-                        <el-button type="text" class="button" @click="toPlayer()">播放</el-button>
                       </div>
                     </div>
                   </el-card>
@@ -84,18 +85,15 @@ export default {
   methods: {
     loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
-    },
-    toPlayer() {
-      this.$router.push(`/video/play`)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '../../static/video/css/iconfont.css';
-  @import '../../static/video/css/style.min.css';
-  @import '../../static/video/css/whitecolor.css';
+  @import '../../static/movie/css/iconfont.css';
+  @import '../../static/movie/css/style.min.css';
+  @import '../../static/movie/css/whitecolor.css';
   .hy-index-menu{
     *, *:hover {
       &:after, &:before {

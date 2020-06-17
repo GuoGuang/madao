@@ -54,7 +54,7 @@
                 <dl class="clearfix" style="display:table;content:'';width: 100%;">
                   <dd><h4>扫描二维码“手机看大片”</h4>
                     <p class="text-muted"> 也可以分享到朋友圈哦！ </p>
-                  <p class="margin-0 text-muted"> https://codeway.me/video/ </p></dd>
+                  <p class="margin-0 text-muted"> https://codeway.me/movie/ </p></dd>
                 </dl>
               </div>
             </div>
@@ -374,16 +374,16 @@ export default {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     },
     toList() {
-      this.$router.push(`/video/list`)
+      this.$router.push(`/movie/list`)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import '../../static/video/css/iconfont.css';
-  @import '../../static/video/css/style.min.css';
-  @import '../../static/video/css/whitecolor.css';
+  @import '../../static/movie/css/iconfont.css';
+  @import '../../static/movie/css/style.min.css';
+  @import '../../static/movie/css/whitecolor.css';
   .hy-index-menu{
     *, *:hover {
       &:after, &:before {
