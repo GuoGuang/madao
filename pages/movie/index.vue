@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
 
-        <el-carousel :interval="4000" >
+        <el-carousel :interval="444000" type="card">
           <el-carousel-item
             v-for="item in [
               'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
@@ -15,7 +15,7 @@
               'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
             ]"
             :key="item">
-            <img :src="item" width="100%" style="height: 100%">
+            <img :src="item" class="custom-img" width="100%" style="height: 100%">
           </el-carousel-item>
         </el-carousel>
 
@@ -394,5 +394,18 @@ export default {
   .hy-video-head h3 {
     display: flex !important;
     font-size: 18px;
+  }
+  .is-active{
+    transform: translateX(150px) scale(1) !important;
+  }
+  .el-carousel__item--card {
+    width: 70%;
+  }
+  img {
+    cursor: pointer;
+    transition: all 0.6s;
+  }
+  img:hover {
+    transform: scale(1.1);
   }
 </style>

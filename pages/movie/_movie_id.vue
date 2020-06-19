@@ -1,19 +1,25 @@
 <template>
-  <!--  <div class="index">
-    <ali-player
-      ref="player"
-      source="https://pan.baidu.com/play/video#/video?path=%2F%E9%9D%A2%E8%AF%95%2F%E5%89%91%E6%8C%87Java%E9%9D%A2%E8%AF%95-Offer%E7%9B%B4%E9%80%9A%E8%BD%A6%2F%E7%AC%AC9%E7%AB%A0%20Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91-%E5%8E%9F%E7%90%86%2F9-9%20%E7%BA%BF%E7%A8%8B%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93_%E6%85%95%E8%AF%BE%E7%BD%91.mp4"
-      vid="11"/>
+  <div class="index">
+    <div
+      v-video-player:myVideoPlayer="playerOptions"
+      ref="videoPlayer"
+      class="video-player-box player vjs-big-play-centered"
+      @play="onPlayerPlay($event)"
+      @pause="onPlayerPause($event)"
+      @ready="playerReadied"
+      @statechanged="playerStateChanged($event)"/>
 
-  </div>-->
-  <div
-    v-video-player:myVideoPlayer="playerOptions"
-    ref="videoPlayer"
-    class="video-player-box player vjs-big-play-centered"
-    @play="onPlayerPlay($event)"
-    @pause="onPlayerPause($event)"
-    @ready="playerReadied"
-    @statechanged="playerStateChanged($event)"/>
+    <div class="movie-desc">
+      <span class="info">正在播放：解救雷·肖恩第一季- 第05集 - 云播二</span>
+      <el-tag
+        type="info"
+        effect="dark">
+        如加载失败，可刷新几次，部分电影宽带需等待加载。
+      </el-tag>
+      <span class="info">  <el-button type="info" size="small" plain>数据报错</el-button></span>
+    </div>
+
+  </div>
 
 </template>
 
@@ -113,6 +119,15 @@ export default {
 </script>
 
 <style lang="scss" >
+  .movie-desc{
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    .info {
+      align-self: center;
+    }
+  }
+
   .vjs-custom-skin > .video-js {
     width: 100%;
     font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;

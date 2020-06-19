@@ -96,7 +96,7 @@ export default {
 
       video.onloadedmetadata = () => {
         setTimeout(() => {
-          // console.log('视频加载成功', video)
+          // console.log('视频加载成功', movie)
           videoCanvasCTX.clearRect(0, 0, videoCanvas.width, videoCanvas.height)
           videoCanvasCTX.drawImage(video, 0, 0)
           image.onload = function() {

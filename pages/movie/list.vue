@@ -39,13 +39,19 @@
                 <el-col v-for="(o) in 10" :span="6" :key="o" >
                   <el-card :body-style="{ padding: '0px' }" shadow="hover">
                     <router-link to="/movie/1">
-                      <el-image src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" lazy style="width:100%"/>
+                      <el-image src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" class="custom-img" lazy style="width:100%"/>
                     </router-link>
                     <div style="padding: 14px;">
-                      <span>拯救大兵瑞恩</span>
-                      <div class="bottom clearfix">
-                        <time class="time">{{ currentDate }}</time>
-                      </div>
+                      <p>拯救大兵瑞恩</p>
+                      <span>梦工厂1998年出品的战争片
+                        <el-tag
+                          type="info"
+                          effect="plain">
+                          {{ new Date().getFullYear() }}
+                        </el-tag>
+
+                      </span>
+
                     </div>
                   </el-card>
                 </el-col>
@@ -85,6 +91,9 @@ export default {
   methods: {
     loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
+    },
+    handleClick() {
+      console.log('handleClick')
     }
   }
 }
@@ -157,4 +166,11 @@ export default {
       background-color: #204060 !important;
     }
   }
+    .custom-img img {
+      cursor: pointer;
+      transition: all 0.6s;
+    }
+    .custom-img img:hover {
+      transform: scale(1.1);
+    }
 </style>

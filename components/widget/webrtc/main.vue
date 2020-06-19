@@ -441,7 +441,7 @@ export default {
       */
   },
   methods: {
-    // 计算 video 元素的尺寸
+    // 计算 movie 元素的尺寸
     getVideoElementSize(index) {
       if (index === 0) {
         return { width: 540, height: 345 }
