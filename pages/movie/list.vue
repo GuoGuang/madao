@@ -31,26 +31,27 @@
           <div class="row" style="margin-top:0px"/>
         </div>
         <div class="hy-layout clearfix" style="margin-top: 10px;">
-          <div style="position: absolute;right: 0;display: flex;line-height: 2;">如果您喜欢本站请动动小手分享给您的朋友！</div>
+          <div style="position: absolute;right: 20px;display: flex;line-height: 2;">如果您喜欢本站请动动小手分享给您的朋友！</div>
           <el-tabs value="first" class="custom-tabs" style="color: #204060" @tab-click="handleClick">
             <el-tab-pane label="按最热" name="first">
 
               <el-row>
-                <el-col v-for="(o) in 10" :span="6" :key="o" >
+                <el-col v-for="(item,key) in movies" :span="6" :key="key" >
                   <el-card :body-style="{ padding: '0px' }" shadow="hover">
                     <router-link to="/movie/1">
-                      <el-image src="https://img.kukan5.com/pic/uploadimg/2016-11/304.jpg" class="custom-img" lazy style="width:100%"/>
+                      <el-image :src="item.cover_pic" fit="cover" class="custom-img" lazy style="width:100%;height: 400px;"/>
                     </router-link>
                     <div style="padding: 14px;">
-                      <p>拯救大兵瑞恩</p>
-                      <span>梦工厂1998年出品的战争片
+                      <p >{{ item.name }}</p>
+                      <div style="display:flex;justify-content: space-between;">
+                        <span style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ item.desc }}</span>
                         <el-tag
                           type="info"
                           effect="plain">
                           {{ new Date().getFullYear() }}
                         </el-tag>
 
-                      </span>
+                      </div>
 
                     </div>
                   </el-card>
@@ -79,7 +80,7 @@ export default {
     }
   },
   fetch({ store, params }) {
-    // return store.dispatch('article/fetchList', params)
+    return store.dispatch('movie/fetchList')
   },
   head() {
     return {
@@ -87,6 +88,9 @@ export default {
     }
   },
   computed: {
+    movies() {
+      return this.$store.state.movie.list.data
+    }
   },
   methods: {
     loadmoreArticle() {
@@ -121,7 +125,6 @@ export default {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  width: 1170px;
 }
 
   /*切换卡*/
@@ -167,7 +170,6 @@ export default {
     }
   }
     .custom-img img {
-      cursor: pointer;
       transition: all 0.6s;
     }
     .custom-img img:hover {

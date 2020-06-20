@@ -71,7 +71,7 @@ export default {
         },
         sources: [{
           type: 'video/mp4',
-          src: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/9-9%20%E7%BA%BF%E7%A8%8B%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93_%E6%85%95%E8%AF%BE%E7%BD%91.mp4'
+          src: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/videoplayback.mp4'
         }]
       }
     }
