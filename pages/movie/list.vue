@@ -73,11 +73,9 @@
 
 export default {
   name: 'VideoList',
-  components: {
-  },
+  components: {},
   data() {
-    return {
-    }
+    return {}
   },
   fetch({ store, params }) {
     return store.dispatch('movie/fetchList')
@@ -107,25 +105,27 @@ export default {
   @import '../../static/movie/css/iconfont.css';
   @import '../../static/movie/css/style.min.css';
   @import '../../static/movie/css/whitecolor.css';
-  .hy-index-menu{
+
+  .hy-index-menu {
     *, *:hover {
       &:after, &:before {
         display: none;
       }
     }
   }
-.container{
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #666;
-  font-family: "Microsoft YaHei";
-  box-sizing: border-box;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
+
+  .container {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #666;
+    font-family: "Microsoft YaHei";
+    box-sizing: border-box;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
   /*切换卡*/
   .hy-switch-tabs {
@@ -162,17 +162,21 @@ export default {
     .el-tabs__item {
       color: #204060 !important;
     }
-      .el-tabs__item {
-        color: #204060 !important;
-      }
-    .el-tabs__active-bar{
+
+    .el-tabs__item {
+      color: #204060 !important;
+    }
+
+    .el-tabs__active-bar {
       background-color: #204060 !important;
     }
   }
-    .custom-img img {
-      transition: all 0.6s;
-    }
-    .custom-img img:hover {
-      transform: scale(1.1);
-    }
+
+  .custom-img img {
+    transition: all 0.6s;
+  }
+
+  .custom-img img:hover {
+    transform: scale(1.1);
+  }
 </style>

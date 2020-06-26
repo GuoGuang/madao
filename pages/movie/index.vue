@@ -38,14 +38,7 @@
             <div class="hy-index-tags hidden-md clearfix">
               <div class="item">
                 <ul class="clearfix">
-                  <li><a href="#" @click="toList()">爱情</a></li>
-                  <li><a href="#" @click="toList()">动作</a></li>
-                  <li><a href="#" @click="toList()">恐怖</a></li>
-                  <li><a href="#" @click="toList()">科幻</a></li>
-                  <li><a href="#" @click="toList()">剧情</a></li>
-                  <li><a href="#" @click="toList()">犯罪</a></li>
-                  <li><a href="#" @click="toList()">奇幻</a></li>
-                  <li><a href="#" @click="toList()">战争</a></li>
+                  <li v-for="(item,index) in topCategory" :key="index"><a href="#" @click="toList()">{{ item }}</a></li>
                 </ul>
               </div>
             </div>
@@ -92,50 +85,16 @@
         <div class="hy-layout clearfix">
           <div class="hy-video-head">
             <ul class="pull-right">
-              <li class="text-muted hidden-md hidden-sm hidden-xs">
-                <a href="./movie.php?m=/dianying/list.php?cat=103&amp;page=1" class="text-muted border-right">喜剧</a>
-                /
+              <li v-for="(item,index) in tagCategory.movie" :key="index" class="text-muted hidden-md hidden-sm hidden-xs">
+                <a href="#" class="text-muted border-right">{{ item }}</a>/
               </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=100&amp;page=1"
-                class="text-muted border-right">爱情</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=106&amp;page=1"
-                class="text-muted border-right">动作</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=102&amp;page=1"
-                class="text-muted border-right">恐怖</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=104&amp;page=1"
-                class="text-muted border-right">科幻</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=121&amp;page=1"
-                class="text-muted border-right">剧情</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=105&amp;page=1"
-                class="text-muted border-right">犯罪</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./movie.php?m=/dianying/list.php?cat=113&amp;page=1"
-                class="text-muted border-right">奇幻</a>
-                /
-              </li>
+
               <li class="active"><a href="./movie.php?m=/dianying/list.php?cat=all&amp;page=1" class="text-muted">更多 ❯</a></li>
             </ul>
             <h3 class="margin-0"><i class="icon iconfont icon-caidanicondianyinghui text-color"/>
 
-          <span style="align-self: center;">电影</span></h3></div>
+            <span style="align-self: center;">电影</span></h3>
+          </div>
         </div>        <!--电影-->
         <div class="container">
           <div class="row" style="margin-top:10px"/>
@@ -143,37 +102,8 @@
         <div class="hy-layout clearfix">
           <div class="hy-video-head">
             <ul class="pull-right">
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=101&amp;pageno=1"
-                class="text-muted border-right">言情</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=105&amp;pageno=1"
-                class="text-muted border-right">伦理</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=109&amp;pageno=1"
-                class="text-muted border-right">喜剧</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=108&amp;pageno=1"
-                class="text-muted border-right">悬疑</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=111&amp;pageno=1"
-                class="text-muted border-right">都市</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=100&amp;pageno=1"
-                class="text-muted border-right">偶像</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=104&amp;pageno=1"
-                class="text-muted border-right">古装</a> /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./tv.php?m=/dianshi/list.php?cat=107&amp;pageno=1"
-                class="text-muted border-right">军事</a> /
+              <li v-for="(item,index) in tagCategory.drama" :key="index" class="text-muted hidden-md hidden-sm hidden-xs">
+                <a href="#" class="text-muted border-right">{{ item }}</a> /
               </li>
               <li class="active"><a href="#" class="text-muted" @click="toList()">更多 ❯</a></li>
             </ul>
@@ -187,55 +117,8 @@
         <div class="hy-layout clearfix">
           <div class="hy-video-head">
             <ul class="pull-right">
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">选秀</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">八卦</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">访谈</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">情感</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">生活</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">晚会</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right"
-                @click="toList()">搞笑</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="#"
-                class="text-muted border-right">音乐
-
-                <span style="align-self: center;">综艺</span>
-              </a>
-                /
+              <li v-for="(item,index) in tagCategory.variety" :key="index" class="text-muted hidden-md hidden-sm hidden-xs">
+                <a href="#" class="text-muted border-right" @click="toList()">{{ item }}</a>/
               </li>
               <li class="active"><a href="./zongyi.php?m=/zongyi/list.php?cat=all&amp;page=1" class="text-muted">更多 ❯</a></li>
             </ul>
@@ -251,49 +134,12 @@
         <div class="hy-layout clearfix">
           <div class="hy-video-head">
             <ul class="pull-right">
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=100&amp;page=1"
-                class="text-muted border-right">热血</a>
-                /
+              <li v-for="(item,index) in tagCategory.cartoon" :key="index" class="text-muted hidden-md hidden-sm hidden-xs">
+                <a href="#" class="text-muted border-right">{{ item }}</a>/
               </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=101&amp;page=1"
-                class="text-muted border-right">恋爱</a>
-                /
+              <li class="active">
+                <a href="./dongman.php?m=/dongman/list.php?cat=all%26pageno=1" class="text-muted">更多 ❯</a>
               </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=102&amp;page=1"
-                class="text-muted border-right">美少女</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=103&amp;page=1"
-                class="text-muted border-right">运动</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=104&amp;page=1"
-                class="text-muted border-right">校园</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=105&amp;page=1"
-                class="text-muted border-right">搞笑</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=106&amp;page=1"
-                class="text-muted border-right">幻想</a>
-                /
-              </li>
-              <li class="text-muted hidden-md hidden-sm hidden-xs"><a
-                href="./dongman.php?m=/dongman/list.php?cat=107&amp;page=1"
-                class="text-muted border-right">冒险</a>
-                /
-              </li>
-              <li class="active"><a
-                href="./dongman.php?m=/dongman/list.php?cat=all%26pageno=1"
-                class="text-muted">更多 ❯</a></li>
             </ul>
             <h3 class="margin-0"><i class="icon iconfont icon-liebiaodaohang_dongman text-color"/>
 
@@ -302,46 +148,36 @@
         <div class="hy-layout hidden-md hidden-sm hidden-xs clearfix" style="margin-bottom: 20px;">
           <div class="hy-video-head"><h3 class="margin-0">合作伙伴</h3></div>
           <div class="hy-footer-partner" style="height: 150px;">
-            <div class="item clearfix"><a href="http://www.iqiyi.com/" target="_blank" class="iqiyi"><span/></a><a
-              href="http://www.letv.com/"
-              target="_blank"
-              class="letv"><span/></a><a
-                href="http://www.wasu.cn/"
-                target="_blank"
-                class="wasu"><span/></a><a
-                  href="http://www.fun.tv/"
-                  target="_blank"
-                  class="fun"><span/></a><a
-                    href="http://www.hunantv.com/"
-                    target="_blank"
-                    class="hunantv"><span/></a><a
-                      href="http://www.cntv.cn/"
-                      target="_blank"
-                      class="cntv"><span/></a><a
-                        href="http://v.ifeng.com/"
-                        target="_blank"
-                        class="ifeng line-last"><span/></a><a
-                          href="http://www.pptv.com/"
-                          target="_blank"
-                          class="pptv"><span/></a><a
-                            href="http://www.kankan.com/?id=731032"
-                            target="_blank"
-                            class="kankan"><span/></a><a
-                              href="http://www.56.com/"
-                              target="_blank"
-                              class="v56"><span/></a><a
-                                href="http://www.ku6.com/"
-                                target="_blank"
-                                class="ku6"><span/></a><a
-                                  href="http://www.1905.com/"
-                                  target="_blank"
-                                  class="m1905"><span/></a><a
-                                    href="http://www.cztv.com/"
-                                    target="_blank"
-                                    class="sina"><span/></a><a
-                                      href="http://www.yinyuetai.com/"
-                                      target="_blank"
-                                      class="yinyuetai line-last"><span/></a></div>
+            <div class="item clearfix">
+              <a href="http://www.iqiyi.com/" target="_blank" class="iqiyi">
+              <span/></a>
+              <a href="http://www.letv.com/" target="_blank" class="letv">
+              <span/></a>
+              <a href="http://www.wasu.cn/" target="_blank" class="wasu">
+              <span/></a>
+              <a href="http://www.fun.tv/" target="_blank" class="fun">
+              <span/></a>
+              <a href="http://www.hunantv.com/" target="_blank" class="hunantv">
+              <span/></a>
+              <a href="http://www.cntv.cn/" target="_blank" class="cntv">
+              <span/></a>
+              <a href="http://v.ifeng.com/" target="_blank" class="ifeng line-last">
+              <span/></a>
+              <a href="http://www.pptv.com/" target="_blank" class="pptv">
+              <span/></a>
+              <a href="http://www.kankan.com/?id=731032" target="_blank" class="kankan">
+              <span/></a>
+              <a href="http://www.56.com/" target="_blank" class="v56">
+              <span/></a>
+              <a href="http://www.ku6.com/" target="_blank" class="ku6">
+              <span/></a>
+              <a href="http://www.1905.com/" target="_blank" class="m1905">
+              <span/></a>
+              <a href="http://www.cztv.com/" target="_blank" class="sina">
+              <span/></a>
+              <a href="http://www.yinyuetai.com/" target="_blank" class="yinyuetai line-last">
+              <span/></a>
+            </div>
           </div>
         </div><!--end 合作伙伴 -->
       </div>
@@ -353,10 +189,16 @@
 
 export default {
   name: 'Video',
-  components: {
-  },
+  components: {},
   data() {
     return {
+      topCategory: ['爱情', '动作', '恐怖', '科幻', '剧情', '犯罪', '奇幻', '战争'],
+      tagCategory: {
+        'movie': ['喜剧', '爱情', '动作', '恐怖', '科幻', '剧情', '犯罪', '奇幻'],
+        'drama': ['言情', '伦理', '喜剧', '悬疑', '都市', '偶像', '古装', '军事'],
+        'variety': ['选秀', '八卦', '访谈', '情感', '生活', '晚会', '搞笑', '音乐', '综艺'],
+        'cartoon': ['热血', '恋爱', '美少女', '运动', '校园', '搞笑', '幻想', '冒险']
+      }
     }
   },
   fetch({ store, params }) {
@@ -367,8 +209,7 @@ export default {
       title: `影视 | 在线免费高清电影`
     }
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
@@ -384,27 +225,33 @@ export default {
   @import '../../static/movie/css/iconfont.css';
   @import '../../static/movie/css/style.min.css';
   @import '../../static/movie/css/whitecolor.css';
-  .hy-index-menu{
+
+  .hy-index-menu {
     *, *:hover {
       &:after, &:before {
         display: none;
       }
     }
   }
+
   .hy-video-head h3 {
     display: flex !important;
     font-size: 18px;
   }
-  .is-active{
+
+  .is-active {
     transform: translateX(150px) scale(1) !important;
   }
+
   .el-carousel__item--card {
     width: 70%;
   }
+
   img {
     cursor: pointer;
     transition: all 0.6s;
   }
+
   img:hover {
     transform: scale(1.1);
   }
