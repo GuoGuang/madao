@@ -30,7 +30,7 @@
             <i class="iconfont icon-menu"/>
           </a>
           <nuxt-link to="/" class="navbar-logo">
-            <img src="https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/logo.png" style="    width: 200px;">
+            <img src="https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/logo.png" alt="logo" style="    width: 200px;">
           </nuxt-link>
           <a href class="navbar-search" @click.stop.prevent="openSearch">
             <i class="iconfont icon-search"/>
