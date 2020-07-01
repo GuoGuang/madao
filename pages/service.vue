@@ -110,7 +110,7 @@ export default {
     },
 
     url() {
-      return `https://codeway.me${this.$route.fullPath}`
+      return `https://codeway.fun${this.$route.fullPath}`
     }
   }
 }

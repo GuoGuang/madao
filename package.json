@@ -1,14 +1,14 @@
 {
-  "name": "codeway.me",
+  "name": "codeway.fun",
   "version": "2.1.4",
-  "description": "codeway.me blog",
+  "description": "codeway.fun blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://codeway.me"
+    "url": "https://codeway.fun"
   },
   "license": "MIT",
-  "homepage": "http://codeway.me",
+  "homepage": "http://codeway.fun",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GuoGuang/codeway.git"

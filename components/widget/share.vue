@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     url() {
-      return `https://codeway.me${this.$route.fullPath}`
+      return `https://codeway.fun${this.$route.fullPath}`
     },
     isMobile() {
       return this.$store.state.global.isMobile
@@ -103,12 +103,12 @@ export default {
       try {
         if (document) return document.title
       } catch (err) {
-        return 'codeway.me'
+        return 'codeway.fun'
       }
     },
     shareWindow(social, url) {
       const targetUrl = url().includes('mailto')
-        ? url().replace(/\s|\||codeway.me/g, '')
+        ? url().replace(/\s|\||codeway.fun/g, '')
         : encodeURI(url())
       this.$ga.social(social, '分享', targetUrl)
       /*
@@ -120,7 +120,7 @@ export default {
         *
         */
       // 给打开的窗口命名
-      const windowName = '分享 codeway.me'
+      const windowName = '分享 codeway.fun'
       // 窗口宽度,需要设置
       const awidth = screen.availWidth / 6 * 2
       // 窗口高度,需要设置

@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to codeway.me 👋</h1>
+<h1 align="center">Welcome to codeway.fun 👋</h1>
 
 <p align="center">
   <a href="https://github.com/nuxt/nuxt.js" target="blank">
@@ -6,7 +6,7 @@
   </a>
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <a href="https://github.com/GuoGuang/codeway" target="blank">
-    <img src="https://github.com/GuoGuang/codeway/blob/master/static/favicon.ico" height="90" alt="codeway.me logo" />
+    <img src="https://github.com/GuoGuang/codeway/blob/master/static/favicon.ico" height="90" alt="codeway.fun logo" />
   </a>
 </p>
 
@@ -28,7 +28,7 @@
 ### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
 
 
-### 🏠 [Homepage](https://codeway.me)
+### 🏠 [Homepage](https://codeway.fun)
 > 如果喜欢记得给个star哦🌟
 
 ## PC

@@ -47,7 +47,7 @@
                 <dl class="clearfix" style="display:table;content:'';width: 100%;">
                   <dd><h4>扫描二维码“手机看大片”</h4>
                     <p class="text-muted"> 也可以分享到朋友圈哦！ </p>
-                  <p class="margin-0 text-muted"> https://codeway.me/movie/ </p></dd>
+                  <p class="margin-0 text-muted"> https://codeway.fun/movie/ </p></dd>
                 </dl>
               </div>
             </div>

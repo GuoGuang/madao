@@ -17,9 +17,9 @@ process.noDeprecation = true
 const color = c => isDevMode ? c : ''
 global.console = Object.assign(console, {
   log: (...args) => log('[log]', ...args),
-  warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[codeway.me]', ...args),
-  info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[codeway.me]', ...args),
-  error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[codeway.me]', ...args),
+  warn: (...args) => warn(color('\x1b[33m%s\x1b[0m'), '[warn]', '[codeway.fun]', ...args),
+  info: (...args) => info(color('\x1b[34m%s\x1b[0m'), '[info]', '[codeway.fun]', ...args),
+  error: (...args) => info(color('\x1b[31m%s\x1b[0m'), '[error]', '[codeway.fun]', ...args),
 }) */
 
 const config = require('./nuxt.config')

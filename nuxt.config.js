@@ -173,11 +173,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//codeway.me` },
-      { rel: 'dns-prefetch', href: '//api.codeway.me' },
-      { rel: 'dns-prefetch', href: '//cdn.codeway.me' },
-      { rel: 'dns-prefetch', href: '//static.codeway.me' },
-      { rel: 'dns-prefetch', href: '//gravatar.codeway.me' },
+      { rel: 'dns-prefetch', href: `//codeway.fun` },
+      { rel: 'dns-prefetch', href: '//api.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//cdn.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//static.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//gravatar.codeway.fun' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },

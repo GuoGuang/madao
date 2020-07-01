@@ -8,7 +8,7 @@ exports.meta = {
   title: 'CODEWAY',
   keywords: 'codeway,后端,java开发,博客,个人网站，SpringCloud,架构师',
   description: '百学须先立志',
-  url: 'codeway.me',
+  url: 'codeway.fun',
   author: 'codeway',
   email: 'guoguang0536@gmail.com',
 }
