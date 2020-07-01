@@ -5,6 +5,6 @@ Contact: GuoGuang0536@gmail.com
 From:Weifang, Shandong, China
 
 /* SITE */
-Site： codeway.me
+Site： codeway.fun
 Last update: 2019/02/18
 Language： Vue,Nuxt.js
