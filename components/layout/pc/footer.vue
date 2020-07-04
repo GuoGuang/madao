@@ -74,7 +74,7 @@ export default {
 
 </style>
 
-<style scoped>
+<style>
 html{height:100%;}
 body{min-height:100%;position:relative;}
 main{padding-bottom:200px;}/* main的padding-bottom值要等于或大于footer的height值 */
