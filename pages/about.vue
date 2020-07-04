@@ -197,7 +197,7 @@
                 <img :src="gravatar" class="avatar">
                 <div class="desc">
                   <h2 class="name">
-                    <strong>Youyd</strong>
+                    <strong>GuoGuang</strong>
                   </h2>
                   <p class="skill">Java Developer.</p>
                 </div>

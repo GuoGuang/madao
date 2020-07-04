@@ -5,8 +5,8 @@
  */
 
  // const apiConfig = require('./api.config.js')
-// const imagePath = apiConfig.cdnUrl+`/images/mammon/` 
-const imagePath = `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt/images/mammon/` 
+// const imagePath = apiConfig.cdnUrl+`/images/mammon/`
+const imagePath = `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt/images/mammon/`
 
 
 const links = {
@@ -38,6 +38,12 @@ const pc = {
     taobao: links.pc.taobao,
     aliyun: links.common.aliyun
   },
+  carrousel:
+    {
+      url: links.common.aliyun,
+      src: imagePath + 'aliyun-532-178.jpg'
+    }
+  ,
   asideSwiper: [
     {
       url: links.common.aliyun,
@@ -63,7 +69,7 @@ const common = {
 
   // 相关文章 -> 智能广告
   articleRelated(tags, isMobile) {
-    
+
     const text = tags.map(tag => tag.name + tag.description).join()
     const isCategory = tags => tags.some(tag => text.includes(tag))
 
@@ -83,7 +89,7 @@ const common = {
       title: '一款优秀的弹性主机很重要！',
       img: imagePath + 'aliyun-290-224.jpg'
     }
-    
+
     const findAd = ads.find(ad => isCategory(ad.tags))
     const resultAd = findAd ? findAd.ad : defaultAliyunAd
     return Object.assign(resultAd, { ad: true })

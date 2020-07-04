@@ -14,21 +14,29 @@
             <i class="iconfont icon-shandian" style="color:inherit"/>
             <span style="color:inherit" @click="defaultTechnologyHandle" v-text="$i18n.nav.technology"/>
           </template>
-          <el-menu-item index="/music">
-            <span v-text="$i18n.nav.music"/>
-          </el-menu-item>
-          <el-menu-item ref="defaultTechnology" index="/technology" style="display:none">
-            <span v-text="$i18n.nav.technology"/>
+          <el-menu-item ref="defaultTechnology" index="/timeLine">
+            <span v-text="$i18n.nav.timeLine"/>
           </el-menu-item>
         </el-submenu>
         <el-menu-item index="/security">
           <i class="iconfont icon-thlarge"/>
           <span v-text="$i18n.nav.security "/>
         </el-menu-item>
-        <el-menu-item index="/welfare">
-          <i class="iconfont icon-dribbble"/>
-          <span v-text="$i18n.nav.welfare"/>
-        </el-menu-item>
+        <el-submenu index="/welfare">
+          <template slot="title" >
+            <i class="iconfont icon-dribbble" style="color:inherit"/>
+            <span style="color:inherit" @click="defaultWelfareHandle" v-text="$i18n.nav.welfare"/>
+          </template>
+          <el-menu-item index="/movie">
+            <span v-text="$i18n.nav.movie"/>
+          </el-menu-item>
+          <el-menu-item index="/music">
+            <span v-text="$i18n.nav.music"/>
+          </el-menu-item>
+          <el-menu-item ref="defaultWelfare" index="/welfare">
+            <span v-text="$i18n.nav.welfare"/>
+          </el-menu-item>
+        </el-submenu>
         <el-menu-item index="/service">
           <i class="iconfont icon-xuexi"/>
           <span v-text="$i18n.nav.service"/>
@@ -58,6 +66,9 @@ export default {
   methods: {
     defaultTechnologyHandle(key, keyPath) {
       this.$refs.defaultTechnology.$el.click()
+    },
+    defaultWelfareHandle(key, keyPath) {
+      this.$refs.defaultWelfare.$el.click()
     }
   }
 

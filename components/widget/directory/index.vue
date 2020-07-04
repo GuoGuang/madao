@@ -23,12 +23,12 @@ export default {
     // 使用演示5ms解决异步获取数据后document.getElementById(Opt.contentEl)为null的问题
     setTimeout(() => {
       const defaultOpts = {
-        selector: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] // 按优先级排序
+        selector: ['h1', 'h2'] // 按优先级排序
       }
       const Opt = Object.assign({}, defaultOpts, {
         contentEl: 'article-content',
         catalogEl: 'scroll-aside',
-        selector: ['h1', 'h2', 'h3', 'h4', 'h5']
+        selector: ['h1', 'h2']
       })
       const $content = document.getElementById(Opt.contentEl) // 内容获取区
       const allCatalogs = $content.querySelectorAll(Opt.selector.join())

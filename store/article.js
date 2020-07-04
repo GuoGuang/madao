@@ -150,7 +150,6 @@ export const actions = {
     commit('updateHotListFetchig', true)
     return this.$axios.$get(`${api}/hot`, { params: { cache: 1 }})
       .then(response => {
-        console.error('最热=====', JSON.stringify(response))
         commit('updateHotListData', response.data)
         commit('updateHotListFetchig', false)
       })
@@ -196,6 +195,9 @@ export const actions = {
       // commit('updateLikesIncrement')
       localStorage.setItem('article_' + article_id, '1')
       return Promise.resolve(response)
+    }).catch(error => {
+      console.log(error)
+      this.$toast.error('服务器开小差啦~~')
     })
   },
   unLikeArticle({ commit }, article_id) {

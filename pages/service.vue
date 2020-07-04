@@ -110,7 +110,7 @@ export default {
     },
 
     url() {
-      return `https://codeway.me${this.$route.fullPath}`
+      return `https://codeway.fun${this.$route.fullPath}`
     }
   }
 }
@@ -252,7 +252,7 @@ export default {
             padding: 0;
             list-style-type: none;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
 
             > .item {
               width: 19%;

@@ -2,14 +2,14 @@
   "development": {
     "cdnUrl": "",
     "proxyUrl": "/proxy/",
-    "baseUrl": "http://114.55.104.203:7300/mock/5ebc233b22fabf002042d86d/codeway/api",
-    "socketHost": "http://localhost:3000"
+    "baseUrl": "https://api.codeway.fun/",
+    "socketHost": "https://socket.codeway.fun"
   },
 
   "production": {
     "cdnUrl": "",
-    "proxyUrl": "https://codeway.me/proxy/",
-    "baseUrl": "https://codeway.me/api",
-    "socketHost": "https://socket.codeway.me"
+    "proxyUrl": "https://codeway.fun/proxy/",
+    "baseUrl": "https://api.codeway.fun/",
+    "socketHost": "https://socket.codeway.fun"
   }
 }

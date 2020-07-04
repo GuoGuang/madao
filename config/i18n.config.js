@@ -32,6 +32,10 @@ module.exports = {
         zh: '福利',
         en: 'welfare'
       },
+      movie: {
+        zh: '电影',
+        en: 'movie'
+      },
       tweets: {
         zh: '猿圈',
         en: 'tweets'
@@ -67,6 +71,10 @@ module.exports = {
       music: {
         zh: '音乐',
         en: 'music'
+      },
+      timeLine: {
+        zh: '时间线',
+        en: 'timeLine'
       },
       app: {
         zh: '客户',
@@ -251,6 +259,10 @@ module.exports = {
         },
         hotlist: {
           zh: '今日热议',
+          en: 'hot'
+        },
+        hotWelfare: {
+          zh: '热门福利',
           en: 'hot'
         },
         aside: {

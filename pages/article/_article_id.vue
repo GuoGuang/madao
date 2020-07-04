@@ -170,7 +170,7 @@
             <p class="item">
               <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
               <span class="site-url" @click="copyArticleUrl">
-                <span>https://codeway.me/article/{{ article.id }}</span>
+                <span>https://codeway.fun/article/{{ article.id }}</span>
               </span>
             </p>
             <div class="item">
@@ -402,9 +402,13 @@ export default {
       let shortContent = content.substring(0, 11688)
       const lastH4Index = shortContent.lastIndexOf('\n####')
       const lastH3Index = shortContent.lastIndexOf('\n###')
+      const lastH2Index = shortContent.lastIndexOf('\n##')
       const lastCodeIndex = shortContent.lastIndexOf('\n\n```')
       const lastLineIndex = shortContent.lastIndexOf('\n\n**')
-      const lastReadindex = Math.max(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex)
+      const lastBarIndex = shortContent.lastIndexOf('\|')
+      const lastQuoteIndex = shortContent.lastIndexOf('>')
+      const lastReadindex = Math.max(lastH4Index, lastH3Index, lastH2Index,
+        lastCodeIndex, lastLineIndex, lastBarIndex, lastQuoteIndex)
       // console.log(lastH4Index, lastH3Index, lastCodeIndex, lastLineIndex, 'min', lastReadindex)
       shortContent = shortContent.substring(0, lastReadindex)
       return marked(shortContent, hasTags ? this.tags : false, true)
@@ -533,7 +537,7 @@ export default {
     },
     copyArticleUrl() {
       if (this.article.title) {
-        this.$root.$copyToClipboard(`https://codeway.me/article/${this.article.id}`)
+        this.$root.$copyToClipboard(`https://codeway.fun/article/${this.article.id}`)
       }
     },
     buildThumb(thumb) {

@@ -23,9 +23,10 @@
         </span>
       </div>
       <div class="copyright">
-        Copyright © 2019-2019 codeway.me博客<br>
+        Copyright © 2019-2020 <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
+        All Rights Reserved. <a class="sitemap-btn" href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备20026257号</a ><br>
         <a href="" rel="nofollow"/> &nbsp;
-        <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
+        <p class="ml5">网站在各种灾难中运行了 <span>{{ days }}</span> 天</p >
       </div>
     </div>
   </footer>
@@ -61,6 +62,14 @@ export default {
         text-transform: uppercase;
       }
     }
+    p {
+      margin-bottom: 1em;
+      span {
+        font-style: italic;
+        font-family: monospace;
+        font-weight: bold;
+      }
+    }
   }
 
 </style>
@@ -68,6 +77,6 @@ export default {
 <style>
 html{height:100%;}
 body{min-height:100%;position:relative;}
-main{padding-bottom:100px;}/* main的padding-bottom值要等于或大于footer的height值 */
-footer{position:absolute;bottom:0;width:100%;height:100px;}
+main{padding-bottom:200px;}/* main的padding-bottom值要等于或大于footer的height值 */
+footer{position:absolute;bottom:0;width:100%;height:130px;}
 </style>

@@ -3,9 +3,10 @@
     <div class="container">
       <div class="footer-content">
         <div class="copyright">
-          Copyright © 2018-2020 <br>codeway.me博客<br>
+          Copyright © 2019-2020 <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
+          All Rights Reserved. <br><a class="sitemap-btn" href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备20026257号</a ><br>
           <a href="" rel="nofollow"/> &nbsp;
-          <span class="ml5">网站在各种灾难中运行了 {{ days }} 天</span>
+          <p class="ml5">网站在各种灾难中运行了 <span>{{ days }}</span> 天</p >
         </div>
       </div>
     </div>
@@ -41,6 +42,14 @@ export default {
         font-size: .9em;
         text-align: center;
         text-transform: uppercase;
+      }
+    }
+    p {
+      margin-bottom: 1em;
+      span {
+        font-style: italic;
+        font-family: monospace;
+        font-weight: bold;
       }
     }
   }

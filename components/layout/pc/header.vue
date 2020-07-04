@@ -134,7 +134,7 @@
 
         <div class="navbar-header" >
           <span class="navbar-blank"/>
-          <img :src="`${cdnUrl}/images/logo.png`" class="navbar-logo">
+          <img :src="`https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/logo.png`" alt="logo" class="navbar-logo">
           <nuxt-link to="/" class="navbar-link" />
         </div>
 
@@ -320,7 +320,7 @@ export default {
       loginForm: {
         id: '',
         acoount: '',
-        password: ''
+        password: '111111'
 
       },
 

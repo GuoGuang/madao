@@ -130,7 +130,8 @@ module.exports = {
     { src: '~/plugins/copy-right', mode: 'client' },
     { src: '~/plugins/element-ui' },
     { src: '~/plugins/axios' },
-    { src: '~/static/icon/iconfont.js', ssr: false }
+    { src: '~/static/icon/iconfont.js', ssr: false },
+    { src: '~/plugins/videoPlayer.js', ssr: false }
     /* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],
@@ -172,19 +173,19 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//codeway.me` },
-      { rel: 'dns-prefetch', href: '//api.codeway.me' },
-      { rel: 'dns-prefetch', href: '//cdn.codeway.me' },
-      { rel: 'dns-prefetch', href: '//static.codeway.me' },
-      { rel: 'dns-prefetch', href: '//gravatar.codeway.me' },
+      { rel: 'dns-prefetch', href: `//codeway.fun` },
+      { rel: 'dns-prefetch', href: '//api.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//cdn.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//static.codeway.fun' },
+      { rel: 'dns-prefetch', href: '//gravatar.codeway.fun' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },
       { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-      { rel: 'dns-prefetch', href: '//googleads.g.doubleclick.net' },
-      { rel: 'dns-prefetch', href: '//www.google-analytics.com' },
-      { rel: 'dns-prefetch', href: '//tpc.googlesyndication.com' },
-      { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' },
+      // { rel: 'dns-prefetch', href: '//googleads.g.doubleclick.net' },
+      // { rel: 'dns-prefetch', href: '//www.google-analytics.com' },
+      // { rel: 'dns-prefetch', href: '//tpc.googlesyndication.com' },
+      // { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'author', type: 'text/plain', href: '/humans.txt' }
     ],
