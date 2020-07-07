@@ -824,7 +824,7 @@ export default {
 
           p {
             line-height: 2.2em;
-            text-indent: 2em;
+            /*text-indent: 2em;*/
             margin-bottom: 1em;
 
             &.text-center {
@@ -868,6 +868,7 @@ export default {
           ol {
 
             >li {
+              margin-left: 2em;
               line-height: 1.8em;
               padding: .5em .8em;
 
