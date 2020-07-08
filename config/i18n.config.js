@@ -40,9 +40,9 @@ module.exports = {
         zh: '猿圈',
         en: 'tweets'
       },
-      security: {
-        zh: '安全',
-        en: 'security'
+      hack: {
+        zh: 'Hack',
+        en: 'Hack'
       },
       other: {
         zh: '其他',
@@ -264,6 +264,10 @@ module.exports = {
         hotWelfare: {
           zh: '热门福利',
           en: 'hot'
+        },
+        hotHack: {
+          zh: 'Hot Hack',
+          en: 'Hot Hack'
         },
         aside: {
           zh: '关于作者',
