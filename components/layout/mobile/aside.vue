@@ -22,7 +22,7 @@
         </nuxt-link>
         <nuxt-link to="/security" class="item">
           <i class="iconfont icon-anquanguizeyong" style="color:inherit"/>
-          <span style="color:inherit" v-text="$i18n.nav.security"/>
+          <span style="color:inherit" v-text="$i18n.nav.hack"/>
         </nuxt-link>
 
         <nuxt-link to="/welfare" class="item">

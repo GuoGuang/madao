@@ -20,7 +20,7 @@
         </el-submenu>
         <el-menu-item index="/security">
           <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.security "/>
+          <span v-text="$i18n.nav.hack "/>
         </el-menu-item>
         <el-submenu index="/welfare">
           <template slot="title" >
