@@ -898,6 +898,8 @@ export default {
           }
 
           pre {
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
             $code-line-height: 2.8em;
             $code-line-width: 2.5em;
             $code-line-line-height: 1.6em;
@@ -909,20 +911,22 @@ export default {
             background-color: rgba(0, 0, 0, 0.8);
 
             &:before {
-              color: white;
-              content: attr(data-lang)" CODE";
+              content: '';
+              display: block;
+              background: url(https://yd-note.oss-cn-beijing.aliyuncs.com/mac-tag.png);
+              width: 100%;
+              background-size: 40px;
+              background-repeat: no-repeat;
+              margin-bottom: -7px;
+              border-radius: 5px;
+              background-position: 10px 10px;
               height: $code-line-height;
               line-height: $code-line-height;
               font-size: 1em;
               position: absolute;
               top: 0;
               left: 0;
-              width: 100%;
-              font-weight: 700;
-              background-color: rgba(68, 68, 68, 0.9);
-              display: block;
-              text-transform: uppercase;
-              text-align: center;
+              background-color: transparent;
             }
 
             >.code-lines {
@@ -930,11 +934,10 @@ export default {
               left: 0;
               top: $code-line-height;
               margin: 0;
-              padding: 1em 0;
               width: $code-line-width;
               height: calc(100% - #{$code-line-height});
               text-align: center;
-              background-color: rgba(0, 0, 0, 0.2);
+              background-color: transparent;
 
               >.code-line-number {
                 padding: 0;
@@ -968,7 +971,7 @@ export default {
 
             >code {
               margin: 0;
-              padding: 1em;
+              padding: 0 1em 1em 1em;
               // padding-top: $code-line-height + 1em;
               float: left;
               width: 100%;
