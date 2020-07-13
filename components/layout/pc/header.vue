@@ -320,7 +320,7 @@ export default {
       loginForm: {
         id: '',
         acoount: '',
-        password: '111111'
+        password: ''
 
       },
 

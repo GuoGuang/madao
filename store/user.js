@@ -58,8 +58,8 @@ export const actions = {
   LoginByUsername({ commit }, userInfo) {
     // const acoount = userInfo.acoount.trim()
     return new Promise((resolve, reject) => {
-      commit('SET_TOKEN', '11111')
-      setToken('11111')
+      commit('SET_TOKEN', 'xxx')
+      setToken('xxx')
       resolve()
       /* loginByUserName(acoount, userInfo.password).then(response => {
         console.error('55')
