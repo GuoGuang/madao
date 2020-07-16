@@ -118,6 +118,17 @@
           </transition>
         </div> -->
         <transition name="module" mode="out-in">
+          <div key="skeleton" class="disclaimer">
+            <p><strong>免责声明</strong></p>
+            <p>本站提供的一切软件、教程和内容信息仅限用于学习和研究目的；不得将以上内容用于商业或者非法用途，否则，一切后果由用户自己承担。
+            本站软件、资源来自网络收集整理，版权争议与本站无关。您必须在下载后的24个小时之内， 从您的电脑或手机中彻底删除上述内容。
+            如果您喜欢该软件和资源，请支持正版，得到更好的正版服务。
+            我们非常重视版权问题，如有侵权请邮件与我们
+            <a href="mailto:guoguang0536@gmail.com" target="_blank"><strong>联系处理</strong></a>。敬请谅解！</p>
+          </div>
+        </transition>
+
+        <transition name="module" mode="out-in">
           <div v-if="isFetching" key="skeleton" class="metas">
             <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
           </div>
@@ -240,8 +251,8 @@
         </transition>
 
         <div class="comment">
-          <!-- <comment :comments="commentData" :commit-comment="commitComment"/> -->
-          <gitalk/>
+          <comment :comments="comments" :commit-comment="commitComment" @isLike="isLikeComment()"/>
+          <!--          <gitalk/>-->
         </div>
       </article>
     </el-col>
@@ -269,7 +280,6 @@ import AsideView from '~/components/layout/pc/aside/article_main'
 
 import { timestampToTime } from '@/utils/date'
 
-import * as CommentData from './mockdata'
 import comment from './comment'
 import gitalk from './gitalk' // gitalk 评论插件
 
@@ -298,8 +308,6 @@ export default {
         likeImage: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/image/zan.b4bb964.svg',
         likeBackgroundColor: '#f9eac8'
       },
-
-      commentData: CommentData.comment.data,
       swiperOption: {
         setWrapperSize: true,
         simulateTouch: false,
@@ -327,10 +335,10 @@ export default {
     console.log('fetch===========')
 
     return Promise.all([
-      store.dispatch('article/fetchDetail', params) // .catch(err => {
+      store.dispatch('article/fetchDetail', params), // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
       // }),
-      // store.dispatch('comment/fetchList', { post_id: params.article_id })
+      store.dispatch('comment/fetchList', params)
     ])
   },
 
@@ -359,6 +367,7 @@ export default {
       tags: state => state.tag.data,
       imageExt: state => state.global.imageExt,
       article: state => state.article.detail.data,
+      comments: state => state.comment.data,
       isFetching: state => state.article.detail.fetching,
       isMobile: state => state.global.isMobile
     }),
@@ -1251,4 +1260,45 @@ export default {
     color: #c6c6c6;
     user-select: none;
 }
+
+  .disclaimer:after, .disclaimer:before {
+    position: absolute;
+    display: block;
+    width: 1pc;
+    height: 14px;
+    content: '';
+  }
+  .disclaimer:before {
+    top: 20px;
+    left: 20px;
+    background: url(/images/blockquote.png) no-repeat 0 0;
+  }
+  .disclaimer:after {
+    right: 20px;
+    bottom: 20px;
+    background: url(/images/blockquote.png) no-repeat -1pc 0;
+  }
+  .disclaimer:after, .disclaimer:before {
+    position: absolute;
+    display: block;
+    width: 1pc;
+    height: 14px;
+    content: '';
+  }
+  .disclaimer {
+    position: relative;
+    margin: 25px 0 15px;
+    padding: 45px 45px 30px;
+    border-color: #c0c6cc;
+    background-color: #f8f8fa;
+    font-family: Lantinghei SC,Open Sans,Arial,Hiragino Sans GB,Microsoft YaHei,\\5fae\8F6F\96c5\9ED1,STHeiti,WenQuanYi Micro Hei,SimSun,sans-serif;
+    p:first-child{
+      font-size: 16px;
+    }
+    p{
+      display: block;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+  }
 </style>
