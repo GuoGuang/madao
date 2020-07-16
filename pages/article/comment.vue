@@ -2,28 +2,38 @@
 <template>
   <div class="container-commont">
 
+    <div class="title">
+      评论列表
+    </div>
+
     <!-- 评论输入框 -->
     <div class="comment-form">
       <div class="input-comment">
-        <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
-        <el-input v-model="comment" placeholder="说点什么" @focus="commentFocus"/>
-      </div>
-      <div v-show="commentAction" class="action-box">
-        <div class="emoji emoji-btn">
-          <div class="emoji-box">
-            <i class="iconfont icon-emoji"/>
-            <span data-v-1a162112="">表情</span>
+        <el-input
+          v-model="comment"
+          :autosize="{ minRows: 6, maxRows: 10}"
+          type="textarea"
+          placeholder="说点什么" />
+
+        <div class="action-box">
+          <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+          <div class="emoji emoji-btn">
+            <div class="emoji-box">
+              <i class="iconfont icon-emoji"/>
+              <span data-v-1a162112="">表情</span>
+            </div>
+          </div>
+          <el-input v-model="comment" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;"/>
+          <el-input v-model="comment" placeholder="验证码" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" />
+          <div class="submit">
+            <input type="button" value="" aid="11475" pid="0" onclick="comment(this)" style="background-color: #1b54bc;">
           </div>
         </div>
-        <!--  <div class="image-btn">
-          <span >图片</span>
-        </div> -->
-        <div class="submit">
-          <span >Ctrl or ⌘ + Enter</span>
-          <el-button type="primary" size="small" round>评论</el-button>
-        </div>
       </div>
+    </div>
 
+    <div class="shane-comment-title" style="border-bottom: 2px solid #1b54bc;">
+      <li class="" style="float: left;list-style-type:none;">全部评论（<span class="comment-count">{{ comments.length }}</span>）</li>
     </div>
 
     <!-- 评论列表 -->
@@ -37,9 +47,9 @@
       </div>
       <div class="content">{{ item.content }}</div>
       <div class="control">
-        <span :class="{active: item.isLike}" class="like" @click="likeClick(item)">
+        <span :class="{active: isUpvote(item)}" class="like" @click="likeClick(item)">
           <i class="iconfont icon-like"/>
-          <span class="like-num">{{ item.likeNum > 0 ? item.likeNum + '人赞' : '赞' }}</span>
+          <span class="like-num">{{ item.upvote > 0 ? item.upvote + '人赞' : '赞' }}</span>
         </span>
         <span class="comment-reply" @click="showCommentInput(item)">
           <i class="iconfont icon-comment"/>
@@ -61,22 +71,37 @@
             </span>
           </div>
         </div>
-        <div v-if="item.reply.length > 0" class="write-reply" @click="showCommentInput(item)">
+        <div v-if="item.reply && item.reply.length > 0" class="write-reply" @click="showCommentInput(item)">
           <i class="el-icon-edit"/>
           <span class="add-comment">添加新评论</span>
         </div>
-        <transition name="fade">
-          <div v-if="showItemId === item.id" class="input-wrapper">
-            <el-input
-              v-model="inputComment"
-              :rows="3"
-              class="gray-bg-input"
-              type="textarea"
-              autofocus
-              placeholder="写下你的评论"/>
-            <div class="btn-control">
-              <span class="cancel" @click="cancel">取消</span>
-              <el-button class="btn" type="primary" size="small" round @click="commitComment">评论</el-button>
+        <transition name="fade" >
+          <div v-if="showItemId === item.id" v-show="commentAction" class="input-wrapper">
+
+            <!-- 评论输入框 -->
+            <div class="comment-form">
+              <div class="input-comment">
+                <el-input
+                  v-model="inputComment"
+                  :autosize="{ minRows: 6, maxRows: 10}"
+                  type="textarea"
+                  placeholder="说点什么" />
+
+                <div class="action-box">
+                  <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+                  <div class="emoji emoji-btn">
+                    <div class="emoji-box">
+                      <i class="iconfont icon-emoji"/>
+                      <span data-v-1a162112="">表情</span>
+                    </div>
+                  </div>
+                  <el-input v-model="comment" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;"/>
+                  <el-input v-model="comment" placeholder="验证码" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" />
+                  <div class="submit">
+                    <input type="button" value="" aid="11475" pid="0" onclick="comment(this)" style="background-color: #1b54bc;">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </transition>
@@ -86,8 +111,7 @@
 </template>
 
 <script>
-
-import Vue from 'vue'
+import { isBrowser } from '~/environment/esm'
 
 export default {
   components: {},
@@ -99,56 +123,42 @@ export default {
   },
   data() {
     return {
-      commentAction: false, // 评论操作状态
       comment: '',
       inputComment: '',
+      commentAction: false,
       showItemId: ''
     }
   },
-  computed: {},
+  computed: {
+
+  },
   created() {
 
   },
   mounted() {
     // 实现 commentAction div以外的元素隐藏自身
     document.addEventListener('click', e => {
-      if (!this.$el.firstChild.contains(e.target)) {
+      if (!this.$el.contains(e.target)) {
         this.commentAction = false
       }
     })
   },
   methods: {
+    isUpvote(item) {
+      if (isBrowser) {
+        return localStorage.getItem('common_' + item.id)
+      }
+    },
     /**
        * 点赞
        */
     likeClick(item) {
-      if (item.isLike === null) {
-        Vue.$set(item, 'isLike', true)
-        this.$emit('is-like', true)
-        item.likeNum++
+      const isUpvote = localStorage.getItem('common_' + item.id)
+      if (isUpvote) {
+        this.$store.dispatch('comment/unLike', item)
       } else {
-        if (item.isLike) {
-          this.$emit('is-like', false)
-          item.likeNum--
-        } else {
-          item.likeNum++
-          this.$emit('is-like', true)
-        }
-        item.isLike = !item.isLike
+        this.$store.dispatch('comment/like', item)
       }
-    },
-
-    /**
-     * 聚焦事件
-     */
-    commentFocus() {
-      this.commentAction = !this.commentAction
-    },
-    /**
-       * 点击取消按钮
-       */
-    cancel() {
-      this.showItemId = ''
     },
 
     /**
@@ -170,6 +180,8 @@ export default {
         this.inputComment = ''
       }
       this.showItemId = item.id
+
+      this.commentAction = !this.commentAction
     }
   }
 }
@@ -199,27 +211,66 @@ $content-bg-color: #fff;
     margin-bottom: 1em;
     background-color: var(--module-bg);
     box-sizing: border-box;
-    .comment-form{
-      padding: 1em;
-      background-color: #eeeeee;
-      .input-comment{
+
+    .title{
+      position: relative;
+      height: 45px;
+      line-height: 35px;
+      text-indent: 15px;
+      font-size: 16px;
+      border-bottom: 1px solid #f6f6f6;
+      &:after {
+        content: " ";
+        position: absolute;
+        height: 15px;
+        width: 5px;
+        background: #1b54bc;
+        left: 0;
+        top: 10px;
+        border-radius: 5px;
+      }
+    }
+
+    .comment-form {
+      position: relative;
+      .input-comment {
         display: flex;
         .avatar{
           width:"36";
           height:"36";
-          margin-right: 10px;
+          margin-left: 20px;
           border-radius: 50%;
         }
       }
       .action-box{
         display: flex;
         align-items: center;
-        margin: .65rem 0 0 4em;
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
         .emoji-box{
+          margin-left: 20px;
           color: #027fff;
         }
       }
       .submit{
+        input {
+          cursor: pointer;
+          width: 60px;
+          height: 60px;
+          line-height: 40px;
+          text-align: center;
+          color: #fff;
+          font-size: 16px;
+          border: 0;
+          position: absolute;
+          right: 24px;
+          bottom: -22px;
+          background: #6584ff url(/images/svg/release.svg) center no-repeat!important;
+          border-radius: 37px;
+          background-size: 30px!important;
+          transition: .3s;
+        }
         margin-left: auto;
         span{
           color: #c2c2c2;
@@ -230,9 +281,8 @@ $content-bg-color: #fff;
 
     }
     .comment {
-      display: flex;
       flex-direction: column;
-      padding: 1em 1em 1em 4em;
+      padding: 2em 1em 0em 1em;
       border-bottom: 1px solid $border-fourth;
       .info {
         display: flex;
@@ -381,4 +431,29 @@ $content-bg-color: #fff;
       }
     }
   }
+
+</style>
+
+<style lang="scss">
+.container-commont{
+  .el-textarea__inner{
+    resize:none;
+    border:none;
+    background: #f0f0f0;
+  }
+  .el-input__inner{
+    padding: 10px;
+    border-radius: 30px;
+  }
+}
+
+.shane-comment-title {
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 2px solid #39a7e4;
+  color: #333;
+  font-size: 14px;
+}
 </style>
