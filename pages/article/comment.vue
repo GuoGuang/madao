@@ -63,7 +63,7 @@
             <span>{{ reply.content }}</span>
           </div>
           <div class="reply-bottom">
-            <span>{{ reply.createAt }}</span>
+            <span>{{ reply.createAt | timestampToTime }}</span>
             <span class="reply-text" @click="showCommentInput(item, reply)">
               <i class="iconfont icon-comment"/>
               <span>回复</span>
@@ -200,7 +200,7 @@ export default {
        * 点赞
        */
     likeClick(item) {
-      const isUpvote = localStorage.getItem(`article_${this.articleId}common_${item.id}`)
+      const isUpvote = localStorage.getItem(`article_${this.articleId}_common_${item.id}`)
       if (isUpvote) {
         this.$store.dispatch('comment/unLike', item, this.articleId)
       } else {
@@ -218,6 +218,10 @@ export default {
       }
       if (!item.userId) {
         this.$toast.info('还没输入QQ号啊，亲~~')
+        return
+      }
+      if (item.avatar.startsWith('https://cube')) {
+        this.$toast.info('无效QQ号~~')
         return
       }
       this.$store.dispatch('comment/postComment', item).then(() => {
