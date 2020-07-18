@@ -9,9 +9,9 @@
 
           <!-- 文章左侧点赞区 -->
           <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
-          <div badge="186" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
+          <div :badge="comments.length" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
           <div badge="186" class="collect-btn panel-btn share-btn"/>
-          <div badge="186" class="share-title">分享</div>
+          <div class="share-title">分享</div>
           <div class="weibo-btn share-btn panel-btn"/>
           <div class="qq-btn share-btn panel-btn"/>
           <div class="wechat-btn share-btn panel-btn"/>
@@ -251,7 +251,7 @@
         </transition>
 
         <div class="comment">
-          <comment :comments="comments" :commit-comment="commitComment" @isLike="isLikeComment()"/>
+          <comment :comments="comments" :article-id="article.id"/>
           <!--          <gitalk/>-->
         </div>
       </article>
@@ -502,12 +502,6 @@ export default {
           document.documentElement.scrollTop = total
         }
       })()
-    },
-    /**
-     * 监听comment组件提交评论事件
-     */
-    commitComment(comment) {
-      console.log('提交评论:' + comment)
     },
 
     readMore() {

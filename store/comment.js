@@ -33,13 +33,8 @@ export const mutations = {
   clearListData(state) {
     state.data = getDefaultListData()
   },
-
   updatePostFetching(state, action) {
     state.posting = action
-  },
-  updateListNewItemData(state, action) {
-    state.data.pagination.total += 1
-    state.data.data.push(action.result)
   },
   LIKE(state, action) {
     const currentComment = state.data.find(item => item.id === action.id)
@@ -62,15 +57,15 @@ export const mutations = {
 export const actions = {
 
   fetchList({ commit, rootState }, params = {}) {
-    commit('updateListData', getDefaultListData())
     commit('updateListFetching', true)
     const delay = fetchDelay()
-    return this.$axios.$get(`/ar/comment`, { params })
+    return this.$axios.$get(`/ar/comment/${params.article_id}`)
       .then(response => {
         delay(() => {
           commit('updateListData', response.data)
           commit('updateListFetching', false)
         })
+        return Promise.resolve(response)
       })
       .catch((error) => {
         commit('updateListFetching', false)
@@ -82,12 +77,21 @@ export const actions = {
     commit('updatePostFetching', true)
     return this.$axios.$post(`/ar/comment`, comment)
       .then(response => {
-        commit('updateListNewItemData', response)
         commit('updatePostFetching', false)
         return Promise.resolve(response)
       })
       .catch(error => {
         commit('updatePostFetching', false)
+        return Promise.reject(error)
+      })
+  },
+
+  findUserInfo({ commit }, param) {
+    return this.$axios.$get(`/ar/comment/user/${param}`)
+      .then(response => {
+        return Promise.resolve(response)
+      })
+      .catch(error => {
         return Promise.reject(error)
       })
   },
@@ -98,7 +102,7 @@ export const actions = {
         this.$toast.error('服务器开小差啦~~')
       }
       commit('LIKE', comment)
-      localStorage.setItem('common_' + comment.id, true)
+      localStorage.setItem(`article_${comment.articleId}_common_${comment.id}`, true)
       return Promise.resolve(response)
     }).catch(error => {
       console.log(error)
@@ -111,7 +115,7 @@ export const actions = {
         this.$toast.error('服务器开小差啦~~')
       }
       commit('UN_LIKE', comment)
-      localStorage.removeItem('common_' + comment.id)
+      localStorage.removeItem(`article_${comment.articleId}_common_${comment.id}`)
       return Promise.resolve(response)
     }).catch(error => {
       console.log(error)

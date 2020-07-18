@@ -10,23 +10,22 @@
     <div class="comment-form">
       <div class="input-comment">
         <el-input
-          v-model="comment"
+          v-model="comment.content"
           :autosize="{ minRows: 6, maxRows: 10}"
           type="textarea"
           placeholder="说点什么" />
 
         <div class="action-box">
-          <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+          <el-avatar :src="comment.avatar" class="avatar" size="small"/>
           <div class="emoji emoji-btn">
             <div class="emoji-box">
               <i class="iconfont icon-emoji"/>
               <span data-v-1a162112="">表情</span>
             </div>
           </div>
-          <el-input v-model="comment" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;"/>
-          <el-input v-model="comment" placeholder="验证码" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" />
+          <el-input v-model="comment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" @blur="onQQBlur(true)"/>
           <div class="submit">
-            <input type="button" value="" aid="11475" pid="0" onclick="comment(this)" style="background-color: #1b54bc;">
+            <input type="button" value="" style="background-color: #1b54bc;" @click="commitComment(comment)">
           </div>
         </div>
       </div>
@@ -42,7 +41,7 @@
         <img :src="item.avatar" class="avatar" width="36" height="36">
         <div class="right">
           <div class="name">{{ item.userName }}</div>
-          <div class="createAt">{{ item.createAt }}</div>
+          <div class="createAt">{{ item.createAt | timestampToTime }}</div>
         </div>
       </div>
       <div class="content">{{ item.content }}</div>
@@ -82,58 +81,81 @@
             <div class="comment-form">
               <div class="input-comment">
                 <el-input
-                  v-model="inputComment"
+                  v-model="replyComment.content"
                   :autosize="{ minRows: 6, maxRows: 10}"
-                  type="textarea"
-                  placeholder="说点什么" />
+                  :placeholder=" '@' + replyComment.toName "
+                  type="textarea"/>
 
                 <div class="action-box">
-                  <el-avatar class="avatar" size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+                  <el-avatar :src="replyComment.avatar" class="avatar" size="small"/>
                   <div class="emoji emoji-btn">
                     <div class="emoji-box">
                       <i class="iconfont icon-emoji"/>
                       <span data-v-1a162112="">表情</span>
                     </div>
                   </div>
-                  <el-input v-model="comment" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;"/>
-                  <el-input v-model="comment" placeholder="验证码" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" />
+                  <el-input v-model="replyComment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" @blur="onQQBlur(false)"/>
                   <div class="submit">
-                    <input type="button" value="" aid="11475" pid="0" onclick="comment(this)" style="background-color: #1b54bc;">
+                    <input type="button" value="" style="background-color: #1b54bc;" @click="commitComment(replyComment)">
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </transition>
       </div>
     </div>
+
+    <div v-if="comments && comments.length <= 0" class="empty-list">
+      <span class="prompt-null-w">还没有评论，快来抢沙发吧！</span>
+    </div>
+
   </div>
 </template>
 
 <script>
 import { isBrowser } from '~/environment/esm'
+import { timestampToTime } from '@/utils/date'
 
 export default {
   components: {},
+  filters: {
+    timestampToTime(val) {
+      return timestampToTime(val)
+    }
+  },
   props: {
     comments: {
       type: Array,
+      required: true
+    },
+    articleId: {
+      type: String,
       required: true
     }
   },
   data() {
     return {
-      comment: '',
-      inputComment: '',
+      comment: {
+        articleId: this.articleId,
+        avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+        userId: '',
+        userName: '',
+        captcha: '',
+        content: '',
+        parentId: '',
+        toId: '',
+        toAvatar: '',
+        toName: ''
+      },
+      replyComment: null,
       commentAction: false,
       showItemId: ''
     }
   },
-  computed: {
-
-  },
   created() {
-
+    this.replyComment = Object.assign({}, this.comment)
   },
   mounted() {
     // 实现 commentAction div以外的元素隐藏自身
@@ -144,28 +166,66 @@ export default {
     })
   },
   methods: {
+    onQQBlur(flag) {
+      if (flag) {
+        this.$store.dispatch('comment/findUserInfo', this.comment.userId).then(response => {
+          if (response.code === 20000 && response.data.code === 1) {
+            this.comment.avatar = response.data.qlogo
+            this.comment.userName = response.data.name
+          } else {
+            this.$toast.info(response.message)
+            this.comment.avatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+            this.comment.userName = ''
+          }
+        })
+      } else {
+        this.$store.dispatch('comment/findUserInfo', this.replyComment.userId).then(response => {
+          if (response.code === 20000 && response.data.code === 1) {
+            this.replyComment.avatar = response.data.qlogo
+            this.replyComment.userName = response.data.name
+          } else {
+            this.$toast.info(response.message)
+            this.replyComment.avatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+            this.replyComment.userName = ''
+          }
+        })
+      }
+    },
     isUpvote(item) {
       if (isBrowser) {
-        return localStorage.getItem('common_' + item.id)
+        return localStorage.getItem(`article_${this.articleId}_common_${item.id}`)
       }
     },
     /**
        * 点赞
        */
     likeClick(item) {
-      const isUpvote = localStorage.getItem('common_' + item.id)
+      const isUpvote = localStorage.getItem(`article_${this.articleId}common_${item.id}`)
       if (isUpvote) {
-        this.$store.dispatch('comment/unLike', item)
+        this.$store.dispatch('comment/unLike', item, this.articleId)
       } else {
-        this.$store.dispatch('comment/like', item)
+        this.$store.dispatch('comment/like', item, this.articleId)
       }
     },
 
     /**
        * 提交评论
        */
-    commitComment() {
-      this.$emit('commit-comment', this.inputComment)
+    commitComment(item) {
+      if (!item.content) {
+        this.$toast.info('说点什么吧~~')
+        return
+      }
+      if (!item.userId) {
+        this.$toast.info('还没输入QQ号啊，亲~~')
+        return
+      }
+      this.$store.dispatch('comment/postComment', item).then(() => {
+        this.$store.dispatch('comment/fetchList', { 'article_id': this.articleId })
+        this.commentAction = !this.commentAction
+        this.comment.content = ''
+        this.replyComment.content = ''
+      })
     },
 
     /**
@@ -175,11 +235,17 @@ export default {
        */
     showCommentInput(item, reply) {
       if (reply) {
-        this.inputComment = '@' + reply.userName + ' '
+        this.replyComment.toName = reply.userName
+        this.replyComment.toId = item.userId
+        this.replyComment.toAvatar = reply.avatar
       } else {
-        this.inputComment = ''
+        this.replyComment.content = ''
+        this.replyComment.toId = item.userId
+        this.replyComment.toAvatar = item.avatar
+        this.replyComment.toName = item.userName
       }
       this.showItemId = item.id
+      this.replyComment.parentId = item.id
 
       this.commentAction = !this.commentAction
     }
@@ -246,7 +312,7 @@ $content-bg-color: #fff;
         display: flex;
         align-items: center;
         position: absolute;
-        bottom: 10px;
+        bottom: 13px;
         width: 100%;
         .emoji-box{
           margin-left: 20px;
@@ -430,6 +496,22 @@ $content-bg-color: #fff;
         }
       }
     }
+
+    .empty-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      text-align: center;
+      height: 12em;
+      opacity: .5;
+      .span {
+        line-height: 30px;
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+      }
+    }
   }
 
 </style>
@@ -444,6 +526,7 @@ $content-bg-color: #fff;
   .el-input__inner{
     padding: 10px;
     border-radius: 30px;
+    height: 30px;
   }
 }
 
