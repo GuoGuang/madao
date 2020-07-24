@@ -38,7 +38,7 @@
               <el-row>
                 <el-col v-for="(item,key) in movies" :span="6" :key="key" >
                   <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                    <router-link to="/movie/1">
+                    <router-link :to="{ path: '/movie/1', query: { item: JSON.stringify(item) }}" >
                       <el-image :src="item.cover_pic" fit="cover" class="custom-img" lazy style="width:100%;height: 400px;"/>
                     </router-link>
                     <div style="padding: 14px;">
@@ -91,9 +91,9 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    /* loadmoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
-    },
+    },*/
     handleClick() {
       console.log('handleClick')
     }
