@@ -14,16 +14,23 @@
           :autosize="{ minRows: 6, maxRows: 10}"
           type="textarea"
           placeholder="说点什么" />
-
         <div class="action-box">
-          <el-avatar :src="comment.avatar" class="avatar" size="small"/>
-          <div class="emoji emoji-btn">
-            <div class="emoji-box">
-              <i class="iconfont icon-emoji"/>
-              <span data-v-1a162112="">表情</span>
-            </div>
-          </div>
-          <el-input v-model="comment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" @blur="onQQBlur(true)"/>
+          <el-row :gutter="10">
+            <el-col :xs="6" :sm="4" :md="3" :lg="2" :xl="4">
+              <el-avatar :src="comment.avatar" class="avatar" size="small"/>
+            </el-col>
+            <el-col :xs="0" :sm="6" :md="6" :lg="4" :xl="6">
+              <div class="emoji emoji-btn">
+                <div class="emoji-box">
+                  <i class="iconfont icon-emoji"/>
+                  <span data-v-1a162112="">表情</span>
+                </div>
+              </div>
+            </el-col>
+            <el-col :xs="18" :sm="14" :md="15" :lg="10" :xl="14">
+              <el-input v-model="comment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width:80%;border-radius: 23px;" @blur="onQQBlur(true)"/>
+            </el-col>
+          </el-row>
           <div class="submit">
             <input type="button" value="" style="background-color: #1b54bc;" @click="commitComment(comment)">
           </div>
@@ -377,6 +384,9 @@ $content-bg-color: #fff;
         }
       }
       .content {
+        width:100%;
+        height:100%;
+        word-wrap: break-word;
         font-size: 16px;
         color: $text-main;
         line-height: 20px;
@@ -542,5 +552,11 @@ $content-bg-color: #fff;
   border-bottom: 2px solid #39a7e4;
   color: #333;
   font-size: 14px;
+}
+
+.input-comment{
+  .el-row{
+    width: 80%;
+  }
 }
 </style>
