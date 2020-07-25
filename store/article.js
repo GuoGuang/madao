@@ -9,7 +9,7 @@ import { isBrowser } from '~/environment/esm'
 import { fetchDelay } from '~/utils/fetch-delay'
 import { isArticleDetailRoute } from '~/utils/route'
 // import onResponse from '~/plugins/axios'
-import { scrollTo, Easing } from '~/utils/scroll-to-anywhere'
+import { Easing, scrollTo } from '~/utils/scroll-to-anywhere'
 
 let api = '/ar/article'
 const getDefaultListData = () => {
@@ -43,11 +43,18 @@ export const mutations = {
     state.list.fetching = action
   },
   updateListData(state, action) {
-    state.list.data = action.content
+    state.list.data.records = action.content
+    state.list.data.pagination = {
+      pageNumber: action.number,
+      totalPages: action.totalPages
+    }
   },
   updateExistingListData(state, action) {
-    state.list.data.data.push(...action.content)
-    state.list.data.pagination = action.pagination
+    state.list.data.records.push(...action.content)
+    state.list.data.pagination = {
+      pageNumber: action.number,
+      totalPages: action.totalPages
+    }
   },
 
   // 热门文章
@@ -87,7 +94,7 @@ export const actions = {
   // 获取文章列表
   fetchList({ commit }, params = { }) {
     console.error('文章', params)
-    const isLoadMore = params.page && params.page > 1
+    const isLoadMore = params.page && params.page > 0
 
     if (params.tag_id) {
       api = `${api}?tagsId=${params.tag_id}`

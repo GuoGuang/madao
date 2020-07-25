@@ -74,7 +74,7 @@ export default {
     },
     nextPageParams() {
       return {
-        page: this.article.data.pagination.current_page + 1
+        page: this.article.data.pagination.pageNumber + 1
       }
     }
   },

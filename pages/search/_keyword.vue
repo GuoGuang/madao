@@ -7,9 +7,9 @@
         <list-header />
       </div>
       <transition name="module" mode="out-in">
-        <transition-group v-if="article.data && article.data.length" key="list" name="fade" tag="div">
+        <transition-group v-if="article.data.records && article.data.records.length" key="list" name="fade" tag="div">
           <list-item
-            v-for="articleItem in article.data"
+            v-for="articleItem in article.data.records"
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"

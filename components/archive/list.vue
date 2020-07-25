@@ -10,9 +10,9 @@
     <!-- 列表 -->
     <div class="article-list">
       <transition name="module" mode="out-in">
-        <transition-group v-if="article.data && article.data.length" key="list" name="fade" tag="div">
+        <transition-group v-if="article.data.records && article.data.records.length" key="list" name="fade" tag="div">
           <list-item
-            v-for="articleItem in article.data"
+            v-for="articleItem in article.data.records"
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
@@ -25,20 +25,19 @@
     </div>
 
     <!-- 加载更多 -->
-    <!-- 暂时关闭，等接口对接完成再改版 -->
-    <!-- <div class="article-load">
+    <div class="article-load">
       <color-block-box :left="btnColorBlockLeft" border="left" color="red" />
-      <button class="btn-loadmore" @click="$emit('loadmore')" :disabled="article.fetching || !isCanLoadMore">
+      <button :disabled="article.fetching || !isCanLoadMore" class="btn-loadmore" @click="$emit('loadmore')">
         <span class="icon">
-          <i class="iconfont icon-peachblossom"></i>
+          <i class="iconfont icon-peachblossom"/>
         </span>
         <span class="text">
-          <span v-if="!article.fetching && isCanLoadMore" v-text="$i18n.text.article.loadmore"></span>
-          <span v-else-if="article.fetching && isCanLoadMore" v-text="$i18n.text.article.loading"></span>
-          <span v-else-if="!isCanLoadMore" v-text="$i18n.text.article.nomore"></span>
+          <span v-if="!article.fetching && isCanLoadMore" v-text="$i18n.text.article.loadmore"/>
+          <span v-else-if="article.fetching && isCanLoadMore" v-text="$i18n.text.article.loading"/>
+          <span v-else-if="!isCanLoadMore" v-text="$i18n.text.article.nomore"/>
         </span>
       </button>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -68,11 +67,11 @@ export default {
     isMobile() {
       return this.$store.state.global.isMobile
     },
-    /* isCanLoadMore() {
-        const { current_page, total_page } = this.article.data.pagination
-        const hasArticles = this.article.data.pagination
-        return hasArticles ? (current_page < total_page) : false
-      }, */
+    isCanLoadMore() {
+      const { pageNumber, totalPages } = this.article.data.pagination
+      const hasArticles = this.article.data.pagination
+      return hasArticles ? (pageNumber + 1 < totalPages) : false
+    },
     isIndexRoute() {
       return isIndexRoute(this.$route.name)
     },
