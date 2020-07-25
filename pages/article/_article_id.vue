@@ -1284,7 +1284,7 @@ export default {
     margin: 25px 0 15px;
     padding: 45px 45px 30px;
     border-color: #c0c6cc;
-    background-color: #f8f8fa;
+    background-color: #f8f8f8;
     font-family: Lantinghei SC,Open Sans,Arial,Hiragino Sans GB,Microsoft YaHei,\\5fae\8F6F\96c5\9ED1,STHeiti,WenQuanYi Micro Hei,SimSun,sans-serif;
     p:first-child{
       font-size: 16px;
