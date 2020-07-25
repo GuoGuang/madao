@@ -15,16 +15,10 @@
           <i class="iconfont icon-home"/>
           <span v-text="$i18n.nav.home"/>
         </nuxt-link>
-
         <nuxt-link to="/music" class="item">
           <i class="iconfont icon-shandian" style="color:inherit"/>
           <span style="color:inherit" v-text="$i18n.nav.music"/>
         </nuxt-link>
-        <nuxt-link to="/security" class="item">
-          <i class="iconfont icon-anquanguizeyong" style="color:inherit"/>
-          <span style="color:inherit" v-text="$i18n.nav.hack"/>
-        </nuxt-link>
-
         <nuxt-link to="/welfare" class="item">
           <i class="iconfont icon-dribbble"/>
           <span v-text="$i18n.nav.welfare "/>
