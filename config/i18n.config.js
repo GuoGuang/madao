@@ -274,7 +274,7 @@ module.exports = {
           en: 'about author'
         },
         loadmore: {
-          zh: '山河入梦',
+          zh: '包罗万象',
           en: 'loadmore'
         },
         loading: {

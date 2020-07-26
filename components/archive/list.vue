@@ -132,7 +132,7 @@ export default {
       > .btn-loadmore {
         width: 100%;
         height: 3em;
-        padding: 0 2rem;
+        padding: 0 0 0 2rem;
         line-height: 3em;
         color: $white;
         background-color: $module-bg;
@@ -160,8 +160,22 @@ export default {
         }
 
         > .text {
+          position: relative;
+          padding: 0 2rem 0 3rem;
+          font-family: webfont-bolder,DINRegular;
           text-transform: uppercase;
-          font-family: 'webfont-bolder', 'DINRegular';
+          background: rgba(255,87,34,.6);
+          &:before{
+              content: "";
+              display: block;
+              position: absolute;
+              width: 1rem;
+              height: 200%;
+              top: -50%;
+              left: -.5rem;
+              background: var(--body-bg);
+              transform: rotate(18deg);
+          }
         }
       }
     }

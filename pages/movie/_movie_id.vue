@@ -10,13 +10,16 @@
       @statechanged="playerStateChanged($event)"/>
 
     <div class="movie-desc">
-      <span class="info">正在播放：{{ movieDetail.name }}</span>
-      <el-tag
-        type="info"
-        effect="dark">
-        如加载失败，可刷新几次，部分电影宽带需等待加载。
-      </el-tag>
-      <span class="info">  <el-button type="info" size="small" plain>数据报错</el-button></span>
+      <span class="info title">正在播放：<a href="#" style="font-weight: bold;">{{ movieDetail.name }}</a></span>
+      <div>
+        <el-tag
+          type="info"
+          effect="dark"
+          style="margin-left: 10px;">
+          如加载失败，可刷新几次，部分电影宽带需等待加载。
+        </el-tag>
+        <span class="info">  <el-button type="info" size="small" plain>数据报错</el-button></span>
+      </div>
     </div>
 
   </div>
@@ -92,6 +95,13 @@ export default {
       title: `影视 | 在线免费高清电影`
     }
   },
+  watch: {
+    $route(newVal, oldVal) {
+      if (newVal.query.item) {
+        this.movieDetail = JSON.parse(this.$route.query.item)
+      }
+    }
+  },
   mounted() {
     console.log('this is current videojs instance object', this.myVideoPlayer)
   },
@@ -133,10 +143,14 @@ export default {
 
 <style lang="scss">
   .movie-desc {
-    margin: 10px;
+    margin: 10px 0;
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
+    .title{
+      color: #666;
+      padding: 0 6px;
+      font-size: 16px;
+    }
     .info {
       align-self: center;
     }
