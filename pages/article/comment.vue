@@ -174,6 +174,10 @@ export default {
   },
   methods: {
     onQQBlur(flag) {
+      if (!this.comment.userId) {
+        this.$toast.error('无效QQ')
+        return
+      }
       if (flag) {
         this.$store.dispatch('comment/findUserInfo', this.comment.userId).then(response => {
           if (response.code === 20000 && response.data.code === 1) {
