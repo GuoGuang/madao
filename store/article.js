@@ -66,7 +66,7 @@ export const mutations = {
   },
 
   // 文章详情
-  updateDetailFetchig(state, action) {
+  updateDetailFetching(state, action) {
     state.detail.fetching = action
   },
   updateDetailData(state, action) {
@@ -176,19 +176,19 @@ export const actions = {
         scrollTo(0, 300, { easing: Easing['ease-in'] })
       })
     }
-    commit('updateDetailFetchig', true)
+    commit('updateDetailFetching', true)
     commit('updateDetailData', {})
     return this.$axios.$get(`${api}/${params.article_id}`).then(response => {
       return new Promise(resolve => {
         delay(() => {
           commit('updateDetailData', response.data)
-          commit('updateDetailFetchig', false)
+          commit('updateDetailFetching', false)
           resolve(response)
         })
       })
     })
       .catch(error => {
-        commit('updateDetailFetchig', false)
+        commit('updateDetailFetching', false)
         return Promise.reject(error)
       })
   },
