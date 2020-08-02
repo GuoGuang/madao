@@ -332,8 +332,6 @@ export default {
   },
 
   fetch({ store, params, error }) {
-    console.log('fetch===========')
-
     return Promise.all([
       store.dispatch('article/fetchDetail', params), // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
@@ -430,14 +428,11 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted===========')
     if (isBrowser) {
       this.observeLozad()
     }
   },
   activated() {
-    console.log('activated===========')
-    console.log(localStorage.getItem('article_' + this.article.id))
     this.updateAd()
 
     this.likeBadge = this.article.upvote

@@ -28,7 +28,7 @@ export default function({ $axios, app }) {
     }
   })
   $axios.onResponse(response => {
-    console.log('请求成功：', response.request.path)
-    // console.log('请求成功响应体：', response.data)
+    console.log('The axios request address is：', response.request.responseURL)
+    // console.log('The axios response body is：', response.data)
   })
 }

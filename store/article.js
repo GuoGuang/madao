@@ -93,7 +93,6 @@ export const actions = {
 
   // 获取文章列表
   fetchList({ commit }, params = { }) {
-    console.error('文章', params)
     const isLoadMore = params.page && params.page > 0
 
     if (params.tag_id) {
