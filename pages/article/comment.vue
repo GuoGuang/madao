@@ -139,7 +139,7 @@ export default {
     },
     articleId: {
       type: String,
-      required: true
+      default: undefined
     }
   },
   data() {
