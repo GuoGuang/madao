@@ -29,13 +29,13 @@
                   rel="external nofollow noopener"
                   class="link"
                 >
-                  <img :src="article.src" :alt="article.title">
+                  <img :src="article.src" :alt="article.title" >
                   <span class="title">{{ article.title }}</span>
                 </a>
               </template>
               <template v-else>
                 <nuxt-link :to="`/article/${article.id}`" class="link">
-                  <img :src="humanizeThumb(article.thumb)" :alt="article.title">
+                  <img :src="humanizeThumb(article.thumb)" :alt="article.title" style="height: 300px;">
                   <span class="title">{{ article.title }}</span>
                 </nuxt-link>
               </template>
