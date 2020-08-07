@@ -377,7 +377,7 @@ $content-bg-color: #fff;
           margin-left: 10px;
           .name {
             font-size: 16px;
-            color: $text-main;
+            color: #bc894b;
             margin-bottom: 5px;
             font-weight: 500;
           }
