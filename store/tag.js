@@ -23,7 +23,7 @@ export const mutations = {
 export const actions = {
   fetchList({ commit }) {
     commit('updateFetching', true)
-    return this.$axios.$get(`/ar/tags`, { params: { cache: 1 }})
+    return this.$axios.$get(`/ar/tag`, { params: { cache: 1 }})
       .then(response => {
         commit('updateListData', response)
         commit('updateFetching', false)

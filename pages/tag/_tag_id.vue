@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <article-list :article="article" @loadmore="loadmoreArticle" />
+    <article-list :article="article" @loadmore="loadMoreArticle" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     return store.dispatch('article/fetchArticles', params)
   },
   head() {
-    const slug = this.defaultParams.tag_id || ''
+    const slug = this.$route.query.name || ''
     const title = slug.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
     return { title: `${title} | Tag` }
   },
@@ -33,7 +33,7 @@ export default {
     },
     currentTag() {
       return this.$store.state.tag.data.find((tag, index, arr) => {
-        return Object.is(tag.slug, this.$route.params.tag_id)
+        return Object.is(tag.slug, this.$route.query.name)
       })
     },
     defaultParams() {
@@ -54,7 +54,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
