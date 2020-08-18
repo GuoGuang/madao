@@ -18,7 +18,7 @@ export default {
       new Catalog({
         contentEl: 'article-content',
         catalogEl: 'scroll-aside',
-        selector: ['h2', 'h3'],
+        selector: ['h1', 'h2'],
         bottomMargin: 100
       })
     }, 500)
