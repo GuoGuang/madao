@@ -414,8 +414,12 @@ export default {
         }
       }
       >.aside-dic {
-          margin-top: 1em
+          margin-top: 1em;
+          max-height: 300px;
+          overflow-x: hidden;
+          overflow-y: scroll;
       }
+      .aside-dic::-webkit-scrollbar { width: 0 !important }
 
     }
   }
