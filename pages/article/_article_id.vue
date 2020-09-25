@@ -260,7 +260,7 @@
     <div v-if="!isMobile && !isOneColumns" class="main-right" >
       <el-col :span="6" class="right-list">
         <transition name="aside">
-          <aside-view key="aside" />
+          <aside-view key="aside" ref="aside"/>
         </transition>
 
       </el-col>
@@ -505,6 +505,7 @@ export default {
         setTimeout(() => {
           this.$store.commit('article/updateDetailRenderedState', true)
           this.isReadMoreLoading = false
+          this.$refs.aside.refresh()
         }, 0)
       })
     },

@@ -11,17 +11,25 @@ import Catalog from './progress-catalog'
 export default {
   name: 'Directory',
   data() {
-    return {}
+    return {
+    }
   },
   mounted() {
     setTimeout(() => {
-      new Catalog({
-        contentEl: 'article-content',
-        catalogEl: 'scroll-aside',
-        selector: ['h1', 'h2'],
-        bottomMargin: 100
-      })
+      this.refresh()
     }, 500)
+  },
+  methods: {
+    refresh() {
+      setTimeout(() => {
+        new Catalog({
+          contentEl: 'article-content',
+          catalogEl: 'scroll-aside',
+          selector: ['h1', 'h2', 'h3'],
+          bottomMargin: 100
+        })
+      }, 500)
+    }
   }
 }
 </script>
