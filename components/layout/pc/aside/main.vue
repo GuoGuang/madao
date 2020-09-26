@@ -16,7 +16,7 @@
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
       <ul v-else class="aside-article-list">
-        <li v-for="item in articles" :key="item.id" class="item">
+        <li v-for="(item,key) in articles" :key="key" class="item">
           <span class="index"/>
           <nuxt-link
             :to="`/article/${item.id}`"
