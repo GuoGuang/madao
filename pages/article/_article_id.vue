@@ -272,7 +272,7 @@
 <script>
 import { mapState } from 'vuex'
 import { isBrowser } from '~/environment/esm'
-import lozad from '~/plugins/lozad'
+// import lozad from '~/plugins/lozad'
 import marked from '~/plugins/marked'
 import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
@@ -522,7 +522,7 @@ export default {
       this.observeLozad()
     },
     observeLozad() {
-      const contentElement = this.$refs.detail.querySelector('#article-content')
+      /* const contentElement = this.$refs.detail.querySelector('#article-content')
       const lozadElements = contentElement && contentElement.querySelectorAll('.lozad')
       if (!lozadElements || !lozadElements.length) {
         return false
@@ -532,7 +532,7 @@ export default {
         loaded: element => element.classList.add('loaded')
       })
       this.lozadObserver.observe()
-      // console.log('重新监听 observer', this.lozadObserver)
+      // console.log('重新监听 observer', this.lozadObserver)*/
     },
     copyArticleUrl() {
       if (this.article.title) {
