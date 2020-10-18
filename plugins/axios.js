@@ -17,7 +17,7 @@ export default function({ $axios, app }) {
     $axios.setHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
     const token = app.$cookies.get('Authorization')
     if (token) {
-      $axios.setToken(token)
+      $axios.setHeader('AUTH', 'Bearer ' + token)
     }
     return config
   })
