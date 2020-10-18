@@ -463,6 +463,7 @@ a {
 
 // @nuxtjs/toast样式自定义
 .toasted-container{
+  top: 15% !important;
   .error {
     border: 2px solid rgb(255, 65, 54) !important;
   }
