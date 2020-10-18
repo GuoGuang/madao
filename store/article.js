@@ -145,9 +145,7 @@ export const actions = {
       .catch(error => {
         console.error('获取文章列表失败：' + error.message)
         commit('updateListFetchig', false)
-      }
-
-      )
+      })
   },
 
   // 获取最热文章列表
