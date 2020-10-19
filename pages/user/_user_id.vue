@@ -5,11 +5,11 @@
     <el-row class="user-info">
       <el-col :span="4" style="padding-top: 1em;">
         <div class="profile__heading--avatar-warp">
-          <a href="/u/GuoGuang">
+          <a :href="`/u/${userInfo.nickName}`">
             <img
+              :src="userInfo.avatar"
+              :alt="userInfo.nickName"
               class="image"
-              src="https://avatar-static.segmentfault.com/971/470/97147086-59b9044e77b75_huge256"
-              alt="GuoGuang"
             >
           </a>
           <div class="profile__avatar-uploader">
@@ -22,13 +22,10 @@
       </el-col>
       <el-col :span="9" style="padding-top: 1em;" class="profile-info">
         <h2 class="profile__heading--name">
-          GuoGuang
-          <small class="ml15">
-            <a href="/u/GuoGuang/about">查看完整档案</a>
-          </small>
+          {{ userInfo.nickName }}
         </h2>
         <div style="margin: 7px;" class="profile__heading--award">
-          <a class="profile__rank-btn" href="/u/GuoGuang/rank">
+          <a :href="`/u/${userInfo.nickName}/rank`" class="profile__rank-btn">
             <img src="/images/svg/rp.svg">
             <span class="h4">0</span>
             <span class="profile__rank-btn-text">声望</span>
@@ -38,7 +35,7 @@
           <span style="margin: 7px;" class="profile__heading--other-item">
             <i class="fa fa-map-marker"/>
             <span class="profile__city">
-              潍坊
+              {{ userInfo.address }}
               <span class="profile__heading-edit btn btn-xs" data-type="city"/>
             </span>
           </span>
@@ -99,15 +96,12 @@
       </el-col>
     </el-row>
 
-    <el-row class="user-cricle" style="padding-top: 2em;">
+    <el-row class="user-cricle" style="padding-top: 1em;">
       <el-tabs v-model="activeName" type="card" tab-position="left" @tab-click="handleTabClick">
         <el-tab-pane :disabled="true" label="我的互动" name="0"/>
         <el-tab-pane name="1">
           <span slot="label"><i class="el-icon-thumb"/> 我的点赞</span>
           <div class="padding-main my-thumb">
-            <h1 class="h1"> <i class="el-icon-thumb"/>  shenjinwa_ 赞过的内容（1）</h1>
-            <div class="divider"/>
-
             <div class="content">
               <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
               <div class="meta">
@@ -118,17 +112,6 @@
                   <el-link href="https://element.eleme.io" type="info" target="_blank">阅读数 1693  </el-link>
 
                   <span class="vertical-bar">|</span>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">评论数 24 </el-link>
-                </p>
-              </div>
-            </div>
-
-            <div class="content">
-              <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
-              <div class="meta">
-                <p>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">创建于 1个月前 </el-link>|
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">阅读数 1693  </el-link> |
                   <el-link href="https://element.eleme.io" type="info" target="_blank">评论数 24 </el-link>
                 </p>
               </div>
@@ -138,22 +121,6 @@
         <el-tab-pane name="2">
           <span slot="label"><i class="el-icon-chat-round"/> 我的回复</span>
           <div class="padding-main my-thumb">
-            <h1 class="h1"> <i class="el-icon-square"/>  shenjinwa_ 赞过的内容（1）</h1>
-            <div class="divider"/>
-
-            <div class="content">
-              <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
-              <div class="meta">
-                <p>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">创建于 1个月前 </el-link>
-                  <span class="vertical-bar">|</span>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">阅读数 1693  </el-link>
-                  <span class="vertical-bar">|</span>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">评论数 24 </el-link>
-                </p>
-              </div>
-            </div>
-
             <div class="content">
               <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
               <div class="meta">
@@ -165,10 +132,6 @@
               </div>
             </div>
           </div>
-        </el-tab-pane>
-        <el-tab-pane name="3">
-          <span slot="label"><i class="el-icon-thumb"/> 我的收藏</span>
-          <div class="padding-main phone"/>
         </el-tab-pane>
       </el-tabs>
     </el-row>
@@ -181,11 +144,12 @@ export default {
   name: 'User',
   head() {
     return {
-      title: `${this.isEnLang ? '' : ' GuoGuang| '}的个人主页`
+      title: `${this.userInfo.nickName} |的个人主页`
     }
   },
   data() {
     return {
+      userInfo: Object.assign({}, this.$store.state.user.data),
       activeName: '1'
     }
   },
@@ -330,8 +294,7 @@ export default {
       border-radius: 0.28571429rem;
       border: 1px solid rgba(34, 36, 38, 0.15);
       .content {
-        border-bottom: 1px dashed #dae1ea;
-        margin: 2em 0;
+        margin: 1em 0;
         .title {
           line-height: 26px;
           font-size: 16px;
@@ -346,6 +309,9 @@ export default {
             margin: 0 4px;
           }
         }
+      }
+      .content:not(:last-child){
+        border-bottom: 1px dashed #dae1ea;
       }
     }
   }

@@ -11,23 +11,23 @@
             <h3>个人账号</h3>
             <div class="info-edit">
               <span>名字</span>
-              Jackson
-              <el-link icon="el-icon-edit">编辑</el-link>
+              <MDinput v-model="userInfo.nickName" :maxlength="11" class="input"/>
+              <el-link/>
             </div>
             <div class="info-edit">
               <span>Email</span>
-              xxx@qq.com
-              <el-link icon="el-icon-edit">编辑</el-link>
+              <MDinput v-model="userInfo.email" :maxlength="11" class="input"/>
+              <el-link/>
             </div>
             <div class="info-edit">
               <span>手机号</span>
-              1766711111
-              <el-link icon="el-icon-edit">编辑</el-link>
+              <MDinput v-model="userInfo.phone" :maxlength="11" class="input"/>
+              <el-link/>
             </div>
             <div class="info-edit">
               <span>居住地</span>
-              山东济南
-              <el-link icon="el-icon-edit">编辑</el-link>
+              <MDinput v-model="userInfo.address" :maxlength="20" class="input"/>
+              <el-link/>
             </div>
           </div>
         </el-tab-pane>
@@ -51,6 +51,29 @@
         </el-tab-pane>
         <el-tab-pane name="3">
           <span slot="label"><i class="el-icon-lock"/> 修改密码</span>
+          <div class="padding-main phone">
+            <h1 class="h1"> <i class="el-icon-mobile-phone"/> 修改密码</h1>
+            <el-form ref="form" :model="form" label-position="top" label-width="80px">
+              <el-form-item label="手机号">
+                <el-input
+                  v-model="form.name"/>
+              </el-form-item>
+              <el-form-item label="密码">
+                <el-input
+                  v-model="form.name"/>
+              </el-form-item>
+              <el-form-item label="重复密码">
+                <el-input
+                  v-model="form.name"/>
+              </el-form-item>
+              <el-form-item label="验证码">
+                <el-input v-model="form.name">
+                  <template slot="append">获取验证码</template>
+                </el-input>
+              </el-form-item>
+              <el-button style="background-color: #eeeeee;" round>确认修改</el-button>
+            </el-form>
+          </div>
         </el-tab-pane>
       </el-tabs>
     </el-row>
@@ -58,17 +81,26 @@
 </template>
 
 <script>
+import MDinput from '~/components/global/MDinput'
+
 export default {
   name: 'Profile',
+  components: {
+    MDinput
+  },
+  middleware: 'auth',
   head() {
+    this.userInfo = this.$store.state.user.data
     return {
       // title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
-      title: `${this.isEnLang ? '' : ' GuoGuang| '}的个人主页`
+      title: this.userInfo.nickName + ' | 的资料'
     }
   },
   data() {
     return {
       activeName: '1',
+      userInfo: {},
+      nickNameStatus: true,
       form: {
         name: '',
         region: '',
@@ -81,9 +113,6 @@ export default {
       }
     }
   },
-  fetch({ store }) {
-    return store.dispatch('project/fetchRepositories')
-  },
   computed: {
     isEnLang() {
       return this.$store.getters['global/isEnLang']
@@ -94,6 +123,9 @@ export default {
     projects() {
       return this.$store.state.project.repositories.data
     }
+  },
+  fetch({ store }) {
+    return store.dispatch('project/fetchRepositories')
   },
   methods: {
     handleTabClick(tab, event) {
@@ -135,6 +167,16 @@ export default {
 
 <style lang="scss">
 .profile {
+  .material-input__component {
+    margin-top:0px!important;
+    .material-input{
+      border-bottom:none;
+      box-shadow:none!important;
+      color:inherit;
+      background: #f8f8f8!important;
+      padding:0px !important;
+    }
+  }
   .phone {
     .el-input {
       width: 60%;
