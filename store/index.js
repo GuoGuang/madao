@@ -55,6 +55,8 @@ export const actions = {
     if (token) {
       // const { token } = cookie.parse(req.headers.cookie)
       store.commit('user/SET_TOKEN', token)
+      // 同步获取数据，防止数据undefined
+      initFetchAppData.push(store.dispatch('user/getUserInfo'))
     }
 
     return Promise.all(initFetchAppData)
