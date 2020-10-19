@@ -558,16 +558,17 @@ export default {
       return `${year}/${month}/${day} ${meridiem}`
     },
     buildDateLink(date) {
-      if (!date) {
-        return date
+      if (date) {
+        date = new Date(date)
+        const year = date.getFullYear()
+        let month = (date.getMonth() + 1).toString()
+        let day = date.getDate().toString()
+        month = month.length === 1 ? `0${month}` : month
+        day = day.length === 1 ? `0${day}` : day
+        return `/date/${year}-${month}-${day}`
+      } else {
+        return `/date/2020-02-02`
       }
-      date = new Date(date)
-      const year = date.getFullYear()
-      let month = (date.getMonth() + 1).toString()
-      let day = date.getDate().toString()
-      month = month.length === 1 ? `0${month}` : month
-      day = day.length === 1 ? `0${day}` : day
-      return `/date/${year}-${month}-${day}`
     }
   }
 }
