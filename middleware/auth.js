@@ -1,7 +1,14 @@
 // import Cookies from 'js-cookie'
-export default function({ isClient, isServer, store, req, route, error, redirect }) {
-  if (!store.state.user.token) {
-    return redirect(`/`)
+export default function({ store, req, route, error, redirect }) {
+  const isClient = process.client
+  const isServer = process.server
+  if (isServer) {
+    console.log('isServer')
+  }
+  if (isClient) {
+    if (!store.state.user.token) {
+      redirect(`/`)
+    }
   }
 }
 
