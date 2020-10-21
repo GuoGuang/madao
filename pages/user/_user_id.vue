@@ -5,13 +5,11 @@
     <el-row class="user-info">
       <el-col :span="4" style="padding-top: 1em;">
         <div class="profile__heading--avatar-warp">
-          <a :href="`/u/${userInfo.nickName}`">
-            <img
-              :src="userInfo.avatar"
-              :alt="userInfo.nickName"
-              class="image"
-            >
-          </a>
+          <img
+            :src="userInfo.avatar"
+            :alt="userInfo.nickName"
+            class="image"
+          >
           <div class="profile__avatar-uploader">
             <span @click="uploadAvatar">上传头像</span>
           </div>
@@ -33,29 +31,19 @@
         </div>
         <div class="profile__heading--other" style="display:flex;flex-direction: column;">
           <span style="margin: 7px;" class="profile__heading--other-item">
-            <i class="fa fa-map-marker"/>
-            <span class="profile__city">
-              {{ userInfo.address }}
-              <span class="profile__heading-edit btn btn-xs" data-type="city"/>
-            </span>
-          </span>
-          <span style="margin: 7px;" class="profile__heading--other-item">
             <i class="fa fa-graduation-cap" aria-hidden="true"/>
             <span class="profile__school">
-              山东大学
-              <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>计算机
-              <span class="profile__heading-edit btn btn-xs" data-type="school"/>
+              {{ userInfo.contactAddress }}
             </span>
           </span>
           <span style="margin: 7px;" class="profile__heading--other-item">
             <i class="fa fa-briefcase" aria-hidden="true"/>
             <span class="profile__company">
-              山东
-              <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>java工程师
+              {{ userInfo.birthday }}
+              <span class="profile__heading--other-item-fgx">&nbsp;&nbsp;|&nbsp;&nbsp;</span>IT从业
               <span
                 style="margin: 7px;"
                 class="profile__heading-edit btn btn-xs"
-                data-type="company"
               />
             </span>
           </span>

@@ -37,7 +37,8 @@ export const actions = {
       // store.dispatch('global/fetchAdminInfo'),
       // store.dispatch('global/fetchAppOption'),
       // 内容数据
-      store.dispatch('tag/fetchList') // 首页右侧标签 节点 群组
+      store.dispatch('tag/fetchList'), // 首页右侧标签 节点 群组
+      store.dispatch('user/fetchAuthorDetail') // 首页右侧标签 节点 群组
 
       // store.dispatch('category/fetchList')
     ]

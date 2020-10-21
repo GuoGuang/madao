@@ -5,60 +5,50 @@
  */
 const UUID = require('es6-uuid')
 // import { logout } from '@/api/login'
-import { getToken, removeToken, setToken } from '@/utils/auth'
+import { removeToken, setToken } from '@/utils/auth'
 // import Cookies from 'js-cookie'
 
 export const state = () => {
   return {
-    token: '',
     fetching: false,
     data: {},
-    state: ''
+    state: '',
+    authorDetail: ''
 
   }
 }
 
 export const mutations = {
 
-  updateFetching(state, action) {
+  UPDATE_FETCHING(state, action) {
     state.fetching = action
   },
   SET_DATA(state, action) {
-    console.log('设置值--------', action.data.nickName)
-    state.data = action.data
+    state.data = action
   },
-  SET_TOKEN(state, token) {
-    state.token = token
+  SET_AUTHOR_DETAIL(state, action) {
+    state.authorDetail = action.data
   }
-
 }
 
 export const actions = {
 
   /*   fetchList({ commit }) {
-    commit('updateFetching', true)
+    commit('UPDATE_FETCHING', true)
     return this.$axios.$get(`/tag`, { params: { cache: 1 }})
       .then(response => {
         console.error(response)
         commit('updateListData', response)
-        commit('updateFetching', false)
+        commit('UPDATE_FETCHING', false)
       })
       .catch(error => {
         console.error(error)
-        commit('updateFetching', false)
+        commit('UPDATE_FETCHING', false)
       })
   }, */
 
-  /**
-   * 更新用户状态
-   * @param {d} param0
-   */
-  toggleLoginStatus({ commit }) {
-    commit('SET_TOKEN', getToken())
-  },
-
   // 用户名登录
-  LoginByUsername({ commit }, userInfo) {
+  LoginByAccount({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       return this.$axios.$post(`/oauth/token`, userInfo, { 'headers': {
         'DEVICE-ID': userInfo.deviceId,
@@ -66,7 +56,6 @@ export const actions = {
       }}).then(response => {
         if (response.code === 20000) {
           const data = response.data
-          commit('SET_TOKEN', data)
           setToken(data)
           resolve(response)
         } else {
@@ -81,10 +70,47 @@ export const actions = {
   getUserInfo({ commit }) {
     if (this.$cookies.get('Authorization')) {
       return this.$axios.$get(`/su`).then(response => {
-        commit('SET_DATA', response)
-        commit('updateFetching', false)
+        if (response.code !== 20000) {
+          this.$cookies.set('Authorization', '')
+        } else {
+          commit('SET_DATA', response.data)
+        }
+        commit('UPDATE_FETCHING', false)
       })
     }
+  },
+
+  changeUserInfo({ commit }, userInfo) {
+    return this.$axios.$get(`/su/changeUserInfo`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.success('更新失败，请稍后再试')
+      } else {
+        commit('SET_DATA', response.data)
+      }
+      commit('UPDATE_FETCHING', false)
+    })
+  },
+
+  changeUserPhone({ commit }, userInfo) {
+    return this.$axios.$get(`/su/changeUserPhone`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.success('更新失败，请稍后再试')
+      } else {
+        commit('SET_DATA', response.data)
+      }
+      commit('UPDATE_FETCHING', false)
+    })
+  },
+
+  changePassword({ commit }, userInfo) {
+    return this.$axios.$get(`/su/changePassword`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.success('更新失败，请稍后再试')
+      } else {
+        commit('SET_DATA', response.data)
+      }
+      commit('UPDATE_FETCHING', false)
+    })
   },
 
   /**
@@ -93,11 +119,10 @@ export const actions = {
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      commit('SET_TOKEN', '')
       removeToken()
+      commit('SET_DATA', {})
       resolve()
       /* logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
         removeToken()
         resolve()
       }).catch(error => {
@@ -118,7 +143,7 @@ export const actions = {
           resolve()
         }).catch(error => {
           console.log(error)
-          commit('updateFetching', false)
+          commit('UPDATE_FETCHING', false)
         })
     })
   },
@@ -131,7 +156,6 @@ export const actions = {
     return new Promise((resolve, reject) => {
       return this.$axios.$post(`/su/register`, data)
         .then(response => {
-          console.log(response)
           if (response.code !== 20000) {
             this.$toast.error(response.message)
           } else {
@@ -139,7 +163,7 @@ export const actions = {
           }
         }).catch(error => {
           console.error('获取文章列表失败：' + error.message)
-          commit('updateFetching', false)
+          commit('UPDATE_FETCHING', false)
         })
     })
   },
@@ -155,7 +179,6 @@ export const actions = {
           'DEVICE-ID': UUID(32)
         }})
         .then(response => {
-          console.log(response)
           if (response.code !== 20000) {
             this.$toast.error(response.message)
           } else {
@@ -163,8 +186,23 @@ export const actions = {
           }
         }).catch(error => {
           console.error('获取文章列表失败：' + error.message)
-          commit('updateFetching', false)
+          commit('UPDATE_FETCHING', false)
         })
+    })
+  },
+
+  fetchAuthorDetail({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/ar/article/admin`).then(response => {
+        if (response.code !== 20000) {
+          this.$toast.error(response.message)
+        } else {
+          commit('SET_AUTHOR_DETAIL', response)
+          resolve(response)
+        }
+      }).catch(() => {
+        commit('UPDATE_FETCHING', false)
+      })
     })
   }
 }

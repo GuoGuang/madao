@@ -6,9 +6,10 @@ export default function({ store, req, route, error, redirect }) {
     console.log('isServer')
   }
   if (isClient) {
-    if (!store.state.user.token) {
-      redirect(`/`)
-    }
+    console.log('isClient')
+  }
+  if (!store.state.user.data.avatar) {
+    redirect(`/`)
   }
 }
 

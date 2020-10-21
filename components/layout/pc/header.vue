@@ -163,7 +163,7 @@
             </button>
           </div>
           <!-- 已登录 -->
-          <div v-if="loginStatus" class="user-profile">
+          <div v-if="userInfo.avatar" class="user-profile">
 
             <ul style="">
               <li >
@@ -255,7 +255,6 @@ export default {
       preload: false,
       loginDialogVisible: false,
       registerDialogVisible: false,
-      loginStatus: this.$store.state.user.token,
       loginForm: {
         id: '',
         account: '18595253655',
@@ -322,7 +321,7 @@ export default {
         if (valid) {
           this.loadingStatus = true
           // 登录
-          this.$store.dispatch('user/LoginByUsername', this.loginForm).then((response) => {
+          this.$store.dispatch('user/LoginByAccount', this.loginForm).then((response) => {
             this.userInfo = response.data
             this.loadingStatus = false
             this.$router.go(0)
