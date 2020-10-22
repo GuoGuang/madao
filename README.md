@@ -33,7 +33,7 @@
 
 ## PC
 
-![](https://github.com/GuoGuang/codeway/blob/master/static/codeway.png)
+![演示](https://github.com/GuoGuang/codeway/blob/master/static/demo.png)
 
 ## Directory
 ```
