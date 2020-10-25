@@ -9,7 +9,8 @@ import { fetchDelay } from '~/utils/fetch-delay'
 const getDefaultListData = () => {
   return {
     data: [],
-    pagination: {}
+    pagination: {},
+    myComment: {}
   }
 }
 
@@ -43,6 +44,9 @@ export const mutations = {
   UN_LIKE(state, action) {
     const currentComment = state.data.find(item => item.id === action.id)
     currentComment.upvote--
+  },
+  SET_MY_COMMENT(state, action) {
+    state.myComment = action.data
   },
 
   updateLikesIncrement(state, action) {
@@ -120,6 +124,26 @@ export const actions = {
     }).catch(error => {
       console.log(error)
       this.$toast.error('服务器开小差啦~~')
+    })
+  },
+
+  /**
+   * 查询我的评论
+   * @param commit
+   * @returns {Promise<unknown>}
+   */
+  fetchMyComment({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/ar/comment/my/`).then(response => {
+        if (response.code !== 20000) {
+          this.$toast.error(response.message)
+        } else {
+          commit('SET_MY_COMMENT', response)
+          resolve(response)
+        }
+      }).catch(() => {
+        commit('UPDATE_FETCHING', false)
+      })
     })
   }
 }

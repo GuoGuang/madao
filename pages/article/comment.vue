@@ -23,12 +23,9 @@
               <div class="emoji emoji-btn">
                 <div class="emoji-box">
                   <i class="iconfont icon-emoji"/>
-                  <span data-v-1a162112="">表情</span>
+                  <span>表情</span>
                 </div>
               </div>
-            </el-col>
-            <el-col :xs="18" :sm="14" :md="15" :lg="10" :xl="14">
-              <el-input v-model="comment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width:80%;border-radius: 23px;" @blur="onQQBlur(true)"/>
             </el-col>
           </el-row>
           <div class="submit">
@@ -98,10 +95,9 @@
                   <div class="emoji emoji-btn">
                     <div class="emoji-box">
                       <i class="iconfont icon-emoji"/>
-                      <span data-v-1a162112="">表情</span>
+                      <span >表情</span>
                     </div>
                   </div>
-                  <el-input v-model="replyComment.userId" maxlength="10" placeholder="QQ号" size="mini" style="width: 20%;padding-left: 20px;border-radius: 23px;" @blur="onQQBlur(false)"/>
                   <div class="submit">
                     <input type="button" value="" style="background-color: #1b54bc;" @click="commitComment(replyComment)">
                   </div>
@@ -144,6 +140,7 @@ export default {
   },
   data() {
     return {
+      userInfo: this.$store.state.user.data,
       comment: {
         articleId: this.articleId,
         avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
@@ -162,9 +159,14 @@ export default {
     }
   },
   created() {
-    this.replyComment = Object.assign({}, this.comment)
   },
   mounted() {
+    if (this.userInfo.id) {
+      this.comment.userId = this.userInfo.id
+      this.comment.avatar = this.userInfo.avatar
+      this.comment.userName = this.userInfo.nickName
+    }
+    this.replyComment = Object.assign({}, this.comment)
     // 实现 commentAction div以外的元素隐藏自身
     document.addEventListener('click', e => {
       if (!this.$el.contains(e.target)) {
@@ -223,12 +225,12 @@ export default {
        * 提交评论
        */
     commitComment(item) {
-      if (!item.content) {
-        this.$toast.info('说点什么吧~~')
+      if (!item.userId) {
+        this.$toast.info('还没登录啊，亲~~')
         return
       }
-      if (!item.userId) {
-        this.$toast.info('还没输入QQ号啊，亲~~')
+      if (!item.content) {
+        this.$toast.info('说点什么吧~~')
         return
       }
       if (item.avatar.startsWith('https://cube')) {
