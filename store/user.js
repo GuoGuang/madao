@@ -67,6 +67,23 @@ export const actions = {
     })
   },
 
+  // Oauth登录
+  LoginByOauth({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/oauth/login/github?code=` + query.code).then(response => {
+        if (response.code === 20000) {
+          const data = response.data
+          setToken(data)
+          resolve(response)
+        } else {
+          reject(response)
+        }
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
   getUserInfo({ commit }) {
     if (this.$cookies.get('Authorization')) {
       return this.$axios.$get(`/su`).then(response => {
@@ -81,33 +98,33 @@ export const actions = {
   },
 
   changeUserInfo({ commit }, userInfo) {
-    return this.$axios.$get(`/su/changeUserInfo`).then(response => {
+    return this.$axios.$put(`/su/userInfo`, userInfo).then(response => {
       if (response.code !== 20000) {
-        this.$toast.success('更新失败，请稍后再试')
+        this.$toast.info(response.message)
       } else {
-        commit('SET_DATA', response.data)
+        this.$toast.info('更新成功！')
       }
       commit('UPDATE_FETCHING', false)
     })
   },
 
   changeUserPhone({ commit }, userInfo) {
-    return this.$axios.$get(`/su/changeUserPhone`).then(response => {
+    return this.$axios.$put(`/su/changeUserPhone`, userInfo).then(response => {
       if (response.code !== 20000) {
-        this.$toast.success('更新失败，请稍后再试')
+        this.$toast.info(response.message)
       } else {
-        commit('SET_DATA', response.data)
+        this.$toast.info('更新成功！')
       }
       commit('UPDATE_FETCHING', false)
     })
   },
 
   changePassword({ commit }, userInfo) {
-    return this.$axios.$get(`/su/changePassword`).then(response => {
+    return this.$axios.$put(`/su/changePassword`, userInfo).then(response => {
       if (response.code !== 20000) {
-        this.$toast.success('更新失败，请稍后再试')
+        this.$toast.info(response.message)
       } else {
-        commit('SET_DATA', response.data)
+        this.$toast.info('更新成功！')
       }
       commit('UPDATE_FETCHING', false)
     })

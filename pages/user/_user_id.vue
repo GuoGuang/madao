@@ -88,10 +88,34 @@
       <el-tabs v-model="activeName" type="card" tab-position="left" @tab-click="handleTabClick">
         <el-tab-pane :disabled="true" label="我的互动" name="0"/>
         <el-tab-pane name="1">
+          <span slot="label"><i class="el-icon-chat-round"/> 我的回复</span>
+          <div v-if="myComment.length > 0" class="padding-main my-thumb" >
+            <div v-for="(comment, index) in myComment" :key="index" class="content">
+              <a
+                class="ribbon"
+                href="https://learnku.com/articles/46978?#reply164141"
+                target="_blank">
+                评论于 <span title="2020-10-24 11:30:46">{{ comment.commentCreateAt | timestampToTime }}</span>，获得 0 个赞
+              </a>
+              <div>
+                <el-link href="https://element.eleme.io" target="_blank" class="title">{{ comment.articleTitle }}</el-link>
+                <div class="meta">
+                  <p>
+                    <el-link href="https://element.eleme.io" type="info" target="_blank">{{ comment.commentContent }} </el-link>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="empty-block padding-main my-thumb">
+            暂无数据~~
+          </div>
+        </el-tab-pane>
+        <el-tab-pane :disabled="true" name="2">
           <span slot="label"><i class="el-icon-thumb"/> 我的点赞</span>
           <div class="padding-main my-thumb">
             <div class="content">
-              <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
+              <el-link href="https://element.eleme.io" target="_blank" class="title">构建一个简单的统计应用</el-link>
               <div class="meta">
                 <p>
                   <el-link href="https://element.eleme.io" type="info" target="_blank">创建于 1个月前 </el-link>
@@ -106,21 +130,6 @@
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2">
-          <span slot="label"><i class="el-icon-chat-round"/> 我的回复</span>
-          <div class="padding-main my-thumb">
-            <div class="content">
-              <el-link href="https://element.eleme.io" target="_blank" class="title">Laravel 队列实战教程：构建一个简单的统计应用</el-link>
-              <div class="meta">
-                <p>
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">创建于 1个月前 </el-link>|
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">阅读数 1693  </el-link> |
-                  <el-link href="https://element.eleme.io" type="info" target="_blank">评论数 24 </el-link>
-                </p>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
       </el-tabs>
     </el-row>
 
@@ -128,11 +137,19 @@
 </template>
 
 <script>
+import { timestampToTime } from '@/utils/date'
+
 export default {
   name: 'User',
   head() {
     return {
       title: `${this.userInfo.nickName} |的个人主页`
+    }
+  },
+  middleware: 'auth',
+  filters: {
+    timestampToTime(val) {
+      return timestampToTime(val)
     }
   },
   data() {
@@ -142,7 +159,7 @@ export default {
     }
   },
   fetch({ store }) {
-    return store.dispatch('project/fetchRepositories')
+    return store.dispatch('comment/fetchMyComment')
   },
   computed: {
     isEnLang() {
@@ -151,8 +168,8 @@ export default {
     isMobile() {
       return this.$store.state.global.isMobile
     },
-    projects() {
-      return this.$store.state.project.repositories.data
+    myComment() {
+      return this.$store.state.comment.myComment
     }
   },
   methods: {
@@ -273,6 +290,12 @@ export default {
       border-top: 1px solid #d3e0e9;
       border-bottom: 1px solid rgba(211, 224, 233, 0.15);
     }
+    .empty-block {
+      text-align: center;
+      line-height: 60px;
+      margin: 10px;
+      color: #ccc;
+    }
 
     .my-thumb {
       background: #f8f8f8;
@@ -300,6 +323,51 @@ export default {
       }
       .content:not(:last-child){
         border-bottom: 1px dashed #dae1ea;
+      }
+      .ribbon {
+        font-family: Helvetica,Arial,PingFang SC,Noto Sans,Roboto,Microsoft Yahei,sans-serif;
+        -webkit-box-direction: normal;
+        text-align: left;
+        box-sizing: inherit;
+        margin-bottom: 1.5rem!important;
+        display: inline-block;
+        line-height: 1;
+        vertical-align: baseline;
+        padding: .5833em .833em;
+        text-transform: none;
+        font-weight: 700;
+        transition: background .1s ease;
+        font-size: .85714286rem;
+        text-decoration: none;
+        position: relative;
+        margin: 0;
+        min-width: max-content;
+        border-radius: 0 .28571429rem .28571429rem 0;
+        left: calc(-1rem - 1.2em);
+        margin-right: -1.2em;
+        padding-left: calc(1rem + 1.2em);
+        padding-right: 1.2em;
+        background: none #fff;
+        border: 1px solid #909399;
+        box-shadow: none;
+        background-color: #fff!important;
+        color: #909399!important;
+        border-color: #909399!important;
+        cursor: pointer;
+        margin-left: -18px;
+      }
+      .ribbon:after {
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 0;
+        background-color: transparent!important;
+        border-style: solid;
+        border-width: 0 1.2em 1.2em 0;
+        border-color: transparent;
+        border-right-color: #9E9E9E;
+        width: 0;
+        height: 0;
       }
     }
   }
@@ -333,4 +401,5 @@ export default {
     background: rgba(0, 0, 0, 0.05);
   }
 }
+
 </style>

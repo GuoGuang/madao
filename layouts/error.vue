@@ -45,6 +45,9 @@ export default {
         if (newVal.statusCode === 404) {
           this.statusImage = '/images/svg/404.svg'
           this.statusInfo = '您似乎正在尝试访问已被删除或者根本不存在的页面。'
+        } else if (newVal.statusCode === 501) {
+          this.statusImage = '/images/svg/500.svg'
+          this.statusInfo = '系统异常请稍后再试！'
         } else {
           this.statusImage = '/images/svg/500.svg'
           this.statusInfo = 'Sorry unexpected error'

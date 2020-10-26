@@ -16,22 +16,17 @@
             </div>
             <div class="info-edit">
               <span>Email</span>
-              <MDinput v-model.trim="userInfo.email" :maxlength="11" class="input" @blur="changeUserInfo()"/>
-              <el-link/>
-            </div>
-            <div class="info-edit">
-              <span>手机号</span>
-              <MDinput v-model.trim="userInfo.phone" :maxlength="11" class="input" @blur="changeUserInfo()"/>
+              <MDinput v-model.trim="userInfo.email" :maxlength="20" class="input" @blur="changeUserInfo()"/>
               <el-link/>
             </div>
             <div class="info-edit">
               <span>居住地</span>
-              <MDinput v-model.trim="userInfo.address" :maxlength="20" class="input" @blur="changeUserInfo()"/>
+              <MDinput v-model.trim="userInfo.contactAddress" :maxlength="20" class="input" @blur="changeUserInfo()"/>
               <el-link/>
             </div>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane :disabled="true" name="2">
           <span slot="label"><i class="el-icon-mobile-phone"/> 绑定手机</span>
           <div class="padding-main phone">
             <h1 class="h1"> <i class="el-icon-mobile-phone"/> 手机绑定</h1>
@@ -49,7 +44,7 @@
             </el-form>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="3">
+        <el-tab-pane :disabled="true" name="3">
           <span slot="label"><i class="el-icon-lock"/> 修改密码</span>
           <div class="padding-main phone">
             <h1 class="h1"> <i class="el-icon-mobile-phone"/> 修改密码</h1>
@@ -90,7 +85,25 @@ export default {
   },
   middleware: 'auth',
   head() {
-    this.userInfo = Object.assign({}, this.$store.state.user.data)
+    const {
+      avatar,
+      email,
+      id,
+      nickName,
+      phone,
+      userName,
+      contactAddress
+    } = this.$store.state.user.data
+
+    this.userInfo = Object.assign({}, {
+      avatar,
+      email,
+      id,
+      nickName,
+      phone,
+      userName,
+      contactAddress
+    })
     return {
       // title: `${this.isEnLang ? '' : this.$i18n.nav.project + ' | '}的个人主页`
       title: this.userInfo.nickName ? this.userInfo.nickName : 'MaDao' + ' | 的资料'

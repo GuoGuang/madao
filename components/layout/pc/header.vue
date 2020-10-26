@@ -51,14 +51,19 @@
       </el-form>
       <div class="oauth">
         <div class="oauth-bg">
-          <img title="微博" alt="微博" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/weibo.fa758eb.svg" class="oauth-btn">
+          <img title="微博" style="cursor: not-allowed" alt="微博" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/weibo.fa758eb.svg" class="oauth-btn">
         </div>
         <div class="oauth-bg">
-          <img title="微信" alt="微信" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/wechat.e0ff124.svg" class="oauth-btn">
+          <img title="微信" style="cursor: not-allowed" alt="微信" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/wechat.e0ff124.svg" class="oauth-btn">
         </div>
 
         <div class="oauth-bg">
-          <img title="GitHub" alt="GitHub" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/github.547dd8a.svg" class="oauth-btn">
+          <img
+            title="GitHub"
+            alt="GitHub"
+            src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/github.547dd8a.svg"
+            class="oauth-btn"
+            @click="gitHubLogin()">
         </div>
       </div>
       <p class="terms">
@@ -233,6 +238,8 @@ import { isSearchArchiveRoute } from '~/utils/route'
 import { Route } from '~/constants/system'
 // import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
 import MDinput from '~/components/global/MDinput'
+import { isMobile } from '~/utils/verify'
+
 export default {
   name: 'LayoutHeader',
   components: {
@@ -292,6 +299,9 @@ export default {
     }
   },
   methods: {
+    gitHubLogin() {
+      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=http://127.0.0.1:3000/callback')
+    },
     handleSearch() {
       const keyword = this.keyword
       const paramsKeyword = this.$route.params.keyword
@@ -345,15 +355,19 @@ export default {
      * 切换注册状态
      */
     nextRegister() {
+      if (!isMobile(this.registerPhone)) {
+        this.$toast.info('请输入正确的手机号')
+        return
+      }
       this.$store.dispatch('user/sendMessage', this.registerPhone).then(() => {
-        this.registStatus = 2
+        this.registerStatus = 2
       })
     },
     validateRegister() {
       this.$store.dispatch('user/register', { 'phone': this.registerPhone, 'captcha': this.captcha }).then((response) => {
         console.log('this.userDetail = response-----', response)
-        this.userDetail = response.data
-        this.registStatus = 3
+        this.registerDetail = response.data
+        this.registerStatus = 3
         setTimeout(() => {
           this.$router.go(0)
         }, 3000)
@@ -645,7 +659,6 @@ display: none!important;
   }
 }
 .loginDialog {
-
   .oauth {
     display: flex;
     align-items: center;
@@ -670,7 +683,7 @@ display: none!important;
     padding:inherit
   }
   .el-dialog {
-    width: 33%;
+    margin-top: 8vh !important;
   }
   .el-dialog__header {
     border-bottom: 1px solid #e5e5e5;
