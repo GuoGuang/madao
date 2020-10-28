@@ -84,17 +84,16 @@ export const actions = {
     })
   },
 
-  getUserInfo({ commit }) {
-    if (this.$cookies.get('Authorization')) {
-      return this.$axios.$get(`/su`).then(response => {
-        if (response.code !== 20000) {
-          this.$cookies.set('Authorization', '')
-        } else {
-          commit('SET_DATA', response.data)
-        }
+  getUserInfo({ commit }, cookie) {
+    console.log('getUserInfo-----------', cookie)
+    return this.$axios.$get(`/su`, { 'headers': {
+      'AUTH': 'Bearer ' + cookie
+    }}).then(response => {
+      if (response.code === 20000) {
+        commit('SET_DATA', response.data)
         commit('UPDATE_FETCHING', false)
-      })
-    }
+      }
+    })
   },
 
   changeUserInfo({ commit }, userInfo) {

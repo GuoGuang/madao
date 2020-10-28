@@ -54,12 +54,24 @@ export const actions = {
 
     const token = this.$cookies.get('Authorization')
     if (token) {
-      // const { token } = cookie.parse(req.headers.cookie)
-      store.commit('user/SET_TOKEN', token)
       // 同步获取数据，防止数据undefined
-      initFetchAppData.push(store.dispatch('user/getUserInfo'))
+      const cookie = getCookie('Authorization', req.headers.cookie)
+      initFetchAppData.push(store.dispatch('user/getUserInfo', cookie))
     }
 
     return Promise.all(initFetchAppData)
   }
+}
+
+function getCookie(name, strCookie) {
+  console.log('strCookie', strCookie)
+  var arrCookie = strCookie.split(';')
+  for (var i = 0; i < arrCookie.length; i++) {
+    var arr = arrCookie[i].split('=')
+    if (arr[0].trim() === name) {
+      return arr[1]
+    }
+  }
+
+  return {}
 }
