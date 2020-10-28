@@ -6,7 +6,9 @@
 export default {
   name: 'Callback',
   async asyncData({ app, query, store, redirect }, callback) {
+    console.log('enter the callback page')
     return store.dispatch('user/LoginByOauth', query).then((response) => {
+      console.log('auth response ', response)
       if (response.code === 20000) {
         // 在服务端使用app.$cookies存储cookie到客户端
         app.$cookies.set('Authorization', response.data, {
