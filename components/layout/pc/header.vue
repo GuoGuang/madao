@@ -300,7 +300,7 @@ export default {
   },
   methods: {
     gitHubLogin() {
-      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=http://127.0.0.1:3000/callback')
+      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=https://codeway.fun/callback')
     },
     handleSearch() {
       const keyword = this.keyword
