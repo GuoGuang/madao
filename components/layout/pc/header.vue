@@ -93,6 +93,9 @@
         </div>
 
         <el-form label-position="top" label-width="80px" size="mini">
+          <MDinput v-model="password" :maxlength="20">
+            请输入密码
+          </MDinput>
           <MDinput v-model="captcha" :maxlength="6">
             请输入收到的验证码
           </MDinput>
@@ -102,7 +105,7 @@
         </el-form>
 
       </div>
-      <div v-else-if="registStatus === 3">
+      <div v-else-if="registerStatus === 3">
 
         <el-alert
           :closable="false"
@@ -253,6 +256,7 @@ export default {
       registerDetail: {},
       userInfo: this.$store.state.user.data,
       captcha: '',
+      password: '',
       loadingStatus: false,
       cdnUrl: this.cdnUrl,
       searchDialog: false,
@@ -263,11 +267,11 @@ export default {
       registerDialogVisible: false,
       loginForm: {
         id: '',
-        account: '18595253655',
+        account: '',
         captchaBase64: '',
         deviceId: '',
         captcha: '',
-        password: 'madao'
+        password: ''
       },
 
       rules: {
@@ -363,9 +367,14 @@ export default {
       })
     },
     validateRegister() {
-      this.$store.dispatch('user/register', { 'phone': this.registerPhone, 'captcha': this.captcha }).then((response) => {
+      this.$store.dispatch('user/register',
+        { 'phone': this.registerPhone,
+          'password': this.password,
+          'captcha': this.captcha }
+      ).then((response) => {
         console.log('this.userDetail = response-----', response)
         this.registerDetail = response.data
+        this.registerStatus = 3
         setTimeout(() => {
           this.$router.go(0)
         }, 3000)
@@ -756,6 +765,7 @@ display: none!important;
     padding: 20px 50px;
     .el-form {
       .el-form-item {
+        margin-top: 1em;
         margin-bottom: 10px;
         .el-button {
           margin-top: 10px;
