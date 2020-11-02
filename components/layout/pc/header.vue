@@ -37,8 +37,7 @@
         </el-form-item>
 
         <el-form-item class="other-opt">
-          <a href="#" class="phoneLogin" @click="loginDialogVisible =false;registerDialogVisible = true;">手机验证码登录</a>
-          <a href="#" class="forget">忘记密码</a>
+          <a href="#" style="cursor: not-allowed" class="forget">忘记密码</a>
         </el-form-item>
 
         <el-form-item>
@@ -367,7 +366,6 @@ export default {
       this.$store.dispatch('user/register', { 'phone': this.registerPhone, 'captcha': this.captcha }).then((response) => {
         console.log('this.userDetail = response-----', response)
         this.registerDetail = response.data
-        this.registerStatus = 3
         setTimeout(() => {
           this.$router.go(0)
         }, 3000)
