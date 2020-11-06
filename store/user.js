@@ -135,15 +135,15 @@ export const actions = {
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      removeToken()
-      commit('SET_DATA', {})
-      resolve()
-      /* logout(state.token).then(() => {
-        removeToken()
-        resolve()
-      }).catch(error => {
-        reject(error)
-      }) */
+      this.$axios.$post(`/oauth/logout`)
+        .then(response => {
+          removeToken()
+          commit('SET_DATA', {})
+          resolve(response)
+        }).catch(error => {
+          this.$toast.error('退出失败！' + error)
+          reject(error)
+        })
     })
   },
   /**
