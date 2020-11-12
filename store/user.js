@@ -33,21 +33,9 @@ export const mutations = {
 
 export const actions = {
 
-  /*   fetchList({ commit }) {
-    commit('UPDATE_FETCHING', true)
-    return this.$axios.$get(`/tag`, { params: { cache: 1 }})
-      .then(response => {
-        console.error(response)
-        commit('updateListData', response)
-        commit('UPDATE_FETCHING', false)
-      })
-      .catch(error => {
-        console.error(error)
-        commit('UPDATE_FETCHING', false)
-      })
-  }, */
-
-  // 用户名登录
+  /**
+   * 用户名登录
+   */
   LoginByAccount({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       return this.$axios.$post(`/oauth/token`, userInfo, { 'headers': {
@@ -131,7 +119,6 @@ export const actions = {
 
   /**
    * 退出
-   * @param {d} param0
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
@@ -146,6 +133,7 @@ export const actions = {
         })
     })
   },
+
   /**
    * 发送验证码
    * @param {d} param0
@@ -163,10 +151,9 @@ export const actions = {
         })
     })
   },
+
   /**
    * 注册
-   * @param {d} param0
-   * @param phone 手机号
    */
   register({ commit }, data) {
     return new Promise((resolve, reject) => {
@@ -183,10 +170,9 @@ export const actions = {
         })
     })
   },
+
   /**
    * 获取验证码
-   * @param {d} param0
-   * @param phone 手机号
    */
   fetchCaptcha({ commit }) {
     return new Promise((resolve, reject) => {
