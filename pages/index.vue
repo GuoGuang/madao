@@ -1,24 +1,5 @@
 <template>
-  <!-- <div class="home">
-    <div class="left-side">
-      <aside-view key="aside"/>
-    </div>
-     页面Main
-    <div class="index">
-       轮播图
-      <carrousel :article="article" />
-       评论，导语
-      <announcement :announcement="announcement" />
-       热门文章列表
-      <article-list :article="article" @loadmore="loadmoreArticle" />
-    </div>
-    <div>
-      <aside-view key="aside"/>
-    </div>
-  </div> -->
-
   <el-row>
-
     <el-col :span="17" :xs="24">
       <div class="main">
         <!-- 轮播图 -->
@@ -26,10 +7,9 @@
         <!-- 评论，导语 -->
         <announcement :announcement="announcement" />
         <!-- 热门文章列表 -->
-        <article-list :article="article" @loadmore="loadmoreArticle" />
+        <article-list :article="article" @loadmore="loadMoreArticle" />
       </div>
     </el-col>
-
     <div v-if="!isMobile" class="main-right" >
       <el-col :span="6" class="right-list">
         <aside-view key="aside"/>
@@ -51,9 +31,7 @@ export default {
   },
   fetch({ store }) {
     return Promise.all([
-      // dispatch（“参数也可以是store里的方法层级调用”）
       store.dispatch('article/fetchList')
-      // store.dispatch('announcement/fetchList')
     ])
   },
   components: {
@@ -79,7 +57,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
@@ -87,23 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*   .home {
-    display: flex;
-    justify-content: flex-end;
-
-    > .left-side{
-      width:10em;
-    }
-
-    > .index{
-      width: 48em;
-      margin: 0 1em 0 1em;
-    }
-  } */
-  .el-col{
-
-  }
-
 .icon {
   width: 2em;
   height: 2em;
@@ -113,7 +74,7 @@ export default {
 }
 
   .aside-nav {
-     width:19em;
+    width:19em;
     display: inline-block;
     width: 11.5em;
     top: 5.5em;
@@ -140,7 +101,6 @@ export default {
         &:hover {
           background-color: rgba(0,154,97,0.08);;
         }
-
       }
     }
   }
