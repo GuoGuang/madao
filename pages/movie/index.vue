@@ -125,7 +125,7 @@ export default {
     }
   },
   methods: {
-    /* loadmoreArticle() {
+    /* loadMoreArticle() {
         this.$store.dispatch('article/fetchList', this.nextPageParams)
       },*/
     handleClick() {

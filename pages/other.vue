@@ -2,7 +2,7 @@
   <!--<el-row>
    <el-col :span="17">
       <div class="main">
-        <article-list :article="article" @loadmore="loadmoreArticle" />
+        <article-list :article="article" @loadmore="loadMoreArticle" />
       </div>
     </el-col>
     <el-col :span="6" class="right-list">
@@ -50,7 +50,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <article-list :article="article" @loadmore="loadmoreArticles" />
+    <article-list :article="article" @loadmore="loadMoreArticles" />
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticles() {
+    loadMoreArticles() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }

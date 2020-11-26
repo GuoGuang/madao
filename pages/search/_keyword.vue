@@ -1,7 +1,7 @@
 <template>
   <div class="index">
 
-    <div v-if="total > 0" class="article-list" @loadmore="loadmoreArticle">
+    <div v-if="total > 0" class="article-list" @loadmore="loadMoreArticle">
       <!-- 非首页列表头 -->
       <div v-if="!isIndexRoute" class="article-list-header">
         <list-header />
@@ -82,7 +82,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     },
     toDetail(article) {

@@ -134,7 +134,7 @@ export default {
         }
       })
     },
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
