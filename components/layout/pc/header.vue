@@ -303,7 +303,7 @@ export default {
   },
   methods: {
     gitHubLogin() {
-      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=https://codeway.fun/callback')
+      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=https://madaoo.com/callback')
     },
     handleSearch() {
       const keyword = this.keyword

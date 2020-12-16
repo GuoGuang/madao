@@ -2,10 +2,10 @@
   <aside class="aside">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="codeway">
+        <img :src="gravatar" alt="madao">
       </div>
       <div class="profile">
-        <h3 class="name">codeway</h3>
+        <h3 class="name">madao</h3>
         <p class="email" v-text="$i18n.text.slogan"/>
       </div>
     </div>

@@ -1,20 +1,20 @@
 {
-  "name": "codeway.fun",
+  "name": "madaoo.com",
   "version": "2.1.4",
-  "description": "codeway.fun blog",
+  "description": "madaoo.com blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://codeway.fun"
+    "url": "https://madaoo.com"
   },
   "license": "MIT",
-  "homepage": "http://codeway.fun",
+  "homepage": "http://madaoo.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang/codeway.git"
+    "url": "git+https://github.com/GuoGuang/madao.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang/codeway/issues"
+    "url": "https://github.com/GuoGuang/madao/issues"
   },
   "engines": {
     "npm": ">=5.5.0",
@@ -52,7 +52,7 @@
     "fs-extra": "^7.0.0",
     "gitalk": "^1.5.0",
     "gravatar": "^1.6.0",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.4.1",
     "howler": "^2.0.14",
     "js-cookie": "^2.2.0",
     "marked": "^0.7.0",
