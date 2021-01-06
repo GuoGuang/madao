@@ -5,7 +5,7 @@
  */
 
 exports.meta = {
-  title: 'CODEWAY',
+  title: '码道',
   keywords: 'madao,后端,java开发,博客,个人网站，SpringCloud,架构师,码道人生,码道',
   description: '百学须先立志',
   url: 'madaoo.com',
