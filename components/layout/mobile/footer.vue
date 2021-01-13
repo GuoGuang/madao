@@ -17,9 +17,8 @@
 export default {
   name: 'MobileFooter',
   computed: {
-    currentYear(){
-      const date = new Date()
-      return date.getFullYear();
+    currentYear() {
+      return new Date().getFullYear()
     },
     days() {
       var old = new Date('2019-12-01')

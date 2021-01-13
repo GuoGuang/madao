@@ -36,9 +36,8 @@
 export default {
   name: 'PcFooter',
   computed: {
-    currentYear(){
-      const date = new Date()
-      return date.getFullYear();
+    currentYear() {
+      return new Date().getFullYear()
     },
     isEnLang() {
       return this.$store.state.global.isEnLang
