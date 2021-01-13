@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="copyright">
-          Copyright © 2019-2020 <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
+          Copyright © 2019-{{ currentYear }} <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
           All Rights Reserved. <br><a class="sitemap-btn" href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备20026257号</a ><br>
           <a href="" rel="nofollow"/> &nbsp;
           <p class="ml5">网站在各种灾难中运行了 <span>{{ days }}</span> 天</p >
@@ -17,6 +17,10 @@
 export default {
   name: 'MobileFooter',
   computed: {
+    currentYear(){
+      const date = new Date()
+      return date.getFullYear();
+    },
     days() {
       var old = new Date('2019-12-01')
       var n = new Date()

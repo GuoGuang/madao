@@ -23,7 +23,7 @@
         </span>
       </div>
       <div class="copyright">
-        Copyright © 2019-2020 <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
+        Copyright © 2019-{{ currentYear }} <a class="sitemap-btn" href="/" target="_blank">码道人生</a >
         All Rights Reserved. <a class="sitemap-btn" href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备20026257号</a ><br>
         <a href="" rel="nofollow"/> &nbsp;
         <p class="ml5">网站在各种灾难中运行了 <span>{{ days }}</span> 天</p >
@@ -36,6 +36,10 @@
 export default {
   name: 'PcFooter',
   computed: {
+    currentYear(){
+      const date = new Date()
+      return date.getFullYear();
+    },
     isEnLang() {
       return this.$store.state.global.isEnLang
     },
