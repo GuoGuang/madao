@@ -1,6 +1,5 @@
 
 <template>
-  <!-- 导航 图标参考D:\vueWorkspace\madao_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
 
