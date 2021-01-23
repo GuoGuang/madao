@@ -22,6 +22,10 @@
       </div>
     </div>
 
+    <div class="movie-desc" style="color: #757575;">
+      {{ movieDetail.desc }}
+    </div>
+
   </div>
 
 </template>
@@ -143,7 +147,7 @@ export default {
 
 <style lang="scss">
   .movie-desc {
-    margin: 10px 0;
+    margin: 10px 0 30px;
     display: flex;
     justify-content: space-between;
     .title{
