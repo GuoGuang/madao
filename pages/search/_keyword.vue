@@ -1,15 +1,15 @@
 <template>
   <div class="index">
 
-    <div v-if="total > 0" class="article-list" @loadmore="loadMoreArticle">
+    <div v-if="article.length > 0" class="article-list" @loadmore="loadMoreArticle">
       <!-- 非首页列表头 -->
       <div v-if="!isIndexRoute" class="article-list-header">
         <list-header />
       </div>
       <transition name="module" mode="out-in">
-        <transition-group v-if="article.data.records && article.data.records.length" key="list" name="fade" tag="div">
+        <transition-group v-if="article && article.length" key="list" name="fade" tag="div">
           <list-item
-            v-for="articleItem in article.data.records"
+            v-for="articleItem in article"
             :key="articleItem.id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
@@ -58,17 +58,12 @@ export default {
     }
   },
   computed: {
-
-    total() {
-      return this.$store.state.article.list.data.length
-    },
     isIndexRoute() {
       return isIndexRoute(this.$route.name)
     },
     article() {
-      console.log('this.$store.state.article.list.data', this.$store.state.article.list.data)
-
-      return this.$store.state.article.list
+      console.log('1111', this.$store.state.article.list.data.records)
+      return this.$store.state.article.list.data.records
     },
     defaultParams() {
       return {
