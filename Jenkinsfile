@@ -26,7 +26,7 @@ pipeline {
             sh "pwd"
             sh "rm -rf ./*"
             //git credentialsId: '*****-****-****-****-*********', url: 'https://gitee.com/jackso_n/madao.git', branch: 'dev'
-            sh "git clone --depth 1 -b dev https://gitee.com/jackso_n/madao.git"
+            sh "git clone --depth 1 -b dev https://gitee.com/guoguang0536/madao.git"
 
         }
      }
