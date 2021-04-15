@@ -293,6 +293,9 @@ export default {
   },
   filters: {
     timestampToTime(val) {
+      if (!val) {
+        return '0000:00:00'
+      }
       return timestampToTime(val)
     }
   },
