@@ -1,8 +1,8 @@
 <template>
-  <!--<el-row>
-   <el-col :span="17">
+  <el-row>
+    <el-col :span="17">
       <div class="main">
-        <article-list :article="article" @loadmore="loadmoreArticle" />
+        <article-list :article="article" @loadmore="loadMoreArticle" />
       </div>
     </el-col>
     <el-col :span="6" class="right-list">
@@ -11,22 +11,18 @@
       </div>
     </el-col>
 
-  </el-row> -->
-  <div class="img-container">
-    <img class="error-img" src="/images/svg/building.svg">
-    <h2 style="color:908c8c;margin:1em">开发中...</h2>
-  </div>
-
+  </el-row>
 </template>
 
 <script>
 import ArticleList from '~/components/archive/list'
-import AsideView from '~/components/layout/pc/aside/main'
+import AsideView from '~/components/layout/pc/aside/hack'
 
 export default {
-  name: 'Security',
+  name: 'Welfare',
   fetch({ store }) {
     return Promise.all([
+      store.dispatch('article/fetchList', { 'categoryId': '4' })
       // dispatch（“参数也可以是store里的方法层级调用”）
       // store.dispatch('article/fetchList'),
       // store.dispatch('announcement/fetchList')
@@ -50,7 +46,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
@@ -59,28 +55,28 @@ export default {
 
 <style lang="scss" scoped>
 
-.img-container{
-  padding-top: 6em;
-  height: 100%;
-  text-align: center
-}
-.img4 .iblock {
-	display:inline-block;
-	height:100%;
-	width:0;
-	vertical-align:middle
-}
-.error-img {
-  width: 50%;
-}
+  .img-container{
+    padding-top: 6em;
+    height: 100%;
+    text-align: center
+  }
+  .img4 .iblock {
+    display:inline-block;
+    height:100%;
+    width:0;
+    vertical-align:middle
+  }
+  .error-img {
+    width: 50%;
+  }
 
-.icon {
-  width: 2em;
-  height: 2em;
-}
+  .icon {
+    width: 2em;
+    height: 2em;
+  }
 
   .aside-nav {
-     width:19em;
+    width:19em;
     display: inline-block;
     width: 11.5em;
     top: 5.5em;

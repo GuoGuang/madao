@@ -29,13 +29,13 @@
                   rel="external nofollow noopener"
                   class="link"
                 >
-                  <img :src="article.src" :alt="article.title">
+                  <img :src="article.src" :alt="article.title" >
                   <span class="title">{{ article.title }}</span>
                 </a>
               </template>
               <template v-else>
                 <nuxt-link :to="`/article/${article.id}`" class="link">
-                  <img :src="humanizeThumb(article.thumb)" :alt="article.title">
+                  <img :src="humanizeThumb(article.thumb)" :alt="article.title" style="height: 210px;">
                   <span class="title">{{ article.title }}</span>
                 </nuxt-link>
               </template>
@@ -87,7 +87,7 @@ export default {
   computed: {
     ...mapState('global', ['imageExt', 'isMobile']),
     articleList() {
-      const articles = [...this.article.data].slice(0, 9)
+      const articles = [...this.article.data.records].slice(0, 9)
       articles.length && articles.splice(2, 0, {
         ad: true,
         ...adConfig.pc.carrousel

@@ -58,8 +58,8 @@ const imageRender = (src, title, alt) => {
   const imageHtml = `
     <img
       class="lozad"
-      data-src="${src}"
-      title="${title || alt || appConfig.meta.url}" 
+      src="${src}"
+      title="${title || alt || appConfig.meta.url}"
       alt="${alt || title || src}"
       onclick="if (window.utils) window.utils.openImgPopup('${src}')"
     />

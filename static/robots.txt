@@ -1,5 +1,5 @@
 # robots.txt
 User-agent: *
 Disallow: /bin/
-# Sitemap: https://codeway.fun/sitemap.xml
-# Sitemap: https://codeway.fun/sitemap
+# Sitemap: https://madaoo.com/sitemap.xml
+# Sitemap: https://madaoo.com/sitemap

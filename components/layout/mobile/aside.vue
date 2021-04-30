@@ -2,10 +2,10 @@
   <aside class="aside">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="codeway">
+        <img :src="gravatar" alt="madao">
       </div>
       <div class="profile">
-        <h3 class="name">codeway</h3>
+        <h3 class="name">madao</h3>
         <p class="email" v-text="$i18n.text.slogan"/>
       </div>
     </div>
@@ -15,16 +15,10 @@
           <i class="iconfont icon-home"/>
           <span v-text="$i18n.nav.home"/>
         </nuxt-link>
-
         <nuxt-link to="/music" class="item">
           <i class="iconfont icon-shandian" style="color:inherit"/>
           <span style="color:inherit" v-text="$i18n.nav.music"/>
         </nuxt-link>
-        <nuxt-link to="/security" class="item">
-          <i class="iconfont icon-anquanguizeyong" style="color:inherit"/>
-          <span style="color:inherit" v-text="$i18n.nav.security"/>
-        </nuxt-link>
-
         <nuxt-link to="/welfare" class="item">
           <i class="iconfont icon-dribbble"/>
           <span v-text="$i18n.nav.welfare "/>

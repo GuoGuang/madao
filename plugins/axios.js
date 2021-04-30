@@ -17,7 +17,7 @@ export default function({ $axios, app }) {
     $axios.setHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
     const token = app.$cookies.get('Authorization')
     if (token) {
-      $axios.setToken(token)
+      $axios.setHeader('AUTH', 'Bearer ' + token)
     }
     return config
   })
@@ -28,7 +28,7 @@ export default function({ $axios, app }) {
     }
   })
   $axios.onResponse(response => {
-    console.log('请求成功：', response.request.path)
+    // console.log('请求成功：', response.request.path)
     // console.log('请求成功响应体：', response.data)
   })
 }

@@ -10,13 +10,20 @@
       @statechanged="playerStateChanged($event)"/>
 
     <div class="movie-desc">
-      <span class="info">正在播放：解救雷·肖恩第一季- 第05集 - 云播二</span>
-      <el-tag
-        type="info"
-        effect="dark">
-        如加载失败，可刷新几次，部分电影宽带需等待加载。
-      </el-tag>
-      <span class="info">  <el-button type="info" size="small" plain>数据报错</el-button></span>
+      <span class="info title">正在播放：<a href="#" style="font-weight: bold;">{{ movieDetail.name }}</a></span>
+      <div>
+        <el-tag
+          type="info"
+          effect="dark"
+          style="margin-left: 10px;">
+          如加载失败，可刷新几次，部分电影宽带需等待加载。
+        </el-tag>
+        <span class="info">  <el-button type="info" size="small" plain>数据报错</el-button></span>
+      </div>
+    </div>
+
+    <div class="movie-desc" style="color: #757575;">
+      {{ movieDetail.desc }}
     </div>
 
   </div>
@@ -27,11 +34,14 @@
 /**
    * https://cloud.tencent.com/developer/article/1615717
    */
+require('videojs-hotkeys')
+
 export default {
   name: 'VideoList',
 
   data() {
     return {
+      movieDetail: JSON.parse(this.$route.query.item),
       playerOptions: {
         duration: true,
         playbackRates: [0.7, 1.0, 1.5, 2.0], // 播放速度
@@ -60,7 +70,7 @@ export default {
             { name: 'durationDisplay' }, // 总时间
             { // 倍数播放
               name: 'playbackRateMenuButton',
-              'playbackRates': [0.5, 1, 1.5, 2, 2.5]
+              'playbackRates': [0.5, 1, 1.5, 2, 2.5, 3]
             },
             {
               name: 'volumePanel', // 音量控制
@@ -71,7 +81,7 @@ export default {
         },
         sources: [{
           type: 'video/mp4',
-          src: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/videoplayback.mp4'
+          src: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/%5BBD%E5%BD%B1%E8%A7%86%E5%88%86%E4%BA%ABbd-film.cc%5D%E5%B7%B4%E6%96%AF%E7%89%B9%C2%B7%E6%96%AF%E5%85%8B%E9%B2%81%E6%A0%BC%E6%96%AF%E7%9A%84%E6%AD%8C%E8%B0%A3..The.Ballad.of.Buster.Scruggs.2018.HD1080P.%E4%B8%AD%E5%AD%97.mp41'
         }]
       }
     }
@@ -87,6 +97,13 @@ export default {
   head() {
     return {
       title: `影视 | 在线免费高清电影`
+    }
+  },
+  watch: {
+    $route(newVal, oldVal) {
+      if (newVal.query.item) {
+        this.movieDetail = JSON.parse(this.$route.query.item)
+      }
     }
   },
   mounted() {
@@ -110,8 +127,18 @@ export default {
     // player is ready
     playerReadied(player) {
       console.log('example player 1 readied', player)
+      // 快进
+      player.hotkeys({
+        volumeStep: 0.1,
+        seekStep: 5,
+        enableModifiersForNumbers: false,
+        fullscreenKey: function(event, player) {
+          // override fullscreen to trigger when pressing the F key or Ctrl+Enter
+          return ((event.which === 70) || (event.ctrlKey && event.which === 13))
+        }
+      })
     },
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
@@ -120,10 +147,14 @@ export default {
 
 <style lang="scss">
   .movie-desc {
-    margin: 10px;
+    margin: 10px 0 30px;
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
+    .title{
+      color: #666;
+      padding: 0 6px;
+      font-size: 16px;
+    }
     .info {
       align-self: center;
     }

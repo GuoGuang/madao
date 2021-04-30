@@ -9,9 +9,9 @@
 
           <!-- 文章左侧点赞区 -->
           <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
-          <div badge="186" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
+          <div :badge="comments.length" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
           <div badge="186" class="collect-btn panel-btn share-btn"/>
-          <div badge="186" class="share-title">分享</div>
+          <div class="share-title">分享</div>
           <div class="weibo-btn share-btn panel-btn"/>
           <div class="qq-btn share-btn panel-btn"/>
           <div class="wechat-btn share-btn panel-btn"/>
@@ -118,6 +118,17 @@
           </transition>
         </div> -->
         <transition name="module" mode="out-in">
+          <div key="skeleton" class="disclaimer">
+            <p><strong>免责声明</strong></p>
+            <p>本站提供的一切软件、教程和内容信息仅限用于学习和研究目的；不得将以上内容用于商业或者非法用途，否则，一切后果由用户自己承担。
+            本站软件、资源来自网络收集整理，版权争议与本站无关。您必须在下载后的24个小时之内， 从您的电脑或手机中彻底删除上述内容。
+            如果您喜欢该软件和资源，请支持正版，得到更好的正版服务。
+            我们非常重视版权问题，如有侵权请邮件与我们
+            <a href="mailto:guoguang0536@gmail.com" target="_blank"><strong>联系处理</strong></a>。敬请谅解！</p>
+          </div>
+        </transition>
+
+        <transition name="module" mode="out-in">
           <div v-if="isFetching" key="skeleton" class="metas">
             <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
           </div>
@@ -170,7 +181,7 @@
             <p class="item">
               <span :class="language" class="title">{{ isEnLang ? 'Article Address:' : '永久地址：' }}</span>
               <span class="site-url" @click="copyArticleUrl">
-                <span>https://codeway.fun/article/{{ article.id }}</span>
+                <span>https://madaoo.com/article/{{ article.id }}</span>
               </span>
             </p>
             <div class="item">
@@ -240,8 +251,8 @@
         </transition>
 
         <div class="comment">
-          <!-- <comment :comments="commentData" :commit-comment="commitComment"/> -->
-          <gitalk/>
+          <comment :comments="comments" :article-id="article.id"/>
+          <!--          <gitalk/>-->
         </div>
       </article>
     </el-col>
@@ -249,7 +260,7 @@
     <div v-if="!isMobile && !isOneColumns" class="main-right" >
       <el-col :span="6" class="right-list">
         <transition name="aside">
-          <aside-view key="aside" />
+          <aside-view key="aside" ref="aside"/>
         </transition>
 
       </el-col>
@@ -261,7 +272,7 @@
 <script>
 import { mapState } from 'vuex'
 import { isBrowser } from '~/environment/esm'
-import lozad from '~/plugins/lozad'
+// import lozad from '~/plugins/lozad'
 import marked from '~/plugins/marked'
 import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'
@@ -269,7 +280,6 @@ import AsideView from '~/components/layout/pc/aside/article_main'
 
 import { timestampToTime } from '@/utils/date'
 
-import * as CommentData from './mockdata'
 import comment from './comment'
 import gitalk from './gitalk' // gitalk 评论插件
 
@@ -298,8 +308,6 @@ export default {
         likeImage: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/image/zan.b4bb964.svg',
         likeBackgroundColor: '#f9eac8'
       },
-
-      commentData: CommentData.comment.data,
       swiperOption: {
         setWrapperSize: true,
         simulateTouch: false,
@@ -324,13 +332,11 @@ export default {
   },
 
   fetch({ store, params, error }) {
-    console.log('fetch===========')
-
     return Promise.all([
-      store.dispatch('article/fetchDetail', params) // .catch(err => {
+      store.dispatch('article/fetchDetail', params), // .catch(err => {
       // error({ statusCode: 404, message: '众里寻他 我已不再' })
       // }),
-      // store.dispatch('comment/fetchList', { post_id: params.article_id })
+      store.dispatch('comment/fetchList', params)
     ])
   },
 
@@ -359,6 +365,7 @@ export default {
       tags: state => state.tag.data,
       imageExt: state => state.global.imageExt,
       article: state => state.article.detail.data,
+      comments: state => state.comment.data,
       isFetching: state => state.article.detail.fetching,
       isMobile: state => state.global.isMobile
     }),
@@ -421,14 +428,11 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted===========')
     if (isBrowser) {
       this.observeLozad()
     }
   },
   activated() {
-    console.log('activated===========')
-    console.log(localStorage.getItem('article_' + this.article.id))
     this.updateAd()
 
     this.likeBadge = this.article.upvote
@@ -494,12 +498,6 @@ export default {
         }
       })()
     },
-    /**
-     * 监听comment组件提交评论事件
-     */
-    commitComment(comment) {
-      console.log('提交评论:' + comment)
-    },
 
     readMore() {
       this.isReadMoreLoading = true
@@ -507,6 +505,7 @@ export default {
         setTimeout(() => {
           this.$store.commit('article/updateDetailRenderedState', true)
           this.isReadMoreLoading = false
+          this.$refs.aside.refresh()
         }, 0)
       })
     },
@@ -523,7 +522,7 @@ export default {
       this.observeLozad()
     },
     observeLozad() {
-      const contentElement = this.$refs.detail.querySelector('#article-content')
+      /* const contentElement = this.$refs.detail.querySelector('#article-content')
       const lozadElements = contentElement && contentElement.querySelectorAll('.lozad')
       if (!lozadElements || !lozadElements.length) {
         return false
@@ -533,11 +532,11 @@ export default {
         loaded: element => element.classList.add('loaded')
       })
       this.lozadObserver.observe()
-      // console.log('重新监听 observer', this.lozadObserver)
+      // console.log('重新监听 observer', this.lozadObserver)*/
     },
     copyArticleUrl() {
       if (this.article.title) {
-        this.$root.$copyToClipboard(`https://codeway.fun/article/${this.article.id}`)
+        this.$root.$copyToClipboard(`https://madaoo.com/article/${this.article.id}`)
       }
     },
     buildThumb(thumb) {
@@ -559,16 +558,17 @@ export default {
       return `${year}/${month}/${day} ${meridiem}`
     },
     buildDateLink(date) {
-      if (!date) {
-        return date
+      if (date) {
+        date = new Date(date)
+        const year = date.getFullYear()
+        let month = (date.getMonth() + 1).toString()
+        let day = date.getDate().toString()
+        month = month.length === 1 ? `0${month}` : month
+        day = day.length === 1 ? `0${day}` : day
+        return `/date/${year}-${month}-${day}`
+      } else {
+        return `/date/2020-02-02`
       }
-      date = new Date(date)
-      const year = date.getFullYear()
-      let month = (date.getMonth() + 1).toString()
-      let day = date.getDate().toString()
-      month = month.length === 1 ? `0${month}` : month
-      day = day.length === 1 ? `0${day}` : day
-      return `/date/${year}-${month}-${day}`
     }
   }
 }
@@ -824,7 +824,7 @@ export default {
 
           p {
             line-height: 2.2em;
-            text-indent: 2em;
+            /*text-indent: 2em;*/
             margin-bottom: 1em;
 
             &.text-center {
@@ -868,6 +868,7 @@ export default {
           ol {
 
             >li {
+              margin-left: 2em;
               line-height: 1.8em;
               padding: .5em .8em;
 
@@ -897,6 +898,8 @@ export default {
           }
 
           pre {
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
             $code-line-height: 2.8em;
             $code-line-width: 2.5em;
             $code-line-line-height: 1.6em;
@@ -908,20 +911,22 @@ export default {
             background-color: rgba(0, 0, 0, 0.8);
 
             &:before {
-              color: white;
-              content: attr(data-lang)" CODE";
+              content: '';
+              display: block;
+              background: url(https://yd-note.oss-cn-beijing.aliyuncs.com/mac-tag.png);
+              width: 100%;
+              background-size: 40px;
+              background-repeat: no-repeat;
+              margin-bottom: -7px;
+              border-radius: 5px;
+              background-position: 10px 10px;
               height: $code-line-height;
               line-height: $code-line-height;
               font-size: 1em;
               position: absolute;
               top: 0;
               left: 0;
-              width: 100%;
-              font-weight: 700;
-              background-color: rgba(68, 68, 68, 0.9);
-              display: block;
-              text-transform: uppercase;
-              text-align: center;
+              background-color: transparent;
             }
 
             >.code-lines {
@@ -929,11 +934,10 @@ export default {
               left: 0;
               top: $code-line-height;
               margin: 0;
-              padding: 1em 0;
               width: $code-line-width;
               height: calc(100% - #{$code-line-height});
               text-align: center;
-              background-color: rgba(0, 0, 0, 0.2);
+              background-color: transparent;
 
               >.code-line-number {
                 padding: 0;
@@ -967,7 +971,7 @@ export default {
 
             >code {
               margin: 0;
-              padding: 1em;
+              padding: 0 1em 1em 1em;
               // padding-top: $code-line-height + 1em;
               float: left;
               width: 100%;
@@ -1247,4 +1251,45 @@ export default {
     color: #c6c6c6;
     user-select: none;
 }
+
+  .disclaimer:after, .disclaimer:before {
+    position: absolute;
+    display: block;
+    width: 1pc;
+    height: 14px;
+    content: '';
+  }
+  .disclaimer:before {
+    top: 20px;
+    left: 20px;
+    background: url(/images/blockquote.png) no-repeat 0 0;
+  }
+  .disclaimer:after {
+    right: 20px;
+    bottom: 20px;
+    background: url(/images/blockquote.png) no-repeat -1pc 0;
+  }
+  .disclaimer:after, .disclaimer:before {
+    position: absolute;
+    display: block;
+    width: 1pc;
+    height: 14px;
+    content: '';
+  }
+  .disclaimer {
+    position: relative;
+    margin: 25px 0 15px;
+    padding: 45px 45px 30px;
+    border-color: #c0c6cc;
+    background-color: $module-bg;
+    font-family: Lantinghei SC,Open Sans,Arial,Hiragino Sans GB,Microsoft YaHei,\\5fae\8F6F\96c5\9ED1,STHeiti,WenQuanYi Micro Hei,SimSun,sans-serif;
+    p:first-child{
+      font-size: 16px;
+    }
+    p{
+      display: block;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+  }
 </style>

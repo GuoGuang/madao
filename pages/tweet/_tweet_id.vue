@@ -160,7 +160,6 @@
 <script>
 // import { mapState } from 'vuex'
 // import { isBrowser } from '~/environment/esm'
-// import lozad from '~/plugins/lozad'
 // import marked from '~/plugins/marked'
 // import adConfig from '~/config/ad.config'
 import ShareBox from '~/components/widget/share'

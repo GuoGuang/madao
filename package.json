@@ -1,20 +1,20 @@
 {
-  "name": "codeway.fun",
+  "name": "madaoo.com",
   "version": "2.1.4",
-  "description": "codeway.fun blog",
+  "description": "madaoo.com blog",
   "author": {
     "name": "GuoGuang",
     "email": "GuoGuang0536@gmail.com",
-    "url": "https://codeway.fun"
+    "url": "https://madaoo.com"
   },
   "license": "MIT",
-  "homepage": "http://codeway.fun",
+  "homepage": "http://madaoo.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GuoGuang/codeway.git"
+    "url": "git+https://github.com/GuoGuang/madao.git"
   },
   "bugs": {
-    "url": "https://github.com/GuoGuang/codeway/issues"
+    "url": "https://github.com/GuoGuang/madao/issues"
   },
   "engines": {
     "npm": ">=5.5.0",
@@ -55,7 +55,6 @@
     "highlight.js": "^9.12.0",
     "howler": "^2.0.14",
     "js-cookie": "^2.2.0",
-    "lozad": "^1.8.0",
     "marked": "^0.7.0",
     "node-uuid": "^1.4.8",
     "nuxt": "^2.11.0",
@@ -79,6 +78,7 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "es6-uuid": "^1.0.1",
     "eslint": "^5.2.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -91,7 +91,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "nodemon": "^1.18.10",
     "prettier": "1.14.3",
     "prettier-eslint-cli": "^4.7.1",

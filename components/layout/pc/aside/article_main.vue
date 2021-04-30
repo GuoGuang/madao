@@ -27,19 +27,19 @@
           <el-tooltip content="博客文章总数" placement="top" effect="light">
             <div>
               <div>文章</div>
-              <div class="center">17</div>
+              <div class="center">{{ authorDetail.articles }}</div>
             </div>
           </el-tooltip>
           <el-tooltip content="收到了98个赞" placement="top" effect="light">
             <div>
               <div>点赞</div>
-              <div class="center">98</div>
+              <div class="center">{{ authorDetail.upvote }}</div>
             </div>
           </el-tooltip>
           <el-tooltip content="博客总访问量" placement="top" effect="light">
             <div>
               <div>访问</div>
-              <div class="center">1907</div>
+              <div class="center">{{ authorDetail.visits }}</div>
             </div>
           </el-tooltip>
 
@@ -75,7 +75,7 @@
       </div>
       <!-- 文章目录 -->
       <div v-if="isArticlePage" class="aside-dic">
-        <directory/>
+        <directory ref="directory"/>
       </div>
     </div>
   </aside>
@@ -123,6 +123,7 @@ export default {
   },
   data() {
     return {
+      authorDetail: this.$store.state.user.authorDetail,
       adIndex: 0,
       renderAd: true,
       keyword: '',
@@ -153,6 +154,9 @@ export default {
     }
   },
   methods: {
+    refresh() {
+      this.$refs.directory.refresh()
+    },
     updateAd() {
       this.renderAd = false
       this.$nextTick(() => {
@@ -414,8 +418,17 @@ export default {
         }
       }
       >.aside-dic {
-          margin-top: 1em
+          margin-top: 1em;
+          height: 280px;
+          overflow: scroll;
+          border: 0;
+          overflow-x: hidden;
+          overflow-y: visible;
       }
+      /*.aside-dic.aside-dic::-webkit-scrollbar {*/
+      /*  !*隐藏滚轮*!*/
+      /*  display: none;*/
+      /*}*/
 
     }
   }

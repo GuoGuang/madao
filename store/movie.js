@@ -43,7 +43,7 @@ export const mutations = {
   },
 
   // 电影详情
-  updateDetailFetchig(state, action) {
+  updateDetailFetching(state, action) {
     state.detail.fetching = action
   },
   updateDetailData(state, action) {
@@ -82,17 +82,17 @@ export const actions = {
         scrollTo(0, 300, { easing: Easing['ease-in'] })
       })
     }
-    commit('updateDetailFetchig', true)
+    commit('updateDetailFetching', true)
     commit('updateDetailData', {})
     return this.$axios.$get(`${api}/${params.movie_id}`).then(response => {
       return new Promise(resolve => {
         commit('updateDetailData', response.data)
-        commit('updateDetailFetchig', false)
+        commit('updateDetailFetching', false)
         resolve(response)
       })
     })
       .catch(error => {
-        commit('updateDetailFetchig', false)
+        commit('updateDetailFetching', false)
         return Promise.reject(error)
       })
   }

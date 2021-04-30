@@ -25,7 +25,7 @@
                     target="_blank"
                     rel="external nofollow noopenter"
 
-                    href="#">15866534150</a>
+                    href="#">17667198751</a>
                   <span/>
                 </p>
                 <p class="item">
@@ -194,7 +194,7 @@
                 <div class="background star-2">
                   <img src="/images/about-background-star-2.png" alt="background-star" class="image">
                 </div>
-                <img :src="gravatar" class="avatar">
+                <img :src="avatar" class="avatar">
                 <div class="desc">
                   <h2 class="name">
                     <strong>GuoGuang</strong>
@@ -239,9 +239,8 @@ export default {
     isMobile() {
       return this.$store.state.global.isMobile
     },
-    gravatar() {
-      const gravatar = this.$store.state.global.adminInfo.avatar
-      return gravatar
+    avatar() {
+      return this.$store.state.global.adminInfo.avatar
     }
   },
   methods: {

@@ -3,97 +3,208 @@
  * @module store/tag
  * @author GuoGuang <https://github.com/GuoGuang>
  */
+const UUID = require('es6-uuid')
 // import { logout } from '@/api/login'
-import { getToken, removeToken, setToken } from '@/utils/auth' // 从cookie中获取token getToken
+import { removeToken, setToken } from '@/utils/auth'
 // import Cookies from 'js-cookie'
-// import { loginByUserName } from '~/api/login'
+
 export const state = () => {
   return {
-    token: '',
     fetching: false,
-    data: [],
-    state: ''
+    data: {},
+    state: '',
+    authorDetail: ''
 
   }
 }
 
 export const mutations = {
-  updateFetching(state, action) {
+
+  UPDATE_FETCHING(state, action) {
     state.fetching = action
   },
-  updateListData(state, action) {
-    state.data = action.data
+  SET_DATA(state, action) {
+    state.data = action
   },
-  SET_TOKEN(state, token) {
-    state.token = token
+  SET_AUTHOR_DETAIL(state, action) {
+    state.authorDetail = action.data
   }
-
 }
 
 export const actions = {
 
-  /*   fetchList({ commit }) {
-    commit('updateFetching', true)
-    return this.$axios.$get(`/tag`, { params: { cache: 1 }})
-      .then(response => {
-        console.error(response)
-        commit('updateListData', response)
-        commit('updateFetching', false)
-      })
-      .catch(error => {
-        console.error(error)
-        commit('updateFetching', false)
-      })
-  }, */
-
   /**
-   * 更新用户状态
-   * @param {d} param0
+   * 用户名登录
    */
-  toggleLoginStatus({ commit }) {
-    commit('SET_TOKEN', getToken())
-  },
-
-  // 用户名登录
-  LoginByUsername({ commit }, userInfo) {
-    // const acoount = userInfo.acoount.trim()
+  LoginByAccount({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
-      commit('SET_TOKEN', '11111')
-      setToken('11111')
-      resolve()
-      /* loginByUserName(acoount, userInfo.password).then(response => {
-        console.error('55')
-
+      return this.$axios.$post(`/oauth/token`, userInfo, { 'headers': {
+        'DEVICE-ID': userInfo.deviceId,
+        'Authorization': 'Basic WGNXZWJBcHA6WGNXZWJBcHA='
+      }}).then(response => {
         if (response.code === 20000) {
           const data = response.data
-          commit('SET_TOKEN', data.token)
-          setToken(response.data.token)
-          resolve()
+          setToken(data)
+          resolve(response)
         } else {
           reject(response)
         }
       }).catch(error => {
         reject(error)
-      }) */
+      })
+    })
+  },
+
+  // Oauth登录
+  LoginByOauth({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/oauth/login/github?code=` + query.code).then(response => {
+        if (response.code === 20000) {
+          const data = response.data
+          setToken(data)
+          resolve(response)
+        } else {
+          reject(response)
+        }
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  getUserInfo({ commit }, cookie) {
+    console.log('getUserInfo-----------', cookie)
+    return this.$axios.$get(`/su`, { 'headers': {
+      'AUTH': 'Bearer ' + cookie
+    }}).then(response => {
+      if (response.code === 20000) {
+        commit('SET_DATA', response.data)
+        commit('UPDATE_FETCHING', false)
+      }
+    })
+  },
+
+  changeUserInfo({ commit }, userInfo) {
+    return this.$axios.$put(`/su/userInfo`, userInfo).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.info(response.message)
+      } else {
+        this.$toast.info('更新成功！')
+      }
+      commit('UPDATE_FETCHING', false)
+    })
+  },
+
+  changeUserPhone({ commit }, userInfo) {
+    return this.$axios.$put(`/su/changeUserPhone`, userInfo).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.info(response.message)
+      } else {
+        this.$toast.info('更新成功！')
+      }
+      commit('UPDATE_FETCHING', false)
+    })
+  },
+
+  changePassword({ commit }, userInfo) {
+    return this.$axios.$put(`/su/changePassword`, userInfo).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.info(response.message)
+      } else {
+        this.$toast.info('更新成功！')
+      }
+      commit('UPDATE_FETCHING', false)
     })
   },
 
   /**
    * 退出
-   * @param {d} param0
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      commit('SET_TOKEN', '')
-      removeToken()
-      resolve()
-      /* logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        removeToken()
-        resolve()
-      }).catch(error => {
-        reject(error)
-      }) */
+      this.$axios.$post(`/oauth/logout`)
+        .then(response => {
+          removeToken()
+          commit('SET_DATA', {})
+          resolve(response)
+        }).catch(error => {
+          this.$toast.error('退出失败！' + error)
+          reject(error)
+        })
+    })
+  },
+
+  /**
+   * 发送验证码
+   * @param {d} param0
+   * @param phone 手机号
+   */
+  sendMessage({ commit }, phone) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/oauth/code/sms?phone=${phone}`)
+        .then(response => {
+          this.$toast.success('短信发送成功')
+          resolve()
+        }).catch(error => {
+          console.log(error)
+          commit('UPDATE_FETCHING', false)
+        })
+    })
+  },
+
+  /**
+   * 注册
+   */
+  register({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$post(`/su/register`, data)
+        .then(response => {
+          if (response.code !== 20000) {
+            this.$toast.error(response.message)
+          } else {
+            resolve(response)
+          }
+        }).catch(error => {
+          console.error('获取文章列表失败：' + error.message)
+          commit('UPDATE_FETCHING', false)
+        })
+    })
+  },
+
+  /**
+   * 获取验证码
+   */
+  fetchCaptcha({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/oauth/code/captcha`,
+        { 'headers': {
+          'DEVICE-ID': UUID(32)
+        }})
+        .then(response => {
+          if (response.code !== 20000) {
+            this.$toast.error(response.message)
+          } else {
+            resolve(response)
+          }
+        }).catch(error => {
+          console.error('获取文章列表失败：' + error.message)
+          commit('UPDATE_FETCHING', false)
+        })
+    })
+  },
+
+  fetchAuthorDetail({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/ar/article/admin`).then(response => {
+        if (response.code !== 20000) {
+          this.$toast.error(response.message)
+        } else {
+          commit('SET_AUTHOR_DETAIL', response)
+          resolve(response)
+        }
+      }).catch(() => {
+        commit('UPDATE_FETCHING', false)
+      })
     })
   }
 }

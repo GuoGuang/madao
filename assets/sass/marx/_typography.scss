@@ -124,10 +124,10 @@ ol {
 blockquote {
   margin: $md-pad 0;
   text-indent: 0em;
-  background-color: $module-hover-bg;
-  border-left: .5em solid #aaa;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
   padding: .5em 1em;
-  padding-left: 1.5em;
+  padding-left: 1em;
 }
 
 figcaption {

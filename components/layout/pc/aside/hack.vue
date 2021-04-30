@@ -1,67 +1,18 @@
 <template>
   <!-- 页面body区-右侧边栏 -->
   <aside id="aside" class="aside">
-    <!-- 公告 -->
-    <div class="recommend" role="alert">
-      <small><a class="report" @click="randomSoul()">{{ soul }}</a></small>
-    </div>
-
     <!-- 今日热议 -->
     <div class="aside-article">
       <p class="title">
         <i class="iconfont icon-hotfill"/>
-        <span v-text="$i18n.text.article.hotlist"/>
+        <span v-text="$i18n.text.article.hotHack"/>
       </p>
       <empty-box v-if="!articles || articles.length == 0">
         <slot>{{ $i18n.text.article.empty }}</slot>
       </empty-box>
-      <ul v-else class="aside-article-list">
-        <li v-for="(item,key) in articles" :key="key" class="item">
-          <span class="index"/>
-          <nuxt-link
-            :to="`/article/${item.id}`"
-            :title="`${item.title} - 「 ${item.comment} ${$i18n.text.comment.count} | ${item.comment} ${$i18n.text.comment.like} 」`"
-            class="title">
-            <span v-text="item.title"/>
-          </nuxt-link>
-        </li>
-      </ul>
     </div>
-
     <!-- GooGle广告 -->
     <aside-ad ref="asideAd" @slideChange="handleSlideChange" />
-
-    <!-- 日历 -->
-    <div class="aside-calendar">
-      <calendar />
-    </div>
-
-    <transition name="module">
-      <div v-if="renderAd" key="ad" class="aside-ad">
-        <adsense-aside />
-      </div>
-    </transition>
-
-    <div v-scroll-top :class="{ fixed: fixedMode.fixed }" class="aside-fixed-box">
-      <client-only>
-        <transition name="fade">
-          <aside-ad v-if="fixedMode.fixed" :init-index="adIndex" @slideChange="handleChangeAdSwiper" />
-        </transition>
-      </client-only>
-      <tag/>
-      <div v-if="isArticlePage" class="aside-tools">
-        <div class="full-column" @click="handleSetFullColumn">
-          <span v-text="$i18n.text.article.fullcolread"/>
-          <span>&nbsp;&nbsp;</span>
-          <i class="iconfont icon-read"/>
-        </div>
-        <div class="full-page" @click="handleFullScreen">
-          <span v-text="$i18n.text.article.fullscreenread"/>
-          <span>&nbsp;&nbsp;</span>
-          <i class="iconfont icon-fullscreen"/>
-        </div>
-      </div>
-    </div>
 
   </aside>
 </template>

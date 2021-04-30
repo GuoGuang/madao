@@ -18,10 +18,26 @@
             请输入密码
           </MDinput>
         </el-form-item>
+        <el-form-item prop="captcha">
+          <div style="display: flex; justify-content: flex-end;">
+            <MDinput v-model="loginForm.captcha" :maxlength="6" class="input" style="width: 100%;">
+              请输入验证码
+            </MDinput>
+            <el-image
+              :src="'data:image/png;base64,'+ loginForm.captchaBase64"
+              style="position: absolute;top: 3em;"
+              fit="none"
+              @click="fetchUserCaptcha"
+            >
+              <div slot="error" class="image-slot">
+                加载失败，请刷新
+              </div>
+            </el-image>
+          </div>
+        </el-form-item>
 
         <el-form-item class="other-opt">
-          <a href="#" class="phoneLogin" @click="loginDialogVisible =false;registDialogVisible = true;">手机验证码登录</a>
-          <a href="#" class="forget">忘记密码</a>
+          <a href="#" style="cursor: not-allowed" class="forget">忘记密码</a>
         </el-form-item>
 
         <el-form-item>
@@ -32,61 +48,64 @@
           <span class="more-login-words">更多登录方式</span>
         </div>
       </el-form>
-      <div class="widget-login">
-        <a href="/user/oauth/google" class="">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-google"/>
-          </svg>
-        </a>
-        <a href="/user/oauth/qq" class="">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-qq"/>
-          </svg>
-        </a>
-        <a href="/user/oauth/weixin" class="">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-weixin"/>
-          </svg>
-        </a>
+      <div class="oauth">
+        <div class="oauth-bg">
+          <img title="微博" style="cursor: not-allowed" alt="微博" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/weibo.fa758eb.svg" class="oauth-btn">
+        </div>
+        <div class="oauth-bg">
+          <img title="微信" style="cursor: not-allowed" alt="微信" src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/wechat.e0ff124.svg" class="oauth-btn">
+        </div>
+
+        <div class="oauth-bg">
+          <img
+            title="GitHub"
+            alt="GitHub"
+            src="//s3.pstatp.com/toutiao/xitu_juejin_web/img/github.547dd8a.svg"
+            class="oauth-btn"
+            @click="gitHubLogin()">
+        </div>
       </div>
-      <!-- <p class="terms">
-        登录即表示你同意网站的<a href="/tos" target="_blank">《服务条款》</a>
-      </p> -->
+      <p class="terms">
+        登录即表示你同意网站的<a href="/terms" target="_blank">《服务条款》</a>
+      </p>
     </el-dialog>
 
-    <el-dialog :visible.sync="registDialogVisible" class="registDialog" title="注册" width="30%">
-      <div v-if="registStatus === 1">
+    <el-dialog :visible.sync="registerDialogVisible" class="registDialog" title="注册" width="30%">
+      <div v-if="registerStatus === 1">
         <h3>登录过程中会用到短信，请准备好您的手机</h3>
         <el-form label-position="top" label-width="80px" size="mini">
-          <MDinput v-model="rigistPhone" :maxlength="11">
+          <MDinput v-model="registerPhone" :maxlength="11">
             请输入手机号
           </MDinput>
           <p class="terms">
             <!-- 同意<a href="/tos" target="_blank">《用户协议》《隐私政策》</a> -->
           </p>
           <el-form-item>
-            <el-button size="medium" type="primary" @click="nextRegist">下一步</el-button>
+            <el-button size="medium" type="primary" @click="nextRegister">下一步</el-button>
           </el-form-item>
         </el-form>
       </div>
-      <div v-else-if="registStatus === 2">
+      <div v-else-if="registerStatus === 2">
         <div class="modify-info-country">
           <h3 class="modify-country" >中国大陆</h3>
-          <span class="modify-phonenum">18904356443</span>
+          <span class="modify-phonenum">{{ registerPhone }}</span>
           <!-- a class="btn-modify-info" >修改</a> -->
         </div>
 
         <el-form label-position="top" label-width="80px" size="mini">
-          <MDinput v-model="rigistPhoneCode" :maxlength="6">
+          <MDinput v-model="password" :maxlength="20">
+            请输入密码
+          </MDinput>
+          <MDinput v-model="captcha" :maxlength="6">
             请输入收到的验证码
           </MDinput>
           <el-form-item>
-            <el-button size="medium " type="primary" @click="validateRegist">注册</el-button>
+            <el-button size="medium " type="primary" @click="validateRegister">注册</el-button>
           </el-form-item>
         </el-form>
 
       </div>
-      <div v-else-if="registStatus === 3">
+      <div v-else-if="registerStatus === 3">
 
         <el-alert
           :closable="false"
@@ -97,8 +116,8 @@
           show-icon/>
         <div class="righstSuccess">
           <p class="success-info">下面是您在本网站的头像和昵称</p>
-          <el-avatar size="large" style="margin:1em 1em 0 1em;" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
-          <p>useraaa</p>
+          <el-avatar :src="registerDetail.avatar" size="large" style="margin:1em 1em 0 1em;"/>
+          <p>{{ registerDetail.nickName }}</p>
         </div>
       </div>
     </el-dialog>
@@ -143,18 +162,15 @@
             <nav-view />
           </transition>
         </div>
-
         <div style="">
           <div class="navbar-search" style="float: left;">
             <span class="line"/>
             <button class="search" @click="toggleSearch">
               <i class="iconfont icon-search"/>
             </button>
-
           </div>
-
           <!-- 已登录 -->
-          <div v-if="loginStatus" class="user-profile">
+          <div v-if="userInfo.avatar" class="user-profile">
 
             <ul style="">
               <li >
@@ -167,7 +183,7 @@
                     <el-dropdown-item>发布猿点</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown> -->
-                <a href="#" class="tougao">投稿</a>
+                <a href="mailto:guoguang0536@gmail.com" class="tougao">投稿</a>
 
                 <a class="dropdown-toggle-letter" href="/user/messages">
                   <el-badge :value="12" class="item">
@@ -180,121 +196,52 @@
 
                 <el-dropdown>
                   <span class="el-dropdown-link">
-                    <el-avatar size="medium" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
+                    <el-avatar :src="userInfo.avatar" size="medium"/>
                   </span>
                   <el-dropdown-menu slot="dropdown" class="user-dropdown-menu">
-                    <el-dropdown-item >
-                      <router-link to="/user/1">
-                        GuoGuang
-                      </router-link>
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                      <router-link to="/profile">
+                    <router-link :to="`/user/${userInfo.id}`">
+                      <el-dropdown-item >
+                        {{ userInfo.nickName }}
+                      </el-dropdown-item>
+                    </router-link>
+                    <router-link to="/profile">
+                      <el-dropdown-item>
                         编辑资料
-                      </router-link>
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                      <a @click="logout">退出</a>
-                    </el-dropdown-item>
+                      </el-dropdown-item>
+                    </router-link>
+                    <a @click="logout">
+                      <el-dropdown-item>
+                        退出
+                      </el-dropdown-item>
+                    </a>
                   </el-dropdown-menu>
                 </el-dropdown>
               </li>
             </ul>
-          <!-- <el-menu class="el-menu-demo" mode="horizontal" background-color="#f8f8f8" style="border-bottom: 0;">
-            <el-menu-item index="1">私信</el-menu-item>
-            <el-submenu index="2">
-              <template slot="title">
-                <img class="image" src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x">
-              </template>
-              <el-menu-item index="2-1">
-                <div class="profile-hover-info" style="    text-align: left;">
-
-                  <span style="float:left;">GuoGuang</span>
-
-                  <span style="float:right;"> <a
-                    href="/profile"
-                    class="float:right"
-                    style="display: inline-block;
-                                                                                            border: 1px solid #25bb9b;
-                                                                                            padding: 9px 5px;
-                                                                                            font-size: 12px;
-                                                                                            float: right;
-                                                                                            border-radius: 4px;
-                                                                                            color: #25bb9b;
-                                                                                            line-height: 1;">个人主页</a></span>
-                </div>
-              </el-menu-item>
-              <el-menu-item index="2-2">账号设置</el-menu-item>
-              <el-menu-item index="2-3" @click="logout">退出登录</el-menu-item>
-            </el-submenu>
-          </el-menu> -->
           </div>
 
           <!-- 未登录-->
-          <div v-else class="navbar-login" style="visibility:hidden;">>
-            <a href="#" class="tougao">投稿</a>
+          <div v-else class="navbar-login">
+            <a href="mailto:guoguang0536@gmail.com" class="tougao">投稿</a>
             <a class="login" style="font-size: 15px;" href="#" @click="loginDialog">{{ $i18n.nav.login }}</a>
             <span class="line"/>
-            <a class="register" style="font-size: 15px;" href="#" @click="registDialogVisible = true">{{ $i18n.nav.register }}</a>
-
+            <a class="register" style="font-size: 15px;" href="#" @click="registerDialogVisible = true">{{ $i18n.nav.register }}</a>
           </div>
         </div>
-        <!-- 音乐 -->
-        <!-- <div class="navbar-player">
-          <div class="panel">
-            <button class="prev-song btn" @click="prevSong" :disabled="!playerState.ready">
-              <i class="iconfont icon-music-prev"></i>
-            </button>
-            <button class="toggle-play btn" @click="togglePlay" :disabled="!playerState.ready">
-              <i class="iconfont" :class="playerState.playing ? 'icon-music-pause' : 'icon-music-play'"></i>
-            </button>
-            <button class="next-song btn" @click="nextSong" :disabled="!playerState.ready">
-              <i class="iconfont icon-music-next"></i>
-            </button>
-            <button class="muted-toggle btn" @click="toggleMuted" :disabled="!playerState.ready">
-              <i class="iconfont" :class="playerState.muted ? 'icon-music-muted' : 'icon-music-volume'"></i>
-            </button>
-          </div>
-          <div class="song" v-if="currentSong">
-            <nuxt-link
-              to="/music"
-              class="link"
-              :title="`${currentSong.name} / ${currentSong.album.name || 'unknow'}`"
-            >
-              <span>{{ currentSong.name }}</span>
-              <span>By</span>
-              <span :key="index" v-for="(artist, index) in currentSong.artists" v-text="artist.name"></span>
-              <span>/</span>
-              <span>{{ currentSong.album.name || 'unknow' }}</span>
-            </nuxt-link>
-          </div>
-          <div class="song" v-else>{{ $i18n.text.music.empty }}</div>
-        </div> -->
-
-      </div>
-      <div class="pre-load">
-        <img v-if="preload" :src="currentSongPicUrl" alt="song-thumb">
-        <img v-if="preload" :src="`${cdnUrl}/images/shang.jpg`" alt="shang">
-        <img v-if="preload" :src="`${cdnUrl}/images/app-hot.png`" alt="app-download">
-        <img v-if="preload" :src="`${cdnUrl}/images/service.jpg`" alt="service">
-        <img v-if="preload" :src="`${cdnUrl}/images/about-background-be-1.jpg`" alt="background">
-        <img v-if="preload" :src="`${cdnUrl}/images/about-background-be-2.jpg`" alt="background">
-        <img v-if="preload" :src="`${cdnUrl}/images/about-background-star-1.png`" alt="background">
-        <img v-if="preload" :src="`${cdnUrl}/images/about-background-star-2.png`" alt="background">
       </div>
     </nav>
-
   </header>
 </template>
 
 <script>
-import music from '~/expansions/music'
 import { isBrowser } from '~/environment/esm'
 import NavView from '~/components/layout/pc/nav'
 import { isSearchArchiveRoute } from '~/utils/route'
 import { Route } from '~/constants/system'
 // import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
 import MDinput from '~/components/global/MDinput'
+import { isMobile } from '~/utils/verify'
+
 export default {
   name: 'LayoutHeader',
   components: {
@@ -304,10 +251,12 @@ export default {
   data() {
     return {
       /* 注册状态 */
-      registStatus: 1,
-      rigistPhone: '',
-      rigistPhoneCode: '',
-
+      registerStatus: 1,
+      registerPhone: '',
+      registerDetail: {},
+      userInfo: this.$store.state.user.data,
+      captcha: '',
+      password: '',
       loadingStatus: false,
       cdnUrl: this.cdnUrl,
       searchDialog: false,
@@ -315,13 +264,14 @@ export default {
       keyword: '',
       preload: false,
       loginDialogVisible: false,
-      registDialogVisible: false,
-      loginStatus: this.$store.state.user.token,
+      registerDialogVisible: false,
       loginForm: {
         id: '',
-        acoount: '',
-        password: '111111'
-
+        account: '',
+        captchaBase64: '',
+        deviceId: '',
+        captcha: '',
+        password: ''
       },
 
       rules: {
@@ -330,6 +280,9 @@ export default {
         ],
         password: [
           { required: true, message: '不能为空', trigger: 'blur' }
+        ],
+        captcha: [
+          { required: true, message: '不能为空', trigger: 'blur' }
         ]
       }
 
@@ -337,15 +290,9 @@ export default {
   },
   computed: {
 
-    playerState() {
-      return music.state
-    },
-    currentSong() {
-      return music.currentSong
-    },
-    currentSongPicUrl() {
-      return music.currentSongPicUrl
-    }
+  },
+  created() {
+
   },
   mounted() {
     if (isBrowser) {
@@ -355,6 +302,9 @@ export default {
     }
   },
   methods: {
+    gitHubLogin() {
+      window.open('https://github.com/login/oauth/authorize?client_id=4617bac540a83ddf162f&redirect_uri=https://madaoo.com/callback')
+    },
     handleSearch() {
       const keyword = this.keyword
       const paramsKeyword = this.$route.params.keyword
@@ -364,12 +314,28 @@ export default {
       }
       this.searchDialog = false
     },
+    /**
+     * 获取验证码
+     */
+    fetchUserCaptcha() {
+      this.$store.dispatch('user/fetchCaptcha', this.loginForm).then(response => {
+        this.loginForm.captchaBase64 = response.data.base64Code
+        this.loginForm.deviceId = response.data.deviceId
+      }).catch(({ data, hideCommonError }) => {
+        this.$message({
+          message: '获取图形验证码失败，请稍后再试！',
+          type: 'warning'
+        })
+        hideCommonError() // 是否隐藏拦截器里的错误提示
+      })
+    },
     login() {
       this.$refs['loginForm'].validate(valid => {
         if (valid) {
           this.loadingStatus = true
           // 登录
-          this.$store.dispatch('user/LoginByUsername', this.loginForm).then(() => {
+          this.$store.dispatch('user/LoginByAccount', this.loginForm).then((response) => {
+            this.userInfo = response.data
             this.loadingStatus = false
             this.$router.go(0)
           }).catch((response) => {
@@ -391,15 +357,27 @@ export default {
     /**
      * 切换注册状态
      */
-    nextRegist() {
-      this.registStatus = 2
+    nextRegister() {
+      if (!isMobile(this.registerPhone)) {
+        this.$toast.info('请输入正确的手机号')
+        return
+      }
+      this.$store.dispatch('user/sendMessage', this.registerPhone).then(() => {
+        this.registerStatus = 2
+      })
     },
-    validateRegist() {
-      this.registStatus = 3
-      this.$store.dispatch('user/LoginByUsername', this.loginForm).then(() => {
+    validateRegister() {
+      this.$store.dispatch('user/register',
+        { 'phone': this.registerPhone,
+          'password': this.password,
+          'captcha': this.captcha }
+      ).then((response) => {
+        console.log('this.userDetail = response-----', response)
+        this.registerDetail = response.data
+        this.registerStatus = 3
         setTimeout(() => {
           this.$router.go(0)
-        }, 2000)
+        }, 3000)
       }).catch((response) => {
         // 登录失败
         this.$message({
@@ -421,6 +399,7 @@ export default {
     },
 
     loginDialog() {
+      this.fetchUserCaptcha()
       this.loginDialogVisible = true
     },
 
@@ -431,18 +410,6 @@ export default {
       })
     },
 
-    togglePlay() {
-      music.humanizeOperation(music.player.togglePlay)
-    },
-    toggleMuted() {
-      music.humanizeOperation(music.player.toggleMuted)
-    },
-    prevSong() {
-      music.humanizeOperation(music.player.prevSong)
-    },
-    nextSong() {
-      music.humanizeOperation(music.player.nextSong)
-    },
     logout() {
       this.$store.dispatch('user/logout').then(() => {
         this.$router.go(0)
@@ -677,53 +644,6 @@ display: none!important;
           }
         }
       }
-
-      .navbar-player {
-        width: 13em;
-        display: flex;
-        flex-direction: column;
-        align-items: inherit;
-        justify-content: center;
-        @include text-overflow();
-        opacity: 0.2;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        > .panel {
-          display: flex;
-          justify-content: flex-start;
-          margin-bottom: 0.2rem;
-
-          > .btn {
-            margin-right: 1em;
-
-            &:hover {
-              > .iconfont {
-                color: $link-hover-color;
-              }
-            }
-          }
-        }
-
-        > .song {
-          font-size: 1rem;
-          @include text-overflow();
-
-          > .link {
-            color: $dividers;
-
-            &:hover {
-              color: $link-hover-color;
-            }
-          }
-        }
-
-        .iconfont {
-          color: $dividers;
-        }
-      }
     }
 
     > .pre-load {
@@ -746,11 +666,31 @@ display: none!important;
   }
 }
 .loginDialog {
+  .oauth {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 15px;
+    .oauth-bg {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: #f4f8fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .oauth-btn{
+      height: 1.9rem;
+      vertical-align: bottom;
+      cursor: pointer;
+    }
+  }
   .el-dialog__header{
     padding:inherit
   }
   .el-dialog {
-    width: 33%;
+    margin-top: 8vh !important;
   }
   .el-dialog__header {
     border-bottom: 1px solid #e5e5e5;
@@ -789,24 +729,14 @@ display: none!important;
         position: relative;
 
         .more-login-words {
-          position: relative;
           position: absolute;
+          color: #8590a6;
           left: calc(50% - 52px);
           top: -10px;
           padding: 0 10px;
           background: #fff;
         }
       }
-    }
-  }
-  .widget-login {
-    a{
-      margin: 0 0.5em;
-    }
-    text-align: center;
-    .icon {
-      height: 2em;
-      width: 2em;
     }
   }
   .terms {
@@ -835,6 +765,7 @@ display: none!important;
     padding: 20px 50px;
     .el-form {
       .el-form-item {
+        margin-top: 1em;
         margin-bottom: 10px;
         .el-button {
           margin-top: 10px;
@@ -846,13 +777,6 @@ display: none!important;
         padding: 0 0 0px;
         line-height: 30px;
       }
-    }
-  }
-  .widget-login {
-    text-align: center;
-    .icon {
-      height: 2em;
-      width: 2em;
     }
   }
   .terms {

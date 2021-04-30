@@ -1,13 +1,15 @@
 // import Cookies from 'js-cookie'
-export default function({ isClient, isServer, store, req, route, error, redirect }) {
+export default function({ store, req, route, error, redirect }) {
+  const isClient = process.client
+  const isServer = process.server
   if (isServer) {
-    if (route.path !== '/login') {
-      redirect('/')
-    }
+    console.log('isServer')
   }
-  // 在客户端判读是否需要登陆
   if (isClient) {
-    console.log('isClient..............')
+    console.log('isClient')
+  }
+  if (!store.state.user.data.avatar) {
+    redirect(`/`)
   }
 }
 

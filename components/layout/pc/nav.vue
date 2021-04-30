@@ -1,6 +1,5 @@
 
 <template>
-  <!-- 导航 图标参考D:\vueWorkspace\codeway_vue_ssr_platform\assets\sass\iconfont.scss -->
   <div id="nav" class="header-nav">
     <nav is="nav" class="nav-list">
 
@@ -20,7 +19,7 @@
         </el-submenu>
         <el-menu-item index="/security">
           <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.security "/>
+          <span v-text="$i18n.nav.hack "/>
         </el-menu-item>
         <el-submenu index="/welfare">
           <template slot="title" >

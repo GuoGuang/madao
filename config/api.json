@@ -2,14 +2,14 @@
   "development": {
     "cdnUrl": "",
     "proxyUrl": "/proxy/",
-    "baseUrl": "https://api.codeway.fun/",
-    "socketHost": "https://socket.codeway.fun"
+    "baseUrl": "https://api.madaoo.com/",
+    "socketHost": "https://socket.madaoo.com"
   },
 
   "production": {
     "cdnUrl": "",
-    "proxyUrl": "https://codeway.fun/proxy/",
-    "baseUrl": "https://api.codeway.fun/",
-    "socketHost": "https://socket.codeway.fun"
+    "proxyUrl": "https://madaoo.com/proxy/",
+    "baseUrl": "https://api.madaoo.com/",
+    "socketHost": "https://socket.madaoo.com"
   }
 }

@@ -9,7 +9,8 @@ import { fetchDelay } from '~/utils/fetch-delay'
 const getDefaultListData = () => {
   return {
     data: [],
-    pagination: {}
+    pagination: {},
+    myComment: {}
   }
 }
 
@@ -24,7 +25,7 @@ export const state = () => {
 export const mutations = {
 
   // 请求列表
-  updateListFetchig(state, action) {
+  updateListFetching(state, action) {
     state.fetching = action
   },
   updateListData(state, action) {
@@ -33,17 +34,21 @@ export const mutations = {
   clearListData(state) {
     state.data = getDefaultListData()
   },
-
-  // 发布评论
-  updatePostFetchig(state, action) {
+  updatePostFetching(state, action) {
     state.posting = action
   },
-  updateListNewItemData(state, action) {
-    state.data.pagination.total += 1
-    state.data.data.push(action.result)
+  LIKE(state, action) {
+    const currentComment = state.data.find(item => item.id === action.id)
+    currentComment.upvote++
+  },
+  UN_LIKE(state, action) {
+    const currentComment = state.data.find(item => item.id === action.id)
+    currentComment.upvote--
+  },
+  SET_MY_COMMENT(state, action) {
+    state.myComment = action.data
   },
 
-  // 喜欢某条评论
   updateLikesIncrement(state, action) {
     state.data.data.find(comment => {
       const isMatched = comment.id === action.id
@@ -56,60 +61,89 @@ export const mutations = {
 export const actions = {
 
   fetchList({ commit, rootState }, params = {}) {
-    const { SortType } = rootState.global.constants
-
-    // 修正参数
-    params = Object.assign({
-      page: 1,
-      per_page: 88,
-      sort: SortType.Desc
-    }, params)
-
-    const isRestart = params.page === 1
-    const isDescSort = params.sort === SortType.Desc
-
-    // 清空数据
-    isRestart &&
-    commit('updateListData', getDefaultListData())
-    commit('updateListFetchig', true)
-
+    commit('updateListFetching', true)
     const delay = fetchDelay()
-
-    return this.$axios.$get(`/ar/comment`, { params })
+    return this.$axios.$get(`/ar/comment/${params.article_id}`)
       .then(response => {
-        isDescSort && response.result.data.reverse()
         delay(() => {
-          commit('updateListData', response.result)
-          commit('updateListFetchig', false)
+          commit('updateListData', response.data)
+          commit('updateListFetching', false)
         })
+        return Promise.resolve(response)
       })
       .catch((error) => {
-        console.error('获取评论失败：' + error.message)
-        commit('updateListFetchig', false)
+        commit('updateListFetching', false)
+        return Promise.resolve(error)
       })
   },
 
-  // 发布评论
-  fetchPostComment({ commit }, comment) {
-    commit('updatePostFetchig', true)
+  postComment({ commit }, comment) {
+    commit('updatePostFetching', true)
     return this.$axios.$post(`/ar/comment`, comment)
       .then(response => {
-        commit('updateListNewItemData', response)
-        commit('updatePostFetchig', false)
+        commit('updatePostFetching', false)
         return Promise.resolve(response)
       })
       .catch(error => {
-        commit('updatePostFetchig', false)
+        commit('updatePostFetching', false)
         return Promise.reject(error)
       })
   },
 
-  // 喜欢评论
-  fetchLikeComment({ commit }, comment) {
-    return this.$axios.$patch(`/ar/like/comment`, { comment_id: comment.id })
+  findUserInfo({ commit }, param) {
+    return this.$axios.$get(`/ar/comment/user/${param}`)
       .then(response => {
-        commit('updateLikesIncrement', comment)
         return Promise.resolve(response)
       })
+      .catch(error => {
+        return Promise.reject(error)
+      })
+  },
+
+  like({ commit }, comment) {
+    return this.$axios.$put(`/ar/comment/like/${comment.id}`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.error('服务器开小差啦~~')
+      }
+      commit('LIKE', comment)
+      localStorage.setItem(`article_${comment.articleId}_common_${comment.id}`, true)
+      return Promise.resolve(response)
+    }).catch(error => {
+      console.log(error)
+      this.$toast.error('服务器开小差啦~~')
+    })
+  },
+  unLike({ commit }, comment) {
+    return this.$axios.$delete(`/ar/comment/like/${comment.id}`).then(response => {
+      if (response.code !== 20000) {
+        this.$toast.error('服务器开小差啦~~')
+      }
+      commit('UN_LIKE', comment)
+      localStorage.removeItem(`article_${comment.articleId}_common_${comment.id}`)
+      return Promise.resolve(response)
+    }).catch(error => {
+      console.log(error)
+      this.$toast.error('服务器开小差啦~~')
+    })
+  },
+
+  /**
+   * 查询我的评论
+   * @param commit
+   * @returns {Promise<unknown>}
+   */
+  fetchMyComment({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`/ar/comment/my/`).then(response => {
+        if (response.code !== 20000) {
+          this.$toast.error(response.message)
+        } else {
+          commit('SET_MY_COMMENT', response)
+          resolve(response)
+        }
+      }).catch(() => {
+        commit('UPDATE_FETCHING', false)
+      })
+    })
   }
 }

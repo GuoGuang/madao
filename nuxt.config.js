@@ -14,6 +14,7 @@ const htmlLang = i18nConfig.default || systemConstants.Language.Zh
 const htmlSlogan = i18nConfig.data.text.slogan[htmlLang]
 
 module.exports = {
+  telemetry: false,
   mode: 'universal',
   modern: true, // 编译为现代 ES Module，并自动分辨浏览器输出
   dev: isDevMode,
@@ -48,7 +49,7 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|howler|lozad|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
+              return /swiper|howler|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
             },
             chunks: 'initial',
             priority: 10
@@ -120,7 +121,6 @@ module.exports = {
     { src: '~/plugins/marked' },
     { src: '~/plugins/gravatar' },
     { src: '~/plugins/highlight' },
-    { src: '~/plugins/lozad', mode: 'client' },
     { src: '~/plugins/favico', mode: 'client' },
     { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
@@ -173,11 +173,11 @@ module.exports = {
       { hid: 'description', name: 'description', content: appConfig.meta.description }
     ],
     link: [
-      { rel: 'dns-prefetch', href: `//codeway.fun` },
-      { rel: 'dns-prefetch', href: '//api.codeway.fun' },
-      { rel: 'dns-prefetch', href: '//cdn.codeway.fun' },
-      { rel: 'dns-prefetch', href: '//static.codeway.fun' },
-      { rel: 'dns-prefetch', href: '//gravatar.codeway.fun' },
+      { rel: 'dns-prefetch', href: `//madaoo.com` },
+      { rel: 'dns-prefetch', href: '//api.madaoo.com' },
+      { rel: 'dns-prefetch', href: '//cdn.madaoo.com' },
+      { rel: 'dns-prefetch', href: '//static.madaoo.com' },
+      { rel: 'dns-prefetch', href: '//gravatar.madaoo.com' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
       { rel: 'dns-prefetch', href: '//adservice.google.com' },
@@ -227,7 +227,8 @@ module.exports = {
     sizes: [16, 120, 144, 152, 192, 384, 512]
   },
   router: {
-    middleware: ['change-page-col', 'auth'],
+    // middleware: ['change-page-col', 'auth'],
+    middleware: ['change-page-col'],
     linkActiveClass: 'link-active',
     extendRoutes(routes) {},
     scrollBehavior(to, from, savedPosition) {

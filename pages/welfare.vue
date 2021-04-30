@@ -1,11 +1,11 @@
 <template>
   <el-row>
-    <el-col :span="17">
+    <el-col :xs="24" :sm="17" :md="17" :lg="17" :xl="17" >
       <div class="main">
-        <article-list :article="article" @loadmore="loadmoreArticle" />
+        <article-list :article="article" @loadmore="loadMoreArticle" />
       </div>
     </el-col>
-    <el-col :span="6" class="right-list">
+    <el-col :xs="0" :sm="6" :md="6" :lg="6" :xl="6" class="right-list">
       <div class="main-right">
         <aside-view key="aside"/>
       </div>
@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    loadmoreArticle() {
+    loadMoreArticle() {
       this.$store.dispatch('article/fetchList', this.nextPageParams)
     }
   }
