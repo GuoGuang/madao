@@ -19,6 +19,7 @@
             :src="article.thumb"
             :alt="article.title"
             :title="article.title"
+            loading="lazy"
             class="item-thumb-img"
           >
         </nuxt-link>

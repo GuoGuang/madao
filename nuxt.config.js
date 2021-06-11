@@ -136,7 +136,6 @@ module.exports = {
     // { src: '~/plugins/particles', mode: 'client' }
   ],
   modules: [
-    '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
     ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }],

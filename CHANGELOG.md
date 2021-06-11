@@ -107,7 +107,6 @@
 - 播放器的有优化
 - 分享的剪切板需重构去掉库 https://madaoo.com/article/80
 - 右侧广告的添加
-- PWA 的适配https://pwa.nuxtjs.org/modules/workbox.html
 - 增加多主题适配
 
 ### v1.0.0
