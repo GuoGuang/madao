@@ -308,7 +308,7 @@ export default {
       asideImage: {
         disLikeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
         disLikeBackgroundColor: '',
-        likeImage: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/image/zan.b4bb964.svg',
+        likeImage: 'https://static-admin.madaoo.com/icode/image/zan.b4bb964.svg',
         likeBackgroundColor: '#f9eac8'
       },
       swiperOption: {

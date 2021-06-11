@@ -6,7 +6,7 @@
 
  // const apiConfig = require('./api.config.js')
 // const imagePath = apiConfig.cdnUrl+`/images/mammon/`
-const imagePath = `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt/images/mammon/`
+const imagePath = `https://static-admin.madaoo.com/icode/_nuxt/images/mammon/`
 
 
 const links = {
