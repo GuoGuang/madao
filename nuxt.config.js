@@ -179,27 +179,22 @@ module.exports = {
       { rel: 'dns-prefetch', href: '//gravatar.madaoo.com' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
-      { rel: 'dns-prefetch', href: '//adservice.google.com' },
       { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-      // { rel: 'dns-prefetch', href: '//googleads.g.doubleclick.net' },
-      // { rel: 'dns-prefetch', href: '//www.google-analytics.com' },
-      // { rel: 'dns-prefetch', href: '//tpc.googlesyndication.com' },
-      // { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'author', type: 'text/plain', href: '/humans.txt' }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
-    script: [
-      /* GooGle Ads */
+    /*script: [
+      /!* GooGle Ads *!/
       { type: 'text/javascript', innerHTML:
             `(adsbygoogle = window.adsbygoogle || []).push({
               google_ad_client: "ca-pub-2993169397147402",
               enable_page_level_ads: true
             });`
       }
-    ],
+    ],*/
     // 禁止innerHTML的内容转义
     __dangerouslyDisableSanitizers: ['script']
   },
