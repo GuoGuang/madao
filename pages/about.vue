@@ -183,16 +183,16 @@
               </div>
               <div class="gravatar">
                 <div class="background be-2">
-                  <img src="/images/about-background-be-2.jpg" alt="background" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-be-2.jpg'" alt="background" class="image">
                 </div>
                 <div class="background be-1">
-                  <img src="/images/about-background-be-1.jpg" alt="background" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-be-1.jpg'" alt="background" class="image">
                 </div>
                 <div class="background star-1">
-                  <img src="/images/about-background-star-1.png" alt="background-star" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-star-1.png'" alt="background-star" class="image">
                 </div>
                 <div class="background star-2">
-                  <img src="/images/about-background-star-2.png" alt="background-star" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-star-2.png'" alt="background-star" class="image">
                 </div>
                 <img :src="avatar" class="avatar">
                 <div class="desc">
@@ -235,6 +235,9 @@ export default {
   computed: {
     isEnLang() {
       return this.$store.getters['global/isEnLang']
+    },
+    cdnUrl() {
+      return this.cdnUrl
     },
     isMobile() {
       return this.$store.state.global.isMobile
