@@ -11,7 +11,7 @@ const imagePath = `https://static-admin.madaoo.com/icode/_nuxt/images/mammon/`
 
 const links = {
   common: {
-    aliyun: 'https://s.click.taobao.com/FQVZFKw'
+    aliyun: 'https://www.aliyun.com/1111/new?source=5176.11533457&userCode=e9jpi67b'
   },
   pc: {
     taobao: 'https://s.click.taobao.com/hWjWFKw',
