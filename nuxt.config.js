@@ -39,7 +39,8 @@ module.exports = {
     analyze: process.argv.join('').includes('analyze'), // 分析
     maxChunkSize: 360000, // 单个包最大尺寸
     extractCSS: true, // 单独提取 css
-    publicPath: apiConfig.cdnUrl,
+    // publicPath: apiConfig.cdnUrl,
+    publicPath: "",
     postcss: {
       plugins: { 'postcss-custom-properties': { warnings: false }}
     },
@@ -197,24 +198,6 @@ module.exports = {
     ],*/
     // 禁止innerHTML的内容转义
     __dangerouslyDisableSanitizers: ['script']
-  },
-  workbox: {
-    // runtimeCaching: [
-    //   {
-    //     urlPattern: 'https://my-cdn.com/.*',
-    //     handler: 'networkFirst',
-    //     method: 'GET'
-    //   }
-    // ]
-  },
-  manifest: {
-    name: appConfig.meta.title,
-    short_name: appConfig.meta.author,
-    theme_color: appConfig.color.primary,
-    background_color: '#eee',
-    description: htmlSlogan,
-    display: 'standalone',
-    lang: htmlLang
   },
   icon: {
     iconSrc: '/static/icon.png',

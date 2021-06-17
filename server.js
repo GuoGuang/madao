@@ -53,7 +53,7 @@ app.set('port', port)
 
 const bootstrap = () => {
   server.listen(port, host)
-  const appName = config.manifest.name
+  const appName = '码道'
   const envText = isDevMode ? '开发模式' : '生产模式'
   console.info(`${appName} ${envText}启动成功！listening on ${host}:${port}, at ${new Date().toLocaleString()}`)
   // 启动扩展服务
