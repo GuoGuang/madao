@@ -1,13 +1,13 @@
 {
   "development": {
-    "cdnUrl": "",
+    "cdnUrl": "https://static-admin.madaoo.com",
     "proxyUrl": "/proxy/",
     "baseUrl": "https://api.madaoo.com/",
     "socketHost": "https://socket.madaoo.com"
   },
 
   "production": {
-    "cdnUrl": "",
+    "cdnUrl": "https://static-admin.madaoo.com",
     "proxyUrl": "https://madaoo.com/proxy/",
     "baseUrl": "https://api.madaoo.com/",
     "socketHost": "https://socket.madaoo.com"
