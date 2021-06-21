@@ -40,7 +40,7 @@ module.exports = {
     maxChunkSize: 360000, // 单个包最大尺寸
     extractCSS: true, // 单独提取 css
     // publicPath: apiConfig.cdnUrl,
-    publicPath: "",
+    publicPath: '',
     postcss: {
       plugins: { 'postcss-custom-properties': { warnings: false }}
     },
