@@ -6,7 +6,7 @@
 
  // const apiConfig = require('./api.config.js')
 // const imagePath = apiConfig.cdnUrl+`/images/mammon/`
-const imagePath = `https://static-admin.madaoo.com/icode/_nuxt/images/mammon/`
+const imagePath = `https://static-admin.madaoo.com/`
 
 
 const links = {
@@ -49,18 +49,6 @@ const pc = {
       url: links.common.aliyun,
       src: imagePath + 'aliyun-532-178.jpg'
     },
-    {
-      url: links.pc.taobao,
-      src: imagePath + 'taobao-532-178.jpg'
-    },
-    {
-      url: links.pc.dingding,
-      src: imagePath + 'dingding-532-178.jpg'
-    },
-    {
-      url: links.pc.alitrip,
-      src: imagePath + 'alitrip-532-178.jpg'
-    }
   ]
 }
 
