@@ -3,6 +3,9 @@
  * @module store/project
  * @author madao <https://github.com/madao-china>
  */
+const { path } = require('~/config/api.json')
+
+const api = path.user
 
 export const state = () => {
   return {
@@ -34,7 +37,7 @@ export const actions = {
 
     // 不存在则请求新数据
     commit('updateRepositoriesFetching', true)
-    return this.$axios.$get('/su/admin/repo').then(response => {
+    return this.$axios.$get(`${api}/admin/repo`).then(response => {
       const newResult = []
       JSON.parse(response.data).forEach((element, index) => {
         const {

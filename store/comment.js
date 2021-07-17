@@ -5,6 +5,9 @@
  */
 
 import { fetchDelay } from '~/utils/fetch-delay'
+const { path } = require('~/config/api.json')
+
+const api = path.article
 
 const getDefaultListData = () => {
   return {
@@ -63,7 +66,7 @@ export const actions = {
   fetchList({ commit, rootState }, params = {}) {
     commit('updateListFetching', true)
     const delay = fetchDelay()
-    return this.$axios.$get(`/ar/comment/${params.article_id}`)
+    return this.$axios.$get(`${api}/comment/${params.article_id}`)
       .then(response => {
         delay(() => {
           commit('updateListData', response.data)
@@ -79,7 +82,7 @@ export const actions = {
 
   postComment({ commit }, comment) {
     commit('updatePostFetching', true)
-    return this.$axios.$post(`/ar/comment`, comment)
+    return this.$axios.$post(`${api}/comment`, comment)
       .then(response => {
         commit('updatePostFetching', false)
         return Promise.resolve(response)
@@ -91,7 +94,7 @@ export const actions = {
   },
 
   findUserInfo({ commit }, param) {
-    return this.$axios.$get(`/ar/comment/user/${param}`)
+    return this.$axios.$get(`${api}/comment/user/${param}`)
       .then(response => {
         return Promise.resolve(response)
       })
@@ -101,7 +104,7 @@ export const actions = {
   },
 
   like({ commit }, comment) {
-    return this.$axios.$put(`/ar/comment/like/${comment.id}`).then(response => {
+    return this.$axios.$put(`${api}/comment/like/${comment.id}`).then(response => {
       if (response.code !== 20000) {
         this.$toast.error('服务器开小差啦~~')
       }
@@ -114,7 +117,7 @@ export const actions = {
     })
   },
   unLike({ commit }, comment) {
-    return this.$axios.$delete(`/ar/comment/like/${comment.id}`).then(response => {
+    return this.$axios.$delete(`${api}/comment/like/${comment.id}`).then(response => {
       if (response.code !== 20000) {
         this.$toast.error('服务器开小差啦~~')
       }

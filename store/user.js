@@ -4,9 +4,9 @@
  * @author GuoGuang <https://github.com/GuoGuang>
  */
 const UUID = require('es6-uuid')
-// import { logout } from '@/api/login'
 import { removeToken, setToken } from '@/utils/auth'
-// import Cookies from 'js-cookie'
+const { path } = require('~/config/api.json')
+const api = path.user + '/user'
 
 export const state = () => {
   return {
@@ -74,7 +74,7 @@ export const actions = {
 
   getUserInfo({ commit }, cookie) {
     console.log('getUserInfo-----------', cookie)
-    return this.$axios.$get(`/su`, { 'headers': {
+    return this.$axios.$get(`${api}`, { 'headers': {
       'AUTH': 'Bearer ' + cookie
     }}).then(response => {
       if (response.code === 20000) {
@@ -85,7 +85,7 @@ export const actions = {
   },
 
   changeUserInfo({ commit }, userInfo) {
-    return this.$axios.$put(`/su/userInfo`, userInfo).then(response => {
+    return this.$axios.$put(`${api}/userInfo`, userInfo).then(response => {
       if (response.code !== 20000) {
         this.$toast.info(response.message)
       } else {
@@ -96,7 +96,7 @@ export const actions = {
   },
 
   changeUserPhone({ commit }, userInfo) {
-    return this.$axios.$put(`/su/changeUserPhone`, userInfo).then(response => {
+    return this.$axios.$put(`${api}/changeUserPhone`, userInfo).then(response => {
       if (response.code !== 20000) {
         this.$toast.info(response.message)
       } else {
@@ -107,7 +107,7 @@ export const actions = {
   },
 
   changePassword({ commit }, userInfo) {
-    return this.$axios.$put(`/su/changePassword`, userInfo).then(response => {
+    return this.$axios.$put(`${api}/changePassword`, userInfo).then(response => {
       if (response.code !== 20000) {
         this.$toast.info(response.message)
       } else {
@@ -157,7 +157,7 @@ export const actions = {
    */
   register({ commit }, data) {
     return new Promise((resolve, reject) => {
-      return this.$axios.$post(`/su/register`, data)
+      return this.$axios.$post(`${api}/register`, data)
         .then(response => {
           if (response.code !== 20000) {
             this.$toast.error(response.message)
@@ -190,21 +190,6 @@ export const actions = {
           console.error('获取文章列表失败：' + error.message)
           commit('UPDATE_FETCHING', false)
         })
-    })
-  },
-
-  fetchAuthorDetail({ commit }) {
-    return new Promise((resolve, reject) => {
-      return this.$axios.$get(`/ar/article/admin`).then(response => {
-        if (response.code !== 20000) {
-          this.$toast.error(response.message)
-        } else {
-          commit('SET_AUTHOR_DETAIL', response)
-          resolve(response)
-        }
-      }).catch(() => {
-        commit('UPDATE_FETCHING', false)
-      })
     })
   }
 }
