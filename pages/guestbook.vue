@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { cdnUrl } from '~/config/api.config.esm'
+
 export default {
   name: 'Guestbook',
   head() {
@@ -37,7 +39,7 @@ export default {
       return this.$store.getters['global/isEnLang']
     },
     cdnUrl() {
-      return this.cdnUrl
+      return cdnUrl
     },
     isMobile() {
       return this.$store.state.global.isMobile

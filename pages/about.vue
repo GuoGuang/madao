@@ -222,6 +222,8 @@
 </template>
 
 <script>
+import { cdnUrl } from '~/config/api.config.esm'
+
 export default {
   name: 'About',
   head() {
@@ -232,12 +234,14 @@ export default {
   fetch({ store }) {
     return store.dispatch('global/fetchAdminInfo')
   },
+  data: function() {
+    return {
+      cdnUrl: cdnUrl
+    }
+  },
   computed: {
     isEnLang() {
       return this.$store.getters['global/isEnLang']
-    },
-    cdnUrl() {
-      return this.cdnUrl
     },
     isMobile() {
       return this.$store.state.global.isMobile
