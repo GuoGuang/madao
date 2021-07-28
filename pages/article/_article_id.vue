@@ -300,14 +300,14 @@ export default {
   },
   data() {
     return {
-      likeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
+      likeImage: 'http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/zan.svg',
       isLikeStatus: false,
       likeBackgroundColor: '',
       likeBadge: 0,
       asideImage: {
-        disLikeImage: 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg',
+        disLikeImage: 'http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/zan.svg',
         disLikeBackgroundColor: '',
-        likeImage: 'https://static-admin.madaoo.com/icode/image/zan.b4bb964.svg',
+        likeImage: 'http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/zan-yello.svg',
         likeBackgroundColor: '#f9eac8'
       },
       swiperOption: {
