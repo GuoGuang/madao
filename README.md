@@ -30,7 +30,7 @@
 
 ## PC
 
-![演示](https://github.com/GuoGuang/madao/blob/master/static/demo.png)
+![演示](http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/demo.jpg)
 
 ## Directory
 ```
