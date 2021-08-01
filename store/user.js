@@ -38,7 +38,7 @@ export const actions = {
    */
   LoginByAccount({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
-      return this.$axios.$post(`/oauth/token`, userInfo, { 'headers': {
+      return this.$axios.$post(`/auth/token`, userInfo, { 'headers': {
         'DEVICE-ID': userInfo.deviceId,
         'Authorization': 'Basic WGNXZWJBcHA6WGNXZWJBcHA='
       }}).then(response => {
@@ -58,7 +58,7 @@ export const actions = {
   // Oauth登录
   LoginByOauth({ commit }, query) {
     return new Promise((resolve, reject) => {
-      return this.$axios.$get(`/oauth/login/github?code=` + query.code).then(response => {
+      return this.$axios.$get(`/auth/login/github?code=` + query.code).then(response => {
         if (response.code === 20000) {
           const data = response.data
           setToken(data)
@@ -122,7 +122,7 @@ export const actions = {
    */
   logout({ commit }) {
     return new Promise((resolve, reject) => {
-      this.$axios.$post(`/oauth/logout`)
+      this.$axios.$post(`/auth/logout`)
         .then(response => {
           removeToken()
           commit('SET_DATA', {})
@@ -141,7 +141,7 @@ export const actions = {
    */
   sendMessage({ commit }, phone) {
     return new Promise((resolve, reject) => {
-      return this.$axios.$get(`/oauth/code/sms?phone=${phone}`)
+      return this.$axios.$get(`/auth/code/sms?phone=${phone}`)
         .then(response => {
           this.$toast.success('短信发送成功')
           resolve()
@@ -176,7 +176,7 @@ export const actions = {
    */
   fetchCaptcha({ commit }) {
     return new Promise((resolve, reject) => {
-      return this.$axios.$get(`/oauth/code/captcha`,
+      return this.$axios.$get(`/auth/code/captcha`,
         { 'headers': {
           'DEVICE-ID': UUID(32)
         }})
