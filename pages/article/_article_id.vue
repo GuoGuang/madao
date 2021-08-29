@@ -10,7 +10,7 @@
           <!-- 文章左侧点赞区 -->
           <div :style="{'background-color': `${likeBackgroundColor}`,'background-image':`url(${likeImage})`}" :badge="likeBadge" class="panel-btn with-badge" @click="isLike"/>
           <div :badge="comments.length" class="comment-btn panel-btn with-badge" @click="scrollIntoView"/>
-          <div badge="186" class="collect-btn panel-btn share-btn"/>
+          <div badge="186" class="report-btn share-btn panel-btn"/>
           <div class="share-title">分享</div>
           <div class="weibo-btn share-btn panel-btn"/>
           <div class="qq-btn share-btn panel-btn"/>
@@ -447,7 +447,7 @@ export default {
   },
   deactivated() {
     this.lozadObserver = null
-    this.likeImage = 'https://b-gold-cdn.xitu.io/v3/static/img/zan.b4bb964.svg'
+    this.likeImage = 'http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/zan.svg'
     this.isLikeStatus = false
     this.likeBackgroundColor = ''
     this.likeBadge = 0
@@ -1184,34 +1184,34 @@ export default {
     background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/zan-hover.91657d6.svg)
 }
   .comment-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/comment.7fc22c2.svg);
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/comment.svg)
   }
   .comment-btn:hover {
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/comment-hover.1074e67.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/comment-hover.svg)
 }
-  .collect-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/collect.1db122b.svg)
+  .report-btn{
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/report.svg)
   }
-  .collect-btn:hover {
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/collect-hover.5d446a7.svg)
+  .report-btn:hover {
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/report-hover.svg)
 }
   .weibo-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/weibo.2076a57.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-weibo.svg)
   }
   .weibo-btn:hover {
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/weibo-hover.9abf502.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-weibo-hover.svg)
 }
   .qq-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/qq.0834411.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-qq.svg)
   }
   .qq-btn:hover {
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/qq-hover.d11dd84.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-qq-hover.svg)
 }
   .wechat-btn{
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/wechat.63e1ce0.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-wechart.svg)
   }
   .wechat-btn:hover {
-    background-image: url(https://b-gold-cdn.xitu.io/v3/static/img/wechat-hover.c8ce019.svg)
+    background-image: url(http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/share-wechart-hover.svg)
 }
 
   .with-badge:after {
