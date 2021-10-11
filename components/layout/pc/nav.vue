@@ -17,9 +17,11 @@
             <span v-text="$i18n.nav.timeLine"/>
           </el-menu-item>
         </el-submenu>
-        <el-menu-item index="/security">
-          <i class="iconfont icon-thlarge"/>
-          <span v-text="$i18n.nav.hack "/>
+        <el-menu-item index="">
+          <a href="http://search.madaoo.com/">
+            <i class="iconfont icon-thlarge"/>
+            <span v-text="$i18n.nav.hack "/>
+          </a>
         </el-menu-item>
         <el-submenu index="/welfare">
           <template slot="title" >
