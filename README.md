@@ -28,6 +28,9 @@
 ### 🏠 [Homepage](https://madaoo.com)
 > 如果喜欢记得给个star哦🌟
 
+更多内容请关注公众号：`码道人生`
+
+
 ## PC
 
 ![演示](http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/demo.jpg)
