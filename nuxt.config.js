@@ -50,7 +50,7 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|howler|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
+              return /swiper|howler|marked|favico|rtcpeerconnection|highlight/.test(module.context)
             },
             chunks: 'initial',
             priority: 10
@@ -87,7 +87,7 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: [/(node_modules)/, /underscore-simple/, /webrtc/]
+          exclude: [/(node_modules)/, /underscore-simple/]
         })
       }
       if (isProdMode) {

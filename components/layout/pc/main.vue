@@ -45,7 +45,6 @@ import FooterView from './footer'
 import AsideView from './aside/main'
 import Barrage from '~/components/widget/barrage/main'
 import WallFlower from '~/components/widget/wall-flower/garden'
-import Webrtc from '~/components/widget/webrtc/main'
 import Background from '~/components/widget/background'
 import LanguagePsm from '~/components/widget/language-psm'
 import ToolBox from '~/components/widget/tool-box'
@@ -59,7 +58,7 @@ export default {
   name: 'PcMain',
   components: {
     ToolBox, ShareBox, LanguagePsm,
-    Webrtc, WallFlower, Background, Barrage, // 实体
+    WallFlower, Background, Barrage, // 实体
     HeaderView, FooterView, AsideView // 布局
   },
   data() {
@@ -70,7 +69,7 @@ export default {
 
   computed: {
     ...mapState('global', [
-      'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
+      'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
     ]),
     isNotServicePage() {
       return !isServiceRoute(this.$route.name)

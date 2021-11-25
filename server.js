@@ -28,7 +28,6 @@ const port = environment.PORT || 3000
 const host = isProdMode ? (environment.HOST || '127.0.0.1') : '0.0.0.0'
 
 // extends
-const webrtcService = require('./services/webrtc.service')
 const barrageService = require('./services/barrage.service')
 const updateGAService = require('./services/update-ga.service')
 
@@ -59,7 +58,6 @@ const bootstrap = () => {
   // 启动扩展服务
   updateGAService()
   barrageService(io)
-  webrtcService(io)
 }
 
 config.dev

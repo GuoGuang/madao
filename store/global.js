@@ -47,9 +47,6 @@ export const state = () => ({
   // 节能模式
   onPowerSavingMode: false,
 
-  // 是否开启rtc
-  onWebrtc: false,
-
   // 山河入梦
   onWallpaper: false,
 

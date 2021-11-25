@@ -13,12 +13,6 @@ exports.meta = {
   email: 'guoguang0536@gmail.com',
 }
 
-exports.webrtc = {
-  room: 'madao',
-  iceServerUsername: 'madao',
-  iceServerCredential: 'madao',
-}
-
 exports.music = {
   id: '638949385',
 }

@@ -2,18 +2,6 @@
   <div id="tools">
     <div class="container">
       <div class="tools-list">
-        <!-- <button
-          class="webrtc"
-          @click="toggleWebrtc"
-          :title="$i18n.text.webrtc"
-          :disabled="barrageState || onPowerSavingMode"
-          :class="{
-            active: webrtcState,
-            close: barrageState
-          }"
-        >
-          <i class="iconfont icon-webrtc"></i>
-        </button> -->
         <button
           :title="$i18n.text.barrage.name"
           class="barrage"
@@ -59,7 +47,6 @@ export default {
     return {
       topBtnMouseOver: false,
       bottomBtnMouseOver: false,
-      toggleWebrtcFn: null,
       animationFrameId: null
     }
   },
@@ -137,7 +124,6 @@ export default {
         width: 3em;
         height: 7em;
 
-        > .webrtc,
         > .barrage,
         > .to-top,
         > .to-bottom,
@@ -186,29 +172,6 @@ export default {
           100% {
             color: white;
             background: black;
-          }
-        }
-
-        @keyframes webrtc {
-          0%   {
-            color: $white;
-            background: $primary;
-          }
-          100% {
-            color: $primary;
-            background: $white;
-          }
-        }
-
-        > .webrtc {
-          animation: webrtc 3s infinite;
-
-          &.active {
-            animation: webrtc .5s infinite;
-          }
-
-          &.close {
-            animation: none;
           }
         }
 

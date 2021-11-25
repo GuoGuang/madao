@@ -58,7 +58,6 @@
     "node-uuid": "^1.4.8",
     "nuxt": "^2.11.0",
     "particles.js": "^2.0.0",
-    "simplewebrtc": "^3.0.2",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "terser": "3.14.1",
@@ -68,7 +67,6 @@
     "vue-google-adsense": "^1.7.0",
     "vue-script2": "^2.0.3",
     "vue-video-player": "^5.0.2",
-    "webrtc-adapter": "^6.3.1",
     "yargs": "^12.0.1"
   },
   "devDependencies": {

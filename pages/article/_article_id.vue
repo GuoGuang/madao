@@ -359,7 +359,7 @@ export default {
   },
   computed: {
     ...mapState('global', [
-      'onWebrtc', 'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
+      'onWallpaper', 'onPowerSavingMode', 'isMountedBarrage', 'isOneColumns'
     ]),
     ...mapState({
       constants: state => state.global.constants,
