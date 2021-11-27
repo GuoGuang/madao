@@ -3,7 +3,7 @@
     "cdnUrl": "https://static-admin.madaoo.com",
     "proxyUrl": "/proxy/",
     "baseUrl": "http://localhost:8080/api",
-    "socketHost": "https://socket.madaoo.com"
+    "socketHost": "http://localhost:9099"
   },
   "production": {
     "cdnUrl": "https://static-admin.madaoo.com",
