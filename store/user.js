@@ -13,7 +13,8 @@ export const state = () => {
     fetching: false,
     data: {},
     state: '',
-    authorDetail: ''
+    authorDetail: '',
+    allBarrage: []
 
   }
 }
@@ -28,6 +29,9 @@ export const mutations = {
   },
   SET_AUTHOR_DETAIL(state, action) {
     state.authorDetail = action.data
+  },
+  SET_BARRAGES(state, action) {
+    state.allBarrage = action
   }
 }
 

@@ -8,7 +8,8 @@ import io from 'socket.io-client'
 import { socketHost } from '~/config/api.config.esm'
 
 const socket = io(socketHost, {
-  transports: ['websocket']
+  transports: ['websocket'],
+  path: '/socket'
 })
 
 export default socket

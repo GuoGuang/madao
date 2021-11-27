@@ -220,7 +220,7 @@ export const actions = {
         if (response.code !== 20000) {
           this.$toast.error(response.message)
         } else {
-          commit('SET_AUTHOR_DETAIL', response)
+          // commit('SET_AUTHOR_DETAIL', response)
           resolve(response)
         }
       }).catch(() => {
