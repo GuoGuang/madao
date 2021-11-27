@@ -10,7 +10,7 @@ pipeline {
         // REMOTE_IP = "121.36.158.84"
         DOCKER_IMAGE = 'madao_blog'
         DOCKER_CONTAINER = 'madao_blog'
-        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/other_password.txt ssh -t -t -o StrictHostKeyChecking=no root@${OTHER_INSTANCE_IP}'
+        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/other_password.txt ssh -t -t -o StrictHostKeyChecking=no root@${INSTANCE_IP}'
        //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
         BUILD_USER_EMAIL = '1831682775@qq.com'
