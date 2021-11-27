@@ -60,6 +60,7 @@
 <script>
 import socket from '~/plugins/socket.io'
 import BarrageItem from './item'
+import Cookies from 'js-cookie'
 export default {
   name: 'Barrage',
   components: {
@@ -85,7 +86,7 @@ export default {
       moveTimer: null,
       barrageLimit: 0,
       sizeIndex: sizes.length - 1,
-      allBarrage: this.$store.state.user.allBarrage.slice(),
+      allBarrage: JSON.parse(Cookies.get('allBarrage').slice()),
       colorIndex: colors.length - 1
     }
   },

@@ -61,15 +61,14 @@ export const actions = {
       initFetchAppData.push(store.dispatch('user/getUserInfo', cookie))
     }
 
+    // 弹幕
     // 初始化监听socket事件
     socket.on('connect', socket => {
       console.log('socket connect')
     })
     socket.on('barrage-last-list', data => {
-      console.log('socket pull barrage-last-list')
-      store.commit('user/SET_BARRAGES', data)
+      this.$cookies.set('allBarrage', data)
     })
-
     return Promise.all(initFetchAppData)
   }
 }
