@@ -26,9 +26,6 @@ const port = environment.PORT || 3000
 // const host = isProdMode ? (environment.HOST || '0.0.0.0') : '0.0.0.0' // 生产必须是0.0.0.0？
 const host = isProdMode ? (environment.HOST || '127.0.0.1') : '0.0.0.0'
 
-// extends
-const updateGAService = require('./services/update-ga.service')
-
 const app = express()
 const nuxt = new Nuxt(config)
 const server = new http.Server(app)
@@ -52,8 +49,6 @@ const bootstrap = () => {
   const appName = '码道'
   const envText = isDevMode ? '开发模式' : '生产模式'
   console.info(`${appName} ${envText}启动成功！listening on ${host}:${port}, at ${new Date().toLocaleString()}`)
-  // 启动扩展服务
-  updateGAService()
 }
 
 config.dev

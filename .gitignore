@@ -100,9 +100,4 @@ sitemap.xml
 data/barrages.json
 /data/barrages.json
 
-# analytics
-static/scripts/analytics.js
-/static/scripts/analytics.js
-.vscode/settings.json
-
 package-lock.json

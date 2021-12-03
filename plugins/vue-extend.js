@@ -15,9 +15,6 @@ import LoadingBox from '~/components/global/loading'
 import ColorBlockBox from '~/components/global/color-block'
 import SkeletonBox from '~/components/global/skeleton'
 
-// adsense
-import AdsenseComponents from '~/components/global/adsense'
-
 const i18nData = i18nTransfer(i18nConfig)
 
 // cdn
@@ -33,9 +30,6 @@ Vue.use(EmptyBox)
 Vue.use(LoadingBox)
 Vue.use(ColorBlockBox)
 Vue.use(SkeletonBox)
-
-// adsense
-Vue.use(AdsenseComponents)
 
 // mixins
 Vue.mixin({

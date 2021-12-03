@@ -123,9 +123,7 @@ module.exports = {
     { src: '~/plugins/gravatar' },
     { src: '~/plugins/highlight' },
     { src: '~/plugins/favico', mode: 'client' },
-    { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
-    { src: '~/plugins/analytics', mode: 'client' },
     { src: '~/plugins/image-popup', mode: 'client' },
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
@@ -187,15 +185,6 @@ module.exports = {
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
-    /*script: [
-      /!* GooGle Ads *!/
-      { type: 'text/javascript', innerHTML:
-            `(adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-2993169397147402",
-              enable_page_level_ads: true
-            });`
-      }
-    ],*/
     // 禁止innerHTML的内容转义
     __dangerouslyDisableSanitizers: ['script']
   },
