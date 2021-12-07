@@ -250,8 +250,8 @@
         </transition>
 
         <div class="comment">
-          <comment :comments="comments" :article-id="article.id"/>
-          <!--          <gitalk/>-->
+          <!--          <comment :comments="comments" :article-id="article.id"/>-->
+          <gitalk/>
         </div>
       </article>
     </el-col>

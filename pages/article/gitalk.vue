@@ -14,7 +14,7 @@ export default {
   mounted() {
     const gitalk = new Gitalk({
       clientID: '8a3073a44899f1576f1d',
-      clientSecret: '7f8333d007147027772496cb8d4d9f7ff2bd216f',
+      clientSecret: 'd34184cb4bcb6883ea4cdb13d80ed509adda6bc5',
       repo: 'comments',
       owner: 'jackonli-Eils',
       admin: ['jackonli-Eils'],

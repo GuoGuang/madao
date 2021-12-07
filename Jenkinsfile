@@ -30,6 +30,14 @@ pipeline {
 
         }
      }
+       stage("Vue构建") {
+                 steps {
+                     sh "pwd"
+                     sh "/bin/cp -f /var/jenkins_home/service-config/gitalk.vue madao/pages/article/"
+                     echo '-->> -->>vue打包构建完成!'
+                 }
+             }
+
     stage('Docker打包推送') {
             steps {
                 dir(path: "/${WORKSPACE}/madao") {
