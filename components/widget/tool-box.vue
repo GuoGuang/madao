@@ -98,7 +98,6 @@ export default {
       this.animationFrameId = window.requestAnimationFrame(step)
     },
     toggleBarrage() {
-      this.$ga.event('弹幕功能', '切换', 'tool')
       this.$store.commit('global/updateBarrageOnState')
     }
   }

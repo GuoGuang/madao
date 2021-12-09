@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     tooggleLanguage() {
-      this.$ga.event('系统语言', '切换', 'tool')
       this.$store.commit(
         'global/updateLanguage',
         this.isEnLang ? systemConstants.Language.Zh : systemConstants.Language.En

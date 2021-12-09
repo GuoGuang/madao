@@ -252,7 +252,6 @@ export default {
   },
   methods: {
     handleFollowMe() {
-      this.$ga.event('加微信码', '点击', 'tool')
     },
     getRandomSkill() {
       return !!Math.floor(Math.random() * 2)
