@@ -130,7 +130,8 @@ module.exports = {
     { src: '~/plugins/element-ui' },
     { src: '~/plugins/axios' },
     { src: '~/static/icon/iconfont.js', ssr: false },
-    { src: '~/plugins/videoPlayer.js', ssr: false }
+    { src: '~/plugins/videoPlayer.js', ssr: false },
+    { src: '~/plugins/socket', mode: 'client', ssr: false }
     /* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],

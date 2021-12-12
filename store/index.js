@@ -7,7 +7,6 @@
 import { isServer } from '~/environment/esm'
 import uaDevice from '~/utils/ua-device'
 import systemConstants from '~/constants/system'
-import socket from '~/plugins/socket.io'
 
 // import cookie from 'cookie'
 // import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
@@ -61,14 +60,6 @@ export const actions = {
       initFetchAppData.push(store.dispatch('user/getUserInfo', cookie))
     }
 
-    // 弹幕
-    // 初始化监听socket事件
-    socket.on('connect', socket => {
-      console.log('socket connect')
-    })
-    socket.on('barrage-last-list', data => {
-      this.$cookies.set('allBarrage', data)
-    })
     return Promise.all(initFetchAppData)
   }
 }

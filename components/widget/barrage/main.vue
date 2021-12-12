@@ -58,9 +58,10 @@
 </template>
 
 <script>
-import socket from '~/plugins/socket.io'
+import { socketIO } from '@/plugins/socket'
+
 import BarrageItem from './item'
-import Cookies from 'js-cookie'
+import { mapState } from 'vuex'
 export default {
   name: 'Barrage',
   components: {
@@ -72,7 +73,7 @@ export default {
     return {
       sizes,
       colors,
-      socket,
+      socketIO,
       counts: {
         users: 18,
         count: 0
@@ -83,14 +84,15 @@ export default {
       },
       barrage: '',
       barrages: [],
+      copyBarrages: [],
       moveTimer: null,
       barrageLimit: 0,
       sizeIndex: sizes.length - 1,
-      allBarrage: JSON.parse(Cookies.get('allBarrage').slice()),
       colorIndex: colors.length - 1
     }
   },
   computed: {
+    ...mapState('user', ['allBarrages']),
     currentColor() {
       return this.colors[this.colorIndex]
     },
@@ -102,19 +104,20 @@ export default {
     }
   },
   beforeMount() {
+    this.copyBarrages = this.allBarrages.slice()
     // 生成随机的时间，push 进不同的内容，而不是一次性赋值
     const moveBarrages = () => {
-      if (this.allBarrage.length) {
-        this.barrages.push(this.allBarrage[0])
-        this.allBarrage.splice(0, 1)
-        if (this.allBarrage.length) {
+      if (this.copyBarrages.length) {
+        this.barrages.push(this.copyBarrages[0])
+        this.copyBarrages.splice(0, 1)
+        if (this.copyBarrages.length) {
           this.moveTimer = setTimeout(moveBarrages, parseInt(this.randomPer(this.config.moveDelay), 0) * 100)
         }
       }
     }
     moveBarrages()
-    this.barrageLimit = this.allBarrage.length + 2
-    this.counts.count = this.allBarrage.length + 1
+    this.barrageLimit = this.copyBarrages.length + 2
+    this.counts.count = this.copyBarrages.length + 1
   },
   beforeDestroy() {
     if (this.moveTimer) {
@@ -135,7 +138,7 @@ export default {
         },
         date: new Date().getTime()
       }
-      this.socket.emit('barrage-send', barrage)
+      this.socketIO.emit('barrage-send', barrage)
       barrage.id = this.barrageLimit++
       this.barrages.push(barrage)
       this.counts.count += 1
