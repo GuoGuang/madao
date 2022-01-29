@@ -82,14 +82,14 @@ module.exports = {
       // 处理 Swiper4 下的 dom7 模块的语法问题
       webpackConfig.resolve.alias.dom7$ = 'dom7/dist/dom7.js'
       webpackConfig.resolve.alias.swiper$ = 'swiper/dist/js/swiper.js'
-      if (isDev && isClient) {
-        webpackConfig.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: [/(node_modules)/, /underscore-simple/]
-        })
-      }
+      // if (isDev && isClient) {
+      //   webpackConfig.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: [/(node_modules)/, /underscore-simple/]
+      //   })
+      // }
       if (isProdMode) {
         // 处理 Template 和 CSS 中的 cdn 地址
         const vueLoader = webpackConfig.module.rules.find(loader => loader.loader === 'vue-loader')
@@ -204,8 +204,8 @@ module.exports = {
   },
   css: [
     '~/static/icon/iconfont.css',
-    'swiper/dist/css/swiper.css',
-    'highlight.js/styles/ocean.css',
+    'swiper/css/swiper.css',
+    'highlight.js/styles/base16/ocean.css',
     { src: '~assets/sass/app.scss', lang: 'sass' }
   ],
   styleResources: {
