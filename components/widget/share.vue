@@ -87,7 +87,6 @@ export default {
   },
   methods: {
     copyPageUrl() {
-      this.$ga.social('主站复制', '分享', this.url)
       this.$root.$copyToClipboard(this.url)
     },
     description() {
@@ -110,7 +109,6 @@ export default {
       const targetUrl = url().includes('mailto')
         ? url().replace(/\s|\||madaoo.com/g, '')
         : encodeURI(url())
-      this.$ga.social(social, '分享', targetUrl)
       /*
         * screen.availWidth 获得屏幕宽度
         * screen.availHeight 获得屏幕高度

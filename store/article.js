@@ -10,8 +10,9 @@ import { fetchDelay } from '~/utils/fetch-delay'
 import { isArticleDetailRoute } from '~/utils/route'
 // import onResponse from '~/plugins/axios'
 import { Easing, scrollTo } from '~/utils/scroll-to-anywhere'
+const { path } = require('~/config/api.json')
+const api = path.article + '/article'
 
-let api = '/ar/article'
 const getDefaultListData = () => {
   return {
     records: [],
@@ -95,11 +96,12 @@ export const actions = {
   fetchList({ commit }, params = { }) {
     const isLoadMore = params.page && params.page > 0
 
+    let pathApi = `${api}`
     if (params.tag_id) {
-      api = `${api}?tagsId=${params.tag_id}`
+      pathApi = `${api}?tagsId=${params.tag_id}`
     }
     // &categoryId=${params.categoryId}?tagsId=${params.tag_id}
-    return this.$axios.$get(`${api}`, { params })
+    return this.$axios.$get(pathApi, { params })
       .then(response => {
         commit('updateListFetchig', false)
         isLoadMore ? commit('updateExistingListData', response.data) : commit('updateListData', response.data)
@@ -211,5 +213,19 @@ export const actions = {
         // commit('updateLikesIncrement')
         return Promise.resolve(response)
       })
+  },
+  fetchAuthorDetail({ commit }) {
+    return new Promise((resolve, reject) => {
+      return this.$axios.$get(`${api}/admin`).then(response => {
+        if (response.code !== 20000) {
+          this.$toast.error(response.message)
+        } else {
+          // commit('SET_AUTHOR_DETAIL', response)
+          resolve(response)
+        }
+      }).catch(() => {
+        commit('UPDATE_FETCHING', false)
+      })
+    })
   }
 }

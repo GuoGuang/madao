@@ -1,5 +1,4 @@
 # robots.txt
 User-agent: *
-Disallow: /bin/
-# Sitemap: https://madaoo.com/sitemap.xml
-# Sitemap: https://madaoo.com/sitemap
+Disallow:
+Sitemap: https://madaoo.com/sitemap.xml

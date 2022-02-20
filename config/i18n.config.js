@@ -144,10 +144,6 @@ module.exports = {
           en: 'IOS (X)'
         }
       },
-      webrtc: {
-        zh: '视频会议',
-        en: ' WebRTC'
-      },
       barrage: {
         name: {
           zh: '弹幕吐槽',

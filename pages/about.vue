@@ -183,16 +183,16 @@
               </div>
               <div class="gravatar">
                 <div class="background be-2">
-                  <img src="/images/about-background-be-2.jpg" alt="background" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-be-2.jpg'" alt="background" class="image">
                 </div>
                 <div class="background be-1">
-                  <img src="/images/about-background-be-1.jpg" alt="background" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-be-1.jpg'" alt="background" class="image">
                 </div>
                 <div class="background star-1">
-                  <img src="/images/about-background-star-1.png" alt="background-star" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-star-1.png'" alt="background-star" class="image">
                 </div>
                 <div class="background star-2">
-                  <img src="/images/about-background-star-2.png" alt="background-star" class="image">
+                  <img :src="{cdnUrl}+'/images/about-background-star-2.png'" alt="background-star" class="image">
                 </div>
                 <img :src="avatar" class="avatar">
                 <div class="desc">
@@ -222,6 +222,8 @@
 </template>
 
 <script>
+import { cdnUrl } from '~/config/api.config.esm'
+
 export default {
   name: 'About',
   head() {
@@ -231,6 +233,11 @@ export default {
   },
   fetch({ store }) {
     return store.dispatch('global/fetchAdminInfo')
+  },
+  data: function() {
+    return {
+      cdnUrl: cdnUrl
+    }
   },
   computed: {
     isEnLang() {
@@ -245,7 +252,6 @@ export default {
   },
   methods: {
     handleFollowMe() {
-      this.$ga.event('加微信码', '点击', 'tool')
     },
     getRandomSkill() {
       return !!Math.floor(Math.random() * 2)
@@ -544,7 +550,7 @@ export default {
               left: 0;
               width: 100%;
               height: 100%;
-              background-image: url('https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/wechat.jpg');
+              background-image: url('https://static-admin.madaoo.com/wechat.jpg');
               background-size: contain;
               background-position: bottom;
               z-index: 9;

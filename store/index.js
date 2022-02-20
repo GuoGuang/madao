@@ -7,6 +7,7 @@
 import { isServer } from '~/environment/esm'
 import uaDevice from '~/utils/ua-device'
 import systemConstants from '~/constants/system'
+
 // import cookie from 'cookie'
 // import { getToken } from '@/utils/auth' // 从cookie中获取token getToken
 
@@ -38,7 +39,7 @@ export const actions = {
       // store.dispatch('global/fetchAppOption'),
       // 内容数据
       store.dispatch('tag/fetchList'), // 首页右侧标签 节点 群组
-      store.dispatch('user/fetchAuthorDetail')
+      store.dispatch('article/fetchAuthorDetail')
 
       // store.dispatch('category/fetchList')
     ]

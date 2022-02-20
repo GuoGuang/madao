@@ -38,7 +38,7 @@
 
     <transition name="module">
       <div v-if="renderAd" key="ad" class="aside-ad">
-        <adsense-aside />
+        <!--        <adsense-aside />-->
       </div>
     </transition>
 

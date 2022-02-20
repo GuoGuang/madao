@@ -58,8 +58,10 @@
 </template>
 
 <script>
-import socket from '~/plugins/socket.io'
+import { socketIO } from '@/plugins/socket'
+
 import BarrageItem from './item'
+import { mapState } from 'vuex'
 export default {
   name: 'Barrage',
   components: {
@@ -71,17 +73,18 @@ export default {
     return {
       sizes,
       colors,
-      socket,
+      socketIO,
       counts: {
-        users: 0,
+        users: 18,
         count: 0
       },
       config: {
         delay: 10,
-        moveDelay: 3
+        moveDelay: 18
       },
       barrage: '',
       barrages: [],
+      copyBarrages: [],
       moveTimer: null,
       barrageLimit: 0,
       sizeIndex: sizes.length - 1,
@@ -89,6 +92,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('user', ['allBarrages']),
     currentColor() {
       return this.colors[this.colorIndex]
     },
@@ -100,33 +104,20 @@ export default {
     }
   },
   beforeMount() {
-    this.socket.emit('barrage-last-list', barrages => {
-      barrages.forEach((b, i) => {
-        b.id = i + 1
-      })
-      // 生成随机的时间，push 进不同的内容，而不是一次性赋值
-      const moveBarrages = () => {
-        if (barrages.length) {
-          // console.log('moveBarrages， 还有', barrages.length)
-          this.barrages.push(barrages[0])
-          barrages.splice(0, 1)
-          if (barrages.length) {
-            this.moveTimer = setTimeout(moveBarrages, parseInt(this.randomPer(this.config.moveDelay), 0) * 100)
-          }
+    this.copyBarrages = this.allBarrages.slice()
+    // 生成随机的时间，push 进不同的内容，而不是一次性赋值
+    const moveBarrages = () => {
+      if (this.copyBarrages.length) {
+        this.barrages.push(this.copyBarrages[0])
+        this.copyBarrages.splice(0, 1)
+        if (this.copyBarrages.length) {
+          this.moveTimer = setTimeout(moveBarrages, parseInt(this.randomPer(this.config.moveDelay), 0) * 100)
         }
       }
-      moveBarrages()
-      this.barrageLimit = barrages.length + 2
-    })
-    this.socket.emit('barrage-count', counts => {
-      this.counts = counts
-    })
-    this.socket.on('barrage-update-count', counts => {
-      this.counts = counts
-    })
-    this.socket.on('barrage-create', barrage => {
-      this.barrages.push(barrage)
-    })
+    }
+    moveBarrages()
+    this.barrageLimit = this.copyBarrages.length + 2
+    this.counts.count = this.copyBarrages.length + 1
   },
   beforeDestroy() {
     if (this.moveTimer) {
@@ -147,7 +138,7 @@ export default {
         },
         date: new Date().getTime()
       }
-      this.socket.emit('barrage-send', barrage)
+      this.socketIO.emit('barrage-send', barrage)
       barrage.id = this.barrageLimit++
       this.barrages.push(barrage)
       this.counts.count += 1

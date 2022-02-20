@@ -1,15 +1,24 @@
 {
   "development": {
-    "cdnUrl": "",
+    "cdnUrl": "https://static-admin.madaoo.com",
     "proxyUrl": "/proxy/",
-    "baseUrl": "https://api.madaoo.com/",
-    "socketHost": "https://socket.madaoo.com"
+    "baseUrl": "http://localhost:8080/api",
+    "socketHost": "http://localhost:9099"
   },
-
   "production": {
-    "cdnUrl": "",
+    "cdnUrl": "https://static-admin.madaoo.com",
     "proxyUrl": "https://madaoo.com/proxy/",
     "baseUrl": "https://api.madaoo.com/",
     "socketHost": "https://socket.madaoo.com"
+  },
+  "cloud-path":{
+    "article": "/blog",
+    "base": "/blog",
+    "user": "/blog/user"
+  },
+  "path": {
+    "article": "/ar",
+    "base": "/ba",
+    "user": "/su"
   }
 }

@@ -3,6 +3,8 @@
  * @module store/tag
  * @author GuoGuang <https://github.com/GuoGuang>
  */
+const { path } = require('~/config/api.json')
+const api = path.article + '/tag'
 
 export const state = () => {
   return {
@@ -23,15 +25,15 @@ export const mutations = {
 export const actions = {
   fetchList({ commit }) {
     commit('updateFetching', true)
-    return this.$axios.$get(`/ar/tag`, { params: { cache: 1 }})
+    return this.$axios
+      .$get(`${api}`, { params: { cache: 1 }})
       .then(response => {
         commit('updateListData', response)
         commit('updateFetching', false)
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('获取tag失败：' + error.message)
         commit('updateFetching', false)
       })
   }
 }
-

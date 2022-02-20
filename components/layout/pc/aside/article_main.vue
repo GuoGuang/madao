@@ -14,7 +14,7 @@
       <div class="author-info">
         <a href="#" class="user-item">
           <el-avatar
-            style="margin-right: 5px;"
+            style="align-self: center;"
             class="avatar"
             size="large"
             src="https://images.nowcoder.com/images/20180218/6617757_1518920311404_48DBFD0E780C1F7DCB9ABC4D5083B2BD@0e_100w_100h_0c_1i_1o_90Q_1x"/>
@@ -268,8 +268,9 @@ export default {
       margin-bottom: 1em;
       .author-info{
         .user-item{
+          line-height: 2;
           justify-content: space-evenly;
-          padding: 1.3rem;
+          padding: 1rem;
           display: flex
         }
         .stat-item{

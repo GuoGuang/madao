@@ -6,12 +6,12 @@
 
  // const apiConfig = require('./api.config.js')
 // const imagePath = apiConfig.cdnUrl+`/images/mammon/`
-const imagePath = `https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/icode/_nuxt/images/mammon/`
+const imagePath = `https://static-admin.madaoo.com/`
 
 
 const links = {
   common: {
-    aliyun: 'https://s.click.taobao.com/FQVZFKw'
+    aliyun: 'https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=e9jpi67b'
   },
   pc: {
     taobao: 'https://s.click.taobao.com/hWjWFKw',
@@ -49,18 +49,6 @@ const pc = {
       url: links.common.aliyun,
       src: imagePath + 'aliyun-532-178.jpg'
     },
-    {
-      url: links.pc.taobao,
-      src: imagePath + 'taobao-532-178.jpg'
-    },
-    {
-      url: links.pc.dingding,
-      src: imagePath + 'dingding-532-178.jpg'
-    },
-    {
-      url: links.pc.alitrip,
-      src: imagePath + 'alitrip-532-178.jpg'
-    }
   ]
 }
 

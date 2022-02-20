@@ -10,7 +10,7 @@ pipeline {
         // REMOTE_IP = "121.36.158.84"
         DOCKER_IMAGE = 'madao_blog'
         DOCKER_CONTAINER = 'madao_blog'
-        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/other_password.txt ssh -t -t -o StrictHostKeyChecking=no root@${OTHER_INSTANCE_IP}'
+        REMOTE_SCRIPT = 'sshpass -f /var/jenkins_home/password.txt ssh -t -t -o StrictHostKeyChecking=no root@${INSTANCE_IP}'
        //测试人员邮箱地址【参数值对外隐藏】
         QA_EMAIL = '1831682775@qq.com'
         BUILD_USER_EMAIL = '1831682775@qq.com'
@@ -30,6 +30,14 @@ pipeline {
 
         }
      }
+       stage("Vue构建") {
+                 steps {
+                     sh "pwd"
+                     sh "/bin/cp -f /var/jenkins_home/service-config/gitalk.vue madao/pages/article/"
+                     echo '-->> -->>vue打包构建完成!'
+                 }
+             }
+
     stage('Docker打包推送') {
             steps {
                 dir(path: "/${WORKSPACE}/madao") {
@@ -52,8 +60,15 @@ pipeline {
         stage('远程Docker拉取并构建') {
             steps {
                 sh "pwd"
-                sh "apt-get update"
-                sh "apt-get install sshpass"
+                // jenkins/jenkins镜像是基于Ubuntu系统
+//                 sh "apt-get update"
+//                 sh "apt-get install sshpass"
+
+                // jenkinsci/blueocean镜像是基于Alpine Linux系统
+                sh "sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories"
+                sh "apk update"
+                sh "apk add sshpass"
+
                 sh "${REMOTE_SCRIPT} docker login --username=guoguang0536 --password ${OTH_DOCKER_HUB_PASSWORD}"
                 script {
                     // 停止并删除列表中有 ${DOCKER_CONTAINER} 的容器

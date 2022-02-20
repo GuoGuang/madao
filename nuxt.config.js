@@ -39,7 +39,8 @@ module.exports = {
     analyze: process.argv.join('').includes('analyze'), // 分析
     maxChunkSize: 360000, // 单个包最大尺寸
     extractCSS: true, // 单独提取 css
-    publicPath: apiConfig.cdnUrl,
+    // publicPath: apiConfig.cdnUrl,
+    publicPath: '',
     postcss: {
       plugins: { 'postcss-custom-properties': { warnings: false }}
     },
@@ -49,7 +50,7 @@ module.exports = {
           expansions: {
             name: 'expansions',
             test(module) {
-              return /swiper|howler|marked|favico|rtcpeerconnection|webrtc|highlight/.test(module.context)
+              return /swiper|howler|marked|favico|rtcpeerconnection|highlight/.test(module.context)
             },
             chunks: 'initial',
             priority: 10
@@ -81,14 +82,14 @@ module.exports = {
       // 处理 Swiper4 下的 dom7 模块的语法问题
       webpackConfig.resolve.alias.dom7$ = 'dom7/dist/dom7.js'
       webpackConfig.resolve.alias.swiper$ = 'swiper/dist/js/swiper.js'
-      if (isDev && isClient) {
-        webpackConfig.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: [/(node_modules)/, /underscore-simple/, /webrtc/]
-        })
-      }
+      // if (isDev && isClient) {
+      //   webpackConfig.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: [/(node_modules)/, /underscore-simple/]
+      //   })
+      // }
       if (isProdMode) {
         // 处理 Template 和 CSS 中的 cdn 地址
         const vueLoader = webpackConfig.module.rules.find(loader => loader.loader === 'vue-loader')
@@ -122,21 +123,19 @@ module.exports = {
     { src: '~/plugins/gravatar' },
     { src: '~/plugins/highlight' },
     { src: '~/plugins/favico', mode: 'client' },
-    { src: '~/plugins/adsense', ssr: false },
     { src: '~/plugins/swiper', mode: 'client' },
-    { src: '~/plugins/analytics', mode: 'client' },
     { src: '~/plugins/image-popup', mode: 'client' },
     { src: '~/plugins/iframe-popup', mode: 'client' },
     { src: '~/plugins/copy-right', mode: 'client' },
     { src: '~/plugins/element-ui' },
     { src: '~/plugins/axios' },
     { src: '~/static/icon/iconfont.js', ssr: false },
-    { src: '~/plugins/videoPlayer.js', ssr: false }
+    { src: '~/plugins/videoPlayer.js', ssr: false },
+    { src: '~/plugins/socket', mode: 'client', ssr: false }
     /* 阿里icon */
     // { src: '~/plugins/particles', mode: 'client' }
   ],
   modules: [
-    '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
     ['@nuxtjs/axios', { baseURL: apiConfig.baseUrl }],
@@ -180,47 +179,15 @@ module.exports = {
       { rel: 'dns-prefetch', href: '//gravatar.madaoo.com' },
       { rel: 'dns-prefetch', href: '//at.alicdn.com' },
       { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
-      { rel: 'dns-prefetch', href: '//adservice.google.com' },
       { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-      // { rel: 'dns-prefetch', href: '//googleads.g.doubleclick.net' },
-      // { rel: 'dns-prefetch', href: '//www.google-analytics.com' },
-      // { rel: 'dns-prefetch', href: '//tpc.googlesyndication.com' },
-      // { rel: 'dns-prefetch', href: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'author', type: 'text/plain', href: '/humans.txt' }
     ],
     noscript: [
       { innerHTML: 'This website requires JavaScript.' }
     ],
-    script: [
-      /* GooGle Ads */
-      { type: 'text/javascript', innerHTML:
-            `(adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-2993169397147402",
-              enable_page_level_ads: true
-            });`
-      }
-    ],
     // 禁止innerHTML的内容转义
     __dangerouslyDisableSanitizers: ['script']
-  },
-  workbox: {
-    // runtimeCaching: [
-    //   {
-    //     urlPattern: 'https://my-cdn.com/.*',
-    //     handler: 'networkFirst',
-    //     method: 'GET'
-    //   }
-    // ]
-  },
-  manifest: {
-    name: appConfig.meta.title,
-    short_name: appConfig.meta.author,
-    theme_color: appConfig.color.primary,
-    background_color: '#eee',
-    description: htmlSlogan,
-    display: 'standalone',
-    lang: htmlLang
   },
   icon: {
     iconSrc: '/static/icon.png',
@@ -237,8 +204,8 @@ module.exports = {
   },
   css: [
     '~/static/icon/iconfont.css',
-    'swiper/dist/css/swiper.css',
-    'highlight.js/styles/ocean.css',
+    'swiper/css/swiper.css',
+    'highlight.js/styles/base16/ocean.css',
     { src: '~assets/sass/app.scss', lang: 'sass' }
   ],
   styleResources: {

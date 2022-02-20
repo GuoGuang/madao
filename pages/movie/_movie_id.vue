@@ -81,7 +81,7 @@ export default {
         },
         sources: [{
           type: 'video/mp4',
-          src: 'https://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/%5BBD%E5%BD%B1%E8%A7%86%E5%88%86%E4%BA%ABbd-film.cc%5D%E5%B7%B4%E6%96%AF%E7%89%B9%C2%B7%E6%96%AF%E5%85%8B%E9%B2%81%E6%A0%BC%E6%96%AF%E7%9A%84%E6%AD%8C%E8%B0%A3..The.Ballad.of.Buster.Scruggs.2018.HD1080P.%E4%B8%AD%E5%AD%97.mp41'
+          src: 'https://static-admin.madaoo.com/%5BBD%E5%BD%B1%E8%A7%86%E5%88%86%E4%BA%ABbd-film.cc%5D%E5%B7%B4%E6%96%AF%E7%89%B9%C2%B7%E6%96%AF%E5%85%8B%E9%B2%81%E6%A0%BC%E6%96%AF%E7%9A%84%E6%AD%8C%E8%B0%A3..The.Ballad.of.Buster.Scruggs.2018.HD1080P.%E4%B8%AD%E5%AD%97.mp41'
         }]
       }
     }

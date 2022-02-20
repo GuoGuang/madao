@@ -43,9 +43,9 @@ export default {
       return this.$store.state.global.isEnLang
     },
     days() {
-      var old = new Date('2019-12-01')
-      var n = new Date()
-      var s = n - old
+      const old = new Date('2019-12-01')
+      const n = new Date()
+      const s = n - old
       return Math.floor(s / (24 * 3600 * 1000))
     }
   }

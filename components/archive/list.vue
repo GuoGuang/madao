@@ -3,9 +3,9 @@
   <div class="articles">
 
     <!-- 广告啦 -->
-    <transition name="module">
+    <!--    <transition name="module">
       <component v-if="renderAd" :is="isMobile ? 'adsense-archive-mobile' : 'adsense-archive'" />
-    </transition>
+    </transition>-->
 
     <!-- 列表 -->
     <div class="article-list">

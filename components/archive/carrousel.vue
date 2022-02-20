@@ -29,7 +29,7 @@
                   rel="external nofollow noopener"
                   class="link"
                 >
-                  <img :src="article.src" :alt="article.title" >
+                  <img :src="article.src" :alt="article.title" loading="lazy" >
                   <span class="title">{{ article.title }}</span>
                 </a>
               </template>

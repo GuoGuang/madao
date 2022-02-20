@@ -25,15 +25,15 @@
 </p>
 
 
-### 感谢 [surmon.me ]( https://github.com/surmon-china/surmon.me ) 的开源项目
-
-
 ### 🏠 [Homepage](https://madaoo.com)
 > 如果喜欢记得给个star哦🌟
 
+更多内容请关注公众号：`码道人生`
+
+
 ## PC
 
-![演示](https://github.com/GuoGuang/madao/blob/master/static/demo.png)
+![演示](http://vue-admin-guoguang.oss-cn-shanghai.aliyuncs.com/images/demo.jpg)
 
 ## Directory
 ```
@@ -74,6 +74,10 @@ nuxt.js-blog/
    │──.eslintrc.js               * Eslint配置
    │
    │──.babelrc                   * Babel配置
+   |
+   │──Dockerfile                 * devops部署
+   |
+   │──Jenkinsfile                * devops部署
    │
    │──.gitignore                 * Git忽略文件配置
    │
@@ -90,7 +94,7 @@ nuxt.js-blog/
 ## Prerequisites
 
 - npm >=5.5.0
-- node >=9.3.0
+- node >=9.3.0 (最好使用10版本)
 
 ## Usage
 
@@ -116,6 +120,25 @@ $ npm start
 $ npm run lint
 
 ```
+
+## CHANGELOG
+
+### 2.1.4
+
+- 增加图片懒加载功能
+- 去除PWA
+- 优化网站访问速度
+
+### 1.1.0
+
+- 增加文章详情、评论
+- 增加登录功能
+- 增加三方登录功能
+
+### 1.0.0
+
+- 初始化框架
+- 博客基础功能完成
 
 ## Author
 

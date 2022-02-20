@@ -8,6 +8,10 @@ import i18nConfig from '~/config/i18n.config'
 import stateConstants from '~/constants/state'
 import systemConstants from '~/constants/system'
 
+const { path } = require('~/config/api.json')
+
+const URL_PREFIX = path.user
+
 export const state = () => ({
 
   // 主题
@@ -42,9 +46,6 @@ export const state = () => ({
 
   // 节能模式
   onPowerSavingMode: false,
-
-  // 是否开启rtc
-  onWebrtc: false,
 
   // 山河入梦
   onWallpaper: false,
@@ -140,8 +141,6 @@ export const mutations = {
     state.appOption.data.meta.likes++
   }
 }
-
-const URL_PREFIX = '/su'
 export const actions = {
 
   // 获取同构常量
