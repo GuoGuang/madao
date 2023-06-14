@@ -1,4 +1,4 @@
-FROM node:10.15.3
+FROM node:14.21.3
 MAINTAINER GuoGuang
 # ENV NODE_ENV=production
 ENV HOST 0.0.0.0
