@@ -101,6 +101,7 @@ nuxt.js-blog/
 ```bash
 
 # 安装依赖
+# 该项目中的库依赖python2.7，需要提前安装
 $ npm install --save-dev  --unsafe-perm node-sass
   或者用cnpm
 npm install -g cnpm --registry=https://registry.npm.taobao.org
