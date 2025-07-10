@@ -1,6 +1,6 @@
 FROM node:14.21.3
 MAINTAINER GuoGuang
-# ENV NODE_ENV=production
+ENV NODE_ENV=production
 ENV HOST 0.0.0.0
 RUN mkdir -p /madao-blog
 COPY . /madao-blog
